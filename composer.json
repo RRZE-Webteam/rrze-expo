@@ -1,0 +1,15 @@
+{
+	"name": "rrze/rrze-expo",
+	"description": "Basic template for all WordPress CMS plugins.",
+	"type": "wordpress-plugin",
+	"license": "GNU General Public License v2",
+	"require": {
+		"cmb2/cmb2": "dev-master"
+	},
+	"autoload": {
+		"files": ["vendor/cmb2/cmb2/init.php"],
+		"psr-4": {
+			"RRZE\\Expo\\": "includes/"
+		}
+	}
+}
