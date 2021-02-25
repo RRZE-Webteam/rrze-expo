@@ -71,6 +71,7 @@ class Booth {
     }
 
     public function booth_fields() {
+        // General
         $cmb_general = new_cmb2_box([
             'id'            => 'rrze-expo-booth-general',
             'title'         => __('General Information', 'rrze-expo'),
@@ -89,6 +90,81 @@ class Booth {
             'options'          => CPT::getPosts('hall'),
         ]);
 
+        // Layout
+        $cmb_layout = new_cmb2_box([
+            'id'            => 'rrze-expo-booth-layout',
+            'title'         => __('Layout', 'rrze-expo'),
+            'object_types'  => ['booth'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $cmb_layout->add_field([
+            'name'      => __('Booth Template', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-template',
+            'type'      => 'select',
+            'default'          => '1',
+            'options'          => [ '1' => __('Template 1', 'rrze-expo'),
+                '2' => __('Template 2', 'rrze-expo'),
+                '3' => __('Template 3', 'rrze-expo'),
+                '0' => __('Custom Template', 'rrze-expo')
+            ],
+        ]);
+        $cmb_layout->add_field([
+            'name'      => __('Backround Image Overlay', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-overlay-color',
+            'type'      => 'select',
+            'default'          => 'light',
+            'options'          => [ 'light' => __('Light', 'rrze-expo'),
+                'dark' => __('Dark', 'rrze-expo')],
+        ]);
+        $cmb_layout->add_field([
+            'name'      => __('Backround Image Opacity', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-overlay-opacity',
+            'type'      => 'select',
+            'default'          => '30',
+            'options'          => ['0'  => '0%',
+                '0.1' => '10%',
+                '0.2' => '20%',
+                '0.3' => '30%',
+                '0.4' => '40%',
+                '0.5' => '50%',
+                '0.6' => '60%',
+                '0.7' => '70%',
+                '0.8' => '80%',
+                '0.9' => '90%',
+                '1.0' => '100%'],
+        ]);
+        $cmb_layout->add_field([
+            'name'      => __('Back Wall Color', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-backwall-color',
+            'type'      => 'select',
+            'default'          => 'light',
+            'options'          => [
+                '003366' => 'FAU',
+                'A36B0D' => 'PhilFak',
+                '8d1429' => 'RwFak',
+                '0381A2' => 'MedFak',
+                '048767' => 'NatFak',
+                '6E7881' => 'TechFak',
+                'custom' => __('Custom Color', 'rrze-expo'),
+                ],
+        ]);
+        $cmb_layout->add_field([
+            'name'      => __('Decoration Elements', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-decoration',
+            'type'      => 'multicheck',
+            'options'          => [
+                'plantsleft' => __('Plants left side', 'rrze-expo'),
+                'plantsright' => __('Plants right side', 'rrze-expo')],
+        ]);
+
+        // Social Media
         $cmb_social_media = new_cmb2_box([
             'id'            => 'rrze-expo-booth-social-media',
             'title'         => __('Social Media', 'rrze-expo'),
@@ -107,6 +183,18 @@ class Booth {
             'name'      => __('Facebook', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-booth-facebook',
+            'type'      => 'social-media',
+        ]);
+        $cmb_social_media->add_field([
+            'name'      => __('Instagram', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-instagram',
+            'type'      => 'social-media',
+        ]);
+        $cmb_social_media->add_field([
+            'name'      => __('Youtube', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-youtube',
             'type'      => 'social-media',
         ]);
     }
