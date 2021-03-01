@@ -31,7 +31,31 @@ CPT::expoHeader();
             'order' => 0,];
         ?>
 
+        <h1 class="sr-only screen-reader-text"><?php echo the_title(); ?></h1>
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
+            <svg class="expo-booth" role="img" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use xlink:href="#backwall" x="60" y="0" />
+                <use xlink:href="#video1" x="200" y="60" />
+                <use xlink:href="#video2" x="700" y="60" />
+                <use xlink:href="#flyer_stand" x="0" y="400" />
+                <use xlink:href="#table" x="600" y="550" />
+                <use xlink:href="#some_panel" x="1800" y="500" />
+                <a xlink:href="https://twitter.com/">
+                    <use xlink:href="#twitter" x="1820" y="520" />
+                </a>
+                <a xlink:href="https://www.facebook.com/">
+                    <use xlink:href="#facebook" x="1820" y="620" />
+                </a>
+                <a xlink:href="https://instagram.com/">
+                    <use xlink:href="#instagram" x="1820" y="720" />
+                </a>
+                <a xlink:href="https://youtube.com/">
+                    <use xlink:href="#youtube" x="1820" y="820" />
+                </a>
+                <use xlink:href="#booth_logo" x="1344" y="60" />
+                <use xlink:href="#booth_logo" x="700" y="600" />
+            </svg>
+
 
             <?php
             $templateNo = CPT::getMeta($meta, 'rrze-expo-booth-template');

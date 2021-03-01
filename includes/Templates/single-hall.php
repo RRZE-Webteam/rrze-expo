@@ -17,7 +17,7 @@ CPT::expoHeader();
         $menu = CPT::getMeta($meta, 'rrze-expo-hall-menu');
         $backgroundImage = CPT::getMeta($meta, 'rrze-expo-hall-background-image');
         if ($backgroundImage == '') {
-            // If no background image is set -> take foyer background image
+            // If no background image is set -> display foyer background image
             $foyer = CPT::getMeta($meta, 'rrze-expo-hall-foyer');
             $backgroundImage = get_post_meta($foyer, 'rrze-expo-foyer-background-image', true);
         } ?>
@@ -26,11 +26,21 @@ CPT::expoHeader();
 
             <?php
             if ($menu != '-1') {
-                wp_nav_menu([
-                    'menu' => absint($menu),
-                    'container' => false,
-                    //'items_wrap' => '<div id="nav"><ul class="nav">%3$s</ul></div>',
-                    'depth' => 1]);
+                $items = wp_get_nav_menu_items(absint($menu));
+                echo '<ul class="hall-menu">';
+                foreach ( $items as $item){
+                    /*print "<pre>";
+                    var_dump($item);
+                    print "</pre>";*/
+                    echo '<li>';
+                    if (has_post_thumbnail($item->object_id)) {
+                        echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($item->object_id, 'small').'">';
+                    }
+                    echo '<a class="booth-title" href="'.get_permalink($item->object_id).'">'.$item->title.'</a>';
+                    echo '</li>';
+
+                }
+                echo "</ul>";
             }
             ?>
             <a href="#rrze-expo-hall-content" id="scrolldown"><?php _e('Read more','rrze-expo');?></a>
