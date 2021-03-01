@@ -1,1 +1,1 @@
-createBlock(expoConfig);
+"use strict";createBlock(expoConfig);

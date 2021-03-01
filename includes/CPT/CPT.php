@@ -5,11 +5,14 @@ namespace RRZE\Expo\CPT;
 
 defined('ABSPATH') || exit;
 
+use function RRZE\Expo\Config\getConstants;
+
 class CPT
 {
     public function __construct($pluginFile)
     {
         $this->pluginFile = $pluginFile;
+        $this->settings = getConstants();
     }
 
     public function onLoaded()
@@ -19,6 +22,9 @@ class CPT
 
         $hall = new Hall($this->pluginFile);
         $hall->onLoaded();
+
+        $foyer = new Foyer($this->pluginFile);
+        $foyer->onLoaded();
 
         add_filter('cmb2_render_social-media', [$this, 'cmb2_RenderSocialMediaFieldCallback'], 10, 5);
         //add_filter('cmb2_sanitize_social-media', [$this, 'cmb2_sanitizeSoMeCheckbox'], 10, 2 );
@@ -41,18 +47,14 @@ class CPT
         $value = wp_parse_args( $value, array(
             'show' => '',
             'username' => '',
-            //'order' => '',
+            'order' => '',
         ) );
         //var_dump($value);
+        $constants = getConstants();
+        $socialMedia = $constants['social-media'];
+        $numSocialMedia = count($socialMedia);
         ?>
-        <div><label for="<?php echo $field_type->_id( '_show' ); ?>"><?php _e('Show Icon', 'rrze-expo');?></label>
-            <?php echo $field_type->checkbox( array(
-                'name'  => $field_type->_name( '[show]' ),
-                'id'    => $field_type->_id( '_show' ),
-                'default' => '',
-                //'sanitization_cb'  => 'cmb2_sanitizeSoMeCheckbox',
-            ) ); ?>
-            <label for="<?php echo $field_type->_id( '_username' ); ?>'" style="margin-left: 20px;"><?php _e('User Name', 'rrze-expo');?></label>
+        <div><label for="<?php echo $field_type->_id( '_username' ); ?>'" style="margin-left: 20px;"><?php _e('User Name', 'rrze-expo');?></label>
             <?php echo $field_type->input( array(
                 'type'  => 'text',
                 'name'  => $field_type->_name( '[username]' ),
@@ -60,16 +62,20 @@ class CPT
                 'value' => $value['username'],
                 'class' => 'medium-text',
                 //'desc'  => '',
-            ) ); /*?>
+            ) ); ?>
             <label for="<?php echo $field_type->_id( '_order' ); ?>'" style="margin-left: 20px;"><?php _e('Order', 'rrze-expo');?></label>
             <?php echo $field_type->input( array(
                 'type'  => 'number',
                 'name'  => $field_type->_name( '[order]' ),
                 'id'    => $field_type->_id( '_order' ),
-                'value' => $value['order'],
+                'value' => (!empty($value['order']) ? $value['order'] : $field->args['default']),
                 'class' => 'small-text',
+                'min'   => '1',
+                'max'   => $numSocialMedia,
+                'default' => $field->args['default'],
                 //'desc'  => '',
-            ) ); */?>
+            ) );
+            ?>
         </div>
         <?php
     }
@@ -119,6 +125,8 @@ class CPT
                 return dirname($this->pluginFile) . '/includes/Templates/single-booth.php';
             case 'hall':
                 return dirname($this->pluginFile) . '/includes/Templates/single-hall.php';
+            case 'foyer':
+                return dirname($this->pluginFile) . '/includes/Templates/single-foyer.php';
         }
         return $singleTemplate;
     }
@@ -133,51 +141,88 @@ class CPT
         include WP_PLUGIN_DIR.'/rrze-expo/assets/img/booth_template_'.absint($templateNo).'.svg';
     }
 
-    public static function cssToFooter() {
+    public function cssToFooter() {
         global $post;
-        if ($post->post_type != 'booth')
+        if (!in_array($post->post_type, ['booth', 'hall', 'foyer']))
             return;
         $meta = get_post_meta($post->ID);
-        $soMeDefaults = ['show' => '',
-            'username' => ''];
-        $twitter = wp_parse_args( CPT::getMeta($meta, 'rrze-expo-booth-twitter'), $soMeDefaults);
-        $facebook = wp_parse_args( CPT::getMeta($meta, 'rrze-expo-booth-facebook'), $soMeDefaults);
-        $instagram = wp_parse_args( CPT::getMeta($meta, 'rrze-expo-booth-instagram'), $soMeDefaults);
-        $youtube = wp_parse_args( CPT::getMeta($meta, 'rrze-expo-booth-youtube'), $soMeDefaults);
-        $backwallColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
-        if ($backwallColor == 'custom') {
-            $backwallColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color-custom');
-        }
-        ?>
-        <style type="text/css">
-            .rrze-expo .booth:after {
-                background-color: <?php echo (CPT::getMeta($meta, 'rrze-expo-booth-overlay-color') == 'light' ? '#fff' : '#000');?>;
-                opacity: <?php echo CPT::getMeta($meta, 'rrze-expo-booth-overlay-opacity');?>;
+
+        echo "<style type='text/css'>";
+
+        switch($post->post_type) {
+            // Booth
+            case 'booth':
+                // Background Image
+                $backgroundColor = (CPT::getMeta($meta, 'rrze-expo-booth-overlay-color') == 'light' ? '#fff' : '#000');
+                $opacity = CPT::getMeta($meta, 'rrze-expo-booth-overlay-opacity');
+                echo ".rrze-expo .booth:after {
+                    background-color: $backgroundColor;
+                    opacity: $opacity;
+                }";
+                // Background Wall
+                $backwallColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
+                if ($backwallColor == 'custom') {
+                    $backwallColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color-custom');
                 }
-            svg.expo-booth #backwall {
-                fill: #<?php echo $backwallColor;?>
-            }
-            svg.expo-booth #twitter {
-                fill: #0059b3;
-                --some-display-twitter: <?php echo ($twitter['show'] == 'on' && $twitter['username'] != '' ? 'block' : 'none');?>;
-            }
-            svg.expo-booth #facebook {
-                fill: #f00;
-                --some-display-facebook: <?php echo ($facebook['show'] == 'on' && $facebook['username'] != '' ? 'block' : 'none');?>;
-            }
-            svg.expo-booth #instagram {
-                fill: #f00;
-                --some-display-facebook: <?php echo ($instagram['show'] == 'on' && $instagram['username'] != '' ? 'block' : 'none');?>;
-            }
-            svg.expo-booth #youtube {
-                fill: #f00;
-                --some-display-facebook: <?php echo ($youtube['show'] == 'on' && $youtube['username'] != '' ? 'block' : 'none');?>;
-            }
-        </style>
-        <?php
+                echo "svg.expo-booth #backwall {
+                    fill: #$backwallColor;
+                }";
+                // Social Media Panel
+                $soMeDefaults = ['show' => '',
+                    'username' => '',
+                    'order' => 0,];
+                $constants = getConstants();
+                $socialMedia = $constants['social-media'];
+                $i = 0;
+                foreach ($socialMedia as $soMeName => $soMeUrl) {
+                    $soMeMeta =  wp_parse_args( CPT::getMeta($meta, 'rrze-expo-booth-'.$soMeName), $soMeDefaults);
+                    if ($soMeMeta['username'] != '') {
+                        $display = 'block';
+                        $translate = (isset($soMeMeta['order']) ? $soMeMeta['order'] - 1 : $i).'%';
+                        $translate = ((int)$translate * 3.5) .'%';
+                    } else {
+                        $display = 'none';
+                        $translate = '';
+                    }
+                    echo "svg.expo-booth #$soMeName {
+                        display: $display;
+                        transform: translateY($translate);
+                    }";
+                    $i++;
+                }
+                break;
+            // Hall
+            case 'hall':
+                // Background Image
+                $backgroundColor = (CPT::getMeta($meta, 'rrze-expo-hall-overlay-color') == 'light' ? '#fff' : '#000');
+                $opacity = CPT::getMeta($meta, 'rrze-expo-hall-overlay-opacity');
+                echo ".rrze-expo .hall:after {
+                    background-color: $backgroundColor;
+                    opacity: $opacity;
+                }";
+                break;
+            // Foyer
+            case 'foyer':
+                // Background Image
+                $backgroundColor = (CPT::getMeta($meta, 'rrze-expo-foyer-overlay-color') == 'light' ? '#fff' : '#000');
+                $opacity = CPT::getMeta($meta, 'rrze-expo-foyer-overlay-opacity');
+                echo ".rrze-expo .foyer:after {
+                    background-color: $backgroundColor;
+                    opacity: $opacity;
+                }";
+                break;
+        }
+        if (!has_post_thumbnail($post->ID)) {
+            echo '.rrze-expo #booth_logo {
+                display: none;
+            }';
+        }
+
+        echo "</style>";
     }
 
     public static function expoHeader() {
+        global $post;
         ?>
         <!DOCTYPE html>
         <html <?php language_attributes(); ?> class="no-js">
@@ -197,9 +242,24 @@ class CPT
                     <li><a href="#desktop-navigation" data-target="#desktop-navigation ul li a" data-firstchild="1" class="skiplink-nav"><?php _e('Go to main navigation', 'fau-events'); ?></a></li>
                 </ul>
             </nav>
-            <header id="masthead" class="site-header cf" role="banner">
+            <header id="masthead" class="site-header" role="banner">
                 <div class="site-header-content">
+                    <?php if ($post->post_type == 'booth') {
+                        $hall = get_post_meta($post->ID, 'rrze-expo-booth-hall', true);
+                        if ($hall != '') {
+                            $link = get_permalink($hall);
+                            $text = __('Back to Hall', 'rrze-expo');
+                            echo "<a class='backlink' href='$link'>$text</a>";
+                        }
+                    } elseif ($post->post_type == 'booth') {
+                        $foyer = get_post_meta($post->ID, 'rrze-expo-foyer-hall', true);
+                        if ($foyer != '') {
+                            $link = get_permalink($foyer);
+                            $text = __('Back to Foyer', 'rrze-expo');
+                            echo "<a href='$link' title='$text'></a>";
+                        }
 
+                    } ?>
                 </div><!-- .site-header-content -->
             </header>
 

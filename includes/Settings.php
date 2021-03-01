@@ -441,6 +441,8 @@ class Settings
     {
         wp_register_script('wp-color-picker-settings', plugins_url('assets/js/wp-color-picker.js', plugin_basename($this->pluginFile)));
         wp_register_script('wp-media-settings', plugins_url('assets/js/wp-media.js', plugin_basename($this->pluginFile)));
+        wp_register_script('rrze-expo-admin', plugins_url('assets/js/rrze-expo-admin.js', plugin_basename($this->pluginFile)));
+        wp_enqueue_script('rrze-expo-admin');
     }
 
     /**

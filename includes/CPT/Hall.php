@@ -12,12 +12,12 @@ class Hall {
     }
 
     public function onLoaded(){
-        add_action('init', [$this, 'hall_post_type']);
-        add_action('cmb2_admin_init', [$this, 'hall_fields']);
+        add_action('init', [$this, 'hallPostType']);
+        add_action('cmb2_admin_init', [$this, 'hallFields']);
     }
 
     // Register Custom Post Type
-    public function hall_post_type(){
+    public function hallPostType(){
         $labels = [
             'name'                  => _x('Halls', 'Post type general name', 'rrze-expo'),
             'singular_name'         => _x('Hall', 'Post type singular name', 'rrze-expo'),
@@ -69,7 +69,85 @@ class Hall {
         register_post_type('hall', $args);
     }
 
-    public function hall_fields() {
+    public function hallFields() {
+        $cmb = new_cmb2_box([
+            'id'            => 'rrze-expo-hall-general',
+            'title'         => __('General Information', 'rrze-expo'),
+            'object_types'  => ['hall'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $menus = wp_get_nav_menus();
+        foreach ($menus as $menu) {
+            $optionsMenu[$menu->term_id] = $menu->name;
+        }
+        $cmb->add_field([
+            'name'      => __('Booth Menu', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-hall-menu',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '-1',
+            'options'          => $optionsMenu,
+        ]);
+
+        // Background Image
+        $cmb_background = new_cmb2_box([
+            'id'            => 'rrze-expo-hall-background',
+            'title'         => __('Background Image', 'rrze-expo'),
+            'object_types'  => ['hall'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $cmb_background->add_field(array(
+            'name'    => __('Background Image', 'rrze-rsvp'),
+            'desc'    => __('If no background image is set, the foyer background image will be displayed.', 'rrze-rsvp'),
+            'id'      => 'rrze-expo-hall-background-image',
+            'type'    => 'file',
+            'options' => array(
+                'url' => false, // Hide the text input for the url
+            ),
+            // query_args are passed to wp.media's library query.
+            'query_args' => array(
+                //'type' => 'application/pdf', // Make library only display PDFs.
+                // Or only allow gif, jpg, or png images
+                'type' => array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                ),
+            ),
+            'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+        ));
+        $cmb_background->add_field([
+            'name'      => __('Backround Image Overlay', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-hall-overlay-color',
+            'type'      => 'select',
+            'default'          => 'light',
+            'options'          => [ 'light' => __('Light', 'rrze-expo'),
+                'dark' => __('Dark', 'rrze-expo')],
+        ]);
+        $cmb_background->add_field([
+            'name'      => __('Backround Image Opacity', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-hall-overlay-opacity',
+            'type'      => 'select',
+            'default'          => '30',
+            'options'          => ['0'  => '0%',
+                '0.1' => '10%',
+                '0.2' => '20%',
+                '0.3' => '30%',
+                '0.4' => '40%',
+                '0.5' => '50%',
+                '0.6' => '60%',
+                '0.7' => '70%',
+                '0.8' => '80%',
+                '0.9' => '90%',
+                '1.0' => '100%'],
+        ]);
 
     }
 

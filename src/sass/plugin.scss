@@ -1,6 +1,11 @@
 /*
 Plugin Style
 */
+.single-booth, .single-hall, .single-foyer {
+    ul.jumplinks {
+        margin: 0;
+    }
+}
 .rrze-expo {
     & * {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -10,17 +15,21 @@ Plugin Style
             font-size: 18px;
         }
     }
-    .booth {
+    .foyer, .hall, .booth {
         position: relative;
         width: 100%;
         z-index: 1;
-        height: 100vh;
+        height: 90vh;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         color: #fff;
         overflow: hidden;
         display: block;
+        padding: 10px 10px 50px 10px;
+        @media screen and (min-width: 37.5em) {
+            padding: 30px 30px 50px 30px;
+        }
         &:after {
             z-index: -90;
             position: absolute;
@@ -37,7 +46,7 @@ Plugin Style
     #scrolldown {
         display: block;
         position: absolute;
-        bottom: 10%;
+        bottom: 10px;
         left: 50%;
         transform: translate(-50%);
         background: transparent;
@@ -45,8 +54,7 @@ Plugin Style
         color: #fff;
         text-shadow: 0 0 2px #000;
         z-index: 100;
-        height: 50px;
-        padding: 11px 24px 0;
+        padding: 4px 24px ;
         outline: none;
         opacity: 1;
         -webkit-transition: all .4s ease;
@@ -58,18 +66,30 @@ Plugin Style
 
 #rrze-expo-booth {
     svg.expo-booth {
-        height: 80vh;
+        //height: 80vh;
+        max-height: 100%;
+        max-width: 100%;
         display: block;
         margin: 0 auto;
     }
     .booth-nav {
         li {
-            //display: block;
-            //position: absolute;
+            display: block;
+            position: absolute;
+            top: 50%;
+            padding: 0;
+            &.prev-booth {
+                left: 0;
+            }
+            &.next-booth {
+                right: 0;
+            }
         }
     }
 }
 
+#rrze-expo-foyer-content,
+#rrze-expo-hall-content,
 #rrze-expo-booth-content {
     max-width: 1000px;
     margin-left: auto;

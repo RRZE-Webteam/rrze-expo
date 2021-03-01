@@ -279,3 +279,47 @@ function getShortcodeSettings(){
     ];
 }
 
+function getConstants() {
+    return [
+        'social-media' => [
+            'twitter' => 'https://twitter.com/',
+            'facebook' => 'https://www.facebook.com/',
+            'instagram' => 'https://instagram.com/',
+            'youtube' => 'https://youtube.com/',
+            'xing' => 'https://www.xing.com/',
+            'linkedin' => 'https://linkedin.com/',
+        ],
+        'template_elements' => [
+            'template1' => [
+                'social-media' => __('Social Media Panel', 'rrze-expo'),
+                'video1' => __('Video Screen 1', 'rrze-expo'),
+                'video2' => __('Video Screen 2', 'rrze-expo'),
+                'rollup' => __('Roll Up', 'rrze-expo'),
+                'flyer-stand' => __('Flyers', 'rrze-expo'),
+                'plantsleft' => __('Plants left side', 'rrze-expo'),
+                'plantsright' => __('Plants right side', 'rrze-expo'),
+                'seats-left' => __('Seats left side', 'rrze-expo'),
+                'seats-right' => __('Seats right side', 'rrze-expo'),
+                'owl' => __('Owl', 'rrze-expo'),
+            ],
+            'template2' => [
+                'social-media' => __('Social Media Panel', 'rrze-expo'),
+                'video1' => __('Video Screen 1', 'rrze-expo'),
+                'video2' => __('Video Screen 2', 'rrze-expo'),
+                'rollup' => __('Roll Up', 'rrze-expo'),
+                'flyer-stand' => __('Flyers', 'rrze-expo'),
+                'plantsright' => __('Plants right side', 'rrze-expo'),
+                'seats-left' => __('Seats left side', 'rrze-expo'),
+                'owl' => __('Owl', 'rrze-expo'),
+            ],
+            'template3' => [
+                'social-media' => __('Social Media Panel', 'rrze-expo'),
+                'video1' => __('Video Screen 1', 'rrze-expo'),
+                'rollup' => __('Roll Up', 'rrze-expo'),
+                'flyer-stand' => __('Flyers', 'rrze-expo'),
+                'owl' => __('Owl', 'rrze-expo'),
+            ],
+        ],
+    ];
+}
+
