@@ -197,6 +197,37 @@ class Booth {
             ],
         ]);
 
+        // AV Media
+        $cmb_videos = new_cmb2_box([
+            'id'            => 'rrze-expo-booth-videos',
+            'title'         => __('Videos and Video Conferences', 'rrze-expo'),
+            'object_types'  => ['booth'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $cmb_videos->add_field( [
+            'name' => __( 'Video URL 1', 'rrze-expo' ),
+            'desc' => __('Top left screen','rrze-expo'),
+            'id'   => 'rrze-expo-booth-video-1',
+            'type' => 'text_url',
+            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+        $cmb_videos->add_field( [
+            'name' => __( 'Video URL 2', 'rrze-expo' ),
+            'desc' => __('Top right screen','rrze-expo'),
+            'id'   => 'rrze-expo-booth-video-2',
+            'type' => 'text_url',
+            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+        $cmb_videos->add_field( [
+            'name' => __( 'Video URL 3', 'rrze-expo' ),
+            'desc' => __('Table monitor','rrze-expo'),
+            'id'   => 'rrze-expo-booth-video-3',
+            'type' => 'text_url',
+            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+
         // Social Media
         $cmb_social_media = new_cmb2_box([
             'id'            => 'rrze-expo-booth-social-media',

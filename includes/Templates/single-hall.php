@@ -10,7 +10,7 @@ $cpt = new CPT('');
 CPT::expoHeader();
 ?>
 
-<main class="rrze-expo">
+<main>
     <?php while ( have_posts() ) : the_post();
         $hallId = get_the_ID();
         $meta = get_post_meta($hallId);
@@ -25,23 +25,17 @@ CPT::expoHeader();
         <div id="rrze-expo-hall" class="hall" style="background-image: url('<?php echo $backgroundImage;?>');">
 
             <?php
-            if ($menu != '-1') {
-                $items = wp_get_nav_menu_items(absint($menu));
-                echo '<ul class="hall-menu">';
-                foreach ( $items as $item){
-                    /*print "<pre>";
-                    var_dump($item);
-                    print "</pre>";*/
-                    echo '<li>';
-                    if (has_post_thumbnail($item->object_id)) {
-                        echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($item->object_id, 'small').'">';
-                    }
-                    echo '<a class="booth-title" href="'.get_permalink($item->object_id).'">'.$item->title.'</a>';
-                    echo '</li>';
-
+            $boothIDs = CPT::getBoothOrder($hallId);
+            echo '<ul class="hall-menu">';
+            foreach ( $boothIDs as $boothID){
+                echo '<li>';
+                if (has_post_thumbnail($boothID)) {
+                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($boothID, 'small').'">';
                 }
-                echo "</ul>";
+                echo '<a class="booth-title" href="'.get_permalink($boothID).'">'.get_the_title($boothID).'</a>';
+                echo '</li>';
             }
+            echo "</ul>";
             ?>
             <a href="#rrze-expo-hall-content" id="scrolldown"><?php _e('Read more','rrze-expo');?></a>
         </div>

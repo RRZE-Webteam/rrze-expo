@@ -33,10 +33,10 @@ class Foyer {
             'search_items'          => __('Search Foyers', 'rrze-expo'),
             'not_found'             => __('No Foyers found.', 'rrze-expo'),
             'not_found_in_trash'    => __('No Foyers found in Trash.', 'rrze-expo'),
-            'featured_image'        => _x('Foyer Background Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'rrze-expo'),
-            'set_featured_image'    => _x('Set foyer background image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
-            'remove_featured_image' => _x('Remove foyer background image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
-            'use_featured_image'    => _x('Use as foyer background image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
+            'featured_image'        => _x('Foyer Logo', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'rrze-expo'),
+            'set_featured_image'    => _x('Set foyer Logo', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
+            'remove_featured_image' => _x('Remove foyer logo', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
+            'use_featured_image'    => _x('Use as foyer logo', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
             'archives'              => _x('Foyer archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'rrze-expo'),
             'insert_into_item'      => _x('Insert into foyer', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'rrze-expo'),
             'uploaded_to_this_item' => _x('Uploaded to this foyer', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'rrze-expo'),
@@ -73,72 +73,36 @@ class Foyer {
     public function foyerFields() {
         $constants = getConstants();
 
-        // General
-        /*$cmb_general = new_cmb2_box([
-            'id'            => 'rrze-expo-foyer-general',
-            'title'         => __('General Information', 'rrze-expo'),
+        // Background Image
+        $cmb_background = new_cmb2_box([
+            'id'            => 'rrze-expo-foyer-background',
+            'title'         => __('Background Image', 'rrze-expo'),
             'object_types'  => ['foyer'],
             'context'       => 'normal',
             'priority'      => 'high',
             'show_names'    => true,
         ]);
-        $cmb_general->add_field([
-            'name'      => __('Hall', 'rrze-expo'),
-            //'desc'    => __('', 'rrze-expo'),
-            'id'        => 'rrze-expo-foyer-hall',
-            'type'      => 'select',
-            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
-            'default'          => '-1',
-            'options'          => CPT::getPosts('hall'),
-        ]);*/
-
-        // Layout
-        $cmb_layout = new_cmb2_box([
-            'id'            => 'rrze-expo-foyer-layout',
-            'title'         => __('Layout', 'rrze-expo'),
-            'object_types'  => ['foyer'],
-            'context'       => 'normal',
-            'priority'      => 'high',
-            'show_names'    => true,
-        ]);
-        /*$cmb_layout->add_field([
-            'name'      => __('Foyer Template', 'rrze-expo'),
-            //'desc'    => __('', 'rrze-expo'),
-            'id'        => 'rrze-expo-foyer-template',
-            'type'      => 'select',
-            'default'          => '1',
-            'options'          => [ '1' => __('Template 1', 'rrze-expo'),
-                '2' => __('Template 2', 'rrze-expo'),
-                '3' => __('Template 3', 'rrze-expo'),
-                '0' => __('Custom Template', 'rrze-expo')
-            ],
-        ]);
-        $decoObjects = $constants['template_elements'];
-        foreach ($decoObjects as $templateName => $templateObject) {
-            $cmb_layout->add_field([
-                'name'      => __('Decoration Elements', 'rrze-expo'),
-                //'desc'    => __('', 'rrze-expo'),
-                'id'        => 'rrze-expo-foyer-decoration-'.$templateName,
-                'type'      => 'multicheck',
-                'options'    => $templateObject]);
-        }
-        $cmb_layout->add_field([
-            'name'      => __('Back Wall Color', 'rrze-expo'),
-            //'desc'    => __('', 'rrze-expo'),
-            'id'        => 'rrze-expo-foyer-backwall-color',
-            'type'      => 'select',
-            'default'          => 'light',
-            'options'          => [
-                '003366' => 'FAU',
-                'A36B0D' => 'PhilFak',
-                '8d1429' => 'RwFak',
-                '0381A2' => 'MedFak',
-                '048767' => 'NatFak',
-                '6E7881' => 'TechFak',
-                'custom' => __('Custom Color', 'rrze-expo'),
-            ],
-        ]);*/
-        $cmb_layout->add_field([
+        $cmb_background->add_field(array(
+            'name'    => __('Background Image', 'rrze-rsvp'),
+            'desc'    => __('If no background image is set, the foyer background image will be displayed.', 'rrze-rsvp'),
+            'id'      => 'rrze-expo-foyer-background-image',
+            'type'    => 'file',
+            'options' => array(
+                'url' => false, // Hide the text input for the url
+            ),
+            // query_args are passed to wp.media's library query.
+            'query_args' => array(
+                //'type' => 'application/pdf', // Make library only display PDFs.
+                // Or only allow gif, jpg, or png images
+                'type' => array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                ),
+            ),
+            'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+        ));
+        $cmb_background->add_field([
             'name'      => __('Backround Image Overlay', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-foyer-overlay-color',
@@ -147,7 +111,7 @@ class Foyer {
             'options'          => [ 'light' => __('Light', 'rrze-expo'),
                 'dark' => __('Dark', 'rrze-expo')],
         ]);
-        $cmb_layout->add_field([
+        $cmb_background->add_field([
             'name'      => __('Backround Image Opacity', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-foyer-overlay-opacity',
@@ -166,27 +130,5 @@ class Foyer {
                 '1.0' => '100%'],
         ]);
 
-        // Social Media
-        /*$cmb_social_media = new_cmb2_box([
-            'id'            => 'rrze-expo-foyer-social-media',
-            'title'         => __('Social Media Panel', 'rrze-expo'),
-            'object_types'  => ['foyer'],
-            'context'       => 'normal',
-            'priority'      => 'high',
-            'show_names'    => true,
-        ]);
-
-        $socialMedia = $constants['social-media'];
-        $i = 1;
-        foreach ($socialMedia as $soMeName => $soMeUrl) {
-            $cmb_social_media->add_field([
-                'name'      => ucfirst($soMeName),
-                //'desc'    => __('', 'rrze-expo'),
-                'id'        => 'rrze-expo-foyer-'.$soMeName,
-                'type'      => 'social-media',
-                'default'   => $i,
-            ]);
-            $i++;
-        }*/
     }
 }

@@ -7,14 +7,6 @@ Plugin Style
     }
 }
 .rrze-expo {
-    & * {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.5;
-        @media screen and (min-width: 66.25em) {
-            font-size: 18px;
-        }
-    }
     .foyer, .hall, .booth {
         position: relative;
         width: 100%;
@@ -50,16 +42,22 @@ Plugin Style
         left: 50%;
         transform: translate(-50%);
         background: transparent;
-        border: 1px solid #fff;
+        //border: 1px solid #fff;
         color: #fff;
         text-shadow: 0 0 2px #000;
         z-index: 100;
-        padding: 4px 24px ;
+        //padding: 4px 24px ;
         outline: none;
         opacity: 1;
         -webkit-transition: all .4s ease;
         transition: all .4s ease;
         text-decoration: none;
+        .scroll-down-icon {
+            fill: #fff;
+            vertical-align: bottom;
+            -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+            filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+        }
     }
     ul.hall-menu {
         display: flex;
@@ -117,21 +115,95 @@ Plugin Style
         li {
             display: block;
             position: absolute;
-            top: 50%;
+            top: 40%;
             padding: 0;
+            transition: width 250ms;
+            &:hover {
+                .nav-prev-text {
+                    left: 40px;
+                }
+                .nav-next-text {
+                    right: 40px;
+                }
+            }
             &.prev-booth {
-                left: 0;
+                left: 0px;
+                a {
+                    padding: 5px 5px 5px 0;
+                }
             }
             &.next-booth {
                 right: 0;
+                a {
+                    padding: 5px 0 5px 5px;
+                }
+            }
+            a {
+                display: block;
+                //transition: left 250ms;
+            }
+            .nav-prev-text,
+            .nav-next-text {
+                display: block;
+                position: absolute;
+                min-width: 200px;
+                top: 0;
+                background-color: rgba(255,255,255,.7);
+                padding: 5px;
+            }
+            .nav-prev-text {
+                left: -200px;
+                transition: left 250ms;
+            }
+            .nav-next-text {
+                right: -200px;
+                transition: right 250ms;
+            }
+            svg {
+                fill: #fff;
+                -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+                filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
             }
         }
     }
 }
 
+#rrze-expo-header-content {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    @media screen and (min-width: 37.5em) {
+        width: 90%;
+    }
+    @media screen and (min-width: 66.25em) {
+        width: 80%;
+    }
+}
+.top-links {
+    font-size: 14px;
+    text-align: center;
+    background: #f3f3f5;
+    padding: 5px;
+    svg {
+        vertical-align: middle;
+        fill: #036;
+    }
+    a {
+        margin-right: 20px;
+    }
+}
 #rrze-expo-foyer-content,
 #rrze-expo-hall-content,
 #rrze-expo-booth-content {
+    & * {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        @media screen and (min-width: 66.25em) {
+            font-size: 18px;
+        }
+    }
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;

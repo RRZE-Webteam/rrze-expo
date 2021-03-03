@@ -32,10 +32,10 @@ class Hall {
             'search_items'          => __('Search Halls', 'rrze-expo'),
             'not_found'             => __('No Halls found.', 'rrze-expo'),
             'not_found_in_trash'    => __('No Halls found in Trash.', 'rrze-expo'),
-            'featured_image'        => _x('Hall Background Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'rrze-expo'),
-            'set_featured_image'    => _x('Set hall background image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
-            'remove_featured_image' => _x('Remove hall background image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
-            'use_featured_image'    => _x('Use as hall background image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
+            'featured_image'        => _x('Hall Logo', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'rrze-expo'),
+            'set_featured_image'    => _x('Set hall logo', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
+            'remove_featured_image' => _x('Remove hall logo', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
+            'use_featured_image'    => _x('Use as hall logo', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'rrze-expo'),
             'archives'              => _x('Hall archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'rrze-expo'),
             'insert_into_item'      => _x('Insert into hall', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'rrze-expo'),
             'uploaded_to_this_item' => _x('Uploaded to this hall', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'rrze-expo'),
@@ -78,17 +78,26 @@ class Hall {
             'priority'      => 'high',
             'show_names'    => true,
         ]);
+        $cmb->add_field([
+            'name'      => __('Foyer', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-hall-foyer',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '',
+            'options'          => CPT::getPosts('foyer'),
+        ]);
         $menus = wp_get_nav_menus();
         foreach ($menus as $menu) {
             $optionsMenu[$menu->term_id] = $menu->name;
         }
         $cmb->add_field([
-            'name'      => __('Booth Menu', 'rrze-expo'),
-            //'desc'    => __('', 'rrze-expo'),
+            'name'      => __('Hall Menu', 'rrze-expo'),
+            'desc'    => __('If no menu is set, booths will be ordered alphabetically.', 'rrze-expo'),
             'id'        => 'rrze-expo-hall-menu',
             'type'      => 'select',
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
-            'default'          => '-1',
+            'default'          => '',
             'options'          => $optionsMenu,
         ]);
 
