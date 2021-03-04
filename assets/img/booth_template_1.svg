@@ -3,15 +3,16 @@
 		<symbol id="booth_logo">
 			<image preserveAspectRatio="xMidYMin" width="400" height="240" xlink:href="PLACEHOLDER_LOGO_URL"/>
 		</symbol>
-		<rect id="backwall" fill="#dedede" width="1800" height="780"/>
+		<rect id="backwall" width="1800" height="780"/>
+		<rect id="rollup" fill="#8f8f8f" width="320" height="800"/>
 		<rect id="video" fill="#7f7f7f" width="400" height="240"/>
 		<rect id="table" fill="#7f7f7f" width="800" height="400"/>
 		<rect id="flyer_stand" fill="#7f7f7f" width="200" height="600"/>
 		<rect id="flyer" fill="#dedede" width="180" height="270"/>
 		<rect id="some_panel" fill="#7f7f7f" width="120" height="500"/>
-		<rect id="twitter" fill="#00acee" width="80" height="80"/>"
-		<rect id="facebook" fill="#39569c" width="80" height="80"/>"
-		<rect id="instagram" fill="#F58529" width="80" height="80"/>"
-		<rect id="youtube" fill="#b2071d" width="80" height="80"/>"
+		<rect id="twitter" fill="#00acee" width="80" height="80"/>
+		<rect id="facebook" fill="#39569c" width="80" height="80"/>
+		<rect id="instagram" fill="#F58529" width="80" height="80"/>
+		<rect id="youtube" fill="#b2071d" width="80" height="80"/>
 	</defs>
 </svg>

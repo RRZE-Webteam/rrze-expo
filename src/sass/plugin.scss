@@ -1,17 +1,101 @@
 /*
 Plugin Style
 */
-.single-booth, .single-hall, .single-foyer {
-    ul.jumplinks {
-        margin: 0;
-    }
-}
 .rrze-expo {
+    .single-booth, .single-hall, .single-foyer {
+        ul.jumplinks {
+            margin: 0;
+        }
+    }
+    main {
+        position: relative;
+        .booth-nav {
+            background: #f3f3f5;
+            ul {
+                display: table;
+                margin: 0 auto;
+            }
+            li {
+                list-style-type: none;
+                a {
+                    text-decoration: none;
+                }
+            }
+            li.hall-link,
+            li.foyer-link {
+                display: inline-block;
+                font-size: 14px;
+                text-align: center;
+                background: #f3f3f5;
+                padding: 5px;
+                svg {
+                    vertical-align: text-top;
+                    fill: #036;
+                }
+                a {
+                    margin-right: 20px;
+                }
+            }
+            li.prev-booth,
+            li.next-booth {
+                display: block;
+                position: absolute;
+                top: 40vh;
+                padding: 0;
+                z-index: 100;
+                &:hover {
+                    .nav-prev-text {
+                        left: 40px;
+                    }
+                    .nav-next-text {
+                        right: 40px;
+                    }
+                }
+                &.prev-booth {
+                    left: 0px;
+                    a {
+                        padding: 5px 5px 5px 0;
+                    }
+                }
+                &.next-booth {
+                    right: 0;
+                    a {
+                        padding: 5px 0 5px 5px;
+                    }
+                }
+                a {
+                    display: block;
+                }
+                .nav-prev-text,
+                .nav-next-text {
+                    display: block;
+                    position: absolute;
+                    min-width: 200px;
+                    top: 0;
+                    background-color: rgba(255,255,255,.8);
+                    padding: 5px;
+                }
+                .nav-prev-text {
+                    left: -200px;
+                    transition: left 300ms;
+                }
+                .nav-next-text {
+                    right: -200px;
+                    transition: right 300ms;
+                }
+                svg {
+                    fill: #fff;
+                    -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+                    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+                }
+            }
+        }
+    }
     .foyer, .hall, .booth {
         position: relative;
         width: 100%;
         z-index: 1;
-        height: 90vh;
+        //height: 90vh;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -31,32 +115,36 @@ Plugin Style
             right: 0;
             bottom: 0;
             content: "";
-            //background-color: #fff;
-            //opacity: 0.3;
+        }
+        @media screen and (min-width: 66.25em) {
+            height: 85vh;
         }
     }
     #scrolldown {
-        display: block;
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translate(-50%);
-        background: transparent;
-        //border: 1px solid #fff;
-        color: #fff;
-        text-shadow: 0 0 2px #000;
-        z-index: 100;
-        //padding: 4px 24px ;
-        outline: none;
-        opacity: 1;
-        -webkit-transition: all .4s ease;
-        transition: all .4s ease;
-        text-decoration: none;
-        .scroll-down-icon {
-            fill: #fff;
-            vertical-align: bottom;
-            -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
-            filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+        display: none;
+        @media screen and (min-width: 66.25em) {
+            display: block;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translate(-50%);
+            background: transparent;
+            //border: 1px solid #fff;
+            color: #fff;
+            text-shadow: 0 0 2px #000;
+            z-index: 100;
+            //padding: 4px 24px ;
+            outline: none;
+            opacity: 1;
+            -webkit-transition: all .4s ease;
+            transition: all .4s ease;
+            text-decoration: none;
+            .scroll-down-icon {
+                fill: #fff;
+                vertical-align: bottom;
+                -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+                filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+            }
         }
     }
     ul.hall-menu {
@@ -97,7 +185,7 @@ Plugin Style
         display: block;
         margin: 0 auto;
         a path {
-            @keyframes hideshow {
+            /*@keyframes hideshow {
                 90% {
                     opacity:1;
                 }
@@ -107,63 +195,8 @@ Plugin Style
                 100% {
                     opacity:1;
                 }
-            }
+            }*/
             //animation: hideshow 7s ease infinite;
-        }
-    }
-    .booth-nav {
-        li {
-            display: block;
-            position: absolute;
-            top: 40%;
-            padding: 0;
-            transition: width 250ms;
-            &:hover {
-                .nav-prev-text {
-                    left: 40px;
-                }
-                .nav-next-text {
-                    right: 40px;
-                }
-            }
-            &.prev-booth {
-                left: 0px;
-                a {
-                    padding: 5px 5px 5px 0;
-                }
-            }
-            &.next-booth {
-                right: 0;
-                a {
-                    padding: 5px 0 5px 5px;
-                }
-            }
-            a {
-                display: block;
-                //transition: left 250ms;
-            }
-            .nav-prev-text,
-            .nav-next-text {
-                display: block;
-                position: absolute;
-                min-width: 200px;
-                top: 0;
-                background-color: rgba(255,255,255,.7);
-                padding: 5px;
-            }
-            .nav-prev-text {
-                left: -200px;
-                transition: left 250ms;
-            }
-            .nav-next-text {
-                right: -200px;
-                transition: right 250ms;
-            }
-            svg {
-                fill: #fff;
-                -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
-                filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
-            }
         }
     }
 }
@@ -181,17 +214,6 @@ Plugin Style
     }
 }
 .top-links {
-    font-size: 14px;
-    text-align: center;
-    background: #f3f3f5;
-    padding: 5px;
-    svg {
-        vertical-align: middle;
-        fill: #036;
-    }
-    a {
-        margin-right: 20px;
-    }
 }
 #rrze-expo-foyer-content,
 #rrze-expo-hall-content,

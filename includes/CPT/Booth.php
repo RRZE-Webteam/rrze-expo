@@ -170,6 +170,48 @@ class Booth {
                 '0' => __('Custom Template', 'rrze-expo')
             ],
         ]);
+        $cmb_layout->add_field( [
+            'name'    => 'Logo',
+            //'desc'    => __('', 'rrze-expo'),
+            'id'      => 'rrze-expo-booth-logo-locations',
+            'type'    => 'multicheck_inline',
+            'select_all_button' => false,
+            'options' => [
+                'wall' => __('Back Wall', 'rrze-expo'),
+                'table' => __('Table Front', 'rrze-expo'),
+            ],
+        ] );
+        $cmb_layout->add_field( array(
+            'name'    => 'Back Wall Color',
+            'id'      => 'rrze-expo-booth-backwall-color',
+            'type'    => 'colorpicker',
+            'default' => '#ffffff',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => array( '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
+        $cmb_layout->add_field( array(
+            'name'    => 'Font Color',
+            'desc'    => __('Please make shure there is enough contrast between font and backwall color.', 'rrze-expo'),
+            'id'      => 'rrze-expo-booth-font-color',
+            'type'    => 'colorpicker',
+            'default' => '#000000',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => array( '#000000', '#ffffff', '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
         $decoObjects = $constants['template_elements'];
         foreach ($decoObjects as $templateName => $templateObject) {
             $cmb_layout->add_field([
@@ -180,75 +222,184 @@ class Booth {
                 'options'   => $templateObject,
             ]);
         }
-        $cmb_layout->add_field([
-            'name'      => __('Back Wall Color', 'rrze-expo'),
-            //'desc'    => __('', 'rrze-expo'),
-            'id'        => 'rrze-expo-booth-backwall-color',
-            'type'      => 'select',
-            'default'          => 'light',
-            'options'          => [
-                '003366' => 'FAU',
-                'A36B0D' => 'PhilFak',
-                '8d1429' => 'RwFak',
-                '0381A2' => 'MedFak',
-                '048767' => 'NatFak',
-                '6E7881' => 'TechFak',
-                'custom' => __('Custom Color', 'rrze-expo'),
-            ],
-        ]);
 
         // AV Media
         $cmb_videos = new_cmb2_box([
-            'id'            => 'rrze-expo-booth-videos',
+            'id'            => 'rrze-expo-booth-video-box',
             'title'         => __('Videos and Video Conferences', 'rrze-expo'),
             'object_types'  => ['booth'],
             'context'       => 'normal',
             'priority'      => 'high',
             'show_names'    => true,
         ]);
-        $cmb_videos->add_field( [
-            'name' => __( 'Video URL 1', 'rrze-expo' ),
-            'desc' => __('Top left screen','rrze-expo'),
-            'id'   => 'rrze-expo-booth-video-1',
+        $video_group_id = $cmb_videos->add_field( [
+            'id'          => 'rrze-expo-booth-video',
+            'type'        => 'group',
+            'description' => __( 'Add up to 3 video embedding urls, e.g. https://www.fau.tv/webplayer/id/123456. Display: 1 - top left screen, 2- top right screen, 3 - table monitor.', 'rrze-expo' ),
+            'options'     => array(
+                'group_title'       => __( 'Video {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                'add_button'        => __( 'Add Another Video', 'rrze-expo' ),
+                'remove_button'     => __( 'Remove Video', 'rrze-expo' ),
+                'sortable'          => true,
+                // 'closed'         => true, // true to have the groups closed by default
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+            ),
+        ] );
+        $cmb_videos->add_group_field($video_group_id, [
+            'name' => __( 'Video URL', 'rrze-expo' ),
+            'id'   => 'url',
             'type' => 'text_url',
             // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
         ] );
-        $cmb_videos->add_field( [
-            'name' => __( 'Video URL 2', 'rrze-expo' ),
-            'desc' => __('Top right screen','rrze-expo'),
-            'id'   => 'rrze-expo-booth-video-2',
-            'type' => 'text_url',
-            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        $cmb_videos->add_group_field($video_group_id, [
+            'name'             => __('Location', 'rrze-expo'),
+            //'desc'             => 'Select an option',
+            'id'               => 'medianame',
+            'type'             => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => 'custom',
+            'options'          => [
+                'topleft'   => __('Top left', 'rrze-expo'),
+                'topright'  => __('Top right', 'rrze-expo'),
+                'table'   => __('Table', 'rrze-expo'),
+            ],
+        ]);
+
+        // Rollups
+        $cmb_rollups = new_cmb2_box([
+            'id'            => 'rrze-expo-booth-rollup-box',
+            'title'         => __('Rollups', 'rrze-expo'),
+            'object_types'  => ['booth'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $rollup_group_id = $cmb_rollups->add_field( [
+            'id'          => 'rrze-expo-booth-rollups',
+            'type'        => 'group',
+            'description' => __( 'Choose up to 2 roll-up images.', 'rrze-expo' ),
+            'options'     => array(
+                'group_title'       => __( 'Roll-up {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                'add_button'        => __( 'Add Another Roll-up', 'rrze-expo' ),
+                'remove_button'     => __( 'Remove Roll-up', 'rrze-expo' ),
+                'sortable'          => true,
+                // 'closed'         => true, // true to have the groups closed by default
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+            ),
         ] );
-        $cmb_videos->add_field( [
-            'name' => __( 'Video URL 3', 'rrze-expo' ),
-            'desc' => __('Table monitor','rrze-expo'),
-            'id'   => 'rrze-expo-booth-video-3',
-            'type' => 'text_url',
-            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        $cmb_rollups->add_group_field($rollup_group_id, [
+            'name'    => __('Image', 'rrze-rsvp'),
+            'id'      => 'file',
+            'type'    => 'file',
+            'options' => array(
+                'url' => false, // Hide the text input for the url
+            ),
+            // query_args are passed to wp.media's library query.
+            'query_args' => array(
+                'type' => array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                ),
+            ),
+            'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+        ]);
+
+        // Flyer
+        $cmb_flyer = new_cmb2_box([
+            'id'            => 'rrze-expo-booth-flyer-box',
+            'title'         => __('PDF Flyers', 'rrze-expo'),
+            'object_types'  => ['booth'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $flyer_group_id = $cmb_flyer->add_field( [
+            'id'          => 'rrze-expo-booth-flyer',
+            'type'        => 'group',
+            'description' => __( 'Choose up to 4 PDF flyers.', 'rrze-expo' ),
+            'options'     => array(
+                'group_title'       => __( 'Flyer {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                'add_button'        => __( 'Add Another Flyer', 'rrze-expo' ),
+                'remove_button'     => __( 'Remove Flyer', 'rrze-expo' ),
+                'sortable'          => true,
+                // 'closed'         => true, // true to have the groups closed by default
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+            ),
         ] );
+        $cmb_flyer->add_group_field($flyer_group_id, [
+            'name'    => __('PDF File', 'rrze-rsvp'),
+            'id'      => 'pdf',
+            'type'    => 'file',
+            'options' => array(
+                'url' => false, // Hide the text input for the url
+            ),
+            // query_args are passed to wp.media's library query.
+            'query_args' => array(
+                'type' => array(
+                    'application/pdf',
+                ),
+            ),
+            'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+        ]);
+        $cmb_flyer->add_group_field($flyer_group_id, [
+            'name'    => __('Preview Image', 'rrze-rsvp'),
+            'id'      => 'preview',
+            'type'    => 'file',
+            'options' => array(
+                'url' => false, // Hide the text input for the url
+            ),
+            // query_args are passed to wp.media's library query.
+            'query_args' => array(
+                'type' => array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                ),
+            ),
+            'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+        ]);
+
 
         // Social Media
         $cmb_social_media = new_cmb2_box([
-            'id'            => 'rrze-expo-booth-social-media',
+            'id'            => 'rrze-expo-booth-social-media-box',
             'title'         => __('Social Media Panel', 'rrze-expo'),
             'object_types'  => ['booth'],
             'context'       => 'normal',
             'priority'      => 'high',
             'show_names'    => true,
         ]);
-
+        $social_media_group_id = $cmb_social_media->add_field( [
+            'id'          => 'rrze-expo-booth-social-media',
+            'type'        => 'group',
+            //'description' => __( '', 'rrze-expo' ),
+            'options'     => array(
+                'group_title'       => __( 'Social Media Item {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                'add_button'        => __( 'Add Another Item', 'rrze-expo' ),
+                'remove_button'     => __( 'Remove Item', 'rrze-expo' ),
+                'sortable'          => true,
+                // 'closed'         => true, // true to have the groups closed by default
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+            ),
+        ] );
         $socialMedia = $constants['social-media'];
-        $i = 1;
         foreach ($socialMedia as $soMeName => $soMeUrl) {
-            $cmb_social_media->add_field([
-                'name'      => ucfirst($soMeName),
-                //'desc'    => __('', 'rrze-expo'),
-                'id'        => 'rrze-expo-booth-'.$soMeName,
-                'type'      => 'social-media',
-                'default'   => $i,
-            ]);
-            $i++;
+            $soMeOptions[$soMeName] = ucfirst($soMeName);
         }
+        $cmb_social_media->add_group_field($social_media_group_id, [
+            'name'             => __('Social Media Type', 'rrze-expo'),
+            //'desc'             => 'Select an option',
+            'id'               => 'medianame',
+            'type'             => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => 'custom',
+            'options'          => $soMeOptions,
+        ]);
+        $cmb_social_media->add_group_field($social_media_group_id, [
+            'type'  => 'text_medium',
+            'name'  => __('User Name', 'rrze-expo'),
+            'id'    => 'username',
+        ]);
     }
 }

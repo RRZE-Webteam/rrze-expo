@@ -26,8 +26,6 @@ class CPT
         $foyer = new Foyer($this->pluginFile);
         $foyer->onLoaded();
 
-        add_filter('cmb2_render_social-media', [$this, 'cmb2_RenderSocialMediaFieldCallback'], 10, 5);
-        //add_filter('cmb2_sanitize_social-media', [$this, 'cmb2_sanitizeSoMeCheckbox'], 10, 2 );
         add_filter('single_template', [$this, 'includeSingleTemplate']);
         add_action('wp_footer', [$this, 'svgToFooter']);
         add_action('wp_head', [$this, 'cssToFooter']);
@@ -40,54 +38,6 @@ class CPT
 
         $hall = new Hall($this->pluginFile);
         $hall->booth_post_type();
-    }
-
-    public function cmb2_RenderSocialMediaFieldCallback($field, $value, $object_id, $object_type, $field_type) {
-        // make sure we specify each part of the value we need.
-        $value = wp_parse_args( $value, array(
-            'show' => '',
-            'username' => '',
-            'order' => '',
-        ) );
-        //var_dump($value);
-        $constants = getConstants();
-        $socialMedia = $constants['social-media'];
-        $numSocialMedia = count($socialMedia);
-        ?>
-        <div><label for="<?php echo $field_type->_id( '_username' ); ?>'" style="margin-left: 20px;"><?php _e('User Name', 'rrze-expo');?></label>
-            <?php echo $field_type->input( array(
-                'type'  => 'text',
-                'name'  => $field_type->_name( '[username]' ),
-                'id'    => $field_type->_id( '_username' ),
-                'value' => $value['username'],
-                'class' => 'medium-text',
-                //'desc'  => '',
-            ) ); ?>
-            <label for="<?php echo $field_type->_id( '_order' ); ?>'" style="margin-left: 20px;"><?php _e('Order', 'rrze-expo');?></label>
-            <?php echo $field_type->input( array(
-                'type'  => 'number',
-                'name'  => $field_type->_name( '[order]' ),
-                'id'    => $field_type->_id( '_order' ),
-                'value' => (!empty($value['order']) ? $value['order'] : $field->args['default']),
-                'class' => 'small-text',
-                'min'   => '1',
-                'max'   => $numSocialMedia,
-                'default' => $field->args['default'],
-                //'desc'  => '',
-            ) );
-            ?>
-        </div>
-        <?php
-    }
-
-    public function cmb2_sanitizeSoMeCheckbox($override_value, $value) {
-        if (!isset($value['show']) || is_null($value['show']) || empty($value['show'])) {
-            unset( $value['show'] );
-            $value['show'] = 'off';
-        } else {
-            $value['show'] = 'on';
-        }
-        return $value;
     }
 
     public static function getPosts(string $postType): array {
@@ -138,15 +88,7 @@ class CPT
         // Booth Template
         $templateNo = get_post_meta($post->ID,'rrze-expo-booth-template', true);
         if ($templateNo != '' && file_exists(WP_PLUGIN_DIR . '/rrze-expo/assets/img/booth_template_' . absint($templateNo) . '.svg')) {
-            $svgPatterns = [];
-            $svgReplacements = [];
-            if (has_post_thumbnail()){
-                $svgPatterns[] = 'PLACEHOLDER_LOGO_URL';
-                $svgReplacements[] = get_the_post_thumbnail_url();
-            }
-            $svg = file_get_contents(WP_PLUGIN_DIR . '/rrze-expo/assets/img/booth_template_' . absint($templateNo) . '.svg');
-            $svg = str_replace($svgPatterns, $svgReplacements, $svg);
-            echo $svg;
+            echo file_get_contents(WP_PLUGIN_DIR . '/rrze-expo/assets/img/booth_template_' . absint($templateNo) . '.svg');
         }
         // Icons
         $icons = [
@@ -188,7 +130,7 @@ class CPT
                     $backwallColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color-custom');
                 }
                 echo "svg.expo-booth #backwall {
-                    fill: #$backwallColor;
+                    fill: $backwallColor;
                 }";
                 // Social Media Panel
                 $soMeDefaults = ['show' => '',
@@ -293,26 +235,61 @@ class CPT
                     </div>
                 </div><!-- .site-header-content -->
             </header>
-
-        <?php if (in_array($post->post_type, ['booth', 'hall'])) { ?>
-            <div class="top-links">
-                <?php if ($post->post_type == 'booth') {
-                    $hallLink = get_permalink($hallID);
-                    $hallText = __('Back to Hall', 'rrze-expo');
-                    echo "<a class='backlink-hall' href='$hallLink'><svg height='16' width='16'><use xlink:href='#chevron-up'></use></svg> $hallText</a>";
-                }
-                if ($foyerID != '') {
-                    $foyerLink = get_permalink($foyerID);
-                    $foyerText = __('Back to Foyer', 'rrze-expo');
-                    echo "<a class='backlink-foyer' href='$foyerLink'><svg height='14' width='14'><use xlink:href='#chevron-double-up'></use></svg> $foyerText</a>";
-                }
-                ?>
-            </div>
-        <?php }
+        <?php
     }
 
     public static function expoFooter() {
 
+    }
+
+    public static function expoNav() {
+        global $post;
+        if ($post->post_type == 'foyer') {
+            $foyerID = $post->ID;
+        } else {
+            if ($post->post_type == 'booth') {
+                $hallID = get_post_meta($post->ID, 'rrze-expo-booth-hall', true);
+            } elseif ($post->post_type == 'hall') {
+                $hallID = $post->ID;
+            }
+            $foyerID = get_post_meta($hallID, 'rrze-expo-hall-foyer', true);
+        }
+        if (in_array($post->post_type, ['booth', 'hall'])) { ?>
+            <nav class="booth-nav"><ul>
+                <?php if ($post->post_type == 'booth') {
+                    $boothId = $post->ID;
+                    $boothIDsOrdered = CPT::getBoothOrder($boothId);
+                    $orderNo = array_search($boothId, $boothIDsOrdered);
+                    if ($orderNo > 0) {
+                    $prevBoothID = $boothIDsOrdered[$orderNo-1]; ?>
+                    <li class="prev-booth">
+                        <a href="<?php echo get_permalink($prevBoothID);?>" class="">
+                            <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
+                            <span class="nav-prev-text"><?php echo __('Previous Booth','rrze-expo') . ':<br />' . get_the_title($prevBoothID);?></span>
+                        </a>
+                    </li>
+                <?php } ?>
+                <?php if (($orderNo + 1) < count($boothIDsOrdered)) {
+                    $nextBoothID = $boothIDsOrdered[($orderNo + 1)]; ?>
+                    <li class="next-booth">
+                        <a href="<?php echo get_permalink($nextBoothID);?>" class="">
+                            <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+                            <span class="nav-next-text"><?php echo __('Next Booth','rrze-expo') . ':<br />' . get_the_title($nextBoothID);?></span>
+                        </a>
+                    </li>
+                <?php }
+                    $hallLink = get_permalink($hallID);
+                    $hallText = __('Back to Hall', 'rrze-expo') . ': ' . get_the_title($hallID);
+                    echo "<li class='hall-link'><a class='backlink-hall' href='$hallLink'><svg height='16' width='16'><use xlink:href='#chevron-up'></use></svg> $hallText</a></li>";
+                }
+                if ($foyerID != '') {
+                    $foyerLink = get_permalink($foyerID);
+                    $foyerText = __('Back to Foyer', 'rrze-expo');
+                    echo "<li class='foyer-link'><a class='backlink-foyer' href='$foyerLink'><svg height='14' width='14'><use xlink:href='#chevron-double-up'></use></svg> $foyerText</a></li>";
+                }
+                ?>
+            </ul></nav>
+            <?php }
     }
 
     /**

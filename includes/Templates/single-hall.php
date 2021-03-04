@@ -11,7 +11,10 @@ CPT::expoHeader();
 ?>
 
 <main>
-    <?php while ( have_posts() ) : the_post();
+    <?php
+    CPT::expoNav();
+    while ( have_posts() ) : the_post();
+        $hasContent = (get_the_content() != '');
         $hallId = get_the_ID();
         $meta = get_post_meta($hallId);
         $menu = CPT::getMeta($meta, 'rrze-expo-hall-menu');
@@ -37,14 +40,19 @@ CPT::expoHeader();
             }
             echo "</ul>";
             ?>
-            <a href="#rrze-expo-hall-content" id="scrolldown"><?php _e('Read more','rrze-expo');?></a>
+            <?php if ($hasContent) { ?>
+                <a href="#rrze-expo-hall-content" id="scrolldown" title="<?php _e('Read more','rrze-expo');?>">
+                    <svg height='50' width='80' class="scroll-down-icon"><use xlink:href='#chevron-down'/></svg>
+                    <span class="sr-only screen-reader-text"><?php _e('Read more','rrze-expo');?></span>
+                </a>
+            <?php } ?>
         </div>
 
-        <div id="rrze-expo-hall-content" name="rrze-expo-hall-content" class="">
-
-            <?php the_content(); ?>
-
-        </div>
+        <?php if ($hasContent) { ?>
+            <div id="rrze-expo-hall-content" name="rrze-expo-hall-content" class="">
+                <?php the_content(); ?>
+            </div>
+        <?php } ?>
 
     <?php endwhile; ?>
 

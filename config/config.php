@@ -291,11 +291,11 @@ function getConstants() {
         ],
         'template_elements' => [
             'template1' => [
-                'social-media' => __('Social Media Panel', 'rrze-expo'),
+                /*'social-media' => __('Social Media Panel', 'rrze-expo'),
                 'video1' => __('Video Screen 1', 'rrze-expo'),
                 'video2' => __('Video Screen 2', 'rrze-expo'),
                 'rollup' => __('Roll Up', 'rrze-expo'),
-                'flyer-stand' => __('Flyers', 'rrze-expo'),
+                'flyer-stand' => __('Flyers', 'rrze-expo'),*/
                 'plantsleft' => __('Plants left side', 'rrze-expo'),
                 'plantsright' => __('Plants right side', 'rrze-expo'),
                 'seats-left' => __('Seats left side', 'rrze-expo'),
