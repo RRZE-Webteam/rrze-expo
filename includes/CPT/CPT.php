@@ -26,6 +26,9 @@ class CPT
         $foyer = new Foyer($this->pluginFile);
         $foyer->onLoaded();
 
+        $exposition = new Exposition($this->pluginFile);
+        $exposition->onLoaded();
+
         add_filter('single_template', [$this, 'includeSingleTemplate']);
         add_action('wp_footer', [$this, 'svgToFooter']);
         add_action('wp_head', [$this, 'cssToFooter']);
@@ -34,10 +37,13 @@ class CPT
     public function activation()
     {
         $booth = new Booth($this->pluginFile);
-        $booth->booth_post_type();
+        $booth->boothPostType();
 
         $hall = new Hall($this->pluginFile);
-        $hall->booth_post_type();
+        $hall->hallPostType();
+
+        $expo = new Exposition($this->pluginFile);
+        $expo->expositionPostType();
     }
 
     public static function getPosts(string $postType): array {
@@ -77,6 +83,8 @@ class CPT
                 return dirname($this->pluginFile) . '/includes/Templates/single-hall.php';
             case 'foyer':
                 return dirname($this->pluginFile) . '/includes/Templates/single-foyer.php';
+            case 'exposition':
+                return dirname($this->pluginFile) . '/includes/Templates/single-exposition.php';
         }
         return $singleTemplate;
     }
@@ -108,7 +116,7 @@ class CPT
 
     public function cssToFooter() {
         global $post;
-        if (!in_array($post->post_type, ['booth', 'hall', 'foyer']))
+        if (!in_array($post->post_type, ['booth', 'hall', 'foyer', 'exposition']))
             return;
         $meta = get_post_meta($post->ID);
 
@@ -126,35 +134,15 @@ class CPT
                 }";
                 // Background Wall
                 $backwallColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
-                if ($backwallColor == 'custom') {
-                    $backwallColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color-custom');
-                }
-                echo "svg.expo-booth #backwall {
+                echo "svg.template-1 .backwall {
                     fill: $backwallColor;
-                }";
-                // Social Media Panel
-                $soMeDefaults = ['show' => '',
-                    'username' => '',
-                    'order' => 0,];
-                $constants = getConstants();
-                $socialMedia = $constants['social-media'];
-                $i = 0;
-                foreach ($socialMedia as $soMeName => $soMeUrl) {
-                    $soMeMeta =  wp_parse_args( CPT::getMeta($meta, 'rrze-expo-booth-'.$soMeName), $soMeDefaults);
-                    if ($soMeMeta['username'] != '') {
-                        $display = 'block';
-                        $translate = (isset($soMeMeta['order']) ? $soMeMeta['order'] - 1 : $i).'%';
-                        $translate = ((int)$translate * 3.5) .'%';
-                    } else {
-                        $display = 'none';
-                        $translate = '';
-                    }
-                    echo "svg.expo-booth #$soMeName {
-                        display: $display;
-                        transform: translateY($translate);
-                    }";
-                    $i++;
                 }
+                svg.template-2 .backwall {
+                    fill: $backwallColor;
+                }
+                svg.template-2 .backwall-front {
+                    fill: #dedede;
+                }";
                 break;
             // Hall
             case 'hall':
@@ -176,6 +164,15 @@ class CPT
                     opacity: $opacity;
                 }";
                 break;
+            case 'exposition':
+                // Background Image
+                $backgroundColor = (CPT::getMeta($meta, 'rrze-expo-exposition-overlay-color') == 'light' ? '#fff' : '#000');
+                $opacity = CPT::getMeta($meta, 'rrze-expo-exposition-overlay-opacity');
+                echo ".rrze-expo .exposition:after {
+                    background-color: $backgroundColor;
+                    opacity: $opacity;
+                }";
+                break;
         }
         if (!has_post_thumbnail($post->ID)) {
             echo '.rrze-expo #booth_logo {
@@ -188,15 +185,22 @@ class CPT
 
     public static function expoHeader() {
         global $post;
-        if ($post->post_type == 'foyer') {
-             $foyerID = $post->ID;
-        } else {
-            if ($post->post_type == 'booth') {
+        switch ($post->post_type) {
+            case 'exposition':
+                $expoID = $post->ID;
+                break;
+            case 'foyer':
+                $expoID = get_post_meta($post->ID, 'rrze-expo-foyer-exposition', true);
+                break;
+            case 'hall':
+                $foyerID = get_post_meta($post->ID, 'rrze-expo-hall-foyer', true);
+                $expoID = get_post_meta($foyerID, 'rrze-expo-foyer-exposition', true);
+                break;
+            case 'booth':
                 $hallID = get_post_meta($post->ID, 'rrze-expo-booth-hall', true);
-            } elseif ($post->post_type == 'hall') {
-                $hallID = $post->ID;
-            }
-            $foyerID = get_post_meta($hallID, 'rrze-expo-hall-foyer', true);
+                $foyerID = get_post_meta($hallID, 'rrze-expo-hall-foyer', true);
+                $expoID = get_post_meta($foyerID, 'rrze-expo-foyer-exposition', true);
+                break;
         }
         ?>
         <!DOCTYPE html>
@@ -218,21 +222,17 @@ class CPT
                 </ul>
             </nav>
             <header id="masthead" class="site-header" role="banner">
-                <div id="rrze-expo-header-content" class="site-header-content">
-                    <div class="branding" id="logo" role="banner" itemscope itemtype="http://schema.org/Organization">
-                        <p class="sitetitle">
-                            <?php
-                            if ( $post->post_type != 'foyer' ) {
-                                echo '<a href="'.get_permalink($foyerID).'">';
-                            }
-                            echo get_the_post_thumbnail($foyerID);
-                            echo get_the_title($foyerID);
-                            if ( $post->post_type != 'foyer' ) {
-                                echo '</a>';
-                            }
-                            ?>
-                        </p>
-                    </div>
+                <div id="rrze-expo-header-content" class="rrze-expo-header-content" role="banner">
+                    <?php
+                    if ( $post->post_type != 'exposition' ) {
+                        echo '<a href="'.get_permalink($expoID).'">';
+                    }
+                    echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'">';
+                    echo '<p class="expo-title">' . get_the_title($expoID) . '</p>';
+                    if ( $post->post_type != 'foyer' ) {
+                        echo '</a>';
+                    }
+                    ?>
                 </div><!-- .site-header-content -->
             </header>
         <?php
@@ -329,5 +329,44 @@ class CPT
             ]);
         }
         return $boothIDs;
+    }
+
+    /**
+     * getBoothOrder
+     * returns an array of booth IDs in the same hall, ordered by corresponding hall menu order, or alphabetically if no hall menu is set
+     * @param int $itemID (may be a hall OR a booth ID)
+     * @return array
+     */
+    public static function getHallOrder($itemID) {
+        $postType = get_post_type($itemID);
+        if ($postType == 'hall') {
+            $foyerID = get_post_meta($itemID, 'rrze-expo-hall-foyer', true);
+        } else {
+            $foyerID = $itemID;
+        }
+
+        $foyerIDs = [];
+        // If there is a menu for that foyer -> get hall order by menu order
+        $menuID = get_post_meta($foyerID, 'rrze-expo-foyer-menu', true);
+        if ($menuID != '') {
+            $items = wp_get_nav_menu_items(absint($menuID));
+            foreach ( $items as $item) {
+                if ($item->menu_item_parent == 0) {
+                    $foyerIDs[] = $item->object_id;
+                }
+            }
+        } else {
+            // If there is no hall menu -> get booths of this hall ordered alphabetically
+            $foyerIDs = get_posts([
+                'post_type' => 'hall',
+                'status'    => 'publish',
+                'meta_key'  => 'rrze-expo-hall-foyer',
+                'meta_value'    => $foyerID,
+                'orderby'   => 'title',
+                'order'     => 'ASC',
+                'fields'    => 'ids',
+            ]);
+        }
+        return $foyerIDs;
     }
 }

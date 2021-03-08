@@ -53,7 +53,7 @@ class Foyer {
             'hierarchical'              => false,
             'public'                    => true,
             'show_ui'                   => true,
-            'show_in_menu'              => 'edit.php?post_type=booth',
+            'show_in_menu'              => 'edit.php?post_type=exposition',
             'show_in_nav_menus'         => true,
             'show_in_admin_bar'         => true,
             'menu_icon'                 => 'dashicons-store',
@@ -73,6 +73,25 @@ class Foyer {
     public function foyerFields() {
         $constants = getConstants();
 
+        // General Information
+        $cmb = new_cmb2_box([
+            'id'            => 'rrze-expo-foyer-general',
+            'title'         => __('General Information', 'rrze-expo'),
+            'object_types'  => ['foyer'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $cmb->add_field([
+            'name'      => __('Exposition', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-foyer-exposition',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '',
+            'options'          => CPT::getPosts('exposition'),
+        ]);
+
         // Background Image
         $cmb_background = new_cmb2_box([
             'id'            => 'rrze-expo-foyer-background',
@@ -84,7 +103,7 @@ class Foyer {
         ]);
         $cmb_background->add_field(array(
             'name'    => __('Background Image', 'rrze-rsvp'),
-            'desc'    => __('If no background image is set, the foyer background image will be displayed.', 'rrze-rsvp'),
+            'desc'    => __('If no background image is set, the exposition background image will be displayed.', 'rrze-rsvp'),
             'id'      => 'rrze-expo-foyer-background-image',
             'type'    => 'file',
             'options' => array(
@@ -103,7 +122,7 @@ class Foyer {
             'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
         ));
         $cmb_background->add_field([
-            'name'      => __('Backround Image Overlay', 'rrze-expo'),
+            'name'      => __('Background Image Overlay', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-foyer-overlay-color',
             'type'      => 'select',
@@ -112,7 +131,7 @@ class Foyer {
                 'dark' => __('Dark', 'rrze-expo')],
         ]);
         $cmb_background->add_field([
-            'name'      => __('Backround Image Opacity', 'rrze-expo'),
+            'name'      => __('Background Image Opacity', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-foyer-overlay-opacity',
             'type'      => 'select',

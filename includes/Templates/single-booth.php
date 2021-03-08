@@ -20,7 +20,7 @@ CPT::expoHeader();
         $meta = get_post_meta($boothId);
         /*print "<pre>";
         //var_dump($meta);
-        var_dump(CPT::getMeta($meta, 'rrze-expo-booth-rollups'));
+        var_dump(CPT::getMeta($meta, 'rrze-expo-booth-decoration-template1'));
         print "</pre>";*/
         $constants = getConstants();
         $backgroundImage = CPT::getMeta($meta, 'rrze-expo-booth-background-image');
@@ -38,9 +38,9 @@ CPT::expoHeader();
 
         <h1 class="sr-only screen-reader-text"><?php echo get_the_title(); ?></h1>
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
-            <svg class="expo-booth" role="img" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <use xlink:href="#backwall" x="60" y="0" fill="<?php echo CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');?>"/>
-                <use xlink:href="#table" x="600" y="550" />
+            <svg class="expo-booth template-<?php echo CPT::getMeta($meta, 'rrze-expo-booth-template'); ?>" role="img" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use class="backwall" xlink:href="#backwall" />
+                <use xlink:href="#table" />
                 <?php
                 echo '<text x="90" y="80" font-size="60" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.get_the_title().'</text>';
                 // Logo
@@ -111,6 +111,19 @@ CPT::expoHeader();
                     echo '</g>';
                 }
                 // echo do_shortcode('[fauvideo url="https://www.fau.tv/webplayer/id/96195"]');
+                // Deco
+                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decoration-template1');
+                if ($deco != '') {
+                    if (in_array('owl', $deco)) {
+                        echo '<use xlink:href="#owl" />';
+                    }
+                    if (in_array('plantsleft', $deco)) {
+                        echo '<use xlink:href="#plant2" width="400" height="400" />';
+                    }
+                    if (in_array('plantsright', $deco)) {
+                        echo '<use xlink:href="#plant2" width="500" height="500" x="1000" y="30"  />';
+                    }
+                }
                 ?>
             </svg>
             <?php if ($hasContent) { ?>
@@ -137,6 +150,7 @@ CPT::expoHeader();
 <?php
 
 wp_enqueue_style('rrze-expo');
+wp_enqueue_script('rrze-expo');
 
 //CPT::expoFooter();
 get_footer();

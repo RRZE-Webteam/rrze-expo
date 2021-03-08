@@ -52,7 +52,7 @@ class Hall {
             'hierarchical'              => false,
             'public'                    => true,
             'show_ui'                   => true,
-            'show_in_menu'              => 'edit.php?post_type=booth',
+            'show_in_menu'              => 'edit.php?post_type=exposition',
             'show_in_nav_menus'         => true,
             'show_in_admin_bar'         => true,
             'menu_icon'                 => 'dashicons-store',
@@ -131,7 +131,7 @@ class Hall {
             'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
         ));
         $cmb_background->add_field([
-            'name'      => __('Backround Image Overlay', 'rrze-expo'),
+            'name'      => __('Background Image Overlay', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-hall-overlay-color',
             'type'      => 'select',
@@ -140,7 +140,7 @@ class Hall {
                 'dark' => __('Dark', 'rrze-expo')],
         ]);
         $cmb_background->add_field([
-            'name'      => __('Backround Image Opacity', 'rrze-expo'),
+            'name'      => __('Background Image Opacity', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-hall-overlay-opacity',
             'type'      => 'select',

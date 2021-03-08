@@ -19,6 +19,21 @@ CPT::expoHeader();
         ?>
 
         <div id="rrze-expo-foyer" class="foyer" style="background-image: url('<?php echo $backgroundImage;?>');">
+            <?php
+            //echo "x";
+            $hallIDs = CPT::getHallOrder($foyerId);
+            //echo "y";
+            echo '<ul class="foyer-menu">';
+            foreach ( $hallIDs as $hallID){
+                echo '<li>';
+                /*if (has_post_thumbnail($boothID)) {
+                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($boothID, 'small').'">';
+                }*/
+                echo '<a class="booth-title" href="'.get_permalink($hallID).'">'.get_the_title($hallID).'</a>';
+                echo '</li>';
+            }
+            echo "</ul>";
+            ?>
 
         <?php if ($hasContent) { ?>
             <a href="#rrze-expo-foyer-content" id="scrolldown" title="<?php _e('Read more','rrze-expo');?>">
