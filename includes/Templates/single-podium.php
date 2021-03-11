@@ -6,6 +6,7 @@ defined('ABSPATH') || exit;
 
 use RRZE\Expo\CPT\CPT;
 
+$cpt = new CPT('');
 CPT::expoHeader();
 ?>
 
@@ -16,6 +17,7 @@ CPT::expoHeader();
         $hasContent = (get_the_content() != '');
         $hallId = get_the_ID();
         $meta = get_post_meta($hallId);
+        $menu = CPT::getMeta($meta, 'rrze-expo-hall-menu');
         $backgroundImage = CPT::getMeta($meta, 'rrze-expo-hall-background-image');
         if ($backgroundImage == '') {
             // If no background image is set -> display foyer background image
@@ -24,6 +26,7 @@ CPT::expoHeader();
         } ?>
 
         <div id="rrze-expo-hall" class="hall" style="background-image: url('<?php echo $backgroundImage;?>');">
+            <h1><?php the_title(); ?></h1>
 
             <?php
             $boothIDs = CPT::getBoothOrder($hallId);

@@ -20,6 +20,9 @@ class CPT
         $booth = new Booth($this->pluginFile);
         $booth->onLoaded();
 
+        $podium = new Podium($this->pluginFile);
+        $podium->onLoaded();
+
         $hall = new Hall($this->pluginFile);
         $hall->onLoaded();
 
@@ -39,11 +42,16 @@ class CPT
         $booth = new Booth($this->pluginFile);
         $booth->boothPostType();
 
+        $podium = new Podium($this->pluginFile);
+        $podium->podiumPostType();
+
         $hall = new Hall($this->pluginFile);
         $hall->hallPostType();
 
         $expo = new Exposition($this->pluginFile);
         $expo->expositionPostType();
+
+        flush_rewrite_rules();
     }
 
     public static function getPosts(string $postType): array {
@@ -79,6 +87,8 @@ class CPT
         switch ($post->post_type) {
             case 'booth':
                 return dirname($this->pluginFile) . '/includes/Templates/single-booth.php';
+            case 'podium':
+                return dirname($this->pluginFile) . '/includes/Templates/single-podium.php';
             case 'hall':
                 return dirname($this->pluginFile) . '/includes/Templates/single-hall.php';
             case 'foyer':
@@ -196,6 +206,10 @@ class CPT
                 $foyerID = get_post_meta($post->ID, 'rrze-expo-hall-foyer', true);
                 $expoID = get_post_meta($foyerID, 'rrze-expo-foyer-exposition', true);
                 break;
+            case 'podium':
+                $foyerID = get_post_meta($post->ID, 'rrze-expo-podium-foyer', true);
+                $expoID = get_post_meta($foyerID, 'rrze-expo-foyer-exposition', true);
+                break;
             case 'booth':
                 $hallID = get_post_meta($post->ID, 'rrze-expo-booth-hall', true);
                 $foyerID = get_post_meta($hallID, 'rrze-expo-hall-foyer', true);
@@ -228,7 +242,12 @@ class CPT
                         echo '<a href="'.get_permalink($expoID).'">';
                     }
                     echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'">';
-                    echo '<p class="expo-title">' . get_the_title($expoID) . '</p>';
+                    echo '<div><p class="expo-title">' . get_the_title($expoID) . '</p>';
+                    $subtitle = get_post_meta($post->ID, 'rrze-expo-exposition-subtitle', true);
+                    if ($subtitle != '') {
+                        echo '<p class="expo-subtitle">' . $subtitle . '</p>';
+                    }
+                    echo '</div>';
                     if ( $post->post_type != 'foyer' ) {
                         echo '</a>';
                     }
@@ -249,7 +268,7 @@ class CPT
         } else {
             if ($post->post_type == 'booth') {
                 $hallID = get_post_meta($post->ID, 'rrze-expo-booth-hall', true);
-            } elseif ($post->post_type == 'hall') {
+            } elseif ($post->post_type == 'hall' || $post->post_type == 'podium') {
                 $hallID = $post->ID;
             }
             $foyerID = get_post_meta($hallID, 'rrze-expo-hall-foyer', true);
