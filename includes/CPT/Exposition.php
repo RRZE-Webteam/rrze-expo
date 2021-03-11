@@ -81,7 +81,60 @@ class Exposition {
             'priority'      => 'high',
             'show_names'    => true,
         ]);
-        $menus = wp_get_nav_menus();
+
+        $cmb->add_field( array(
+            'name'    => __('Event Subtitle', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            //'default' => '',
+            'id'      => 'rrze-expo-exposition-subtitle',
+            'type'    => 'text',
+        ) );
+
+        $cmb->add_field( array(
+            'name' => __('Start Date', 'rrze-expo'),
+            'id'   => 'rrze-expo-exposition-startdate',
+            'type' => 'text_date_timestamp',
+            'date_format' => 'd.m.Y',
+        ) );
+
+        $cmb->add_field( array(
+            'name' => __('End Date', 'rrze-expo'),
+            'id'   => 'rrze-expo-exposition-enddate',
+            'type' => 'text_date_timestamp',
+            'date_format' => 'd.m.Y',
+        ) );
+
+        $cmb->add_field( array(
+            'name'    => __('Organisation', 'rrze-expo'),
+            'id'      => 'rrze-expo-exposition-organisation',
+            'type'    => 'text',
+        ) );
+
+        $cmb->add_field( array(
+            'name'    => __('Organisation 2', 'rrze-expo'),
+            'id'      => 'rrze-expo-exposition-organisation2',
+            'type'    => 'text',
+        ) );
+
+        $cmb->add_field( array(
+            'name'    => __('Street', 'rrze-expo'),
+            'id'      => 'rrze-expo-exposition-street',
+            'type'    => 'text',
+        ) );
+
+        $cmb->add_field( array(
+            'name'    => __('Postal Code', 'rrze-expo'),
+            'id'      => 'rrze-expo-exposition-postalcode',
+            'type'    => 'text',
+        ) );
+
+        $cmb->add_field( array(
+            'name'    => __('Locality', 'rrze-expo'),
+            'id'      => 'rrze-expo-exposition-locality',
+            'type'    => 'text',
+        ) );
+
+        /*$menus = wp_get_nav_menus();
         foreach ($menus as $menu) {
             $optionsMenu[$menu->term_id] = $menu->name;
         }
@@ -93,7 +146,7 @@ class Exposition {
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
             'default'          => '',
             'options'          => $optionsMenu,
-        ]);
+        ]);*/
 
 
 
