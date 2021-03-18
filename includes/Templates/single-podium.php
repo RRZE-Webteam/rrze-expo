@@ -6,7 +6,6 @@ defined('ABSPATH') || exit;
 
 use RRZE\Expo\CPT\CPT;
 
-$cpt = new CPT('');
 CPT::expoHeader();
 ?>
 
@@ -15,34 +14,54 @@ CPT::expoHeader();
     CPT::expoNav();
     while ( have_posts() ) : the_post();
         $hasContent = (get_the_content() != '');
-        $hallId = get_the_ID();
-        $meta = get_post_meta($hallId);
-        $menu = CPT::getMeta($meta, 'rrze-expo-hall-menu');
-        $backgroundImage = CPT::getMeta($meta, 'rrze-expo-hall-background-image');
+        $podiumID = get_the_ID();
+        $meta = get_post_meta($podiumID);
+        $expoID = CPT::getMeta($meta, 'rrze-expo-podium-exposition');
+        $menu = CPT::getMeta($meta, 'rrze-expo-podium-menu');
+        $backgroundImage = CPT::getMeta($meta, 'rrze-expo-podium-background-image');
         if ($backgroundImage == '') {
-            // If no background image is set -> display foyer background image
-            $foyer = CPT::getMeta($meta, 'rrze-expo-hall-foyer');
-            $backgroundImage = get_post_meta($foyer, 'rrze-expo-foyer-background-image', true);
+            // If no background image is set -> display exposition background image
+            $backgroundImage = get_post_meta($expoID, 'rrze-expo-exposition-background-image', true);
         } ?>
 
-        <div id="rrze-expo-hall" class="hall" style="background-image: url('<?php echo $backgroundImage;?>');">
+        <div id="rrze-expo-podium" class="podium" style="background-image: url('<?php echo $backgroundImage;?>');">
             <h1><?php the_title(); ?></h1>
-
-            <?php
-            $boothIDs = CPT::getBoothOrder($hallId);
-            echo '<ul class="hall-menu">';
-            foreach ( $boothIDs as $boothID){
-                echo '<li>';
-                if (has_post_thumbnail($boothID)) {
-                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($boothID, 'small').'">';
-                }
-                echo '<a class="booth-title" href="'.get_permalink($boothID).'">'.get_the_title($boothID).'</a>';
-                echo '</li>';
-            }
-            echo "</ul>";
-            ?>
+            <div class="timetable">
+                <h2><?php _e('Timetable', 'rrze-expo');?></h2>
+                <?php
+                    $timeslots = CPT::getMeta($meta, 'rrze-expo-podium-timeslots');
+                    //var_dump($timeslots);
+                    // group by day
+                    $i = 0;
+                    foreach ($timeslots as $timeslot) {
+                        $startdateYmd = date('Y-m-d', $timeslot['start']);
+                        $startdateTimestamp = strtotime($startdateYmd);
+                        $timeslotsGrouped[$startdateTimestamp][$i]['starttime'] = date('H:i', $timeslot['start']);
+                        $timeslotsGrouped[$startdateTimestamp][$i]['endtime'] = date('H:i', $timeslot['end']);
+                        $timeslotsGrouped[$startdateTimestamp][$i]['title'] = $timeslot['title'];
+                        $timeslotsGrouped[$startdateTimestamp][$i]['url'] = $timeslot['url'];
+                        $timeslotsGrouped[$startdateTimestamp][$i]['booth'] = $timeslot['booth'];
+                        $i++;
+                    }
+                    //var_dump($timeslotsGrouped);
+                    foreach ($timeslotsGrouped as $day => $timeslotDay) {
+                        echo '<h3>'.date('d.m.Y', $startdateTimestamp).'</h3>';
+                        echo '<table>';
+                        foreach ($timeslotDay as $timeslotDetails) {
+                            echo '<tr>';
+                            echo '<td>'.$timeslotDetails['starttime'].' - '.$timeslotDetails['endtime'].'</td>';
+                            echo '<td><span class="talk-title">' . $timeslotDetails['title'] . '</span>';
+                            if (isset($timeslotDetails['booth'])) {
+                                echo '<br /><a href="'.get_permalink($timeslotDetails['booth']).'">'. get_the_title($timeslotDetails['booth']).'</a>';
+                            }
+                            echo '</tr>';
+                        }
+                        echo '</table>';
+                    }
+                ?>
+            </div>
             <?php if ($hasContent) { ?>
-                <a href="#rrze-expo-hall-content" id="scrolldown" title="<?php _e('Read more','rrze-expo');?>">
+                <a href="#rrze-expo-podium-content" id="scrolldown" title="<?php _e('Read more','rrze-expo');?>">
                     <svg height='50' width='80' class="scroll-down-icon"><use xlink:href='#chevron-down'/></svg>
                     <span class="sr-only screen-reader-text"><?php _e('Read more','rrze-expo');?></span>
                 </a>
@@ -50,7 +69,7 @@ CPT::expoHeader();
         </div>
 
         <?php if ($hasContent) { ?>
-            <div id="rrze-expo-hall-content" name="rrze-expo-hall-content" class="">
+            <div id="rrze-expo-podium-content" name="rrze-expo-podium-content" class="">
                 <?php the_content(); ?>
             </div>
         <?php } ?>

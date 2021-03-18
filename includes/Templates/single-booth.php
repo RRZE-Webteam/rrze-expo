@@ -16,8 +16,9 @@ CPT::expoHeader();
     CPT::expoNav();
     while ( have_posts() ) : the_post();
         $hasContent = (get_the_content() != '');
-        $boothId = get_the_ID();
-        $meta = get_post_meta($boothId);
+        $boothID = get_the_ID();
+        $meta = get_post_meta($boothID);
+        $expoID = CPT::getMeta($meta, 'rrze-expo-booth-exposition');
         /*print "<pre>";
         //var_dump($meta);
         var_dump(CPT::getMeta($meta, 'rrze-expo-booth-decoration-template1'));
@@ -34,6 +35,36 @@ CPT::expoHeader();
                 $backgroundImage = get_post_meta($foyer, 'rrze-expo-foyer-background-image', true);
             }
         }
+
+        // Talks
+        $timetable = '';
+        $boothTalks = [];
+        $podiums = CPT::getPosts('podium', $expoID);
+        foreach ($podiums as $id => $podium) {
+            $talks = get_post_meta($id, 'rrze-expo-podium-timeslots', true);
+            foreach ($talks as $talk) {
+                if (isset($talk['booth']) && $talk['booth'] == $boothID) {
+                    $boothTalks[$id][] = $talk;
+                }
+            }
+        }
+        //var_dump($boothTalks);
+        if (!empty($boothTalks)) {
+            $timetable .= '<h2>'.__('Our Talks', 'rrze-expo').'</h2>'
+                . '<ul>';
+            foreach ($boothTalks as $podiumID => $podium) {
+                foreach ($podium as $talk) {
+                    $timetable .= '<li>'
+                        . date('H:i', $talk['start']).' - '.date('H:i', $talk['end']).': '
+                        . '<span class="talk-title">' . $talk['title'] . '</span>'
+                        . '<br /><a href="'.get_permalink($podiumID).'" class="talk-location">' . get_the_title($podiumID) . '</a>'
+                        . '';
+                    $timetable .= '</li>';
+                }
+            }
+            $timetable .= '</ul>';
+        }
+        echo $timetable;
         ?>
 
         <h1 class="sr-only screen-reader-text"><?php echo get_the_title(); ?></h1>

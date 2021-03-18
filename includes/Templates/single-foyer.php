@@ -23,6 +23,7 @@ CPT::expoHeader();
             //echo "x";
             $hallIDs = CPT::getHallOrder($foyerId);
             //echo "y";
+            //var_dump($hallIDs);
             echo '<ul class="foyer-menu">';
             foreach ( $hallIDs as $hallID){
                 echo '<li>';

@@ -171,6 +171,13 @@ Plugin Style
             height: 85vh;
         }
     }
+    .podium {
+        .timetable {
+            background: #0b7cac;
+            padding: 10px;
+            width: 500px;
+        }
+    }
     #scrolldown {
         display: none;
         @media screen and (min-width: 66.25em) {

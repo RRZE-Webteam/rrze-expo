@@ -80,13 +80,13 @@ class Podium {
             'show_names'    => true,
         ]);
         $cmb->add_field([
-            'name'      => __('Foyer', 'rrze-expo'),
+            'name'      => __('Exposition', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
-            'id'        => 'rrze-expo-podium-foyer',
+            'id'        => 'rrze-expo-podium-exposition',
             'type'      => 'select',
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
             'default'          => '',
-            'options'          => CPT::getPosts('foyer'),
+            'options'          => CPT::getPosts('exposition'),
         ]);
 
         // Background Image
@@ -169,14 +169,39 @@ class Podium {
             ),
         ] );
         $cmb_timetable->add_group_field($video_group_id, [
+            'name' => __('Title', 'rrze-expo'),
+            'id' => 'title',
+            'type' => 'text',
+        ]);
+        $cmb_timetable->add_group_field($video_group_id, [
             'name' => __( 'Start', 'rrze-expo' ),
             'id'   => 'start',
             'type' => 'text_datetime_timestamp',
+            'date_format' => 'd.m.Y',
+            'time_format' => 'H:i',
+            'attributes' => array(
+                'data-timepicker' => json_encode(
+                    array(
+                        'timeFormat' => 'HH:mm',
+                        'stepMinute' => 5,
+                    )
+                ),
+            ),
         ] );
         $cmb_timetable->add_group_field($video_group_id, [
             'name' => __( 'End', 'rrze-expo' ),
             'id'   => 'end',
             'type' => 'text_datetime_timestamp',
+            'date_format' => 'd.m.Y',
+            'time_format' => 'H:i',
+            'attributes' => array(
+                'data-timepicker' => json_encode(
+                    array(
+                        'timeFormat' => 'HH:mm',
+                        'stepMinute' => 5,
+                    )
+                ),
+            ),
         ] );
         $cmb_timetable->add_group_field($video_group_id, [
             'name' => __( 'Video URL', 'rrze-expo' ),
@@ -184,19 +209,11 @@ class Podium {
             'type' => 'text_url',
             // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
         ] );
-        /*$podiumFoyerID = get_post_meta($post->ID, 'rrze-expo-podium-foyer', true);
-        $podiumExpoID = get_post_meta($podiumFoyerID, 'rrze-expo-foyer-exposition', true);
-        $booths = CPT::getPosts('booth');*/
-        $relevantBooths = [];
-        /*var_dump($podiumFoyerID);
-        foreach ($booths as $boothID => $boothTitle) {
-            $boothHallID = get_post_meta($boothID, 'rrze-expo-booth-hall', true);
-            $boothFoyerID = get_post_meta($boothHallID, 'rrze-expo-hall-foyer', true);
-            $boothExpoID = get_post_meta($boothFoyerID, 'rrze-expo-foyer-exposition', true);
-            if ($podiumExpoID == $boothExpoID) {
-                $relevantBooths[$boothID] = $boothTitle;
-            }
-        }*/
+        $cmb_timetable->add_group_field($video_group_id, [
+            'name' => __('Short description', 'rrze-expo'),
+            'id' => 'description',
+            'type' => 'textarea_small',
+        ]);
         $cmb_timetable->add_group_field($video_group_id, [
             'name' => __( 'Related Booth', 'rrze-expo' ),
             'id'   => 'booth',
@@ -209,19 +226,8 @@ class Podium {
 
     function getExpoBooths($field) {
         $podiumID = $field->object_id;
-        $podiumFoyerID = get_post_meta($podiumID, 'rrze-expo-podium-foyer', true);
-        $podiumExpoID = get_post_meta($podiumFoyerID, 'rrze-expo-foyer-exposition', true);
-        $booths = CPT::getPosts('booth');
-        $expoBooths = [];
-        //var_dump($podiumFoyerID);
-        foreach ($booths as $boothID => $boothTitle) {
-            $boothHallID = get_post_meta($boothID, 'rrze-expo-booth-hall', true);
-            $boothFoyerID = get_post_meta($boothHallID, 'rrze-expo-hall-foyer', true);
-            $boothExpoID = get_post_meta($boothFoyerID, 'rrze-expo-foyer-exposition', true);
-            if ($podiumExpoID == $boothExpoID) {
-                $expoBooths[$boothID] = $boothTitle;
-            }
-        }
-        return $expoBooths;
+        $expoID = get_post_meta($podiumID, 'rrze-expo-podium-exposition', true);
+        $booths = CPT::getPosts('booth', $expoID);
+        return $booths;
     }
 }

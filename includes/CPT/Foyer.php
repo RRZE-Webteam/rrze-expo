@@ -92,6 +92,20 @@ class Foyer {
             'options'          => CPT::getPosts('exposition'),
         ]);
 
+        $menus = wp_get_nav_menus();
+        foreach ($menus as $menu) {
+            $optionsMenu[$menu->term_id] = $menu->name;
+        }
+        $cmb->add_field([
+            'name'      => __('Foyer Menu', 'rrze-expo'),
+            'desc'    => __('If no menu is set, halls will be ordered alphabetically.', 'rrze-expo'),
+            'id'        => 'rrze-expo-foyer-menu',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '',
+            'options'          => $optionsMenu,
+        ]);
+
         // Background Image
         $cmb_background = new_cmb2_box([
             'id'            => 'rrze-expo-foyer-background',

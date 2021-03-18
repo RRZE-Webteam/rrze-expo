@@ -79,14 +79,15 @@ class Hall {
             'show_names'    => true,
         ]);
         $cmb->add_field([
-            'name'      => __('Foyer', 'rrze-expo'),
+            'name'      => __('Exposition', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
-            'id'        => 'rrze-expo-hall-foyer',
+            'id'        => 'rrze-expo-hall-exposition',
             'type'      => 'select',
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
             'default'          => '',
-            'options'          => CPT::getPosts('foyer'),
+            'options'          => CPT::getPosts('exposition'),
         ]);
+
         $menus = wp_get_nav_menus();
         foreach ($menus as $menu) {
             $optionsMenu[$menu->term_id] = $menu->name;
@@ -159,5 +160,4 @@ class Hall {
         ]);
 
     }
-
 }

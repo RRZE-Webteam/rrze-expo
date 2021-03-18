@@ -83,13 +83,23 @@ class Booth {
             'show_names'    => true,
         ]);
         $cmb_general->add_field([
+            'name'      => __('Exposition', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-exposition',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '',
+            'options'          => CPT::getPosts('exposition'),
+        ]);
+
+        $cmb_general->add_field([
             'name'      => __('Hall', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-booth-hall',
             'type'      => 'select',
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
             'default'          => '-1',
-            'options'          => CPT::getPosts('hall'),
+            'options_cb'          => [$this, 'getBoothHalls'],
         ]);
 
         // Background Image
@@ -401,5 +411,12 @@ class Booth {
             'name'  => __('User Name', 'rrze-expo'),
             'id'    => 'username',
         ]);
+    }
+
+    function getBoothHalls($field) {
+        $boothID = $field->object_id;
+        $expoID = get_post_meta($boothID, 'rrze-expo-booth-exposition', true);
+        $halls = CPT::getPosts('hall', $expoID);
+        return $halls;
     }
 }
