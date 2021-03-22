@@ -20,17 +20,26 @@ CPT::expoHeader();
 
         <div id="rrze-expo-foyer" class="foyer" style="background-image: url('<?php echo $backgroundImage;?>');">
             <?php
-            //echo "x";
             $hallIDs = CPT::getHallOrder($foyerId);
-            //echo "y";
-            //var_dump($hallIDs);
             echo '<ul class="foyer-menu">';
             foreach ( $hallIDs as $hallID){
                 echo '<li>';
-                /*if (has_post_thumbnail($boothID)) {
-                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($boothID, 'small').'">';
+                /*if (has_post_thumbnail($hallIDs)) {
+                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($hallIDs, 'small').'">';
                 }*/
-                echo '<a class="booth-title" href="'.get_permalink($hallID).'">'.get_the_title($hallID).'</a>';
+                echo '<a class="hall-title" href="'.get_permalink($hallID).'">'.get_the_title($hallID).'</a>';
+                echo '</li>';
+            }
+            echo "</ul>";
+
+            $podiumIDs = CPT::getPodiumOrder($foyerId);
+            echo '<ul class="foyer-menu">';
+            foreach ( $podiumIDs as $podiumID){
+                echo '<li>';
+                /*if (has_post_thumbnail($podiumID)) {
+                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($podiumID, 'small').'">';
+                }*/
+                echo '<a class="podium-title" href="'.get_permalink($podiumID).'">'.get_the_title($podiumID).'</a>';
                 echo '</li>';
             }
             echo "</ul>";

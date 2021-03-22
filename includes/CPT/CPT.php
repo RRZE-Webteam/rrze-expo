@@ -106,7 +106,7 @@ class CPT
 
     public static function svgToFooter() {
         global $post;
-        if (!in_array($post->post_type,  ['booth', 'hall', 'foyer']))
+        if (!in_array($post->post_type,  ['booth', 'hall', 'podium', 'foyer']))
             return;
         // Booth Template
         $templateNo = get_post_meta($post->ID,'rrze-expo-booth-template', true);
@@ -262,6 +262,8 @@ class CPT
 
     public static function expoNav() {
         global $post;
+        $foyerID = '';
+        $expoID = '';
         if ($post->post_type == 'foyer') {
             $foyerID = $post->ID;
         } else {
@@ -270,22 +272,24 @@ class CPT
             } elseif ($post->post_type == 'hall') {
                 $hallID = $post->ID;
             }
-            $expoID = get_post_meta($post->ID, 'rrze-expo-'.$post->post_type.'-expo', true);
-            $foyer = get_posts([
-                'post_type'     => 'foyer',
-                'status'        => 'publish',
-                'meta_key'      => 'rrze-expo-foyer-exposition',
-                'meta_value'    => $expoID,
-                'posts_per_page'   => 1,
-                'fields'        => 'ids'
-            ]);
-            if (!empty($foyer)) {
-                $foyerID = $foyer[0];
-            } else {
-                $foyerID = '';
+            $expoID = get_post_meta($post->ID, 'rrze-expo-'.$post->post_type.'-exposition', true);
+            if ($expoID != '') {
+                $foyer = get_posts([
+                    'post_type'     => 'foyer',
+                    'status'        => 'publish',
+                    'meta_key'      => 'rrze-expo-foyer-exposition',
+                    'meta_value'    => $expoID,
+                    'posts_per_page'   => 1,
+                    'fields'        => 'ids'
+                ]);
+                if (!empty($foyer)) {
+                    $foyerID = $foyer[0];
+                } else {
+                    $foyerID = '';
+                }
             }
         }
-        if (in_array($post->post_type, ['booth', 'hall'])) { ?>
+        if (in_array($post->post_type, ['booth', 'hall', 'podium'])) { ?>
             <nav class="booth-nav"><ul>
                 <?php if ($post->post_type == 'booth') {
                     $boothId = $post->ID;
@@ -375,7 +379,7 @@ class CPT
 
         // If post type is foyer and foyer menu is set -> get hall order by menu order
         if ($postType == 'foyer') {
-            $menuID = get_post_meta($itemID, 'rrze-expo-foyer-menu', true);
+            $menuID = get_post_meta($itemID, 'rrze-expo-foyer-menu-halls', true);
             if ($menuID != '') {
                 $items = wp_get_nav_menu_items(absint($menuID));
                 foreach ( $items as $item) {
@@ -399,5 +403,44 @@ class CPT
             'fields'    => 'ids',
         ]);
         return $hallIDs;
+    }
+
+    /**
+     * getPodiumOrder
+     * returns an array of hall IDs in the same exposition, ordered by foyer menu order, or alphabetically if no menu is set
+     * @param int $itemID
+     * @return array
+     */
+    public static function getPodiumOrder($itemID) {
+        $postType = get_post_type($itemID);
+        $expoID = get_post_meta($itemID, 'rrze-expo-'.$postType.'-exposition', true);
+        $podiumIDs = [];
+
+        // If post type is foyer and foyer menu is set -> get podium order by menu order
+        if ($postType == 'foyer') {
+            $menuID = get_post_meta($itemID, 'rrze-expo-foyer-menu-podiums', true);
+            if ($menuID != '') {
+                $items = wp_get_nav_menu_items(absint($menuID));
+                foreach ( $items as $item) {
+                    if ($item->menu_item_parent == 0) {
+                        $podiumIDs[] = $item->object_id;
+                    }
+                }
+                return $podiumIDs;
+            }
+
+        }
+
+        // If hall Array is (still) empty -> get halls of this exposition ordered alphbetically
+        $podiumIDs = get_posts([
+            'post_type' => 'podium',
+            'status'    => 'publish',
+            'meta_key'  => 'rrze-expo-podium-exposition',
+            'meta_value'    => $expoID,
+            'orderby'   => 'title',
+            'order'     => 'ASC',
+            'fields'    => 'ids',
+        ]);
+        return $podiumIDs;
     }
 }

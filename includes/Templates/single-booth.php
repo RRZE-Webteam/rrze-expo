@@ -48,7 +48,6 @@ CPT::expoHeader();
                 }
             }
         }
-        //var_dump($boothTalks);
         if (!empty($boothTalks)) {
             $timetable .= '<h2>'.__('Our Talks', 'rrze-expo').'</h2>'
                 . '<ul>';
@@ -56,15 +55,14 @@ CPT::expoHeader();
                 foreach ($podium as $talk) {
                     $timetable .= '<li>'
                         . date('H:i', $talk['start']).' - '.date('H:i', $talk['end']).': '
-                        . '<span class="talk-title">' . $talk['title'] . '</span>'
-                        . '<br /><a href="'.get_permalink($podiumID).'" class="talk-location">' . get_the_title($podiumID) . '</a>'
+                        . '<a href="'.get_permalink($podiumID).'"><span class="talk-title">' . $talk['title'] . '</span>'
+                        . ' <span class="talk-location">[' . get_the_title($podiumID) . ']</span></a>'
                         . '';
                     $timetable .= '</li>';
                 }
             }
             $timetable .= '</ul>';
         }
-        echo $timetable;
         ?>
 
         <h1 class="sr-only screen-reader-text"><?php echo get_the_title(); ?></h1>
@@ -94,6 +92,17 @@ CPT::expoHeader();
                         echo '<use xlink:href="#video" x="700" y="120" />';
                     }
                 }
+
+                // Timetable
+                if ($timetable != '') { ?>
+                    <rect x="700" y="120" width="400" height="300" style="fill: #fff; stroke: black; stroke-width: 1px;"/>
+                    <foreignObject class="timetable" x="700" y="120" width="400" height="300">
+                        <!-- XHTML content goes here -->
+                        <body xmlns="http://www.w3.org/1999/xhtml">
+                        <?php echo $timetable; ?>
+                        </body>
+                    </foreignObject>
+                <?php }
 
                 // Roll-Ups
                 $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');

@@ -49,7 +49,7 @@ class Foyer {
             'label' => __('Foyer', 'rrze-expo'),
             'description' => __('Add and edit foyer informations', 'rrze-expo'),
             'labels' => $labels,
-            'supports'                  => ['title', 'editor', 'author', 'thumbnail'],
+            'supports'                  => ['title', 'editor', 'author'],
             'hierarchical'              => false,
             'public'                    => true,
             'show_ui'                   => true,
@@ -97,9 +97,19 @@ class Foyer {
             $optionsMenu[$menu->term_id] = $menu->name;
         }
         $cmb->add_field([
-            'name'      => __('Foyer Menu', 'rrze-expo'),
+            'name'      => __('Foyer Menu 1', 'rrze-expo'),
             'desc'    => __('If no menu is set, halls will be ordered alphabetically.', 'rrze-expo'),
-            'id'        => 'rrze-expo-foyer-menu',
+            'id'        => 'rrze-expo-foyer-menu-halls',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '',
+            'options'          => $optionsMenu,
+        ]);
+
+        $cmb->add_field([
+            'name'      => __('Foyer Menu 2', 'rrze-expo'),
+            'desc'    => __('If no menu is set, podiums will be ordered alphabetically.', 'rrze-expo'),
+            'id'        => 'rrze-expo-foyer-menu-podiums',
             'type'      => 'select',
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
             'default'          => '',
