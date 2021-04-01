@@ -63,23 +63,39 @@ CPT::expoHeader();
             }
             $timetable .= '</ul>';
         }
-        ?>
+        $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
+        if ($rollups != '') {
+            if (isset($rollups[0])) {
+                $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
+                //$rollup1 = '<div class="" style="-webkit-transform: perspective(1500px) rotateY(15deg); transform: perspective(1500px) rotateY(15deg);"><img src="' . $rollupData0[0] . '"/></div>';
+                $rollup1 = '<div class="rollup-content" style=""><img src="' . $rollupData0[0] . '"/></div>';
+                /*$rollup1 = '<div class="container" style="perspective: 1000px; border: 1px solid black; background: gray; margin: 40px;">
+                    <div class="transformed" style="transform: rotateY(50deg);"><img src="' . $rollupData0[0] . '"/></div>
+                </div>';*/
+            }
+            if (isset($rollups[1])) {
+                $rollupData1 = wp_get_attachment_image_src($rollups[1]['file_id'], 'medium');
+            }
 
+        }
+        //echo $rollup1;
+        ?>
         <h1 class="sr-only screen-reader-text"><?php echo get_the_title(); ?></h1>
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
-            <svg class="expo-booth template-<?php echo CPT::getMeta($meta, 'rrze-expo-booth-template'); ?>" role="img" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg version="1.1" class="expo-booth template-<?php echo CPT::getMeta($meta, 'rrze-expo-booth-template'); ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use class="floor" xlink:href="#floor" />
                 <use class="backwall" xlink:href="#backwall" />
                 <use xlink:href="#table" />
                 <?php
-                echo '<text x="90" y="80" font-size="60" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.get_the_title().'</text>';
+                echo '<rect x="700" y="120" width="400" height="300" style="fill: transparent; stroke: black; stroke-width: 1px;"/><text x="1450" y="330" font-size="60" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.get_the_title().'</text>';
                 // Logo
                 if (has_post_thumbnail()){
                     $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
                     if (in_array('wall', $logoLocations)) {
-                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin" width="400" height="240"  x="1344" y="60" />';
+                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin meet" width="300" height="240"  x="1990" y="280" />';
                     }
                     if (in_array('table', $logoLocations)) {
-                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin" width="400" height="240"  x="700" y="600" />';
+                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin meet" width="480" height="160"  x="1450" y="760" />';
                     }
                 }
                 // Videos
@@ -105,19 +121,21 @@ CPT::expoHeader();
                 <?php }
 
                 // Roll-Ups
+                //<image xlink:href="' . $rollupData0[0] . '" width="320" height="800" x="0" y="120" />
                 $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
                 if ($rollups != '') {
                     if (isset($rollups[0])) {
                         $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
-                        echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '">
-                        <image xlink:href="' . $rollupData0[0] . '" width="320" height="800" x="0" y="120" />
-                        </a>';
+                        //echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block;">
+                        echo '<use xlink:href="#rollup" />';
+                        //<foreignObject class="rollup-content">'.$rollup1.'</foreignObject>
+                        //</a>';
                     }
                     if (isset($rollups[1])) {
-                        $rollupData1 = wp_get_attachment_image_src($rollups[1]['file_id'], 'medium');
+                        /*$rollupData1 = wp_get_attachment_image_src($rollups[1]['file_id'], 'medium');
                         echo '<a href="' . $rollups[1]['file'] . '" title="' . get_the_title($rollups[1]['file_id']) . '">
                         <image xlink:href="' . $rollupData1[0] . '" width="320" height="800" x="1600" y="120" fill="#dedede"/>
-                        </a>';
+                        </a>';*/
                     }
 
                 }
@@ -125,20 +143,20 @@ CPT::expoHeader();
                 // Flyers
                 $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
                 if ($flyers != '') {
-                    echo '<g><use xlink:href="#flyer_stand" x="350" y="400" />';
-                    foreach ($flyers as $i => $flyer) {
+                    echo '<g><use xlink:href="#flyer_stand" />';
+                    /*foreach ($flyers as $i => $flyer) {
                         $translateY = 410 + $i * (270 + 20);
                         echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '">
                         <image xlink:href="' . $flyer['preview'] . '" width="180" height="270" x="360" y="' . $translateY . '" />
                         </a>';
-                    }
+                    }*/
                     echo '</g>';
                 }
 
                 // Social Media
                 $socialMedia = CPT::getMeta($meta, 'rrze-expo-booth-social-media');
                 if ($socialMedia != '') {
-                    echo '<g><use xlink:href="#some_panel" x="1450" y="500" />';
+                    echo '<g><use xlink:href="#some_panel" />';
                     $socialMediaData = $constants['social-media'];
                     foreach ($socialMedia as $order => $media) {
                         if (!isset($media['medianame']) || !isset($media['username']))
@@ -158,7 +176,7 @@ CPT::expoHeader();
                         echo '<use xlink:href="#owl" />';
                     }
                     if (in_array('plantsleft', $deco)) {
-                        echo '<use xlink:href="#plant2" width="400" height="400" />';
+                        echo '<use xlink:href="#plant1" />';
                     }
                     if (in_array('plantsright', $deco)) {
                         echo '<use xlink:href="#plant2" width="500" height="500" x="1000" y="30"  />';

@@ -5,6 +5,20 @@ Plugin Style
     ul.jumplinks {
         margin: 0;
     }
+    img {
+        box-shadow: none;
+    }
+    svg.expo-booth {
+        /*perspective: 400px;
+        .rollup-content {
+            width: 155px;
+            height: 155px;
+            transform: rotateY(45deg);
+            img {
+                object-fit: cover;
+            }
+        }*/
+    }
     .site-header {
         #rrze-expo-header-content {
             max-width: 1400px;
@@ -144,19 +158,17 @@ Plugin Style
     }
     .exposition, .foyer, .hall, .podium, .booth {
         position: relative;
-        width: 100%;
+        width: 100vw;
+        height: 50vw;
+        //max-height: 85vmin;
         z-index: 1;
-        //height: 90vh;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         color: #fff;
         overflow: hidden;
         display: block;
-        padding: 10px 10px 50px 10px;
-        @media screen and (min-width: 37.5em) {
-            padding: 30px 30px 50px 30px;
-        }
+        padding: 0;
         &:after {
             z-index: -90;
             position: absolute;
@@ -166,9 +178,6 @@ Plugin Style
             right: 0;
             bottom: 0;
             content: "";
-        }
-        @media screen and (min-width: 66.25em) {
-            height: 85vh;
         }
     }
     .podium {
@@ -185,14 +194,14 @@ Plugin Style
                 font-size: calc(1.8em + 1vmin);
                 line-height: 1.2;
                 padding: 0 0 .5vmin 0;
-                margin-bottom: 1vmin;
+                margin: 0 0 1vmin 0;
                 border-bottom: 1px solid #C5C5C5;
             }
             ul {
                 margin: 0;
             }
             li {
-                font-size: calc(1.4em + 1vmin);
+                font-size: calc(1.4em + .8vmin);
                 line-height: 1.2;
                 list-style-type: none;
                 padding-bottom: 1vmin;
@@ -266,9 +275,8 @@ Plugin Style
 
 #rrze-expo-booth {
     svg.expo-booth {
-        //height: 80vh;
-        max-height: 100%;
-        max-width: 100%;
+        width: 100%;
+        height: 100%;
         display: block;
         margin: 0 auto;
         a path {

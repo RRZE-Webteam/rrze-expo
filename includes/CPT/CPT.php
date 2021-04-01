@@ -110,8 +110,12 @@ class CPT
             return;
         // Booth Template
         $templateNo = get_post_meta($post->ID,'rrze-expo-booth-template', true);
-        if ($templateNo != '' && file_exists(WP_PLUGIN_DIR . '/rrze-expo/assets/img/booth_template_' . absint($templateNo) . '.svg')) {
-            echo file_get_contents(WP_PLUGIN_DIR . '/rrze-expo/assets/img/booth_template_' . absint($templateNo) . '.svg');
+        $templateDir = '/rrze-expo/assets/img/booth-' . absint($templateNo).'/';
+        $file = WP_PLUGIN_DIR . $templateDir . 'template.svg';
+        //$file = WP_PLUGIN_DIR . $templateDir . 'booth1komplett.svg';
+        if ($templateNo != '' && file_exists($file)) {
+            $svg = file_get_contents($file);
+            echo str_replace('xlink:href="', 'xlink:href="'.WP_PLUGIN_URL . $templateDir, $svg);
         }
         // Icons
         $icons = [
@@ -150,6 +154,9 @@ class CPT
                 // Background Wall
                 $backwallColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
                 echo "svg.template-1 .backwall {
+                    fill: $backwallColor;
+                }
+                svg #akzentpult {
                     fill: $backwallColor;
                 }
                 svg.template-2 .backwall {
