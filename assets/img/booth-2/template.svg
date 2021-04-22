@@ -10,10 +10,7 @@
 		<symbol id="backwall">
 			<image style="overflow:visible;" id="wand" xlink:href="8DF2609E.png"  transform="matrix(1 0 0 1 1452 203)">
 			</image>
-		</symbol>
-		<symbol id="backwall-color">
-			<!--<rect x="1300" y="120" width="400" height="300" style="fill: #f00;"/>-->
-			<image style="overflow:visible;opacity:0.5;" id="wandakzent" xlink:href="8DF26099.png"  transform="matrix(1 0 0 1 1452 203)" >
+			<image style="overflow:visible;opacity:0.5;" id="wandakzent" xlink:href="8DF26099.png"  transform="matrix(1 0 0 1 1452 203)">
 			</image>
 		</symbol>
 		<symbol id="flyer_stand">

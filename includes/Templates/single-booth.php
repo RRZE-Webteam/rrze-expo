@@ -19,6 +19,7 @@ CPT::expoHeader();
         $boothID = get_the_ID();
         $meta = get_post_meta($boothID);
         $expoID = CPT::getMeta($meta, 'rrze-expo-booth-exposition');
+        $templateNo = CPT::getMeta($meta, 'rrze-expo-booth-template');
         /*print "<pre>";
         //var_dump($meta);
         var_dump(CPT::getMeta($meta, 'rrze-expo-booth-decoration-template1'));
@@ -68,10 +69,9 @@ CPT::expoHeader();
             if (isset($rollups[0])) {
                 $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
                 //$rollup1 = '<div class="" style="-webkit-transform: perspective(1500px) rotateY(15deg); transform: perspective(1500px) rotateY(15deg);"><img src="' . $rollupData0[0] . '"/></div>';
-                $rollup1 = '<div class="rollup-content" style=""><img src="' . $rollupData0[0] . '"/></div>';
-                /*$rollup1 = '<div class="container" style="perspective: 1000px; border: 1px solid black; background: gray; margin: 40px;">
-                    <div class="transformed" style="transform: rotateY(50deg);"><img src="' . $rollupData0[0] . '"/></div>
-                </div>';*/
+                $rollup1 = '<div class="rollup-content" style="width: 100%; height: 100%; text-align: center;"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></div>';
+                //$rollup1 = '<img src="' . $rollupData0[0] . '" style="" />';
+                //$rollup1 = '<img src="' . $rollupData0[0] . '" style="height: 100%; width: auto; padding: 50px; "/>';
             }
             if (isset($rollups[1])) {
                 $rollupData1 = wp_get_attachment_image_src($rollups[1]['file_id'], 'medium');
@@ -87,15 +87,18 @@ CPT::expoHeader();
                 <use class="backwall" xlink:href="#backwall" />
                 <use xlink:href="#table" />
                 <?php
-                echo '<rect x="700" y="120" width="400" height="300" style="fill: transparent; stroke: black; stroke-width: 1px;"/><text x="1450" y="330" font-size="60" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.get_the_title().'</text>';
+                $titleSettings = $constants['template_elements']['template'.$templateNo]['title'];
+                echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="60" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.get_the_title().'</text>';
                 // Logo
                 if (has_post_thumbnail()){
                     $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
                     if (in_array('wall', $logoLocations)) {
-                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin meet" width="300" height="240"  x="1990" y="280" />';
+                        $logoSettingsWall = $constants['template_elements']['template'.$templateNo]['logo-wall'];
+                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin meet" width="'.$logoSettingsWall['width'].'" height="'.$logoSettingsWall['height'].'"  x="'.$logoSettingsWall['x'].'" y="'.$logoSettingsWall['y'].'" />';
                     }
                     if (in_array('table', $logoLocations)) {
-                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin meet" width="480" height="160"  x="1450" y="760" />';
+                        $logoSettingsTable = $constants['template_elements']['template'.$templateNo]['logo-table'];
+                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin meet" width="'.$logoSettingsTable['width'].'" height="'.$logoSettingsTable['height'].'"  x="'.$logoSettingsTable['x'].'" y="'.$logoSettingsTable['y'].'" />';
                     }
                 }
                 // Videos
@@ -110,7 +113,7 @@ CPT::expoHeader();
                 }
 
                 // Timetable
-                if ($timetable != '') { ?>
+                /*if ($timetable != '') { ?>
                     <rect x="700" y="120" width="400" height="300" style="fill: #fff; stroke: black; stroke-width: 1px;"/>
                     <foreignObject class="timetable" x="700" y="120" width="400" height="300">
                         <!-- XHTML content goes here -->
@@ -118,18 +121,51 @@ CPT::expoHeader();
                         <?php echo $timetable; ?>
                         </body>
                     </foreignObject>
-                <?php }
+                <?php }*/
+
+                // Flyers
+                $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
+                if ($flyers != '') {
+                    $flyerSettings = $constants['template_elements']['template'.$templateNo]['flyers'];
+                    echo '<g><use xlink:href="#flyer_stand" />';
+                    foreach ($flyers as $i => $flyer) {
+                        $translateY = $flyerSettings['y'] + $i * ($flyerSettings['height'] + 20);
+                        echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '">
+                        <image xlink:href="' . $flyer['preview'] . '" width="'.$flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>
+                        </a>';
+                    }
+                    echo '</g>';
+                }
+
+                // Social Media
+                $socialMedia = CPT::getMeta($meta, 'rrze-expo-booth-social-media');
+                if ($socialMedia != '') {
+                    echo '<g><use xlink:href="#some_panel" />';
+                    $socialMediaData = $constants['social-media'];
+                    $socialMediaSettings = $constants['template_elements']['template'.$templateNo]['social-media'];
+                    foreach ($socialMedia as $i => $media) {
+                        if (!isset($media['medianame']) || !isset($media['username']))
+                            continue;
+                        $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
+                        echo '<a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '">
+                            <use xlink:href="#' . $media['medianame'] . '" width="'.$socialMediaSettings['width'].'" height="'.$socialMediaSettings['height'].'" x="'.$socialMediaSettings['x'].'" y="' . $translateY . '" class="icon-'.$media['medianame'] .'"  />
+                            </a>';
+                    }
+                    echo '</g>';
+                }
+                // echo do_shortcode('[fauvideo url="https://www.fau.tv/webplayer/id/96195"]');
 
                 // Roll-Ups
                 //<image xlink:href="' . $rollupData0[0] . '" width="320" height="800" x="0" y="120" />
                 $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
                 if ($rollups != '') {
+                    $rollupSettings = $constants['template_elements']['template'.$templateNo]['rollup'];
                     if (isset($rollups[0])) {
                         $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
-                        //echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block;">
                         echo '<use xlink:href="#rollup" />';
-                        //<foreignObject class="rollup-content">'.$rollup1.'</foreignObject>
-                        //</a>';
+                        echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block;">
+                        <foreignObject class="rollup-content" width="'.$rollupSettings['width'].'" height="'.$rollupSettings['height'].'" x="'.$rollupSettings['x'].'" y="' . $rollupSettings['y'] . '">'.$rollup1.'</foreignObject>
+                        </a>';
                     }
                     if (isset($rollups[1])) {
                         /*$rollupData1 = wp_get_attachment_image_src($rollups[1]['file_id'], 'medium');
@@ -140,35 +176,6 @@ CPT::expoHeader();
 
                 }
 
-                // Flyers
-                $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
-                if ($flyers != '') {
-                    echo '<g><use xlink:href="#flyer_stand" />';
-                    /*foreach ($flyers as $i => $flyer) {
-                        $translateY = 410 + $i * (270 + 20);
-                        echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '">
-                        <image xlink:href="' . $flyer['preview'] . '" width="180" height="270" x="360" y="' . $translateY . '" />
-                        </a>';
-                    }*/
-                    echo '</g>';
-                }
-
-                // Social Media
-                $socialMedia = CPT::getMeta($meta, 'rrze-expo-booth-social-media');
-                if ($socialMedia != '') {
-                    echo '<g><use xlink:href="#some_panel" />';
-                    $socialMediaData = $constants['social-media'];
-                    foreach ($socialMedia as $order => $media) {
-                        if (!isset($media['medianame']) || !isset($media['username']))
-                            continue;
-                        $translateY = 520 + ($order * 20);
-                        echo '<a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '">
-                            <use xlink:href="#' . $media['medianame'] . '" x="1470" y="' . $translateY . '" />
-                            </a>';
-                    }
-                    echo '</g>';
-                }
-                // echo do_shortcode('[fauvideo url="https://www.fau.tv/webplayer/id/96195"]');
                 // Deco
                 $deco = CPT::getMeta($meta, 'rrze-expo-booth-decoration-template1');
                 if ($deco != '') {

@@ -74,6 +74,7 @@ Plugin Style
     }
     main {
         position: relative;
+        overflow-x: hidden;
         .booth-nav {
             background: #f3f3f5;
             ul {
@@ -180,6 +181,12 @@ Plugin Style
             content: "";
         }
     }
+    .exposition, .foyer, .hall, .podium {
+        padding: 10px;
+        @media screen and (min-width: 37.5em) {
+            padding: 30px;
+        }
+    }
     .podium {
         .timetable {
             background: #0b7cac;
@@ -213,6 +220,16 @@ Plugin Style
                 font-style: italic;
             }
         }
+    }
+    //https://brandcolors.net
+    .icon-twitter {
+        fill:#1da1f2;
+    }
+    .icon-facebook {
+        fill:#3b5999;
+    }
+    .icon-instagram {
+        fill:#e4405f;
     }
     #scrolldown {
         display: none;

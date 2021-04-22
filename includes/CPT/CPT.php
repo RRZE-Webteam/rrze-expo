@@ -111,8 +111,8 @@ class CPT
         // Booth Template
         $templateNo = get_post_meta($post->ID,'rrze-expo-booth-template', true);
         $templateDir = '/rrze-expo/assets/img/booth-' . absint($templateNo).'/';
+        //$templateDir = '/rrze-expo/assets/img/booth-test/';
         $file = WP_PLUGIN_DIR . $templateDir . 'template.svg';
-        //$file = WP_PLUGIN_DIR . $templateDir . 'booth1komplett.svg';
         if ($templateNo != '' && file_exists($file)) {
             $svg = file_get_contents($file);
             echo str_replace('xlink:href="', 'xlink:href="'.WP_PLUGIN_URL . $templateDir, $svg);
@@ -123,7 +123,11 @@ class CPT
             'chevron-right',
             'chevron-down',
             'chevron-up',
-            'chevron-double-up'
+            'chevron-double-up',
+            'facebook',
+            'instagram',
+            'twitter',
+            'xing'
         ];
         echo '<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><defs>';
         foreach ($icons as $icon) {
