@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE-Expo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-30 07:39+0000\n"
-"PO-Revision-Date: 2021-05-06 13:44+0000\n"
+"PO-Revision-Date: 2021-05-06 13:37+0000\n"
 "Last-Translator: Barbara Bothe <info@barbara-bothe.de>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -125,31 +125,31 @@ msgstr ""
 #: includes/CPT/Booth.php:25
 msgctxt "Admin Menu text"
 msgid "Booths"
-msgstr "Messestände"
+msgstr ""
 
 #: includes/CPT/Exposition.php:25
 msgctxt "Admin Menu text"
 msgid "Expositions"
-msgstr "Messen"
+msgstr ""
 
 #: includes/CPT/Foyer.php:25
 msgctxt "Admin Menu text"
 msgid "Foyers"
-msgstr "Foyers"
+msgstr ""
 
 #: includes/CPT/Hall.php:24
 msgctxt "Admin Menu text"
 msgid "Halls"
-msgstr "Messehallen"
+msgstr ""
 
 #: includes/CPT/Podium.php:24
 msgctxt "Admin Menu text"
 msgid "Podiums"
-msgstr "Podiums"
+msgstr ""
 
 #: config/config.php:164
 msgid "Advanced Editor"
-msgstr "Erweiterter Editor"
+msgstr ""
 
 #: config/config.php:165
 msgid "Advanced Editor description."
@@ -161,41 +161,41 @@ msgstr ""
 
 #: includes/CPT/Booth.php:32
 msgid "All Booths"
-msgstr "Alle Messestände"
+msgstr ""
 
 #: includes/CPT/Exposition.php:32
 msgid "All Expositions"
-msgstr "Alle Messen"
+msgstr ""
 
 #: includes/CPT/Foyer.php:32
 msgid "All Foyers"
-msgstr "Alle Foyers"
+msgstr ""
 
 #: includes/CPT/Hall.php:31
 msgid "All Halls"
-msgstr "Alle Messehallen"
+msgstr ""
 
 #: includes/CPT/Podium.php:31
 msgid "All Podiums"
-msgstr "Alle Podiums"
+msgstr ""
 
 #: includes/CPT/CPT.php:333
 msgid "Back to Foyer"
-msgstr "Zurück zum Foyer"
+msgstr ""
 
 #: includes/CPT/CPT.php:328
 msgid "Back to Hall"
-msgstr "Zurück zur Messehalle"
+msgstr ""
 
 #: includes/CPT/Booth.php:190
 msgid "Back Wall"
-msgstr "Rückwand"
+msgstr ""
 
 #: includes/CPT/Exposition.php:156 includes/CPT/Hall.php:108
 #: includes/CPT/Podium.php:95 includes/CPT/Booth.php:108
 #: includes/CPT/Foyer.php:122
 msgid "Background Image"
-msgstr "Hintergrundbild"
+msgstr ""
 
 #: includes/CPT/Exposition.php:192 includes/CPT/Hall.php:144
 #: includes/CPT/Podium.php:131 includes/CPT/Booth.php:144

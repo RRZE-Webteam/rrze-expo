@@ -238,11 +238,11 @@ class CPT
         </head>
         <body <?php body_class('rrze-expo'); ?>>
         <div class="container-all">
-            <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'fau-events'); ?>">
+            <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'rrze-expo'); ?>">
                 <ul class="jumplinks">
-                    <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'fau-events'); ?></a></li>
-                    <li><a href="#desktop-search" data-target="#desktop-search .searchform input" data-firstchild="1" class="skiplink-search"><?php _e('Go to search', 'fau-events'); ?></a></li>
-                    <li><a href="#desktop-navigation" data-target="#desktop-navigation ul li a" data-firstchild="1" class="skiplink-nav"><?php _e('Go to main navigation', 'fau-events'); ?></a></li>
+                    <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'rrze-expo'); ?></a></li>
+                    <li><a href="#desktop-search" data-target="#desktop-search .searchform input" data-firstchild="1" class="skiplink-search"><?php _e('Go to search', 'rrze-expo'); ?></a></li>
+                    <li><a href="#desktop-navigation" data-target="#desktop-navigation ul li a" data-firstchild="1" class="skiplink-nav"><?php _e('Go to main navigation', 'rrze-expo'); ?></a></li>
                 </ul>
             </nav>
             <header id="masthead" class="site-header" role="banner">
