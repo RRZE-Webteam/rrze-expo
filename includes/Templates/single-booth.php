@@ -68,27 +68,28 @@ CPT::expoHeader();
         if ($rollups != '') {
             if (isset($rollups[0])) {
                 $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
-                //$rollup1 = '<div class="" style="-webkit-transform: perspective(1500px) rotateY(15deg); transform: perspective(1500px) rotateY(15deg);"><img src="' . $rollupData0[0] . '"/></div>';
                 $rollup1 = '<div class="rollup-content" style="width: 100%; height: 100%; text-align: center;"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></div>';
-                //$rollup1 = '<img src="' . $rollupData0[0] . '" style="" />';
-                //$rollup1 = '<img src="' . $rollupData0[0] . '" style="height: 100%; width: auto; padding: 50px; "/>';
             }
-            if (isset($rollups[1])) {
-                $rollupData1 = wp_get_attachment_image_src($rollups[1]['file_id'], 'medium');
-            }
-
         }
-        //echo $rollup1;
+        $accentColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
+        $wallSettings = $constants['template_elements']['template'.$templateNo]['wall'];
+        $title = get_the_title();
+        $fontSize = CPT::getMeta($meta, 'rrze-expo-booth-font-size');
         ?>
-        <h1 class="sr-only screen-reader-text"><?php echo get_the_title(); ?></h1>
+        <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
             <svg version="1.1" class="expo-booth template-<?php echo CPT::getMeta($meta, 'rrze-expo-booth-template'); ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
-                <use class="backwall" xlink:href="#backwall" />
+                <?php echo '<rect x="'.$wallSettings['x'].'" y="'.$wallSettings['y'].'" width="'.$wallSettings['width'].'" height="'.$wallSettings['height'].'" style="fill:'. $accentColor.'"/>'; ?>
+                <use class="backwall" xlink:href="#backwall-color" />
                 <use xlink:href="#table" />
                 <?php
                 $titleSettings = $constants['template_elements']['template'.$templateNo]['title'];
-                echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="60" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.get_the_title().'</text>';
+                if (strpos($title, '<br>') != false) {
+                    $titleParts = explode('<br>', $title);
+                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
+                }
+                echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
                 // Logo
                 if (has_post_thumbnail()){
                     $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
@@ -113,15 +114,14 @@ CPT::expoHeader();
                 }
 
                 // Timetable
-                /*if ($timetable != '') { ?>
-                    <rect x="700" y="120" width="400" height="300" style="fill: #fff; stroke: black; stroke-width: 1px;"/>
-                    <foreignObject class="timetable" x="700" y="120" width="400" height="300">
-                        <!-- XHTML content goes here -->
+                if ($timetable != '') {
+                    $timetableSettings = $constants['template_elements']['template'.$templateNo]['timetable']; ?>
+                    <foreignObject class="timetable" x="2250" y="370" width="300" height="200">
                         <body xmlns="http://www.w3.org/1999/xhtml">
                         <?php echo $timetable; ?>
                         </body>
                     </foreignObject>
-                <?php }*/
+                <?php }
 
                 // Flyers
                 $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
@@ -156,8 +156,8 @@ CPT::expoHeader();
                 // echo do_shortcode('[fauvideo url="https://www.fau.tv/webplayer/id/96195"]');
 
                 // Roll-Ups
-                //<image xlink:href="' . $rollupData0[0] . '" width="320" height="800" x="0" y="120" />
                 $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
+                //$rollups = false;
                 if ($rollups != '') {
                     $rollupSettings = $constants['template_elements']['template'.$templateNo]['rollup'];
                     if (isset($rollups[0])) {
@@ -167,13 +167,6 @@ CPT::expoHeader();
                         <foreignObject class="rollup-content" width="'.$rollupSettings['width'].'" height="'.$rollupSettings['height'].'" x="'.$rollupSettings['x'].'" y="' . $rollupSettings['y'] . '">'.$rollup1.'</foreignObject>
                         </a>';
                     }
-                    if (isset($rollups[1])) {
-                        /*$rollupData1 = wp_get_attachment_image_src($rollups[1]['file_id'], 'medium');
-                        echo '<a href="' . $rollups[1]['file'] . '" title="' . get_the_title($rollups[1]['file_id']) . '">
-                        <image xlink:href="' . $rollupData1[0] . '" width="320" height="800" x="1600" y="120" fill="#dedede"/>
-                        </a>';*/
-                    }
-
                 }
 
                 // Deco

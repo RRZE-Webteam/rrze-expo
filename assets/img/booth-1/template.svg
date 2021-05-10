@@ -12,8 +12,7 @@
 			</image>
 		</symbol>
 		<symbol id="backwall-color">
-			<!--<rect x="1300" y="120" width="400" height="300" style="fill: #f00;"/>-->
-			<image style="overflow:visible;opacity:0.5;" id="wandakzent" xlink:href="8DF26099.png"  transform="matrix(1 0 0 1 1452 203)" >
+			<image style="overflow:visible;opacity:0.5;" id="wandakzent" xlink:href="8DF26099_schwarz.png"  transform="matrix(1 0 0 1 1452 203)" >
 			</image>
 		</symbol>
 		<symbol id="flyer_stand">
@@ -39,14 +38,6 @@
 		<symbol id="some_panel">
 			<image style="overflow:visible;" id="socialmediapanel" xlink:href="8DF2609B.png"  transform="matrix(1 0 0 1 1479 594)">
 			</image>
-			<g id="sociamediapanelglas">
-				<image style="overflow:visible;enable-background:new    ;" width="56" height="283" id="image" xlink:href="EF126CA9.png"  transform="matrix(1 0 0 1 1332 555)">
-				</image>
-			</g>
-			<g id="socialmediapanelglasakzent">
-				<image style="overflow:visible;enable-background:new    ;" width="56" height="283" id="image_2_" xlink:href="EF126CAA.png"  transform="matrix(1 0 0 1 1332 555)">
-				</image>
-			</g>
 		</symbol>
 		<symbol id="plant1">
 			<image style="overflow:visible;" id="topf" xlink:href="8407F695.png"  transform="matrix(1 0 0 1 2843 790)">

@@ -141,7 +141,7 @@ class Booth {
                 'dark' => __('Dark', 'rrze-expo')],
         ]);
         $cmb_background->add_field([
-            'name'      => __('Background Image Opacity', 'rrze-expo'),
+            'name'      => __('Background Overlay Opacity', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-booth-overlay-opacity',
             'type'      => 'select',
@@ -222,6 +222,24 @@ class Booth {
             // 	'alpha' => true, // Make this a rgba color picker.
             // ),
         ) );
+        $cmb_layout->add_field([
+            'name'      => __('Font Size', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-font-size',
+            'type'      => 'select',
+            'default'          => '60',
+            'options'          => ['10' => '10',
+                '20' => '20',
+                '30' => '30',
+                '40' => '40',
+                '50' => '50',
+                '60' => '60',
+                '70' => '70',
+                '80' => '80',
+                '90' => '90',
+                '100' => '100'],
+        ]);
+
         $decoObjects = $constants['template_elements'];
         foreach ($decoObjects as $templateName => $templateObject) {
             $cmb_layout->add_field([

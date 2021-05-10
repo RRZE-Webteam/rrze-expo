@@ -196,9 +196,11 @@ Plugin Style
     }
     .booth {
         .timetable {
-            padding: 1%;
+            background-color: #E6E6E6;
+            border: 4px inset #333;
+            padding: .5%;
             h2 {
-                font-size: calc(1.8em + 1vmin);
+                font-size: calc(1.2em + 1vmin);
                 line-height: 1.2;
                 padding: 0 0 .5vmin 0;
                 margin: 0 0 1vmin 0;
@@ -208,7 +210,7 @@ Plugin Style
                 margin: 0;
             }
             li {
-                font-size: calc(1.4em + .8vmin);
+                font-size: calc(.8em + .9vmin);
                 line-height: 1.2;
                 list-style-type: none;
                 padding-bottom: 1vmin;
@@ -296,20 +298,6 @@ Plugin Style
         height: 100%;
         display: block;
         margin: 0 auto;
-        a path {
-            /*@keyframes hideshow {
-                90% {
-                    opacity:1;
-                }
-                95% {
-                    opacity:.5;
-                }
-                100% {
-                    opacity:1;
-                }
-            }*/
-            //animation: hideshow 7s ease infinite;
-        }
     }
 }
 
