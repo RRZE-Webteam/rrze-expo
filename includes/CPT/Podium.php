@@ -128,7 +128,7 @@ class Podium {
                 'dark' => __('Dark', 'rrze-expo')],
         ]);
         $cmb_background->add_field([
-            'name'      => __('Background Image Opacity', 'rrze-expo'),
+            'name'      => __('Background Overlay Opacity', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'        => 'rrze-expo-podium-overlay-opacity',
             'type'      => 'select',
