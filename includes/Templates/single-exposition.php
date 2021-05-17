@@ -70,8 +70,9 @@ CPT::expoHeader();
         }
         echo $date;
 
-        echo '<p><a href="'. get_permalink($foyerID[0]).'">'.__('Enter the foyer', 'rrze-expo').'</a></p>';
-
+        if (!empty($foyerID)) {
+            echo '<p><a href="' . get_permalink($foyerID[0]) . '">' . __('Enter the foyer', 'rrze-expo') . '</a></p>';
+        }
         ?>
 
         <?php if ($hasContent) { ?>

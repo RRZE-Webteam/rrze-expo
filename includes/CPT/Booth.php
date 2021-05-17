@@ -240,16 +240,14 @@ class Booth {
                 '100' => '100'],
         ]);
 
-        $decoObjects = $constants['template_elements'];
-        foreach ($decoObjects as $templateName => $templateObject) {
-            $cmb_layout->add_field([
-                'name'      => __('Decoration Elements', 'rrze-expo'),
-                //'desc'    => __('', 'rrze-expo'),
-                'id'        => 'rrze-expo-booth-decoration-'.$templateName,
-                'type'      => 'multicheck',
-                'options'   => $templateObject,
-            ]);
-        }
+        $cmb_layout->add_field([
+            'name'      => __('Decoration Elements', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-booth-decorations',
+            'type'      => 'multicheck',
+            'options_cb'          => [$this, 'getDecoObjects'],
+        ]);
+
 
         // AV Media
         $cmb_videos = new_cmb2_box([
@@ -437,4 +435,11 @@ class Booth {
         $halls = CPT::getPosts('hall', $expoID);
         return $halls;
     }
+
+    function getDecoObjects($field) {
+        $boothID = $field->object_id;
+        $template = get_post_meta($boothID, 'rrze-expo-booth-template', true);
+        return $template;
+    }
+
 }

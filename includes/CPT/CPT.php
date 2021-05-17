@@ -5,7 +5,8 @@ namespace RRZE\Expo\CPT;
 
 defined('ABSPATH') || exit;
 
-use function RRZE\Expo\Config\getConstants;
+use RRZE\Expo\Config;
+use function RRZE\Expo\Config\getConstants;use function RRZE\Expo\Config\getThemeGroup;
 
 class CPT
 {
@@ -106,7 +107,7 @@ class CPT
 
     public static function svgToFooter() {
         global $post;
-        if (!in_array($post->post_type,  ['booth', 'hall', 'podium', 'foyer']))
+        if (!in_array($post->post_type,  ['booth', 'hall', 'podium', 'foyer', 'exposition']))
             return;
         // Booth Template
         $templateNo = get_post_meta($post->ID,'rrze-expo-booth-template', true);
@@ -226,45 +227,92 @@ class CPT
         } else {
             $expoID = get_post_meta($post->ID, 'rrze-expo-'.$post->post_type.'-exposition', true);
         }
-        ?>
-        <!DOCTYPE html>
-        <html <?php language_attributes(); ?> class="no-js">
-        <head>
-            <meta charset="<?php bloginfo('charset'); ?>">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="profile" href="http://gmpg.org/xfn/11">
-            <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-            <?php wp_head(); ?>
-        </head>
-        <body <?php body_class('rrze-expo'); ?>>
-        <div class="container-all">
-            <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'rrze-expo'); ?>">
-                <ul class="jumplinks">
-                    <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'rrze-expo'); ?></a></li>
-                    <li><a href="#desktop-search" data-target="#desktop-search .searchform input" data-firstchild="1" class="skiplink-search"><?php _e('Go to search', 'rrze-expo'); ?></a></li>
-                    <li><a href="#desktop-navigation" data-target="#desktop-navigation ul li a" data-firstchild="1" class="skiplink-nav"><?php _e('Go to main navigation', 'rrze-expo'); ?></a></li>
-                </ul>
-            </nav>
-            <header id="masthead" class="site-header" role="banner">
-                <div id="rrze-expo-header-content" class="rrze-expo-header-content" role="banner">
-                    <?php
-                    if ( $post->post_type != 'exposition' ) {
-                        echo '<a href="'.get_permalink($expoID).'">';
-                    }
-                    echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'">';
-                    echo '<div><p class="expo-title">' . get_the_title($expoID) . '</p>';
-                    $subtitle = get_post_meta($expoID, 'rrze-expo-exposition-subtitle', true);
-                    if ($subtitle != '') {
-                        echo '<p class="expo-subtitle">' . $subtitle . '</p>';
-                    }
-                    echo '</div>';
-                    if ( $post->post_type != 'exposition' ) {
-                        echo '</a>';
-                    }
-                    ?>
-                </div><!-- .site-header-content -->
-            </header>
-        <?php
+        $theme = wp_get_theme();
+        $themeGroup = getThemeGroup($theme->Name);
+        switch ($themeGroup) {
+            case 'events':
+                ?>
+                <!DOCTYPE html>
+                <html <?php language_attributes(); ?> class="no-js">
+                    <head>
+                        <meta charset="<?php bloginfo('charset'); ?>">
+                        <meta name="viewport" content="width=device-width, initial-scale=1">
+                        <link rel="profile" href="http://gmpg.org/xfn/11">
+                        <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+                        <?php wp_head(); ?>
+                    </head>
+
+                    <body <?php body_class('fau-events rrze-expo'); ?>>
+                        <div class="container-all">
+                            <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'fau-events'); ?>">
+                                <ul class="skiplinks">
+                                    <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'fau-events'); ?></a></li>
+                                    <li><a href="#desktop-search" data-target="#desktop-search .searchform input" data-firstchild="1" class="skiplink-search"><?php _e('Go to search', 'fau-events'); ?></a></li>
+                                    <li><a href="#desktop-navigation" data-target="#desktop-navigation ul li a" data-firstchild="1" class="skiplink-nav"><?php _e('Go to main navigation', 'fau-events'); ?></a></li>
+                                </ul>
+                            </nav>
+                            <header id="masthead" class="site-header" role="banner">
+                                <div id="rrze-expo-header-content" class="rrze-expo-header-content" role="banner">
+                                    <?php
+                                    if ( $post->post_type != 'exposition' ) {
+                                        echo '<a href="'.get_permalink($expoID).'">';
+                                    }
+                                    echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'">';
+                                    echo '<div><p class="expo-title">' . get_the_title($expoID) . '</p>';
+                                    $subtitle = get_post_meta($expoID, 'rrze-expo-exposition-subtitle', true);
+                                    if ($subtitle != '') {
+                                        echo '<p class="expo-subtitle">' . $subtitle . '</p>';
+                                    }
+                                    echo '</div>';
+                                    if ( $post->post_type != 'exposition' ) {
+                                        echo '</a>';
+                                    }
+                                    ?>
+                                </div><!-- .site-header-content -->
+                            </header>
+                <?php
+                break;
+            case 'fau':
+            default:
+            ?>
+            <!DOCTYPE html>
+            <html <?php language_attributes(); ?> class="no-js">
+            <head>
+                <meta charset="<?php bloginfo('charset'); ?>">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="profile" href="http://gmpg.org/xfn/11">
+                <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+                <?php wp_head(); ?>
+            </head>
+            <body <?php body_class('rrze-expo'); ?>>
+            <div class="container-all">
+                <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'rrze-expo'); ?>">
+                    <ul class="jumplinks">
+                        <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'rrze-expo'); ?></a></li>
+                        <li><a href="#desktop-search" data-target="#desktop-search .searchform input" data-firstchild="1" class="skiplink-search"><?php _e('Go to search', 'rrze-expo'); ?></a></li>
+                        <li><a href="#desktop-navigation" data-target="#desktop-navigation ul li a" data-firstchild="1" class="skiplink-nav"><?php _e('Go to main navigation', 'rrze-expo'); ?></a></li>
+                    </ul>
+                </nav>
+                <header id="masthead" class="site-header" role="banner">
+                    <div id="rrze-expo-header-content" class="rrze-expo-header-content" role="banner">
+                        <?php
+                        if ( $post->post_type != 'exposition' ) {
+                            echo '<a href="'.get_permalink($expoID).'">';
+                        }
+                        echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'">';
+                        echo '<div><p class="expo-title">' . get_the_title($expoID) . '</p>';
+                        $subtitle = get_post_meta($expoID, 'rrze-expo-exposition-subtitle', true);
+                        if ($subtitle != '') {
+                            echo '<p class="expo-subtitle">' . $subtitle . '</p>';
+                        }
+                        echo '</div>';
+                        if ( $post->post_type != 'exposition' ) {
+                            echo '</a>';
+                        }
+                        ?>
+                    </div><!-- .site-header-content -->
+                </header>
+        <?php }
     }
 
     public static function expoFooter() {

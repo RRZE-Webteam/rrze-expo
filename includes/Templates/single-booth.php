@@ -64,13 +64,6 @@ CPT::expoHeader();
             }
             $timetable .= '</ul>';
         }
-        $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
-        if ($rollups != '') {
-            if (isset($rollups[0])) {
-                $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
-                $rollup1 = '<div class="rollup-content" style="width: 100%; height: 100%; text-align: center;"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></div>';
-            }
-        }
         $accentColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
         $wallSettings = $constants['template_elements']['template'.$templateNo]['wall'];
         $title = get_the_title();
@@ -106,10 +99,16 @@ CPT::expoHeader();
                 $videos = CPT::getMeta($meta, 'rrze-expo-booth-video');
                 if ($videos != '') {
                     if (isset($videos[0])) {
-                        echo '<use xlink:href="#video" x="350" y="120" />';
+                        $video1Settings = $constants['template_elements']['template'.$templateNo]['video1'];
+                        $video1 = do_shortcode('[fauvideo url="'.$videos[0]['url'].'"]');
+                        //echo '<use xlink:href="#video" x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" width="300" height="200"/>';
+                        echo '<foreignObject class="video" x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" width="320" height="200">'.$video1.'</foreignObject>';
                     }
                     if (isset($videos[1])) {
-                        echo '<use xlink:href="#video" x="700" y="120" />';
+                        $video2Settings = $constants['template_elements']['template'.$templateNo]['video2'];
+                        $video2 = do_shortcode('[fauvideo url="'.$videos[1]['url'].'"]');
+                        //echo '<use xlink:href="#video" x="'.$video2Settings['x'].'" y="'.$video2Settings['y'].'" />';
+                        echo '<foreignObject class="video" x="'.$video2Settings['x'].'" y="'.$video2Settings['y'].'" width="320" height="200">'.$video2.'</foreignObject>';
                     }
                 }
 
@@ -130,7 +129,7 @@ CPT::expoHeader();
                     echo '<g><use xlink:href="#flyer_stand" />';
                     foreach ($flyers as $i => $flyer) {
                         $translateY = $flyerSettings['y'] + $i * ($flyerSettings['height'] + 20);
-                        echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '">
+                        echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '" class="lightbox">
                         <image xlink:href="' . $flyer['preview'] . '" width="'.$flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>
                         </a>';
                     }
@@ -147,13 +146,13 @@ CPT::expoHeader();
                         if (!isset($media['medianame']) || !isset($media['username']))
                             continue;
                         $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
-                        echo '<a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '">
+                        echo '<a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '" title="'.ucfirst($media['medianame']).': '.$media['username'].'">
                             <use xlink:href="#' . $media['medianame'] . '" width="'.$socialMediaSettings['width'].'" height="'.$socialMediaSettings['height'].'" x="'.$socialMediaSettings['x'].'" y="' . $translateY . '" class="icon-'.$media['medianame'] .'"  />
                             </a>';
                     }
                     echo '</g>';
                 }
-                // echo do_shortcode('[fauvideo url="https://www.fau.tv/webplayer/id/96195"]');
+                //echo do_shortcode('[fauvideo url="https://www.fau.tv/webplayer/id/96195"]');
 
                 // Roll-Ups
                 $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
@@ -162,10 +161,9 @@ CPT::expoHeader();
                     $rollupSettings = $constants['template_elements']['template'.$templateNo]['rollup'];
                     if (isset($rollups[0])) {
                         $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
+                        $rollup1 = '<div class="rollup-content" style="width: 100%; height: 100%; text-align: center;"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></div>';
                         echo '<use xlink:href="#rollup" />';
-                        echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block;">
-                        <foreignObject class="rollup-content" width="'.$rollupSettings['width'].'" height="'.$rollupSettings['height'].'" x="'.$rollupSettings['x'].'" y="' . $rollupSettings['y'] . '">'.$rollup1.'</foreignObject>
-                        </a>';
+                        echo '<foreignObject class="rollup-content" width="'.$rollupSettings['width'].'" height="'.$rollupSettings['height'].'" x="'.$rollupSettings['x'].'" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>';
                     }
                 }
 
@@ -194,6 +192,11 @@ CPT::expoHeader();
 
         <?php if ($hasContent) { ?>
         <div id="rrze-expo-booth-content" name="rrze-expo-booth-content" class="">
+
+            <!--<div class="puls-container">
+                <div class="puls-middle"></div>
+                <div class="puls"></div>
+            </div>-->
 
             <?php the_content(); ?>
 

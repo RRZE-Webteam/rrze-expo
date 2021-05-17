@@ -324,8 +324,20 @@ function getConstants() {
                     'width' => 50,
                     'height' => 50,
                 ],
-                'video1' => __('Video Screen 1', 'rrze-expo'),
-                'video2' => __('Video Screen 2', 'rrze-expo'),
+                'video1' => [
+                    'title' => __('Video Screen 1', 'rrze-expo'),
+                    'x' => 1490,
+                    'y' => 370,
+                    'width' => '',
+                    'height' => '',
+                ],
+                'video2' => [
+                    'title' => __('Video Screen 2', 'rrze-expo'),
+                    'x' => 1840,
+                    'y' => 370,
+                    'width' => '',
+                    'height' => '',
+                ],
                 'timetable' => [
                     'title' => __('Our Talks', 'rrze-expo'),
                     'x' => 2250,
@@ -347,11 +359,13 @@ function getConstants() {
                     'width' => 160,
                     'height' => 200,
                 ],
-                'plantsleft' => __('Plants left side', 'rrze-expo'),
-                'plantsright' => __('Plants right side', 'rrze-expo'),
-                'seats-left' => __('Seats left side', 'rrze-expo'),
-                'seats-right' => __('Seats right side', 'rrze-expo'),
-                'owl' => __('Owl', 'rrze-expo'),
+                'deco' => [
+                    'plantsleft' => __('Plants left side', 'rrze-expo'),
+                    'plantsright' => __('Plants right side', 'rrze-expo'),
+                    'seats-left' => __('Seats left side', 'rrze-expo'),
+                    'seats-right' => __('Seats right side', 'rrze-expo'),
+                    'owl' => __('Owl', 'rrze-expo'),
+                ],
             ],
             'template2' => [
                 'title' => [
@@ -409,5 +423,28 @@ function getConstants() {
             ],
         ],
     ];
+}
+
+function getThemeGroup($value = '') {
+    $themes = [
+        'fau' => [
+            'FAU-Einrichtungen',
+            'FAU-Einrichtungen-BETA',
+            'FAU-Philfak',
+            'FAU-Medfak',
+            'FAU-Techfak',
+            'FAU-Natfak',
+            'FAU-RWFak',
+            'Fau-Blog',
+            'FAU-Jobportal',
+        ],
+        'rrze' => ['rrze-2019'],
+        'events' => ['FAU-Events', 'FAU Events'],
+    ];
+    foreach ($themes as $group=>$theme) {
+        if (in_array($value, $theme))
+            return $group;
+    }
+    return false;
 }
 
