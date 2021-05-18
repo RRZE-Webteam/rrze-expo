@@ -19,9 +19,9 @@
 			<image style="overflow:visible;" id="prospekthalter" xlink:href="8DF26098.png"  transform="matrix(1 0 0 1 2614 402)">
 			</image>
 		</symbol>
-		<symbol id="video">
-			<image style="overflow:visible;" xlink:href="monitor.png">
-			</image>
+		<!--<symbol id="flyer_default" viewBox="-50 0 700 500">-->
+		<symbol id="flyer_default">
+			<path fill="#e6e6e6" transform="translate(12, 35) scale(.23)" d="M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.27 7.89-7.27 13.17v363.87c0 11.55 12.63 18.85 23.28 13.49 69.18-34.82 169.23-44.32 218.7-46.92 16.89-.89 30.02-14.43 30.02-30.66V62.75c.01-17.71-15.35-31.74-33.77-30.7zM264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31.01 0 45.04 0 62.75V400.6c0 16.24 13.13 29.78 30.02 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63c0-5.29-2.62-10.14-7.27-12.99z" />
 		</symbol>
 		<symbol id="table">
 			<image style="overflow:visible;" id="pultbasis" xlink:href="8DF260A6.png"  transform="matrix(1 0 0 1 1618 792)">
@@ -43,11 +43,18 @@
 			<image style="overflow:visible;" id="socialmediapanel" xlink:href="8DF2609B.png"  transform="matrix(1 0 0 1 1479 594)">
 			</image>
 		</symbol>
-		<symbol id="plant1">
+		<symbol id="plant">
 			<image style="overflow:visible;" id="topf" xlink:href="8407F695.png"  transform="matrix(1 0 0 1 2843 790)">
 			</image>
 			<image style="overflow:visible;" id="Palme" xlink:href="8407F697.png"  transform="matrix(1 0 0 1 2782 134)">
 			</image>
+		</symbol>
+		<symbol id="tablet">
+			<image style="overflow:visible;" width="173" height="102" id="tablet" xlink:href="tablet.png"  transform="matrix(1 0 0 1 1696.5 680)"></image>
+			<rect id="tabletbildschirm" x="1705.2" y="689" class="st0" width="153.5" height="85.6" style="opacity:0.7;fill:#FFFFFF;"/>
+			<rect id="tabletbildschirmakzent" x="1705.2" y="689" class="st1" width="153.5" height="85.6" style="opacity:0.5;fill:#FFFFFF;"/>
+			<path class="icon-video" fill="#333" transform="translate(1755, 695) scale(.09)" d="M336.2 64H47.8C21.4 64 0 85.4 0 111.8v288.4C0 426.6 21.4 448 47.8 448h288.4c26.4 0 47.8-21.4 47.8-47.8V111.8c0-26.4-21.4-47.8-47.8-47.8zm189.4 37.7L416 177.3v157.4l109.6 75.5c21.2 14.6 50.4-.3 50.4-25.8V127.5c0-25.4-29.1-40.4-50.4-25.8z"/>
+			<text x="1734" y="763" font-size="24" fill="#333">Live Chat</text>
 		</symbol>
 	</defs>
 </svg>

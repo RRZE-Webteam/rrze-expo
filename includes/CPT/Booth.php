@@ -58,7 +58,8 @@ class Booth {
             'show_in_admin_bar'         => true,
             'menu_icon'                 => 'dashicons-store',
             'can_export'                => true,
-            'has_archive'               => 'booth',
+            //'has_archive'               => 'booth',
+            'has_archive'               => false,
             'exclude_from_search'       => true,
             'publicly_queryable'        => true,
             'delete_with_user'          => false,
@@ -258,38 +259,27 @@ class Booth {
             'priority'      => 'high',
             'show_names'    => true,
         ]);
-        $video_group_id = $cmb_videos->add_field( [
-            'id'          => 'rrze-expo-booth-video',
-            'type'        => 'group',
-            'description' => __( 'Add up to 3 video embedding urls, e.g. https://www.fau.tv/webplayer/id/123456. Display: 1 - top left screen, 2- top right screen, 3 - table monitor.', 'rrze-expo' ),
-            'options'     => array(
-                'group_title'       => __( 'Video {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
-                'add_button'        => __( 'Add Another Video', 'rrze-expo' ),
-                'remove_button'     => __( 'Remove Video', 'rrze-expo' ),
-                'sortable'          => true,
-                // 'closed'         => true, // true to have the groups closed by default
-                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
-            ),
-        ] );
-        $cmb_videos->add_group_field($video_group_id, [
-            'name' => __( 'Video URL', 'rrze-expo' ),
-            'id'   => 'url',
+        $cmb_videos->add_field([
+            'name' => __( 'Left Screen', 'rrze-expo' ),
+            'description' => __( 'Enter video embedding url, e.g. https://www.fau.tv/webplayer/id/123456.', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-video-left',
             'type' => 'text_url',
             // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
         ] );
-        $cmb_videos->add_group_field($video_group_id, [
-            'name'             => __('Location', 'rrze-expo'),
-            //'desc'             => 'Select an option',
-            'id'               => 'medianame',
-            'type'             => 'select',
-            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
-            'default'          => 'custom',
-            'options'          => [
-                'topleft'   => __('Top left', 'rrze-expo'),
-                'topright'  => __('Top right', 'rrze-expo'),
-                'table'   => __('Table', 'rrze-expo'),
-            ],
-        ]);
+        $cmb_videos->add_field([
+            'name' => __( 'Right Screen', 'rrze-expo' ),
+            'description' => __( 'Enter video embedding url, e.g. https://www.fau.tv/webplayer/id/123456.', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-video-right',
+            'type' => 'text_url',
+            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+        $cmb_videos->add_field([
+            'name' => __( 'Table Screen (Life Chat)', 'rrze-expo' ),
+            'description' => __( 'Enter video conference or chat tool link.', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-video-table',
+            'type' => 'text_url',
+            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
 
         // Rollups
         $cmb_rollups = new_cmb2_box([
@@ -439,7 +429,9 @@ class Booth {
     function getDecoObjects($field) {
         $boothID = $field->object_id;
         $template = get_post_meta($boothID, 'rrze-expo-booth-template', true);
-        return $template;
+        $constants = getConstants();
+        $objects = $constants['template_elements']['template'.$template]['deco'];
+        return $objects;
     }
 
 }

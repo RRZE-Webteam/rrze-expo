@@ -324,19 +324,26 @@ function getConstants() {
                     'width' => 50,
                     'height' => 50,
                 ],
-                'video1' => [
-                    'title' => __('Video Screen 1', 'rrze-expo'),
+                'video_left' => [
+                    'title' => __('Video Screen Left', 'rrze-expo'),
                     'x' => 1490,
                     'y' => 370,
-                    'width' => '',
-                    'height' => '',
+                    'width' => 320,
+                    'height' => 200,
                 ],
-                'video2' => [
-                    'title' => __('Video Screen 2', 'rrze-expo'),
+                'video_right' => [
+                    'title' => __('Video Screen Right', 'rrze-expo'),
                     'x' => 1840,
                     'y' => 370,
-                    'width' => '',
-                    'height' => '',
+                    'width' => 320,
+                    'height' => 200,
+                ],
+                'video_table' => [
+                    'title' => __('Video Screen Table', 'rrze-expo'),
+                    'x' => 1840,
+                    'y' => 370,
+                    'width' => 100,
+                    'height' => 60,
                 ],
                 'timetable' => [
                     'title' => __('Our Talks', 'rrze-expo'),

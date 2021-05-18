@@ -96,21 +96,44 @@ CPT::expoHeader();
                     }
                 }
                 // Videos
-                $videos = CPT::getMeta($meta, 'rrze-expo-booth-video');
-                if ($videos != '') {
+                $videos['left'] = CPT::getMeta($meta, 'rrze-expo-booth-video-left');
+                $videos['right'] = CPT::getMeta($meta, 'rrze-expo-booth-video-right');
+                $videos['table'] = CPT::getMeta($meta, 'rrze-expo-booth-video-table');
+                foreach ($videos as $location => $url) {
+                    if ($url != '') {
+                        if ($location == 'table') {
+                            echo '<use class="video-tablet" xlink:href="#tablet" />';
+                        }
+                        $videoSettings = $constants['template_elements']['template'.$templateNo]['video_'.$location];
+                        if (is_plugin_active( 'rrze-video/rrze-video.php' ) || is_plugin_active_for_network('rrze-video/rrze-video.php')) {
+                            echo '<foreignObject class="video" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" width="'.$videoSettings['width'].'" height="'.$videoSettings['height'].'">' . do_shortcode('[fauvideo url="'.$url.'"]') . '</foreignObject>';
+                        } else {
+                            echo '<a href="'.$url.'">
+                                <rect class="video" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" width="'.$videoSettings['width'].'" height="'.$videoSettings['height'].'" fill="333"></rect>
+                                <path x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" width="'.$videoSettings['width'].'" height="'.$videoSettings['height'].'" fill="#e6e6e6" d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256z"/>
+                                </a>';
+                        }
+                    }
+                }
+                /*if ($videos != '') {
                     if (isset($videos[0])) {
                         $video1Settings = $constants['template_elements']['template'.$templateNo]['video1'];
-                        $video1 = do_shortcode('[fauvideo url="'.$videos[0]['url'].'"]');
-                        //echo '<use xlink:href="#video" x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" width="300" height="200"/>';
-                        echo '<foreignObject class="video" x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" width="320" height="200">'.$video1.'</foreignObject>';
+                        if (is_plugin_active( 'rrze-video/rrze-video.php' ) || is_plugin_active_for_network('rrze-video/rrze-video.php')) {
+                            echo '<foreignObject class="video" x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" width="320" height="200">' . do_shortcode('[fauvideo url="'.$videos[0]['url'].'"]') . '</foreignObject>';
+                        } else {
+                            echo '<a href="'.$videos[0]['url'].'"><rect class="video" width="320" height="180" x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" fill="333"></rect><path x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" fill="#e6e6e6" d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256z"/></a>';
+                        }
                     }
                     if (isset($videos[1])) {
                         $video2Settings = $constants['template_elements']['template'.$templateNo]['video2'];
-                        $video2 = do_shortcode('[fauvideo url="'.$videos[1]['url'].'"]');
-                        //echo '<use xlink:href="#video" x="'.$video2Settings['x'].'" y="'.$video2Settings['y'].'" />';
-                        echo '<foreignObject class="video" x="'.$video2Settings['x'].'" y="'.$video2Settings['y'].'" width="320" height="200">'.$video2.'</foreignObject>';
+                        if (is_plugin_active( 'rrze-video/rrze-video.php' ) || is_plugin_active_for_network('rrze-video/rrze-video.php')) {
+                            $video2 = do_shortcode('[fauvideo url="'.$videos[1]['url'].'"]');
+                            echo '<foreignObject class="video" x="'.$video2Settings['x'].'" y="'.$video2Settings['y'].'" width="320" height="200">'.$video2.'</foreignObject>';
+                        } else {
+                            echo '<a href="'.$videos[1]['url'].'"><rect class="video" width="320" height="180" x="'.$video2Settings['x'].'" y="'.$video2Settings['y'].'" fill="333"></rect></a>';
+                        }
                     }
-                }
+                }*/
 
                 // Timetable
                 if ($timetable != '') {
@@ -129,9 +152,14 @@ CPT::expoHeader();
                     echo '<g><use xlink:href="#flyer_stand" />';
                     foreach ($flyers as $i => $flyer) {
                         $translateY = $flyerSettings['y'] + $i * ($flyerSettings['height'] + 20);
-                        echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '" class="lightbox">
-                        <image xlink:href="' . $flyer['preview'] . '" width="'.$flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>
-                        </a>';
+                        echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '" class="lightbox">';
+                        //<rect fill="#fff" width="'.$flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '"></rect>
+                        if (!array_key_exists('preview', $flyer) || $flyer['preview'] == false) {
+                            echo '<use xlink:href="#flyer_default" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '"/>';
+                        } else {
+                            echo '<image xlink:href="' . $flyer['preview'] . '" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>';
+                        }
+                        echo '</a>';
                     }
                     echo '</g>';
                 }
@@ -156,7 +184,6 @@ CPT::expoHeader();
 
                 // Roll-Ups
                 $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
-                //$rollups = false;
                 if ($rollups != '') {
                     $rollupSettings = $constants['template_elements']['template'.$templateNo]['rollup'];
                     if (isset($rollups[0])) {
@@ -168,7 +195,7 @@ CPT::expoHeader();
                 }
 
                 // Deco
-                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decoration-template1');
+                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
                 if ($deco != '') {
                     if (in_array('owl', $deco)) {
                         echo '<use xlink:href="#owl" />';
@@ -177,7 +204,7 @@ CPT::expoHeader();
                         echo '<use xlink:href="#plant1" />';
                     }
                     if (in_array('plantsright', $deco)) {
-                        echo '<use xlink:href="#plant2" width="500" height="500" x="1000" y="30"  />';
+                        echo '<use xlink:href="#plant" />';
                     }
                 }
                 ?>
