@@ -44,6 +44,9 @@ class Main {
         // Posttypes
         $cpt = new CPT($this->pluginFile);
         $cpt->onLoaded();
+
+        // Logo Image Size
+        add_image_size('expo-logo', 512, 512, false);
     }
 
     /**

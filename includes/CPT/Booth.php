@@ -177,23 +177,18 @@ class Booth {
             'default'          => '1',
             'options'          => [ '1' => __('Template 1', 'rrze-expo'),
                 '2' => __('Template 2', 'rrze-expo'),
-                '3' => __('Template 3', 'rrze-expo'),
-                '0' => __('Custom Template', 'rrze-expo')
             ],
         ]);
         $cmb_layout->add_field( [
-            'name'    => 'Logo',
+            'name'    => __('Logo', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
             'id'      => 'rrze-expo-booth-logo-locations',
             'type'    => 'multicheck_inline',
             'select_all_button' => false,
-            'options' => [
-                'wall' => __('Back Wall', 'rrze-expo'),
-                'table' => __('Table Front', 'rrze-expo'),
-            ],
+            'options_cb'    => [$this, 'getLogoLocations'],
         ] );
         $cmb_layout->add_field( array(
-            'name'    => 'Back Wall Color',
+            'name'    => __('Back Wall Color', 'rrze-expo'),
             'id'      => 'rrze-expo-booth-backwall-color',
             'type'    => 'colorpicker',
             'default' => '#ffffff',
@@ -208,7 +203,7 @@ class Booth {
             // ),
         ) );
         $cmb_layout->add_field( array(
-            'name'    => 'Font Color',
+            'name'    => __('Font Color', 'rrze-expo'),
             'desc'    => __('Please make shure there is enough contrast between font and backwall color.', 'rrze-expo'),
             'id'      => 'rrze-expo-booth-font-color',
             'type'    => 'colorpicker',
@@ -274,11 +269,24 @@ class Booth {
             // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
         ] );
         $cmb_videos->add_field([
-            'name' => __( 'Table Screen (Life Chat)', 'rrze-expo' ),
+            'name' => __( 'Table Screen (Live Chat)', 'rrze-expo' ),
             'description' => __( 'Enter video conference or chat tool link.', 'rrze-expo' ),
             'id'   => 'rrze-expo-booth-video-table',
             'type' => 'text_url',
             // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+        $cmb_videos->add_field([
+            'name' => __( 'Schedule Location', 'rrze-expo' ),
+            'description' => __( 'The schedule lists live talks related to this booth. It replaces either the roll up or one of the video locations.', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-schedule-location',
+            'type' => 'select',
+            'default' => 'none',
+            'options' => [
+                'none' => __( 'No Schedule', 'rrze-expo' ),
+                'rollup' => __( 'Roll Up', 'rrze-expo' ),
+                'left-screen' => __( 'Left Screen', 'rrze-expo' ),
+                'right-screen' => __( 'Right Screen', 'rrze-expo' ),
+            ],
         ] );
 
         // Rollups
@@ -380,12 +388,30 @@ class Booth {
         // Social Media
         $cmb_social_media = new_cmb2_box([
             'id'            => 'rrze-expo-booth-social-media-box',
-            'title'         => __('Social Media Panel', 'rrze-expo'),
+            'title'         => __('Homepage and Social Media', 'rrze-expo'),
             'object_types'  => ['booth'],
             'context'       => 'normal',
             'priority'      => 'high',
             'show_names'    => true,
         ]);
+        $cmb_social_media->add_field([
+            'name' => __( 'Homepage', 'rrze-expo' ),
+            //'description' => __( '', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-homepage',
+            'type' => 'text_url',
+            'before' => 'https://'
+            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+        $cmb_social_media->add_field( [
+            'name'    => __('Show Homepage on:', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'      => 'rrze-expo-booth-homepage-locations',
+            'type'    => 'multicheck_inline',
+            'select_all_button' => false,
+            'options'    => ['wall' => __('Back wall', 'rrze-expo'),
+                'panel' => __('Social Media Panel', 'rrze-expo')],
+        ] );
+
         $social_media_group_id = $cmb_social_media->add_field( [
             'id'          => 'rrze-expo-booth-social-media',
             'type'        => 'group',
@@ -401,7 +427,9 @@ class Booth {
         ] );
         $socialMedia = $constants['social-media'];
         foreach ($socialMedia as $soMeName => $soMeUrl) {
-            $soMeOptions[$soMeName] = ucfirst($soMeName);
+            if ($soMeName != 'homepage') {
+                $soMeOptions[$soMeName] = ucfirst($soMeName);
+            }
         }
         $cmb_social_media->add_group_field($social_media_group_id, [
             'name'             => __('Social Media Type', 'rrze-expo'),
@@ -429,9 +457,24 @@ class Booth {
     function getDecoObjects($field) {
         $boothID = $field->object_id;
         $template = get_post_meta($boothID, 'rrze-expo-booth-template', true);
+        if ($template == '')
+            return;
         $constants = getConstants();
         $objects = $constants['template_elements']['template'.$template]['deco'];
         return $objects;
     }
 
+    function getLogoLocations($field) {
+        $boothID = $field->object_id;
+        $template = get_post_meta($boothID, 'rrze-expo-booth-template', true);
+        if ($template == '')
+            return;
+        $constants = getConstants();
+        $logos = $constants['template_elements']['template'.$template]['logo'];
+        $locations = [];
+        foreach ($logos as $location => $data) {
+            $locations[$location] = $data['title'];
+        }
+        return $locations;
+    }
 }

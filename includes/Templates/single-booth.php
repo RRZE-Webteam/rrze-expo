@@ -7,6 +7,8 @@ defined('ABSPATH') || exit;
 use RRZE\Expo\CPT\CPT;
 use function RRZE\Expo\Config\getConstants;
 
+global $post;
+
 CPT::expoHeader();
 //get_header();
 ?>
@@ -38,31 +40,35 @@ CPT::expoHeader();
         }
 
         // Talks
-        $timetable = '';
-        $boothTalks = [];
-        $podiums = CPT::getPosts('podium', $expoID);
-        foreach ($podiums as $id => $podium) {
-            $talks = get_post_meta($id, 'rrze-expo-podium-timeslots', true);
-            foreach ($talks as $talk) {
-                if (isset($talk['booth']) && $talk['booth'] == $boothID) {
-                    $boothTalks[$id][] = $talk;
+        $schedule = '';
+        $scheduleLocation = CPT::getMeta($meta, 'rrze-expo-booth-schedule-location');
+        if ($scheduleLocation != 'none' && $scheduleLocation != '') {
+            $boothTalks = [];
+            $podiums = CPT::getPosts('podium', $expoID);
+            foreach ($podiums as $id => $podium) {
+                $talks = get_post_meta($id, 'rrze-expo-podium-timeslots', true);
+                foreach ($talks as $talk) {
+                    if (isset($talk['booth']) && $talk['booth'] == $boothID) {
+                        $boothTalks[$id][] = $talk;
+                    }
                 }
             }
-        }
-        if (!empty($boothTalks)) {
-            $timetable .= '<h2>'.__('Our Talks', 'rrze-expo').'</h2>'
-                . '<ul>';
-            foreach ($boothTalks as $podiumID => $podium) {
-                foreach ($podium as $talk) {
-                    $timetable .= '<li>'
-                        . date('H:i', $talk['start']).' - '.date('H:i', $talk['end']).': '
-                        . '<a href="'.get_permalink($podiumID).'"><span class="talk-title">' . $talk['title'] . '</span>'
-                        . ' <span class="talk-location">[' . get_the_title($podiumID) . ']</span></a>'
-                        . '';
-                    $timetable .= '</li>';
+            if (!empty($boothTalks)) {
+                $schedule .= '<div class="schedule-'.$scheduleLocation.'">'
+                    . '<h2>' . __('Our Talks', 'rrze-expo') . '</h2>'
+                    . '<ul>';
+                foreach ($boothTalks as $podiumID => $podium) {
+                    foreach ($podium as $talk) {
+                        $schedule .= '<li>'
+                            . date('H:i', $talk['start']) . ' - ' . date('H:i', $talk['end']) . ': '
+                            . '<a href="' . get_permalink($podiumID) . '"><span class="talk-title">' . $talk['title'] . '</span>'
+                            . ' <span class="talk-location">[' . get_the_title($podiumID) . ']</span></a>'
+                            . '';
+                        $schedule .= '</li>';
+                    }
                 }
+                $schedule .= '</ul></div>';
             }
-            $timetable .= '</ul>';
         }
         $accentColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
         $wallSettings = $constants['template_elements']['template'.$templateNo]['wall'];
@@ -83,67 +89,36 @@ CPT::expoHeader();
                     $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
                 }
                 echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
-                // Logo
-                if (has_post_thumbnail()){
-                    $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
-                    if (in_array('wall', $logoLocations)) {
-                        $logoSettingsWall = $constants['template_elements']['template'.$templateNo]['logo-wall'];
-                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin meet" width="'.$logoSettingsWall['width'].'" height="'.$logoSettingsWall['height'].'"  x="'.$logoSettingsWall['x'].'" y="'.$logoSettingsWall['y'].'" />';
-                    }
-                    if (in_array('table', $logoLocations)) {
-                        $logoSettingsTable = $constants['template_elements']['template'.$templateNo]['logo-table'];
-                        echo '<image xlink:href="'.get_the_post_thumbnail_url().'" preserveAspectRatio="xMidYMin meet" width="'.$logoSettingsTable['width'].'" height="'.$logoSettingsTable['height'].'"  x="'.$logoSettingsTable['x'].'" y="'.$logoSettingsTable['y'].'" />';
-                    }
-                }
+
                 // Videos
                 $videos['left'] = CPT::getMeta($meta, 'rrze-expo-booth-video-left');
                 $videos['right'] = CPT::getMeta($meta, 'rrze-expo-booth-video-right');
                 $videos['table'] = CPT::getMeta($meta, 'rrze-expo-booth-video-table');
                 foreach ($videos as $location => $url) {
                     if ($url != '') {
-                        if ($location == 'table') {
-                            echo '<use class="video-tablet" xlink:href="#tablet" />';
-                        }
                         $videoSettings = $constants['template_elements']['template'.$templateNo]['video_'.$location];
-                        if (is_plugin_active( 'rrze-video/rrze-video.php' ) || is_plugin_active_for_network('rrze-video/rrze-video.php')) {
-                            echo '<foreignObject class="video" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" width="'.$videoSettings['width'].'" height="'.$videoSettings['height'].'">' . do_shortcode('[fauvideo url="'.$url.'"]') . '</foreignObject>';
+                        if ($location == 'table') {
+                            echo '<a href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
                         } else {
-                            echo '<a href="'.$url.'">
-                                <rect class="video" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" width="'.$videoSettings['width'].'" height="'.$videoSettings['height'].'" fill="333"></rect>
-                                <path x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" width="'.$videoSettings['width'].'" height="'.$videoSettings['height'].'" fill="#e6e6e6" d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256z"/>
+                            if ($scheduleLocation == $location.'-screen') {
+                                continue;
+                            }
+                            if (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php')) {
+                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[fauvideo url="' . $url . '"]') . '</foreignObject>';
+                            } else {
+                                if ($location == 'left') {
+                                    $translate = '1300, 340';
+                                } else {
+                                    $translate = '1580, 340';
+                                }
+                                echo '<a href="' . $url . '">
+                                <rect class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '" fill="#333" stroke="#191919" stroke-width="5"></rect>
+                                <use xlink:href="#video-play" fill="#ccc" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" transform="translate('.$translate.') scale(.2)"/>
                                 </a>';
+                            }
                         }
                     }
                 }
-                /*if ($videos != '') {
-                    if (isset($videos[0])) {
-                        $video1Settings = $constants['template_elements']['template'.$templateNo]['video1'];
-                        if (is_plugin_active( 'rrze-video/rrze-video.php' ) || is_plugin_active_for_network('rrze-video/rrze-video.php')) {
-                            echo '<foreignObject class="video" x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" width="320" height="200">' . do_shortcode('[fauvideo url="'.$videos[0]['url'].'"]') . '</foreignObject>';
-                        } else {
-                            echo '<a href="'.$videos[0]['url'].'"><rect class="video" width="320" height="180" x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" fill="333"></rect><path x="'.$video1Settings['x'].'" y="'.$video1Settings['y'].'" fill="#e6e6e6" d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256z"/></a>';
-                        }
-                    }
-                    if (isset($videos[1])) {
-                        $video2Settings = $constants['template_elements']['template'.$templateNo]['video2'];
-                        if (is_plugin_active( 'rrze-video/rrze-video.php' ) || is_plugin_active_for_network('rrze-video/rrze-video.php')) {
-                            $video2 = do_shortcode('[fauvideo url="'.$videos[1]['url'].'"]');
-                            echo '<foreignObject class="video" x="'.$video2Settings['x'].'" y="'.$video2Settings['y'].'" width="320" height="200">'.$video2.'</foreignObject>';
-                        } else {
-                            echo '<a href="'.$videos[1]['url'].'"><rect class="video" width="320" height="180" x="'.$video2Settings['x'].'" y="'.$video2Settings['y'].'" fill="333"></rect></a>';
-                        }
-                    }
-                }*/
-
-                // Timetable
-                if ($timetable != '') {
-                    $timetableSettings = $constants['template_elements']['template'.$templateNo]['timetable']; ?>
-                    <foreignObject class="timetable" x="2250" y="370" width="300" height="200">
-                        <body xmlns="http://www.w3.org/1999/xhtml">
-                        <?php echo $timetable; ?>
-                        </body>
-                    </foreignObject>
-                <?php }
 
                 // Flyers
                 $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
@@ -166,45 +141,117 @@ CPT::expoHeader();
 
                 // Social Media
                 $socialMedia = CPT::getMeta($meta, 'rrze-expo-booth-social-media');
-                if ($socialMedia != '') {
+                if ($socialMedia == '')
+                    $socialMedia = [];
+                $homepageLocations = CPT::getMeta($meta, 'rrze-expo-booth-homepage-locations');
+                if ($homepageLocations == '')
+                    $homepageLocations = [];
+                $homepage = CPT::getMeta($meta, 'rrze-expo-booth-homepage');
+                $homepage = str_replace(['https://', 'http://'], '', $homepage);
+                if ($socialMedia != '' || in_array('panel', $homepageLocations)) {
                     echo '<g><use xlink:href="#some_panel" />';
                     $socialMediaData = $constants['social-media'];
                     $socialMediaSettings = $constants['template_elements']['template'.$templateNo]['social-media'];
+                    $i = 0;
                     foreach ($socialMedia as $i => $media) {
                         if (!isset($media['medianame']) || !isset($media['username']))
                             continue;
-                        $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
+                        switch ($socialMediaSettings['direction']) {
+                            case 'landscape':
+                                $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
+                                $translateY = $socialMediaSettings['y'];
+                                break;
+                            case 'portrait':
+                            default:
+                                $translateX = $socialMediaSettings['x'];
+                                $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
+                        }
+                        $class = 'icon-'.$media['medianame'];
+                        if ($socialMediaSettings['color'] == true) {
+                            $class .= '-color';
+                        }
                         echo '<a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '" title="'.ucfirst($media['medianame']).': '.$media['username'].'">
-                            <use xlink:href="#' . $media['medianame'] . '" width="'.$socialMediaSettings['width'].'" height="'.$socialMediaSettings['height'].'" x="'.$socialMediaSettings['x'].'" y="' . $translateY . '" class="icon-'.$media['medianame'] .'"  />
+                            <use xlink:href="#' . $media['medianame'] . '" width="'.$socialMediaSettings['width'].'" height="'.$socialMediaSettings['height'].'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
+                            </a>';
+                    }
+                    if (in_array('panel', $homepageLocations) && $homepage != '') {
+                        switch ($socialMediaSettings['direction']) {
+                            case 'landscape':
+                                $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
+                                $translateY = $socialMediaSettings['y'];
+                                break;
+                            case 'portrait':
+                            default:
+                                $translateX = $socialMediaSettings['x'];
+                            $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
+                        }
+                        $class = 'icon-homepage';
+                        if ($socialMediaSettings['color'] == true) {
+                            $class .= '-color';
+                        }
+                        echo '<a href="' . $homepage . '" title="'. __('Go to homepage', 'rrze-expo') .'">
+                            <use xlink:href="#homepage" width="'.($socialMediaSettings['width'] + 2).'" height="'.($socialMediaSettings['height'] + 2).'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
                             </a>';
                     }
                     echo '</g>';
                 }
-                //echo do_shortcode('[fauvideo url="https://www.fau.tv/webplayer/id/96195"]');
 
                 // Roll-Ups
-                $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
-                if ($rollups != '') {
-                    $rollupSettings = $constants['template_elements']['template'.$templateNo]['rollup'];
-                    if (isset($rollups[0])) {
-                        $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
-                        $rollup1 = '<div class="rollup-content" style="width: 100%; height: 100%; text-align: center;"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></div>';
-                        echo '<use xlink:href="#rollup" />';
-                        echo '<foreignObject class="rollup-content" width="'.$rollupSettings['width'].'" height="'.$rollupSettings['height'].'" x="'.$rollupSettings['x'].'" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>';
+                if ($scheduleLocation != 'rollup') {
+                    $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
+                    if ($rollups != '') {
+                        $rollupSettings = $constants['template_elements']['template' . $templateNo]['rollup'];
+                        if (isset($rollups[0])) {
+                            $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
+                            echo '<use xlink:href="#rollup" />';
+                            echo '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>';
+                        }
                     }
+                } else {
+                    echo '<use xlink:href="#rollup" />';
+                }
+
+                // Schedule
+                if ($schedule != '') {
+                    switch ($scheduleLocation) {
+                        case 'rollup':
+                            $scheduleSettings = $constants['template_elements']['template'.$templateNo]['rollup'];
+                            break;
+                        case 'left-screen':
+                            $scheduleSettings = $constants['template_elements']['template'.$templateNo]['video_left'];
+                            break;
+                        case 'right-screen':
+                            $scheduleSettings = $constants['template_elements']['template'.$templateNo]['video_right'];
+                            break;
+                    }
+                    echo '<foreignObject class="schedule schedule-'.$scheduleLocation.'" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'">
+                        <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
+                    </foreignObject>';
+                }
+
+                // Logo
+                if (has_post_thumbnail()){
+                    $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
+                    foreach ($logoLocations as $logoLocation) {
+                        $logoLocationSettings = $constants['template_elements']['template'.$templateNo]['logo'][$logoLocation];
+                        echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['width'].'" height="'.$logoLocationSettings['height'].'"  x="'.$logoLocationSettings['x'].'" y="'.$logoLocationSettings['y'].'" />';
+                    }
+                }
+
+                // Homepage
+                if (in_array('wall', $homepageLocations) && $homepage != '') {
+                    $homepageSettings = $constants['template_elements']['template'.$templateNo]['logo']['wall'];
+                    echo '<text x="'.$homepageSettings['x'].'" y="'.($homepageSettings['y'] + $homepageSettings['height'] + 30).'" font-size="30" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$homepage.'</text>';
                 }
 
                 // Deco
                 $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
                 if ($deco != '') {
-                    if (in_array('owl', $deco)) {
-                        echo '<use xlink:href="#owl" />';
-                    }
-                    if (in_array('plantsleft', $deco)) {
+                    if (in_array('plant1', $deco)) {
                         echo '<use xlink:href="#plant1" />';
                     }
-                    if (in_array('plantsright', $deco)) {
-                        echo '<use xlink:href="#plant" />';
+                    if (in_array('plant2', $deco)) {
+                        echo '<use xlink:href="#plant2" />';
                     }
                 }
                 ?>

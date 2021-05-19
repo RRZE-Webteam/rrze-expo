@@ -240,7 +240,7 @@ Plugin Style
         }
     }
     .podium {
-        .timetable {
+        .schedule {
             background: #0b7cac;
             padding: 10px;
             width: 500px;
@@ -250,25 +250,22 @@ Plugin Style
         foreignObject.video .rrze-video {
             border: 7px outset #333;
         }
-        .timetable {
-            background-color: #E6E6E6;
-            border: 4px inset #333;
-            padding: .5%;
+        .schedule {
             h2 {
-                font-size: calc(1em + 2vmin);
+                font-size: 1.4em;
                 line-height: 1.2;
-                padding: 0 0 .5vmin 0;
-                margin: 0 0 1vmin 0;
+                padding: 0 0 .3em 0;
+                margin: 0 0 .3em 0;
                 border-bottom: 1px solid #C5C5C5;
             }
             ul {
                 margin: 0;
             }
             li {
-                font-size: calc(1em + .5vmin);
-                line-height: 1.2;
+                font-size: 1.1em;
+                line-height: 1.4;
                 list-style-type: none;
-                padding-bottom: 1vmin;
+                padding-bottom: .3em;
             }
             .talk-title {
                 font-weight: bold;
@@ -276,16 +273,32 @@ Plugin Style
             .talk-location {
                 font-style: italic;
             }
+            .schedule-rollup {
+                padding: 5%;
+                background-color: #E6E6E6;
+                h2 {
+                    font-size: 1.6em;
+                }
+                li {
+                    font-size: 1.2em;
+                }
+            }
+            .schedule-left-screen,
+            .schedule-right-screen {
+                background-color: #E6E6E6;
+                border: 7px outset #333;
+                padding: 1%;
+            }
         }
     }
     //https://brandcolors.net
-    .icon-twitter {
+    .icon-twitter-color {
         fill:#1da1f2;
     }
-    .icon-facebook {
+    .icon-facebook-color {
         fill:#3b5999;
     }
-    .icon-instagram {
+    .icon-instagram-color {
         fill:#e4405f;
     }
     #scrolldown {

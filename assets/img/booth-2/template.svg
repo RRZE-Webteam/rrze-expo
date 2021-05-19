@@ -4,52 +4,63 @@
 	 viewBox="0 0 4096 1080" style="display:none;" preserveAspectRatio="xMidYMin slice">
 	<defs>
 		<symbol id="floor">
-			<image style="overflow:visible;" id="boden" xlink:href="8DF2609A.png"  transform="matrix(1 0 0 1 0 956)">
+			<image style="overflow:visible;enable-background:new;" width="4096" height="124" id="boden" xlink:href="EEA42FB.png"  transform="matrix(1 0 0 1 0 956)">
 			</image>
 		</symbol>
 		<symbol id="backwall">
-			<image style="overflow:visible;" id="wand" xlink:href="8DF2609E.png"  transform="matrix(1 0 0 1 1452 203)">
+			<image style="overflow:visible;enable-background:new;" width="2587" height="1080" id="wand" xlink:href="EEA42F9.png"  transform="matrix(1 0 0 1 -1 0)">
 			</image>
-			<image style="overflow:visible;opacity:0.5;" id="wandakzent" xlink:href="8DF26099.png"  transform="matrix(1 0 0 1 1452 203)">
+		</symbol>
+		<symbol id="backwall-color">
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="2587" height="1080" id="wandakzent" xlink:href="EEA42FF.png"  transform="matrix(1 0 0 1 -1 0)">
 			</image>
 		</symbol>
 		<symbol id="flyer_stand">
-			<image style="overflow:visible;" id="prospekthalter" xlink:href="8DF26098.png"  transform="matrix(1 0 0 1 2614 402)">
+			<image style="overflow:visible;enable-background:new;" width="207" height="582" id="aufsteller" xlink:href="EEA42F6.png"  transform="matrix(1 0 0 1 2613 402)">
 			</image>
 		</symbol>
 		<symbol id="table">
-			<image style="overflow:visible;" id="pultbasis" xlink:href="8DF260A6.png"  transform="matrix(1 0 0 1 1618 792)">
+			<image style="overflow:visible;enable-background:new    ;" width="121" height="229" id="pultbasis" xlink:href="27DBAE59.png"  transform="matrix(1 0 0 1 1667 792)">
 			</image>
-			<image style="overflow:visible;opacity:0.5;" id="pultbasisakzent" xlink:href="8DF260A9.png"  transform="matrix(1 0 0 1 1618 792)">
+			<image style="overflow:visible;opacity:0.5;enable-background:new    ;" width="121" height="229" id="pultbasisakzent" xlink:href="27DBAE5B.png"  transform="matrix(1 0 0 1 1667 792)">
 			</image>
-			<image style="overflow:visible;" id="pultplatte" xlink:href="8DF260AA.png"  transform="matrix(1 0 0 1 1611 778)">
+			<image style="overflow:visible;enable-background:new    ;" width="286" height="39" id="pultplatte" xlink:href="27DBAE46.png"  transform="matrix(1 0 0 1 1612 770)">
 			</image>
 		</symbol>
 		<symbol id="rollup">
-			<image style="overflow:visible;" id="rollupplakat" xlink:href="8DF260A8.png"  transform="matrix(1 0 0 1 1088 383)">
+			<image style="overflow:visible;enable-background:new    ;" width="375" height="1017" id="rollupstand" xlink:href="EEA4307.png"  transform="matrix(1 0 0 1 1041 0)">
 			</image>
-			<image style="overflow:visible;opacity:0.5;" id="rollupplakatakzent" xlink:href="8407F69D.png"  transform="matrix(1 0 0 1 1088 383)">
+			<image style="overflow:visible;enable-background:new    ;" width="339" height="547" id="rollupflaeche" xlink:href="EEA4309.png"  transform="matrix(1 0 0 1 1060 336)">
 			</image>
-			<image style="overflow:visible;" id="rollupframe" xlink:href="8407F693.png"  transform="matrix(1 0 0 1 1072 383)">
+			<image style="overflow:visible;opacity:0.5;enable-background:new    ;" width="339" height="547" id="rollupflaecheakzent" xlink:href="EEA430B.png"  transform="matrix(1 0 0 1 1060 336)">
+			</image>
+			<image style="overflow:visible;enable-background:new    ;" width="339" height="124" id="logoflaeche" xlink:href="27DBAE58.png"  transform="matrix(1 0 0 1 1060 175)">
+			</image>
+			<image style="overflow:visible;opacity:0.5;enable-background:new    ;" width="339" height="124" id="logoflaecheakzent" xlink:href="27DBAE5F.png"  transform="matrix(1 0 0 1 1060 175)">
 			</image>
 		</symbol>
 		<symbol id="some_panel">
-			<image style="overflow:visible;" id="socialmediapanel" xlink:href="8DF2609B.png"  transform="matrix(1 0 0 1 1479 594)">
+			<image style="overflow:visible;enable-background:new;" width="349" height="158" id="socialmediapanel" xlink:href="EEA42F7.png"  transform="matrix(1 0 0 1 1556 0)">
 			</image>
-			<g id="sociamediapanelglas">
-				<image style="overflow:visible;enable-background:new    ;" width="56" height="283" id="image" xlink:href="EF126CA9.png"  transform="matrix(1 0 0 1 1332 555)">
-				</image>
-			</g>
-			<g id="socialmediapanelglasakzent">
-				<image style="overflow:visible;enable-background:new    ;" width="56" height="283" id="image_2_" xlink:href="EF126CAA.png"  transform="matrix(1 0 0 1 1332 555)">
-				</image>
-			</g>
 		</symbol>
 		<symbol id="plant1">
-			<image style="overflow:visible;" id="topf" xlink:href="8407F695.png"  transform="matrix(1 0 0 1 2843 790)">
+			<image style="overflow:visible;enable-background:new;" width="267" height="233" id="blumentopf" xlink:href="../template-assets/pot-light.png"  transform="matrix(1 0 0 1 2830 789)">
 			</image>
-			<image style="overflow:visible;" id="Palme" xlink:href="8407F697.png"  transform="matrix(1 0 0 1 2782 134)">
+			<image style="overflow:visible;enable-background:new;" width="439" height="686" id="palme" xlink:href="../template-assets/palme1.png"  transform="matrix(1 0 0 1 2779 133)">
+		</symbol>
+		<symbol id="plant2">
+			<image style="overflow:visible;enable-background:new;" width="267" height="233" id="blumentopf" xlink:href="../template-assets/pot-light.png"  transform="matrix(1 0 0 1 2830 789)">
+			</image>
+			<image style="overflow:visible;" id="palme2" xlink:href="../template-assets/palme2.png" transform="translate(2480, 26) scale(1.3)">
 			</image>
 		</symbol>
+		<symbol id="tablet">
+			<image style="overflow:visible;" width="173" height="102" id="tablet" xlink:href="../template-assets/tablet.png"  transform="matrix(1 0 0 1 1666.3889 673.8889)"></image>
+			<rect id="tabletbildschirm" x="1674.7" y="682.2" class="st0" width="153.3" height="86.2" style="opacity:0.7;fill:#FFFFFF;"/>
+			<rect id="tabletbildschirmakzent" x="1674.7" y="682.2" class="st1" width="153.3" height="86.2" style="opacity:0.5;fill:#FFFFFF;"/>
+			<path class="icon-video" fill="#333" transform="translate(1725, 691) scale(.09)" d="M336.2 64H47.8C21.4 64 0 85.4 0 111.8v288.4C0 426.6 21.4 448 47.8 448h288.4c26.4 0 47.8-21.4 47.8-47.8V111.8c0-26.4-21.4-47.8-47.8-47.8zm189.4 37.7L416 177.3v157.4l109.6 75.5c21.2 14.6 50.4-.3 50.4-25.8V127.5c0-25.4-29.1-40.4-50.4-25.8z"/>
+			<text x="1702" y="759" font-size="24" fill="#333">Live Chat</text>
+		</symbol>
+		<symbol id="video-play"><path d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256z"/></symbol>
 	</defs>
 </svg>
