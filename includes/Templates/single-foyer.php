@@ -16,34 +16,28 @@ CPT::expoHeader();
         $foyerId = get_the_ID();
         $meta = get_post_meta($foyerId);
         $backgroundImage = CPT::getMeta($meta, 'rrze-expo-foyer-background-image');
+        $title = get_the_title();
         ?>
 
+        <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
         <div id="rrze-expo-foyer" class="foyer" style="background-image: url('<?php echo $backgroundImage;?>');">
-            <?php
-            $hallIDs = CPT::getHallOrder($foyerId);
-            echo '<ul class="foyer-menu">';
-            foreach ( $hallIDs as $hallID){
-                echo '<li>';
-                /*if (has_post_thumbnail($hallIDs)) {
-                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($hallIDs, 'small').'">';
-                }*/
-                echo '<a class="hall-title" href="'.get_permalink($hallID).'">'.get_the_title($hallID).'</a>';
-                echo '</li>';
-            }
-            echo "</ul>";
-
-            $podiumIDs = CPT::getPodiumOrder($foyerId);
-            echo '<ul class="foyer-menu">';
-            foreach ( $podiumIDs as $podiumID){
-                echo '<li>';
-                /*if (has_post_thumbnail($podiumID)) {
-                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($podiumID, 'small').'">';
-                }*/
-                echo '<a class="podium-title" href="'.get_permalink($podiumID).'">'.get_the_title($podiumID).'</a>';
-                echo '</li>';
-            }
-            echo "</ul>";
-            ?>
+            <svg version="1.1" class="expo-foyer" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use class="floor" xlink:href="#floor" />
+                <!--<use class="backwall" xlink:href="#wall" />-->
+                <use xlink:href="#table" />
+                <use xlink:href="#tablet" />
+                <?php
+                for ($i = 1; $i <= 6; $i++) {
+                    $boardContent = CPT::getMeta($meta, 'rrze-expo-foyer-board-'.$i);
+                    if (!empty($boardContent)) {
+                        echo '<use xlink:href="#panel-'.$i.'" />';
+                        //var_dump($boardContent[0]);
+                    }
+                }
+                ?>
+                <use xlink:href="#panel-mitte" />
+                <!--<use xlink:href="#icons" />-->
+            </svg>
 
         <?php if ($hasContent) { ?>
             <a href="#rrze-expo-foyer-content" id="scrolldown" title="<?php _e('Read more','rrze-expo');?>">

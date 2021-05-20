@@ -92,7 +92,60 @@ class Foyer {
             'options'          => CPT::getPosts('exposition'),
         ]);
 
-        $menus = wp_get_nav_menus();
+        // Direction Board
+        $cmb = new_cmb2_box([
+            'id'            => 'rrze-expo-foyer-general',
+            'title'         => __('Direction Board', 'rrze-expo'),
+            'object_types'  => ['foyer'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+
+        $boardContent = CPT::getPosts('hall');
+        $podiums = CPT::getPosts('podium');
+        foreach ($podiums as $k => $v) {
+            $boardContent[$k] = $v;
+        }
+        $boardContent['custom'] = __('Custom Link');
+        for ($i=1; $i<7; $i++) {
+            $board_content_group_id = $cmb->add_field( [
+                'id'          => 'rrze-expo-foyer-board-'.$i,
+                'type'        => 'group',
+                //'description' => __( '', 'rrze-expo' ),
+                'repeatable'  => false,
+                'options'     => array(
+                    'group_title'       => __( 'Board '.$i, 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                    'sortable'          => false,
+                    // 'closed'         => true, // true to have the groups closed by default
+                    // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+                ),
+            ] );
+            $cmb->add_group_field($board_content_group_id, [
+                    'name'      => __('Content', 'rrze-expo'),
+                    //'desc'    => __('', 'rrze-expo'),
+                    'id'        => 'rrze-expo-foyer-board-'.$i.'-content',
+                    'type'      => 'select',
+                    'show_option_none' => __('No content', 'rrze-expo'),
+                    'default'          => '',
+                    'options'          => $boardContent,
+                ]);
+            $cmb->add_group_field($board_content_group_id, [
+                'name'      => __('Custom link text', 'rrze-expo'),
+                //'desc'    => __('', 'rrze-expo'),
+                'id'        => 'rrze-expo-foyer-board-'.$i.'-text',
+                'type'      => 'text',
+            ]);
+            $cmb->add_group_field($board_content_group_id, [
+                'name'      => __('Custom link', 'rrze-expo'),
+                //'desc'    => __('', 'rrze-expo'),
+                'id'        => 'rrze-expo-foyer-board-'.$i.'-link',
+                'type'      => 'text_url',
+            ]);
+        }
+
+
+        /*$menus = wp_get_nav_menus();
         foreach ($menus as $menu) {
             $optionsMenu[$menu->term_id] = $menu->name;
         }
@@ -114,7 +167,7 @@ class Foyer {
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
             'default'          => '',
             'options'          => $optionsMenu,
-        ]);
+        ]);*/
 
         // Background Image
         $cmb_background = new_cmb2_box([

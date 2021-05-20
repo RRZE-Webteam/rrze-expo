@@ -109,15 +109,21 @@ class CPT
         global $post;
         if (!in_array($post->post_type,  ['booth', 'hall', 'podium', 'foyer', 'exposition']))
             return;
-        // Booth Template
-        $templateNo = get_post_meta($post->ID,'rrze-expo-booth-template', true);
-        $templateDir = '/rrze-expo/assets/img/booth-' . absint($templateNo).'/';
-        //$templateDir = '/rrze-expo/assets/img/booth-test/';
+        switch ($post->post_type) {
+            case 'booth':
+                $templateNo = get_post_meta($post->ID,'rrze-expo-booth-template', true);
+                $templateDir = '/rrze-expo/assets/img/booth-' . absint($templateNo).'/';
+                break;
+            case 'foyer':
+                $templateDir = '/rrze-expo/assets/img/foyer/';
+                break;
+        }
         $file = WP_PLUGIN_DIR . $templateDir . 'template.svg';
-        if ($templateNo != '' && file_exists($file)) {
+        if ($file) {
             $svg = file_get_contents($file);
             echo str_replace('xlink:href="', 'xlink:href="'.WP_PLUGIN_URL . $templateDir, $svg);
         }
+
         // Icons
         $icons = [
             'chevron-left',

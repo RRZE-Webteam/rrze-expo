@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE-Expo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-30 07:39+0000\n"
-"PO-Revision-Date: 2021-05-17 07:56+0000\n"
+"PO-Revision-Date: 2021-05-17 10:41+0000\n"
 "Last-Translator: Barbara Bothe <info@barbara-bothe.de>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
-"X-Loco-Version: 2.5.0; wp-5.6.2"
+"X-Loco-Version: 2.5.2; wp-5.7.1"
 
 #: includes/Shortcode.php:126
 msgid "-- all --"
@@ -121,6 +121,9 @@ msgid ""
 "tv/webplayer/id/123456. Display: 1 - top left screen, 2- top right screen, 3 "
 "- table monitor."
 msgstr ""
+"Fügen Sie bis zu drei Video-URLs (z.B. https://www.fau."
+"tv/webplayer/id/123456) hinzu. Display: 1 - Monitor oben rechts, 2- Monitor "
+"oben links, 3 - Tisch-Display."
 
 #: includes/CPT/Booth.php:25
 msgctxt "Admin Menu text"
@@ -177,7 +180,7 @@ msgstr "Alle Messehallen"
 
 #: includes/CPT/Podium.php:31
 msgid "All Podiums"
-msgstr "Alle Podiums"
+msgstr "Alle Podien"
 
 #: includes/CPT/CPT.php:381
 msgid "Back to Foyer"
@@ -197,20 +200,17 @@ msgstr "Rückwand"
 msgid "Background Image"
 msgstr "Hintergrundbild"
 
-#: includes/CPT/Exposition.php:192 includes/CPT/Hall.php:144
-#: includes/CPT/Podium.php:131 includes/CPT/Foyer.php:158
-msgid "Background Overlay Opacity"
-msgstr ""
-
 #: includes/CPT/Exposition.php:183 includes/CPT/Hall.php:135
 #: includes/CPT/Podium.php:122 includes/CPT/Booth.php:135
 #: includes/CPT/Foyer.php:149
 msgid "Background Image Overlay"
-msgstr ""
+msgstr "Bildüberlagerung für Hintergrundbild"
 
-#: includes/CPT/Booth.php:144
+#: includes/CPT/Exposition.php:192 includes/CPT/Hall.php:144
+#: includes/CPT/Podium.php:131 includes/CPT/Booth.php:144
+#: includes/CPT/Foyer.php:158
 msgid "Background Overlay Opacity"
-msgstr ""
+msgstr "Transparenz für Hintergrund-Bildüberlagerung"
 
 #: config/config.php:58
 msgid "Basic Settings"
@@ -219,19 +219,19 @@ msgstr ""
 #: config/config.php:202 config/config.php:208 config/config.php:214
 #: config/config.php:230 config/config.php:236 config/config.php:253
 msgid "Beschriftung"
-msgstr ""
+msgstr "Beschriftung"
 
 #: config/config.php:273
 msgid "Beschrifung"
-msgstr ""
+msgstr "Beschriftung"
 
 #: includes/CPT/Booth.php:49
 msgid "Booth"
-msgstr ""
+msgstr "Messestand"
 
 #: includes/CPT/Booth.php:172
 msgid "Booth Template"
-msgstr ""
+msgstr "Messestand-Vorlage"
 
 #: config/config.php:105
 msgid "Checkbox"
@@ -243,15 +243,15 @@ msgstr ""
 
 #: config/config.php:176
 msgid "Choose an Image"
-msgstr ""
+msgstr "Wählen Sie ein Bild aus."
 
 #: includes/CPT/Booth.php:306
 msgid "Choose up to 2 roll-up images."
-msgstr ""
+msgstr "Wählen Sie bis zu 2 Rollup-Bilder aus."
 
 #: includes/CPT/Booth.php:346
 msgid "Choose up to 4 PDF flyers."
-msgstr ""
+msgstr "Wählen Sie bis zu vier Flyer aus."
 
 #: config/config.php:150
 msgid "Color"
@@ -263,17 +263,17 @@ msgstr ""
 
 #: includes/CPT/Booth.php:180
 msgid "Custom Template"
-msgstr ""
+msgstr "Eigenes Template"
 
 #: includes/CPT/Exposition.php:189 includes/CPT/Hall.php:141
 #: includes/CPT/Podium.php:128 includes/CPT/Booth.php:141
 #: includes/CPT/Foyer.php:155
 msgid "Dark"
-msgstr ""
+msgstr "Dunkel"
 
 #: includes/CPT/Booth.php:244
 msgid "Decoration Elements"
-msgstr ""
+msgstr "Dekorationen"
 
 #: config/config.php:137
 msgid "Dropdown"
@@ -285,45 +285,45 @@ msgstr ""
 
 #: includes/CPT/Booth.php:30
 msgid "Edit Booth"
-msgstr ""
+msgstr "Messestand bearbeiten"
 
 #: includes/CPT/Exposition.php:30
 msgid "Edit Exposition"
-msgstr ""
+msgstr "Messe bearbeiten"
 
 #: includes/CPT/Foyer.php:30
 msgid "Edit Foyer"
-msgstr ""
+msgstr "Foyer bearbeiten"
 
 #: includes/CPT/Hall.php:29
 msgid "Edit Hall"
-msgstr ""
+msgstr "Messehalle bearbeiten"
 
 #: includes/CPT/Podium.php:29
 msgid "Edit Podium"
-msgstr ""
+msgstr "Podium bearbeiten"
 
 #: includes/CPT/Podium.php:192
 msgid "End"
-msgstr ""
+msgstr "Ende"
 
 #: includes/CPT/Exposition.php:101
 msgid "End Date"
-msgstr ""
+msgstr "Enddatum"
 
 #: includes/Templates/single-exposition.php:74
 msgid "Enter the foyer"
-msgstr ""
+msgstr "Zum Foyer"
 
 #: includes/CPT/Exposition.php:86
 msgid "Event Subtitle"
-msgstr ""
+msgstr "Untertitel der Veranstaltung"
 
 #: includes/CPT/Exposition.php:49 includes/CPT/Hall.php:82
 #: includes/CPT/Podium.php:83 includes/CPT/Booth.php:86
 #: includes/CPT/Foyer.php:86
 msgid "Exposition"
-msgstr ""
+msgstr "Messe"
 
 #: config/config.php:171
 msgid "File"
@@ -335,57 +335,57 @@ msgstr ""
 
 #: config/config.php:356 config/config.php:414
 msgid "Flyers"
-msgstr ""
+msgstr "Flyer"
 
 #: includes/CPT/Booth.php:226
 msgid "Font Size"
-msgstr ""
+msgstr "Schriftgröße"
 
 #: config/config.php:44
 msgid "For more information"
-msgstr ""
+msgstr "Für weiter Informationen"
 
 #: config/config.php:122
 msgid "Four"
-msgstr ""
+msgstr "Vier"
 
 #: includes/CPT/Foyer.php:49
 msgid "Foyer"
-msgstr ""
+msgstr "Foyer"
 
 #: includes/CPT/Foyer.php:100
 msgid "Foyer Menu 1"
-msgstr ""
+msgstr "Foyer-Menü 1"
 
 #: includes/CPT/Foyer.php:110
 msgid "Foyer Menu 2"
-msgstr ""
+msgstr "Foyer-Menü 2"
 
 #: includes/CPT/Exposition.php:78 includes/CPT/Hall.php:75
 #: includes/CPT/Podium.php:76 includes/CPT/Booth.php:79
 #: includes/CPT/Foyer.php:79
 msgid "General Information"
-msgstr ""
+msgstr "Allgemeine Informationen"
 
 #: includes/CPT/CPT.php:291
 msgid "Go to content area"
-msgstr ""
+msgstr "Zum Inhaltsbereich"
 
 #: includes/CPT/CPT.php:293
 msgid "Go to main navigation"
-msgstr ""
+msgstr "Zum Hauptmenü"
 
 #: includes/CPT/CPT.php:292
 msgid "Go to search"
-msgstr ""
+msgstr "Zur Suche"
 
 #: includes/CPT/Hall.php:48 includes/CPT/Booth.php:96
 msgid "Hall"
-msgstr ""
+msgstr "Messehalle"
 
 #: includes/CPT/Hall.php:96
 msgid "Hall Menu"
-msgstr ""
+msgstr "Messehallen-Menü"
 
 #: config/config.php:41
 msgid "Here comes the Context Help content."
@@ -393,49 +393,52 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "https://blogs.fau.de/webworking/"
-msgstr ""
+msgstr "https://blogs.fau.de/webworking/"
 
 #. URI of the plugin
 msgid "https://github.com/RRZE-Webteam/rrze-expo"
-msgstr ""
+msgstr "https://github.com/RRZE-Webteam/rrze-expo"
 
 #: includes/CPT/Hall.php:97
 msgid "If no menu is set, booths will be ordered alphabetically."
 msgstr ""
+"Wenn kein Menü ausgwählt ist, werden die Messestände alphabetisch angeordnet."
 
 #: includes/CPT/Foyer.php:101
 msgid "If no menu is set, halls will be ordered alphabetically."
 msgstr ""
+"Wenn kein Menü ausgwählt ist, werden die Messehallen alphabetisch angeordnet."
 
 #: includes/CPT/Foyer.php:111
 msgid "If no menu is set, podiums will be ordered alphabetically."
 msgstr ""
+"Wenn kein Menü ausgwählt ist, werden die Podien alphabetisch angeordnet."
 
 #: includes/CPT/Booth.php:165
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: includes/CPT/Exposition.php:188 includes/CPT/Hall.php:140
 #: includes/CPT/Podium.php:127 includes/CPT/Booth.php:140
 #: includes/CPT/Foyer.php:154
 msgid "Light"
-msgstr ""
+msgstr "Hell"
 
 #: includes/CPT/Exposition.php:132
 msgid "Locality"
-msgstr ""
+msgstr "Ort"
 
 #: includes/CPT/Booth.php:281
 msgid "Location"
-msgstr ""
+msgstr "Ort"
 
 #: config/config.php:307 config/config.php:384
 msgid "Logo on Back Wall"
-msgstr ""
+msgstr "Logo auf Wand"
 
 #: config/config.php:314 config/config.php:391
 msgid "Logo on Table"
-msgstr ""
+msgstr "Logo auf Tisch"
 
 #: config/config.php:111
 msgid "Multiple checkbox"
@@ -447,71 +450,71 @@ msgstr ""
 
 #: includes/CPT/Booth.php:29
 msgid "New Booth"
-msgstr ""
+msgstr "Neuer Messestand"
 
 #: includes/CPT/Exposition.php:29
 msgid "New Exposition"
-msgstr ""
+msgstr "Neue Messe"
 
 #: includes/CPT/Foyer.php:29
 msgid "New Foyer"
-msgstr ""
+msgstr "Neues Foyer"
 
 #: includes/CPT/Hall.php:28
 msgid "New Hall"
-msgstr ""
+msgstr "Neue Messehalle"
 
 #: includes/CPT/Podium.php:28
 msgid "New Podium"
-msgstr ""
+msgstr "Neues Podium"
 
 #: includes/CPT/CPT.php:371
 msgid "Next Booth"
-msgstr ""
+msgstr "Nächster Messestand"
 
 #: config/config.php:132 config/config.php:143
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: includes/CPT/Booth.php:35
 msgid "No Booths found in Trash."
-msgstr ""
+msgstr "Keine Messestände im Papierkorb gefunden"
 
 #: includes/CPT/Booth.php:34
 msgid "No Booths found."
-msgstr ""
+msgstr "Keine Messestände gefunden."
 
 #: includes/CPT/Exposition.php:35
 msgid "No Expositions found in Trash."
-msgstr ""
+msgstr "Keine Messen im Papierkorb. gefunden."
 
 #: includes/CPT/Exposition.php:34
 msgid "No Expositions found."
-msgstr ""
+msgstr "Keine Messen gefunden."
 
 #: includes/CPT/Foyer.php:35
 msgid "No Foyers found in Trash."
-msgstr ""
+msgstr "Keine Foyers im Papierkorb gefunden."
 
 #: includes/CPT/Foyer.php:34
 msgid "No Foyers found."
-msgstr ""
+msgstr "Keine Foyers gefunden."
 
 #: includes/CPT/Hall.php:34
 msgid "No Halls found in Trash."
-msgstr ""
+msgstr "Keine Messehallen im Papierkorb gefunden."
 
 #: includes/CPT/Hall.php:33
 msgid "No Halls found."
-msgstr ""
+msgstr "Keine Messehallen gefunden."
 
 #: includes/CPT/Podium.php:34
 msgid "No Podiums found in Trash."
-msgstr ""
+msgstr "Keine Podien im Papierkorb gefunden."
 
 #: includes/CPT/Podium.php:33
 msgid "No Podiums found."
-msgstr ""
+msgstr "Keine Podien gefunden."
 
 #: config/config.php:86
 msgid "Number Input"
@@ -523,225 +526,225 @@ msgstr ""
 
 #: config/config.php:119
 msgid "One"
-msgstr ""
+msgstr "Eins"
 
 #: config/config.php:225
 msgid "Order"
-msgstr ""
+msgstr "Reihenfolge"
 
 #: includes/CPT/Exposition.php:108
 msgid "Organisation"
-msgstr ""
+msgstr "Organisation"
 
 #: includes/CPT/Exposition.php:114
 msgid "Organisation 2"
-msgstr ""
+msgstr "Organisator - Zeile 2"
 
 #: includes/Templates/single-exposition.php:45
 msgid "Organizer"
-msgstr ""
+msgstr "Organisator"
 
 #: config/config.php:342 includes/Templates/single-booth.php:53
 msgid "Our Talks"
-msgstr ""
+msgstr "Unsere Vorträge"
 
 #: includes/CPT/Booth.php:36
 msgctxt ""
 "Overrides the “Featured Image” phrase for this post type. Added in 4.3"
 msgid "Booth Logo"
-msgstr ""
+msgstr "Messestand-Logo"
 
 #: includes/CPT/Exposition.php:36
 msgctxt ""
 "Overrides the “Featured Image” phrase for this post type. Added in 4.3"
 msgid "Exposition Logo"
-msgstr ""
+msgstr "Messe-Logo"
 
 #: includes/CPT/Foyer.php:36
 msgctxt ""
 "Overrides the “Featured Image” phrase for this post type. Added in 4.3"
 msgid "Foyer Logo"
-msgstr ""
+msgstr "Foyer-Logo"
 
 #: includes/CPT/Hall.php:35
 msgctxt ""
 "Overrides the “Featured Image” phrase for this post type. Added in 4.3"
 msgid "Hall Logo"
-msgstr ""
+msgstr "Messehallen-Logo"
 
 #: includes/CPT/Podium.php:35
 msgctxt ""
 "Overrides the “Featured Image” phrase for this post type. Added in 4.3"
 msgid "Podium Logo"
-msgstr ""
+msgstr "Podium-Logo"
 
 #: includes/CPT/Booth.php:41
 msgctxt ""
 "Overrides the “Insert into post”/”Insert into page” phrase (used when "
 "inserting media into a post). Added in 4.4"
 msgid "Insert into booth"
-msgstr ""
+msgstr "In Messestand-Text einfügen"
 
 #: includes/CPT/Exposition.php:41
 msgctxt ""
 "Overrides the “Insert into post”/”Insert into page” phrase (used when "
 "inserting media into a post). Added in 4.4"
 msgid "Insert into exposition"
-msgstr ""
+msgstr "In Messetext einfügen"
 
 #: includes/CPT/Foyer.php:41
 msgctxt ""
 "Overrides the “Insert into post”/”Insert into page” phrase (used when "
 "inserting media into a post). Added in 4.4"
 msgid "Insert into foyer"
-msgstr ""
+msgstr "In Foyertext einfügen"
 
 #: includes/CPT/Hall.php:40
 msgctxt ""
 "Overrides the “Insert into post”/”Insert into page” phrase (used when "
 "inserting media into a post). Added in 4.4"
 msgid "Insert into hall"
-msgstr ""
+msgstr "In Messestandtext einfügen"
 
 #: includes/CPT/Podium.php:40
 msgctxt ""
 "Overrides the “Insert into post”/”Insert into page” phrase (used when "
 "inserting media into a post). Added in 4.4"
 msgid "Insert into podium"
-msgstr ""
+msgstr "In Podiumtext einfügen"
 
 #: includes/CPT/Booth.php:38
 msgctxt ""
 "Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
 msgid "Remove booth logo"
-msgstr ""
+msgstr "Messestand-Logo entfernen"
 
 #: includes/CPT/Exposition.php:38
 msgctxt ""
 "Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
 msgid "Remove exposition logo"
-msgstr ""
+msgstr "Messe-Logo entfernen"
 
 #: includes/CPT/Foyer.php:38
 msgctxt ""
 "Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
 msgid "Remove foyer logo"
-msgstr ""
+msgstr "Foyer-Logo entfernen"
 
 #: includes/CPT/Hall.php:37
 msgctxt ""
 "Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
 msgid "Remove hall logo"
-msgstr ""
+msgstr "Messehalle-Logo entfernen"
 
 #: includes/CPT/Podium.php:37
 msgctxt ""
 "Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
 msgid "Remove podium logo"
-msgstr ""
+msgstr "Podium-Logo entfernen"
 
 #: includes/CPT/Booth.php:37
 msgctxt ""
 "Overrides the “Set featured image” phrase for this post type. Added in 4.3"
 msgid "Set booth logo"
-msgstr ""
+msgstr "Messestand-Logo festlegen"
 
 #: includes/CPT/Exposition.php:37
 msgctxt ""
 "Overrides the “Set featured image” phrase for this post type. Added in 4.3"
 msgid "Set exposition Logo"
-msgstr ""
+msgstr "Messe-Logo festlegen"
 
 #: includes/CPT/Foyer.php:37
 msgctxt ""
 "Overrides the “Set featured image” phrase for this post type. Added in 4.3"
 msgid "Set foyer Logo"
-msgstr ""
+msgstr "Foyer-Logo festlegen"
 
 #: includes/CPT/Hall.php:36
 msgctxt ""
 "Overrides the “Set featured image” phrase for this post type. Added in 4.3"
 msgid "Set hall logo"
-msgstr ""
+msgstr "Messehalle-Logo festlegen"
 
 #: includes/CPT/Podium.php:36
 msgctxt ""
 "Overrides the “Set featured image” phrase for this post type. Added in 4.3"
 msgid "Set podium logo"
-msgstr ""
+msgstr "Podium-Logo festlegen"
 
 #: includes/CPT/Booth.php:42
 msgctxt ""
 "Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
 "when viewing media attached to a post). Added in 4.4"
 msgid "Uploaded to this booth"
-msgstr ""
+msgstr "Zu diesem Messestand hochladen"
 
 #: includes/CPT/Exposition.php:42
 msgctxt ""
 "Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
 "when viewing media attached to a post). Added in 4.4"
 msgid "Uploaded to this exposition"
-msgstr ""
+msgstr "Zu dieser Messe hochladen"
 
 #: includes/CPT/Foyer.php:42
 msgctxt ""
 "Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
 "when viewing media attached to a post). Added in 4.4"
 msgid "Uploaded to this foyer"
-msgstr ""
+msgstr "Zu diesem Foyer hochladen"
 
 #: includes/CPT/Hall.php:41
 msgctxt ""
 "Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
 "when viewing media attached to a post). Added in 4.4"
 msgid "Uploaded to this hall"
-msgstr ""
+msgstr "Zu dieser Messehalle hochladen"
 
 #: includes/CPT/Podium.php:41
 msgctxt ""
 "Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
 "when viewing media attached to a post). Added in 4.4"
 msgid "Uploaded to this podium"
-msgstr ""
+msgstr "Zu diesem Podium hochladen"
 
 #: includes/CPT/Booth.php:39
 msgctxt ""
 "Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
 msgid "Use as booth logo"
-msgstr ""
+msgstr "Als Messestand-Logo verwenden"
 
 #: includes/CPT/Exposition.php:39
 msgctxt ""
 "Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
 msgid "Use as exposition logo"
-msgstr ""
+msgstr "Als Messe-Logo verwenden"
 
 #: includes/CPT/Foyer.php:39
 msgctxt ""
 "Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
 msgid "Use as foyer logo"
-msgstr ""
+msgstr "Als Foyer-Logo verwenden"
 
 #: includes/CPT/Hall.php:38
 msgctxt ""
 "Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
 msgid "Use as hall logo"
-msgstr ""
+msgstr "Alle Messehallen-Logo verwenden"
 
 #: includes/CPT/Podium.php:38
 msgctxt ""
 "Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
 msgid "Use as podium logo"
-msgstr ""
+msgstr "Als Podium-Logo verwenden"
 
 #: config/config.php:43
 msgid "Overview"
-msgstr ""
+msgstr "Übersicht"
 
 #: config/config.php:367 config/config.php:422
 msgid "Owl"
-msgstr ""
+msgstr "Eule"
 
 #: config/config.php:157
 msgid "Password"
@@ -753,20 +756,21 @@ msgstr ""
 
 #: includes/CPT/Booth.php:337
 msgid "PDF Flyers"
-msgstr ""
+msgstr "PDF-Flyer"
 
 #: config/config.php:363
 msgid "Plants left side"
-msgstr ""
+msgstr "Pflanzen links"
 
 #: config/config.php:364 config/config.php:420
 msgid "Plants right side"
-msgstr ""
+msgstr "Pflanzen rechts"
 
 #: includes/CPT/Booth.php:211
 msgid ""
 "Please make shure there is enough contrast between font and backwall color."
 msgstr ""
+"Bitte achten Sie auf ausreichend Kontrast zwischen Schrift und Wandfarbe."
 
 #: includes/CPT/Hall.php:86 includes/CPT/Hall.php:100
 #: includes/CPT/Podium.php:87 includes/CPT/Podium.php:221
@@ -775,74 +779,74 @@ msgstr ""
 #: includes/CPT/Foyer.php:90 includes/CPT/Foyer.php:104
 #: includes/CPT/Foyer.php:114
 msgid "Please select"
-msgstr ""
+msgstr "Bitte auswählen"
 
 #: rrze-expo.php:134
 #, php-format
 msgid "Plugins: %1$s: %2$s"
-msgstr ""
+msgstr "Plugins: %1$s: %2$s"
 
 #: includes/CPT/Podium.php:48
 msgid "Podium"
-msgstr ""
+msgstr "Podium"
 
 #: includes/CPT/Booth.php:23
 msgctxt "Post type general name"
 msgid "Booths"
-msgstr ""
+msgstr "Messestände"
 
 #: includes/CPT/Exposition.php:23
 msgctxt "Post type general name"
 msgid "Expositions"
-msgstr ""
+msgstr "Messen"
 
 #: includes/CPT/Foyer.php:23
 msgctxt "Post type general name"
 msgid "Foyers"
-msgstr ""
+msgstr "Foyers"
 
 #: includes/CPT/Hall.php:22
 msgctxt "Post type general name"
 msgid "Halls"
-msgstr ""
+msgstr "Messehallen"
 
 #: includes/CPT/Podium.php:22
 msgctxt "Post type general name"
 msgid "Podiums"
-msgstr ""
+msgstr "Podien"
 
 #: includes/CPT/Booth.php:24
 msgctxt "Post type singular name"
 msgid "Booth"
-msgstr ""
+msgstr "Messestand"
 
 #: includes/CPT/Exposition.php:24
 msgctxt "Post type singular name"
 msgid "Exposition"
-msgstr ""
+msgstr "Messe"
 
 #: includes/CPT/Foyer.php:24
 msgctxt "Post type singular name"
 msgid "Foyer"
-msgstr ""
+msgstr "Foyer"
 
 #: includes/CPT/Hall.php:23
 msgctxt "Post type singular name"
 msgid "Hall"
-msgstr ""
+msgstr "Messehalle"
 
 #: includes/CPT/Podium.php:23
 msgctxt "Post type singular name"
 msgid "Podium"
-msgstr ""
+msgstr "Podium"
 
 #: includes/CPT/Exposition.php:126
 msgid "Postal Code"
-msgstr ""
+msgstr "PLZ"
 
 #: includes/CPT/CPT.php:362
 msgid "Previous Booth"
-msgstr ""
+msgstr "Vorheriger Messestand"
 
 #: config/config.php:127
 msgid "Radio Button"
@@ -1036,7 +1040,7 @@ msgstr "Messehallen suchen"
 
 #: includes/CPT/Podium.php:32
 msgid "Search Podiums"
-msgstr "Podiums suchen"
+msgstr "Podien suchen"
 
 #: config/config.php:365 config/config.php:421
 msgid "Seats left side"
