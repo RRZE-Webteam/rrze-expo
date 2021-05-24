@@ -24,46 +24,16 @@
 				<polygon class="tabletbildschirm" points="2260.7,631.7 2260.7,717.4 2413.9,717.4 2413.9,630.9" fill="#FFFFFF"/>
 			</g>
 		</symbol>
-		<symbol id="panel-1">
-			<image style="overflow:visible;enable-background:new;" width="553" height="256" id="_1A" xlink:href="panel.png"  transform="matrix(1 0 0 1 1194 36)">
+		<symbol id="panel">
+			<image style="overflow:visible;enable-background:new;" width="553" height="256" id="_1A" xlink:href="panel.png" >
 			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="553" height="256" id="_1Aakzent" xlink:href="panel-akzent.png"  transform="matrix(1 0 0 1 1194 36)">
-			</image>
-		</symbol>
-		<symbol id="panel-2">
-			<image style="overflow:visible;enable-background:new;" width="553" height="254" id="_2A" xlink:href="panel.png"  transform="matrix(1 0 0 1 1194 332)">
-			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="553" height="254" id="_2Aakzent" xlink:href="panel-akzent.png"  transform="matrix(1 0 0 1 1194 332)">
-			</image>
-		</symbol>
-		<symbol id="panel-3">
-			<image style="overflow:visible;enable-background:new;" width="553" height="256" id="_3A" xlink:href="panel.png"  transform="matrix(1 0 0 1 1194 621)">
-			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="553" height="256" id="_3Aakzent" xlink:href="panel-akzent.png"  transform="matrix(1 0 0 1 1194 621)">
-			</image>
-		</symbol>
-		<symbol id="panel-4">
-			<image style="overflow:visible;enable-background:new;" width="554" height="256" id="_3B" xlink:href="panel.png"  transform="matrix(1 0 0 1 2479 621)">
-			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="554" height="256" id="_3Bakzent" xlink:href="panel-akzent.png"  transform="matrix(1 0 0 1 2479 621)">
-			</image>
-		</symbol>
-		<symbol id="panel-5">
-			<image style="overflow:visible;enable-background:new;" width="554" height="254" id="_2B" xlink:href="panel.png"  transform="matrix(1 0 0 1 2479 332)">
-			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="554" height="254" id="_2Bakzent" xlink:href="panel-akzent.png"  transform="matrix(1 0 0 1 2479 332)">
-			</image>
-		</symbol>
-		<symbol id="panel-6">
-			<image style="overflow:visible;enable-background:new;" width="554" height="256" id="_1B" xlink:href="panel.png"  transform="matrix(1 0 0 1 2479 36)">
-			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="554" height="256" id="_1Bakzent" xlink:href="panel-akzent.png"  transform="matrix(1 0 0 1 2479 36)">
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="553" height="256" id="_1Aakzent" xlink:href="panel-akzent.png">
 			</image>
 		</symbol>
 		<symbol id="panel-mitte">
-			<image style="overflow:visible;enable-background:new;" width="551" height="585" id="Informationstafel" xlink:href="520EA5DF.png"  transform="matrix(1 0 0 1 1837 -1.464844e-05)">
+			<image style="overflow:visible;enable-background:new;" width="551" height="585" id="Informationstafel" xlink:href="520EA5DF.png">
 			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="551" height="585" id="informationstafelakzent" xlink:href="DC1DF6C7.png"  transform="matrix(1 0 0 1 1837 -1.464844e-05)">
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="551" height="585" id="informationstafelakzent" xlink:href="DC1DF6C7.png">
 			</image>
 		</symbol>
 		<symbol id="icons">

@@ -288,10 +288,10 @@ function getConstants() {
             'youtube' => 'https://youtube.com/',
             'xing' => 'https://www.xing.com/',
             'linkedin' => 'https://linkedin.com/',
-            'homepage' => '',
+            'website' => '',
         ],
         'template_elements' => [
-            'template1' => [
+            'booth1' => [
                 'title' => [
                     'x' => 1490,
                     'y' => 280,
@@ -375,7 +375,7 @@ function getConstants() {
                     //'owl' => __('Owl', 'rrze-expo'),
                 ],
             ],
-            'template2' => [
+            'booth2' => [
                 'title' => [
                     'x' => 1490,
                     'y' => 280,
@@ -461,6 +461,63 @@ function getConstants() {
                     //'seats-left' => __('Seats left side', 'rrze-expo'),
                     //'seats-right' => __('Seats right side', 'rrze-expo'),
                     //'owl' => __('Owl', 'rrze-expo'),
+                ],
+            ],
+            'foyer' => [
+                'board1' => [
+                    'x' => 1100,
+                    'y' => 30,
+                    'width' => '',
+                    'height' => '',
+                    'arrow-position' => 'translate(1100 100) scale(.2) rotate(-45)'
+                ],
+                'board2' => [
+                    'x' => 1100,
+                    'y' => 330,
+                    'width' => '',
+                    'height' => '',
+                    'arrow-position' => 'translate(1120 450) scale(.2) rotate(-90)'
+                ],
+                'board3' => [
+                    'x' => 1100,
+                    'y' => 630,
+                    'width' => '',
+                    'height' => '',
+                    'arrow-position' => 'translate(1170 773) scale(.2) rotate(-135)'
+                ],
+                'board4' => [
+                    'x' => 2420,
+                    'y' => 30,
+                    'width' => '',
+                    'height' => '',
+                    'arrow-position' => 'translate(2905 28) scale(.2) rotate(45)'
+                ],
+                'board5' => [
+                    'x' => 2420,
+                    'y' => 330,
+                    'width' => '',
+                    'height' => '',
+                    'arrow-position' => 'translate(2955 350) scale(.2) rotate(90)'
+                ],
+                'board6' => [
+                    'x' => 2420,
+                    'y' => 630,
+                    'width' => '',
+                    'height' => '',
+                    'arrow-position' => 'translate(2975 700) scale(.2) rotate(135)'
+                ],
+                'board-center' => [
+                    'x' => 1762,
+                    'y' => 1,
+                    'width' => '',
+                    'height' => '',
+                    'arrow-position' => 'translate(3038 688) scale(.2) rotate(135)'
+                ],
+                'table' => [
+                    'x' => -80,
+                    'y' => 0,
+                    'width' => '',
+                    'height' => '',
                 ],
             ],
         ],
