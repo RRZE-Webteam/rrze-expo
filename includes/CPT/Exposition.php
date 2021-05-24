@@ -160,8 +160,8 @@ class Exposition {
             'show_names'    => true,
         ]);
         $cmb_background->add_field(array(
-            'name'    => __('Background Image', 'rrze-rsvp'),
-            //'desc'    => __('', 'rrze-rsvp'),
+            'name'    => __('Background Image', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
             'id'      => 'rrze-expo-exposition-background-image',
             'type'    => 'file',
             'options' => array(

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE-Expo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-30 07:39+0000\n"
-"PO-Revision-Date: 2021-05-24 21:07+0000\n"
+"PO-Revision-Date: 2021-05-24 21:01+0000\n"
 "Last-Translator: Barbara Bothe <info@barbara-bothe.de>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -188,11 +188,9 @@ msgstr "Wand"
 msgid "Back Wall Color"
 msgstr "Wandfarbe"
 
-#: includes/CPT/Exposition.php:156 includes/CPT/Exposition.php:163
-#: includes/CPT/Hall.php:108 includes/CPT/Hall.php:115
-#: includes/CPT/Podium.php:95 includes/CPT/Podium.php:102
-#: includes/CPT/Booth.php:154 includes/CPT/Booth.php:161
-#: includes/CPT/Foyer.php:175 includes/CPT/Foyer.php:182
+#: includes/CPT/Exposition.php:156 includes/CPT/Hall.php:108
+#: includes/CPT/Podium.php:95 includes/CPT/Booth.php:154
+#: includes/CPT/Foyer.php:175
 msgid "Background Image"
 msgstr "Hintergrundbild"
 
@@ -263,7 +261,7 @@ msgstr "Kontakt"
 
 #: includes/CPT/Booth.php:109
 msgid "Contact Information"
-msgstr "Kontaktinformationen"
+msgstr ""
 
 #: includes/CPT/Foyer.php:125
 msgid "Content"
@@ -432,39 +430,10 @@ msgstr "https://blogs.fau.de/webworking/"
 msgid "https://github.com/RRZE-Webteam/rrze-expo"
 msgstr "https://github.com/RRZE-Webteam/rrze-expo"
 
-#: includes/CPT/Foyer.php:183
-msgid ""
-"If no background image is set, the exposition background image will be "
-"displayed."
-msgstr ""
-"Wenn kein Hintergrundbild eingestellt ist, wird das Messe-Hintergrundbild "
-"angezeigt."
-
-#: includes/CPT/Hall.php:116 includes/CPT/Podium.php:103
-msgid ""
-"If no background image is set, the foyer background image will be displayed."
-msgstr ""
-"Wenn kein Hintergrundbild eingestellt ist, wird das Foyer-Hintergrundbild "
-"angezeigt."
-
-#: includes/CPT/Booth.php:162
-msgid ""
-"If no background image is set, the hall background image will be displayed. "
-"If no hall background image is set, the foyer background image will be "
-"displayed."
-msgstr ""
-"Wenn kein Hintergrundbild eingestellt ist, wird das Messehallen-"
-"Hintergrundbild angezeigt. Wenn kein Messehallen-Hintergrundbild eingestellt "
-"ist, wird das Foyer-Hintergrundbild angezeigt."
-
 #: includes/CPT/Hall.php:97
 msgid "If no menu is set, booths will be ordered alphabetically."
 msgstr ""
 "Wenn kein Menü ausgwählt ist, werden die Messestände alphabetisch angeordnet."
-
-#: includes/CPT/Booth.php:360
-msgid "Image"
-msgstr "Bild"
 
 #: includes/Templates/single-booth.php:311
 msgid "Information Material"
@@ -831,10 +800,6 @@ msgstr ""
 msgid "Password description."
 msgstr ""
 
-#: includes/CPT/Booth.php:400
-msgid "PDF File"
-msgstr "PDF-Datei"
-
 #: includes/CPT/Booth.php:380
 msgid "PDF Flyers"
 msgstr "PDF-Flyer"
@@ -922,10 +887,6 @@ msgstr "Podium"
 #: includes/CPT/Exposition.php:126
 msgid "Postal Code"
 msgstr "PLZ"
-
-#: includes/CPT/Booth.php:415
-msgid "Preview Image"
-msgstr "Vorschau-Bild"
 
 #: includes/CPT/CPT.php:369
 msgid "Previous Booth"

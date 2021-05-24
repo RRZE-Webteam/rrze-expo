@@ -112,8 +112,8 @@ class Hall {
             'show_names'    => true,
         ]);
         $cmb_background->add_field(array(
-            'name'    => __('Background Image', 'rrze-rsvp'),
-            'desc'    => __('If no background image is set, the foyer background image will be displayed.', 'rrze-rsvp'),
+            'name'    => __('Background Image', 'rrze-expo'),
+            'desc'    => __('If no background image is set, the foyer background image will be displayed.', 'rrze-expo'),
             'id'      => 'rrze-expo-hall-background-image',
             'type'    => 'file',
             'options' => array(
