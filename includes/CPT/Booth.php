@@ -103,6 +103,51 @@ class Booth {
             'options_cb'          => [$this, 'getBoothHalls'],
         ]);
 
+        // Contact
+        $cmb_contact = new_cmb2_box([
+            'id'            => 'rrze-expo-booth-contact',
+            'title'         => __('Contact Information', 'rrze-expo'),
+            'object_types'  => ['booth'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $cmb_contact->add_field([
+            'name' => __( 'Name', 'rrze-expo' ),
+            //'description' => __( '', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-name',
+            'type' => 'text',
+        ] );
+        $cmb_contact->add_field([
+            'name' => __( 'Email Address', 'rrze-expo' ),
+            //'description' => __( '', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-email',
+            'type' => 'text_email',
+        ] );
+        $cmb_contact->add_field([
+            'name' => __( 'Website', 'rrze-expo' ),
+            //'description' => __( '', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-website',
+            'type' => 'text_url',
+        ] );
+        $cmb_contact->add_field( [
+            'name'    => __('Show Homepage on:', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'      => 'rrze-expo-booth-website-locations',
+            'type'    => 'multicheck_inline',
+            'select_all_button' => false,
+            'options'    => ['wall' => __('Back wall', 'rrze-expo'),
+                'panel' => __('Social Media Panel', 'rrze-expo')],
+        ] );
+        $cmb_contact->add_field([
+            'name' => __( 'More Info', 'rrze-expo' ),
+            //'description' => __( '', 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-contactinfo',
+            'type' => 'textarea_small',
+        ] );
+
+
+
         // Background Image
         $cmb_background = new_cmb2_box([
             'id'            => 'rrze-expo-booth-background',
@@ -113,8 +158,8 @@ class Booth {
             'show_names'    => true,
         ]);
         $cmb_background->add_field(array(
-            'name'    => __('Background Image', 'rrze-rsvp'),
-            'desc'    => __('If no background image is set, the hall background image will be displayed. If no hall background image is set, the foyer background image will be displayed.', 'rrze-rsvp'),
+            'name'    => __('Background Image', 'rrze-expo'),
+            'desc'    => __('If no background image is set, the hall background image will be displayed. If no hall background image is set, the foyer background image will be displayed.', 'rrze-expo'),
             'id'      => 'rrze-expo-booth-background-image',
             'type'    => 'file',
             'options' => array(
@@ -312,7 +357,7 @@ class Booth {
             ),
         ] );
         $cmb_rollups->add_group_field($rollup_group_id, [
-            'name'    => __('Image', 'rrze-rsvp'),
+            'name'    => __('Image', 'rrze-expo'),
             'id'      => 'file',
             'type'    => 'file',
             'options' => array(
@@ -352,7 +397,7 @@ class Booth {
             ),
         ] );
         $cmb_flyer->add_group_field($flyer_group_id, [
-            'name'    => __('PDF File', 'rrze-rsvp'),
+            'name'    => __('PDF File', 'rrze-expo'),
             'id'      => 'pdf',
             'type'    => 'file',
             'options' => array(
@@ -367,7 +412,7 @@ class Booth {
             'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
         ]);
         $cmb_flyer->add_group_field($flyer_group_id, [
-            'name'    => __('Preview Image', 'rrze-rsvp'),
+            'name'    => __('Preview Image', 'rrze-expo'),
             'id'      => 'preview',
             'type'    => 'file',
             'options' => array(
@@ -388,31 +433,13 @@ class Booth {
         // Social Media
         $cmb_social_media = new_cmb2_box([
             'id'            => 'rrze-expo-booth-social-media-box',
-            'title'         => __('Homepage and Social Media', 'rrze-expo'),
+            'title'         => __('Social Media', 'rrze-expo'),
             'object_types'  => ['booth'],
             'context'       => 'normal',
             'priority'      => 'high',
             'show_names'    => true,
         ]);
-        $cmb_social_media->add_field([
-            'name' => __( 'Homepage', 'rrze-expo' ),
-            //'description' => __( '', 'rrze-expo' ),
-            'id'   => 'rrze-expo-booth-homepage',
-            'type' => 'text_url',
-            'before' => 'https://'
-            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
-        ] );
-        $cmb_social_media->add_field( [
-            'name'    => __('Show Homepage on:', 'rrze-expo'),
-            //'desc'    => __('', 'rrze-expo'),
-            'id'      => 'rrze-expo-booth-homepage-locations',
-            'type'    => 'multicheck_inline',
-            'select_all_button' => false,
-            'options'    => ['wall' => __('Back wall', 'rrze-expo'),
-                'panel' => __('Social Media Panel', 'rrze-expo')],
-        ] );
-
-        $social_media_group_id = $cmb_social_media->add_field( [
+         $social_media_group_id = $cmb_social_media->add_field( [
             'id'          => 'rrze-expo-booth-social-media',
             'type'        => 'group',
             //'description' => __( '', 'rrze-expo' ),
@@ -427,7 +454,7 @@ class Booth {
         ] );
         $socialMedia = $constants['social-media'];
         foreach ($socialMedia as $soMeName => $soMeUrl) {
-            if ($soMeName != 'homepage') {
+            if ($soMeName != 'website') {
                 $soMeOptions[$soMeName] = ucfirst($soMeName);
             }
         }
@@ -460,7 +487,7 @@ class Booth {
         if ($template == '')
             return;
         $constants = getConstants();
-        $objects = $constants['template_elements']['template'.$template]['deco'];
+        $objects = $constants['template_elements']['booth'.$template]['deco'];
         return $objects;
     }
 
@@ -470,7 +497,7 @@ class Booth {
         if ($template == '')
             return;
         $constants = getConstants();
-        $logos = $constants['template_elements']['template'.$template]['logo'];
+        $logos = $constants['template_elements']['booth'.$template]['logo'];
         $locations = [];
         foreach ($logos as $location => $data) {
             $locations[$location] = $data['title'];
