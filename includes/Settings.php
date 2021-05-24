@@ -99,9 +99,9 @@ class Settings
         $this->optionName = getOptionName();
         $this->options = $this->getOptions();
 
-        add_action('admin_init', [$this, 'adminInit']);
-        add_action('admin_menu', [$this, 'adminMenu']);
-        add_action('admin_enqueue_scripts', [$this, 'adminEnqueueScripts']);
+        //add_action('admin_init', [$this, 'adminInit']);
+        //add_action('admin_menu', [$this, 'adminMenu']);
+        //add_action('admin_enqueue_scripts', [$this, 'adminEnqueueScripts']);
     }
 
     protected function setMenu()
