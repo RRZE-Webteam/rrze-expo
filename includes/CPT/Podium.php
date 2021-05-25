@@ -44,6 +44,7 @@ class Podium {
             'items_list'            => _x('Podiums list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'rrze-expo'),
         ];
 
+        $capabilities = CPT::makeCapabilities('exposition', 'expositions');
         $args = [
             'label' => __('Podium', 'rrze-expo'),
             'description' => __('Add and edit podium informations', 'rrze-expo'),
@@ -62,8 +63,7 @@ class Podium {
             'publicly_queryable'        => true,
             'delete_with_user'          => false,
             'show_in_rest'              => false,
-            'capability_type'           => 'podium',
-            'map_meta_cap'              => true
+            'capabilities'              => $capabilities,
         ];
 
         register_post_type('podium', $args);

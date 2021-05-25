@@ -45,6 +45,7 @@ class Booth {
             'items_list'            => _x('Booths list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'rrze-expo'),
         ];
 
+        $capabilities = CPT::makeCapabilities('exposition', 'expositions');
         $args = [
             'label' => __('Booth', 'rrze-expo'),
             'description' => __('Add and edit booth informations', 'rrze-expo'),
@@ -64,8 +65,7 @@ class Booth {
             'publicly_queryable'        => true,
             'delete_with_user'          => false,
             'show_in_rest'              => false,
-            'capability_type'           => 'booth',
-            'map_meta_cap'              => true
+            'capabilities'              => $capabilities,
         ];
 
         register_post_type('booth', $args);
