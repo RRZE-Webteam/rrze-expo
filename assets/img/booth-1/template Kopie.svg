@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Gruppe_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 4096 1080" style="display:none;" preserveAspectRatio="xMidYMin slice">
+		<g id="floor">
+			<image style="overflow:visible;" id="boden" xlink:href="8DF2609A.png"  transform="matrix(1 0 0 1 0 956)">
+			</image>
+		</g>
+		<g id="backwall">
+			<image style="overflow:visible;" id="wand" xlink:href="8DF2609E.png"  transform="matrix(1 0 0 1 1452 203)">
+			</image>
+		</g>
+		<g id="backwall-color">
+			<image style="overflow:visible;opacity:0.5;" id="wandakzent" xlink:href="8DF26099.png"  transform="matrix(1 0 0 1 1452 203)" >
+			</image>
+		</g>
+		<g id="flyer_stand">
+			<image style="overflow:visible;" id="prospekthalter" xlink:href="8DF26098.png"  transform="matrix(1 0 0 1 2614 402)">
+			</image>
+		</g>
+		<g id="table">
+			<image style="overflow:visible;" id="pultbasis" xlink:href="8DF260A6.png"  transform="matrix(1 0 0 1 1618 792)">
+			</image>
+			<image style="overflow:visible;opacity:0.5;" id="pultbasisakzent" xlink:href="8DF260A9.png"  transform="matrix(1 0 0 1 1618 792)">
+			</image>
+			<image style="overflow:visible;" id="pultplatte" xlink:href="8DF260AA.png"  transform="matrix(1 0 0 1 1611 778)">
+			</image>
+		</g>
+		<g id="rollup">
+			<image style="overflow:visible;" id="rollupplakat" xlink:href="8DF260A8.png"  transform="matrix(1 0 0 1 1088 383)">
+			</image>
+			<image style="overflow:visible;opacity:0.5;" id="rollupplakatakzent" xlink:href="8407F69D.png"  transform="matrix(1 0 0 1 1088 383)">
+			</image>
+			<image style="overflow:visible;" id="rollupframe" xlink:href="8407F693.png"  transform="matrix(1 0 0 1 1072 383)">
+			</image>
+		</g>
+		<g id="some_panel">
+			<image style="overflow:visible;" id="socialmediapanel" xlink:href="8DF2609B.png"  transform="matrix(1 0 0 1 1479 594)">
+			</image>
+			<g id="sociamediapanelglas">
+				<image style="overflow:visible;enable-background:new    ;" width="56" height="283" id="image" xlink:href="EF126CA9.png"  transform="matrix(1 0 0 1 1332 555)">
+				</image>
+			</g>
+			<g id="socialmediapanelglasakzent">
+				<image style="overflow:visible;enable-background:new    ;" width="56" height="283" id="image_2_" xlink:href="EF126CAA.png"  transform="matrix(1 0 0 1 1332 555)">
+				</image>
+			</g>
+		</g>
+		<g id="plant1">
+			<image style="overflow:visible;" id="topf" xlink:href="8407F695.png"  transform="matrix(1 0 0 1 2843 790)">
+			</image>
+			<image style="overflow:visible;" id="Palme" xlink:href="8407F697.png"  transform="matrix(1 0 0 1 2782 134)">
+			</image>
+		</g>
+
+</svg>

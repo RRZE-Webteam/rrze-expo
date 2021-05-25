@@ -1,0 +1,1249 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: RRZE-Expo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 08:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: RRZE-Webteam <webmaster@rrze.fau.de>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .."
+
+#: includes/Shortcode.php:126
+msgid "-- all --"
+msgstr ""
+
+#: includes/CPT/Booth.php:50
+msgid "Add and edit booth informations"
+msgstr ""
+
+#: includes/CPT/Exposition.php:50
+msgid "Add and edit exposition informations"
+msgstr ""
+
+#: includes/CPT/Foyer.php:50
+msgid "Add and edit foyer informations"
+msgstr ""
+
+#: includes/CPT/Hall.php:49
+msgid "Add and edit hall informations"
+msgstr ""
+
+#: includes/CPT/Podium.php:49
+msgid "Add and edit podium informations"
+msgstr ""
+
+#: includes/CPT/Booth.php:349
+msgid "Add Another Flyer"
+msgstr ""
+
+#: includes/CPT/Booth.php:405
+msgid "Add Another Item"
+msgstr ""
+
+#: includes/CPT/Booth.php:309
+msgid "Add Another Roll-up"
+msgstr ""
+
+#: includes/CPT/Podium.php:164
+msgid "Add Another Timeslot"
+msgstr ""
+
+#: includes/CPT/Booth.php:267
+msgid "Add Another Video"
+msgstr ""
+
+#: includes/CPT/Hall.php:26 includes/CPT/Podium.php:26
+#: includes/CPT/Booth.php:27 includes/CPT/Foyer.php:27
+msgid "Add New"
+msgstr ""
+
+#: includes/CPT/Booth.php:28
+msgid "Add New Booth"
+msgstr ""
+
+#: includes/CPT/Exposition.php:27 includes/CPT/Exposition.php:28
+msgid "Add New Exposition"
+msgstr ""
+
+#: includes/CPT/Foyer.php:28
+msgid "Add New Foyer"
+msgstr ""
+
+#: includes/CPT/Hall.php:27
+msgid "Add New Hall"
+msgstr ""
+
+#: includes/CPT/Booth.php:26
+msgctxt "Add New on Toolbar"
+msgid "Booth"
+msgstr ""
+
+#: includes/CPT/Exposition.php:26
+msgctxt "Add New on Toolbar"
+msgid "Exposition"
+msgstr ""
+
+#: includes/CPT/Foyer.php:26
+msgctxt "Add New on Toolbar"
+msgid "Foyer"
+msgstr ""
+
+#: includes/CPT/Hall.php:25
+msgctxt "Add New on Toolbar"
+msgid "Hall"
+msgstr ""
+
+#: includes/CPT/Podium.php:25
+msgctxt "Add New on Toolbar"
+msgid "Podium"
+msgstr ""
+
+#: includes/CPT/Podium.php:27
+msgid "Add New Podium"
+msgstr ""
+
+#: includes/CPT/Booth.php:264
+msgid ""
+"Add up to 3 video embedding urls, e.g. https://www.fau."
+"tv/webplayer/id/123456. Display: 1 - top left screen, 2- top right screen, 3 "
+"- table monitor."
+msgstr ""
+
+#: includes/CPT/Booth.php:25
+msgctxt "Admin Menu text"
+msgid "Booths"
+msgstr ""
+
+#: includes/CPT/Exposition.php:25
+msgctxt "Admin Menu text"
+msgid "Expositions"
+msgstr ""
+
+#: includes/CPT/Foyer.php:25
+msgctxt "Admin Menu text"
+msgid "Foyers"
+msgstr ""
+
+#: includes/CPT/Hall.php:24
+msgctxt "Admin Menu text"
+msgid "Halls"
+msgstr ""
+
+#: includes/CPT/Podium.php:24
+msgctxt "Admin Menu text"
+msgid "Podiums"
+msgstr ""
+
+#: config/config.php:164
+msgid "Advanced Editor"
+msgstr ""
+
+#: config/config.php:165
+msgid "Advanced Editor description."
+msgstr ""
+
+#: config/config.php:62
+msgid "Advanced Settings"
+msgstr ""
+
+#: includes/CPT/Booth.php:32
+msgid "All Booths"
+msgstr ""
+
+#: includes/CPT/Exposition.php:32
+msgid "All Expositions"
+msgstr ""
+
+#: includes/CPT/Foyer.php:32
+msgid "All Foyers"
+msgstr ""
+
+#: includes/CPT/Hall.php:31
+msgid "All Halls"
+msgstr ""
+
+#: includes/CPT/Podium.php:31
+msgid "All Podiums"
+msgstr ""
+
+#: includes/CPT/CPT.php:381
+msgid "Back to Foyer"
+msgstr ""
+
+#: includes/CPT/CPT.php:376
+msgid "Back to Hall"
+msgstr ""
+
+#: includes/CPT/Booth.php:190
+msgid "Back Wall"
+msgstr ""
+
+#: includes/CPT/Exposition.php:156 includes/CPT/Hall.php:108
+#: includes/CPT/Podium.php:95 includes/CPT/Booth.php:108
+#: includes/CPT/Foyer.php:122
+msgid "Background Image"
+msgstr ""
+
+#: includes/CPT/Exposition.php:183 includes/CPT/Hall.php:135
+#: includes/CPT/Podium.php:122 includes/CPT/Booth.php:135
+#: includes/CPT/Foyer.php:149
+msgid "Background Image Overlay"
+msgstr ""
+
+#: includes/CPT/Exposition.php:192 includes/CPT/Hall.php:144
+#: includes/CPT/Podium.php:131 includes/CPT/Booth.php:144
+#: includes/CPT/Foyer.php:158
+msgid "Background Overlay Opacity"
+msgstr ""
+
+#: config/config.php:58
+msgid "Basic Settings"
+msgstr ""
+
+#: config/config.php:202 config/config.php:208 config/config.php:214
+#: config/config.php:230 config/config.php:236 config/config.php:253
+msgid "Beschriftung"
+msgstr ""
+
+#: config/config.php:273
+msgid "Beschrifung"
+msgstr ""
+
+#: includes/CPT/Booth.php:49
+msgid "Booth"
+msgstr ""
+
+#: includes/CPT/Booth.php:172
+msgid "Booth Template"
+msgstr ""
+
+#: config/config.php:105
+msgid "Checkbox"
+msgstr ""
+
+#: config/config.php:106
+msgid "Checkbox description"
+msgstr ""
+
+#: config/config.php:176
+msgid "Choose an Image"
+msgstr ""
+
+#: includes/CPT/Booth.php:306
+msgid "Choose up to 2 roll-up images."
+msgstr ""
+
+#: includes/CPT/Booth.php:346
+msgid "Choose up to 4 PDF flyers."
+msgstr ""
+
+#: config/config.php:150
+msgid "Color"
+msgstr ""
+
+#: config/config.php:151
+msgid "Color description."
+msgstr ""
+
+#: includes/CPT/Booth.php:180
+msgid "Custom Template"
+msgstr ""
+
+#: includes/CPT/Exposition.php:189 includes/CPT/Hall.php:141
+#: includes/CPT/Podium.php:128 includes/CPT/Booth.php:141
+#: includes/CPT/Foyer.php:155
+msgid "Dark"
+msgstr ""
+
+#: includes/CPT/Booth.php:244
+msgid "Decoration Elements"
+msgstr ""
+
+#: config/config.php:137
+msgid "Dropdown"
+msgstr ""
+
+#: config/config.php:138
+msgid "Dropdown description."
+msgstr ""
+
+#: includes/CPT/Booth.php:30
+msgid "Edit Booth"
+msgstr ""
+
+#: includes/CPT/Exposition.php:30
+msgid "Edit Exposition"
+msgstr ""
+
+#: includes/CPT/Foyer.php:30
+msgid "Edit Foyer"
+msgstr ""
+
+#: includes/CPT/Hall.php:29
+msgid "Edit Hall"
+msgstr ""
+
+#: includes/CPT/Podium.php:29
+msgid "Edit Podium"
+msgstr ""
+
+#: includes/CPT/Podium.php:192
+msgid "End"
+msgstr ""
+
+#: includes/CPT/Exposition.php:101
+msgid "End Date"
+msgstr ""
+
+#: includes/Templates/single-exposition.php:74
+msgid "Enter the foyer"
+msgstr ""
+
+#: includes/CPT/Exposition.php:86
+msgid "Event Subtitle"
+msgstr ""
+
+#: includes/CPT/Exposition.php:49 includes/CPT/Hall.php:82
+#: includes/CPT/Podium.php:83 includes/CPT/Booth.php:86
+#: includes/CPT/Foyer.php:86
+msgid "Exposition"
+msgstr ""
+
+#: config/config.php:171
+msgid "File"
+msgstr ""
+
+#: config/config.php:172
+msgid "File description."
+msgstr ""
+
+#: config/config.php:356 config/config.php:414
+msgid "Flyers"
+msgstr ""
+
+#: includes/CPT/Booth.php:226
+msgid "Font Size"
+msgstr ""
+
+#: config/config.php:44
+msgid "For more information"
+msgstr ""
+
+#: config/config.php:122
+msgid "Four"
+msgstr ""
+
+#: includes/CPT/Foyer.php:49
+msgid "Foyer"
+msgstr ""
+
+#: includes/CPT/Foyer.php:100
+msgid "Foyer Menu 1"
+msgstr ""
+
+#: includes/CPT/Foyer.php:110
+msgid "Foyer Menu 2"
+msgstr ""
+
+#: includes/CPT/Exposition.php:78 includes/CPT/Hall.php:75
+#: includes/CPT/Podium.php:76 includes/CPT/Booth.php:79
+#: includes/CPT/Foyer.php:79
+msgid "General Information"
+msgstr ""
+
+#: includes/CPT/CPT.php:291
+msgid "Go to content area"
+msgstr ""
+
+#: includes/CPT/CPT.php:293
+msgid "Go to main navigation"
+msgstr ""
+
+#: includes/CPT/CPT.php:292
+msgid "Go to search"
+msgstr ""
+
+#: includes/CPT/Hall.php:48 includes/CPT/Booth.php:96
+msgid "Hall"
+msgstr ""
+
+#: includes/CPT/Hall.php:96
+msgid "Hall Menu"
+msgstr ""
+
+#: config/config.php:41
+msgid "Here comes the Context Help content."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://blogs.fau.de/webworking/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/RRZE-Webteam/rrze-expo"
+msgstr ""
+
+#: includes/CPT/Hall.php:97
+msgid "If no menu is set, booths will be ordered alphabetically."
+msgstr ""
+
+#: includes/CPT/Foyer.php:101
+msgid "If no menu is set, halls will be ordered alphabetically."
+msgstr ""
+
+#: includes/CPT/Foyer.php:111
+msgid "If no menu is set, podiums will be ordered alphabetically."
+msgstr ""
+
+#: includes/CPT/Booth.php:165
+msgid "Layout"
+msgstr ""
+
+#: includes/CPT/Exposition.php:188 includes/CPT/Hall.php:140
+#: includes/CPT/Podium.php:127 includes/CPT/Booth.php:140
+#: includes/CPT/Foyer.php:154
+msgid "Light"
+msgstr ""
+
+#: includes/CPT/Exposition.php:132
+msgid "Locality"
+msgstr ""
+
+#: includes/CPT/Booth.php:281
+msgid "Location"
+msgstr ""
+
+#: config/config.php:307 config/config.php:384
+msgid "Logo on Back Wall"
+msgstr ""
+
+#: config/config.php:314 config/config.php:391
+msgid "Logo on Table"
+msgstr ""
+
+#: config/config.php:111
+msgid "Multiple checkbox"
+msgstr ""
+
+#: config/config.php:112
+msgid "Multiple checkbox description."
+msgstr ""
+
+#: includes/CPT/Booth.php:29
+msgid "New Booth"
+msgstr ""
+
+#: includes/CPT/Exposition.php:29
+msgid "New Exposition"
+msgstr ""
+
+#: includes/CPT/Foyer.php:29
+msgid "New Foyer"
+msgstr ""
+
+#: includes/CPT/Hall.php:28
+msgid "New Hall"
+msgstr ""
+
+#: includes/CPT/Podium.php:28
+msgid "New Podium"
+msgstr ""
+
+#: includes/CPT/CPT.php:371
+msgid "Next Booth"
+msgstr ""
+
+#: config/config.php:132 config/config.php:143
+msgid "No"
+msgstr ""
+
+#: includes/CPT/Booth.php:35
+msgid "No Booths found in Trash."
+msgstr ""
+
+#: includes/CPT/Booth.php:34
+msgid "No Booths found."
+msgstr ""
+
+#: includes/CPT/Exposition.php:35
+msgid "No Expositions found in Trash."
+msgstr ""
+
+#: includes/CPT/Exposition.php:34
+msgid "No Expositions found."
+msgstr ""
+
+#: includes/CPT/Foyer.php:35
+msgid "No Foyers found in Trash."
+msgstr ""
+
+#: includes/CPT/Foyer.php:34
+msgid "No Foyers found."
+msgstr ""
+
+#: includes/CPT/Hall.php:34
+msgid "No Halls found in Trash."
+msgstr ""
+
+#: includes/CPT/Hall.php:33
+msgid "No Halls found."
+msgstr ""
+
+#: includes/CPT/Podium.php:34
+msgid "No Podiums found in Trash."
+msgstr ""
+
+#: includes/CPT/Podium.php:33
+msgid "No Podiums found."
+msgstr ""
+
+#: config/config.php:86
+msgid "Number Input"
+msgstr ""
+
+#: config/config.php:87
+msgid "Number input description."
+msgstr ""
+
+#: config/config.php:119
+msgid "One"
+msgstr ""
+
+#: config/config.php:225
+msgid "Order"
+msgstr ""
+
+#: includes/CPT/Exposition.php:108
+msgid "Organisation"
+msgstr ""
+
+#: includes/CPT/Exposition.php:114
+msgid "Organisation 2"
+msgstr ""
+
+#: includes/Templates/single-exposition.php:45
+msgid "Organizer"
+msgstr ""
+
+#: config/config.php:342 includes/Templates/single-booth.php:53
+msgid "Our Talks"
+msgstr ""
+
+#: includes/CPT/Booth.php:36
+msgctxt ""
+"Overrides the “Featured Image” phrase for this post type. Added in 4.3"
+msgid "Booth Logo"
+msgstr ""
+
+#: includes/CPT/Exposition.php:36
+msgctxt ""
+"Overrides the “Featured Image” phrase for this post type. Added in 4.3"
+msgid "Exposition Logo"
+msgstr ""
+
+#: includes/CPT/Foyer.php:36
+msgctxt ""
+"Overrides the “Featured Image” phrase for this post type. Added in 4.3"
+msgid "Foyer Logo"
+msgstr ""
+
+#: includes/CPT/Hall.php:35
+msgctxt ""
+"Overrides the “Featured Image” phrase for this post type. Added in 4.3"
+msgid "Hall Logo"
+msgstr ""
+
+#: includes/CPT/Podium.php:35
+msgctxt ""
+"Overrides the “Featured Image” phrase for this post type. Added in 4.3"
+msgid "Podium Logo"
+msgstr ""
+
+#: includes/CPT/Booth.php:41
+msgctxt ""
+"Overrides the “Insert into post”/”Insert into page” phrase (used when "
+"inserting media into a post). Added in 4.4"
+msgid "Insert into booth"
+msgstr ""
+
+#: includes/CPT/Exposition.php:41
+msgctxt ""
+"Overrides the “Insert into post”/”Insert into page” phrase (used when "
+"inserting media into a post). Added in 4.4"
+msgid "Insert into exposition"
+msgstr ""
+
+#: includes/CPT/Foyer.php:41
+msgctxt ""
+"Overrides the “Insert into post”/”Insert into page” phrase (used when "
+"inserting media into a post). Added in 4.4"
+msgid "Insert into foyer"
+msgstr ""
+
+#: includes/CPT/Hall.php:40
+msgctxt ""
+"Overrides the “Insert into post”/”Insert into page” phrase (used when "
+"inserting media into a post). Added in 4.4"
+msgid "Insert into hall"
+msgstr ""
+
+#: includes/CPT/Podium.php:40
+msgctxt ""
+"Overrides the “Insert into post”/”Insert into page” phrase (used when "
+"inserting media into a post). Added in 4.4"
+msgid "Insert into podium"
+msgstr ""
+
+#: includes/CPT/Booth.php:38
+msgctxt ""
+"Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
+msgid "Remove booth logo"
+msgstr ""
+
+#: includes/CPT/Exposition.php:38
+msgctxt ""
+"Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
+msgid "Remove exposition logo"
+msgstr ""
+
+#: includes/CPT/Foyer.php:38
+msgctxt ""
+"Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
+msgid "Remove foyer logo"
+msgstr ""
+
+#: includes/CPT/Hall.php:37
+msgctxt ""
+"Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
+msgid "Remove hall logo"
+msgstr ""
+
+#: includes/CPT/Podium.php:37
+msgctxt ""
+"Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
+msgid "Remove podium logo"
+msgstr ""
+
+#: includes/CPT/Booth.php:37
+msgctxt ""
+"Overrides the “Set featured image” phrase for this post type. Added in 4.3"
+msgid "Set booth logo"
+msgstr ""
+
+#: includes/CPT/Exposition.php:37
+msgctxt ""
+"Overrides the “Set featured image” phrase for this post type. Added in 4.3"
+msgid "Set exposition Logo"
+msgstr ""
+
+#: includes/CPT/Foyer.php:37
+msgctxt ""
+"Overrides the “Set featured image” phrase for this post type. Added in 4.3"
+msgid "Set foyer Logo"
+msgstr ""
+
+#: includes/CPT/Hall.php:36
+msgctxt ""
+"Overrides the “Set featured image” phrase for this post type. Added in 4.3"
+msgid "Set hall logo"
+msgstr ""
+
+#: includes/CPT/Podium.php:36
+msgctxt ""
+"Overrides the “Set featured image” phrase for this post type. Added in 4.3"
+msgid "Set podium logo"
+msgstr ""
+
+#: includes/CPT/Booth.php:42
+msgctxt ""
+"Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
+"when viewing media attached to a post). Added in 4.4"
+msgid "Uploaded to this booth"
+msgstr ""
+
+#: includes/CPT/Exposition.php:42
+msgctxt ""
+"Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
+"when viewing media attached to a post). Added in 4.4"
+msgid "Uploaded to this exposition"
+msgstr ""
+
+#: includes/CPT/Foyer.php:42
+msgctxt ""
+"Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
+"when viewing media attached to a post). Added in 4.4"
+msgid "Uploaded to this foyer"
+msgstr ""
+
+#: includes/CPT/Hall.php:41
+msgctxt ""
+"Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
+"when viewing media attached to a post). Added in 4.4"
+msgid "Uploaded to this hall"
+msgstr ""
+
+#: includes/CPT/Podium.php:41
+msgctxt ""
+"Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
+"when viewing media attached to a post). Added in 4.4"
+msgid "Uploaded to this podium"
+msgstr ""
+
+#: includes/CPT/Booth.php:39
+msgctxt ""
+"Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
+msgid "Use as booth logo"
+msgstr ""
+
+#: includes/CPT/Exposition.php:39
+msgctxt ""
+"Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
+msgid "Use as exposition logo"
+msgstr ""
+
+#: includes/CPT/Foyer.php:39
+msgctxt ""
+"Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
+msgid "Use as foyer logo"
+msgstr ""
+
+#: includes/CPT/Hall.php:38
+msgctxt ""
+"Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
+msgid "Use as hall logo"
+msgstr ""
+
+#: includes/CPT/Podium.php:38
+msgctxt ""
+"Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
+msgid "Use as podium logo"
+msgstr ""
+
+#: config/config.php:43
+msgid "Overview"
+msgstr ""
+
+#: config/config.php:367 config/config.php:422
+msgid "Owl"
+msgstr ""
+
+#: config/config.php:157
+msgid "Password"
+msgstr ""
+
+#: config/config.php:158
+msgid "Password description."
+msgstr ""
+
+#: includes/CPT/Booth.php:337
+msgid "PDF Flyers"
+msgstr ""
+
+#: config/config.php:363
+msgid "Plants left side"
+msgstr ""
+
+#: config/config.php:364 config/config.php:420
+msgid "Plants right side"
+msgstr ""
+
+#: includes/CPT/Booth.php:211
+msgid ""
+"Please make shure there is enough contrast between font and backwall color."
+msgstr ""
+
+#: includes/CPT/Hall.php:86 includes/CPT/Hall.php:100
+#: includes/CPT/Podium.php:87 includes/CPT/Podium.php:221
+#: includes/CPT/Booth.php:90 includes/CPT/Booth.php:100
+#: includes/CPT/Booth.php:285 includes/CPT/Booth.php:421
+#: includes/CPT/Foyer.php:90 includes/CPT/Foyer.php:104
+#: includes/CPT/Foyer.php:114
+msgid "Please select"
+msgstr ""
+
+#: rrze-expo.php:134
+#, php-format
+msgid "Plugins: %1$s: %2$s"
+msgstr ""
+
+#: includes/CPT/Podium.php:48
+msgid "Podium"
+msgstr ""
+
+#: includes/CPT/Booth.php:23
+msgctxt "Post type general name"
+msgid "Booths"
+msgstr ""
+
+#: includes/CPT/Exposition.php:23
+msgctxt "Post type general name"
+msgid "Expositions"
+msgstr ""
+
+#: includes/CPT/Foyer.php:23
+msgctxt "Post type general name"
+msgid "Foyers"
+msgstr ""
+
+#: includes/CPT/Hall.php:22
+msgctxt "Post type general name"
+msgid "Halls"
+msgstr ""
+
+#: includes/CPT/Podium.php:22
+msgctxt "Post type general name"
+msgid "Podiums"
+msgstr ""
+
+#: includes/CPT/Booth.php:24
+msgctxt "Post type singular name"
+msgid "Booth"
+msgstr ""
+
+#: includes/CPT/Exposition.php:24
+msgctxt "Post type singular name"
+msgid "Exposition"
+msgstr ""
+
+#: includes/CPT/Foyer.php:24
+msgctxt "Post type singular name"
+msgid "Foyer"
+msgstr ""
+
+#: includes/CPT/Hall.php:23
+msgctxt "Post type singular name"
+msgid "Hall"
+msgstr ""
+
+#: includes/CPT/Podium.php:23
+msgctxt "Post type singular name"
+msgid "Podium"
+msgstr ""
+
+#: includes/CPT/Exposition.php:126
+msgid "Postal Code"
+msgstr ""
+
+#: includes/CPT/CPT.php:362
+msgid "Previous Booth"
+msgstr ""
+
+#: config/config.php:127
+msgid "Radio Button"
+msgstr ""
+
+#: config/config.php:128
+msgid "Radio button description."
+msgstr ""
+
+#: includes/Templates/single-foyer.php:49
+#: includes/Templates/single-foyer.php:51
+#: includes/Templates/single-booth.php:186
+#: includes/Templates/single-booth.php:188
+#: includes/Templates/single-hall.php:42 includes/Templates/single-hall.php:44
+#: includes/Templates/single-exposition.php:79
+#: includes/Templates/single-exposition.php:81
+#: includes/Templates/single-podium.php:64
+#: includes/Templates/single-podium.php:66
+msgid "Read more"
+msgstr ""
+
+#: includes/CPT/Podium.php:218
+msgid "Related Booth"
+msgstr ""
+
+#: includes/CPT/Booth.php:350
+msgid "Remove Flyer"
+msgstr ""
+
+#: includes/CPT/Booth.php:406
+msgid "Remove Item"
+msgstr ""
+
+#: includes/CPT/Booth.php:310
+msgid "Remove Roll-up"
+msgstr ""
+
+#: includes/CPT/Podium.php:165
+msgid "Remove Timeslot"
+msgstr ""
+
+#: includes/CPT/Booth.php:268
+msgid "Remove Video"
+msgstr ""
+
+#: config/config.php:349 config/config.php:407
+msgid "Roll Up"
+msgstr ""
+
+#: includes/CPT/Booth.php:297
+msgid "Rollups"
+msgstr ""
+
+#. Name of the plugin
+#: config/config.php:23 config/config.php:24
+msgid "RRZE Expo"
+msgstr ""
+
+#: config/config.php:27
+msgid "RRZE Expo Settings"
+msgstr ""
+
+#. Author of the plugin
+msgid "RRZE Webteam"
+msgstr ""
+
+#: config/config.php:44
+msgid "RRZE Webteam on Github"
+msgstr ""
+
+#: includes/CPT/Booth.php:43
+msgctxt ""
+"Screen reader text for the filter links heading on the post type listing "
+"screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter booths list"
+msgstr ""
+
+#: includes/CPT/Exposition.php:43
+msgctxt ""
+"Screen reader text for the filter links heading on the post type listing "
+"screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter expositions list"
+msgstr ""
+
+#: includes/CPT/Foyer.php:43
+msgctxt ""
+"Screen reader text for the filter links heading on the post type listing "
+"screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter foyers list"
+msgstr ""
+
+#: includes/CPT/Hall.php:42
+msgctxt ""
+"Screen reader text for the filter links heading on the post type listing "
+"screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter halls list"
+msgstr ""
+
+#: includes/CPT/Podium.php:42
+msgctxt ""
+"Screen reader text for the filter links heading on the post type listing "
+"screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
+msgid "Filter podiums list"
+msgstr ""
+
+#: includes/CPT/Booth.php:45
+msgctxt ""
+"Screen reader text for the items list heading on the post type listing "
+"screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Booths list"
+msgstr ""
+
+#: includes/CPT/Exposition.php:45
+msgctxt ""
+"Screen reader text for the items list heading on the post type listing "
+"screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Expositions list"
+msgstr ""
+
+#: includes/CPT/Foyer.php:45
+msgctxt ""
+"Screen reader text for the items list heading on the post type listing "
+"screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Foyers list"
+msgstr ""
+
+#: includes/CPT/Hall.php:44
+msgctxt ""
+"Screen reader text for the items list heading on the post type listing "
+"screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Halls list"
+msgstr ""
+
+#: includes/CPT/Podium.php:44
+msgctxt ""
+"Screen reader text for the items list heading on the post type listing "
+"screen. Default “Posts list”/”Pages list”. Added in 4.4"
+msgid "Podiums list"
+msgstr ""
+
+#: includes/CPT/Booth.php:44
+msgctxt ""
+"Screen reader text for the pagination heading on the post type listing "
+"screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Booths list navigation"
+msgstr ""
+
+#: includes/CPT/Exposition.php:44
+msgctxt ""
+"Screen reader text for the pagination heading on the post type listing "
+"screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Expositions list navigation"
+msgstr ""
+
+#: includes/CPT/Foyer.php:44
+msgctxt ""
+"Screen reader text for the pagination heading on the post type listing "
+"screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Foyers list navigation"
+msgstr ""
+
+#: includes/CPT/Hall.php:43
+msgctxt ""
+"Screen reader text for the pagination heading on the post type listing "
+"screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Halls list navigation"
+msgstr ""
+
+#: includes/CPT/Podium.php:43
+msgctxt ""
+"Screen reader text for the pagination heading on the post type listing "
+"screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
+msgid "Podiums list navigation"
+msgstr ""
+
+#: includes/CPT/Booth.php:33
+msgid "Search Booths"
+msgstr ""
+
+#: includes/CPT/Exposition.php:33
+msgid "Search Expositions"
+msgstr ""
+
+#: includes/CPT/Foyer.php:33
+msgid "Search Foyers"
+msgstr ""
+
+#: includes/CPT/Hall.php:32
+msgid "Search Halls"
+msgstr ""
+
+#: includes/CPT/Podium.php:32
+msgid "Search Podiums"
+msgstr ""
+
+#: config/config.php:365 config/config.php:421
+msgid "Seats left side"
+msgstr ""
+
+#: config/config.php:366
+msgid "Seats right side"
+msgstr ""
+
+#: includes/CPT/Podium.php:213
+msgid "Short description"
+msgstr ""
+
+#: includes/CPT/CPT.php:289
+msgid "Skiplinks"
+msgstr ""
+
+#: config/config.php:321 config/config.php:398 includes/CPT/Booth.php:393
+msgid "Social Media Panel"
+msgstr ""
+
+#: includes/CPT/Booth.php:417
+msgid "Social Media Type"
+msgstr ""
+
+#: includes/CPT/Podium.php:177
+msgid "Start"
+msgstr ""
+
+#: includes/CPT/Exposition.php:94
+msgid "Start Date"
+msgstr ""
+
+#: includes/CPT/Exposition.php:120
+msgid "Street"
+msgstr ""
+
+#: includes/CPT/Booth.php:290
+msgid "Table"
+msgstr ""
+
+#: includes/CPT/Booth.php:191
+msgid "Table Front"
+msgstr ""
+
+#: includes/CPT/Booth.php:177
+msgid "Template 1"
+msgstr ""
+
+#: includes/CPT/Booth.php:178
+msgid "Template 2"
+msgstr ""
+
+#: includes/CPT/Booth.php:179
+msgid "Template 3"
+msgstr ""
+
+#: config/config.php:77
+msgid "Text Input"
+msgstr ""
+
+#: config/config.php:78
+msgid "Text input description."
+msgstr ""
+
+#: config/config.php:79
+msgid "Text Input placeholder"
+msgstr ""
+
+#: config/config.php:99
+msgid "Textarea description"
+msgstr ""
+
+#: config/config.php:98
+msgid "Textarea Input"
+msgstr ""
+
+#: config/config.php:100
+msgid "Textarea placeholder"
+msgstr ""
+
+#: includes/CPT/Booth.php:40
+msgctxt ""
+"The post type archive label used in nav menus. Default “Post Archives”. "
+"Added in 4.4"
+msgid "Booth archives"
+msgstr ""
+
+#: includes/CPT/Exposition.php:40
+msgctxt ""
+"The post type archive label used in nav menus. Default “Post Archives”. "
+"Added in 4.4"
+msgid "Exposition archives"
+msgstr ""
+
+#: includes/CPT/Foyer.php:40
+msgctxt ""
+"The post type archive label used in nav menus. Default “Post Archives”. "
+"Added in 4.4"
+msgid "Foyer archives"
+msgstr ""
+
+#: includes/CPT/Hall.php:39
+msgctxt ""
+"The post type archive label used in nav menus. Default “Post Archives”. "
+"Added in 4.4"
+msgid "Hall archives"
+msgstr ""
+
+#: includes/CPT/Podium.php:39
+msgctxt ""
+"The post type archive label used in nav menus. Default “Post Archives”. "
+"Added in 4.4"
+msgid "Podium archives"
+msgstr ""
+
+#: rrze-expo.php:78
+#, php-format
+msgid ""
+"The server is running PHP version %1$s. The Plugin requires at least PHP "
+"version %2$s."
+msgstr ""
+
+#: rrze-expo.php:81
+#, php-format
+msgid ""
+"The server is running WordPress version %1$s. The Plugin requires at least "
+"WordPress version %2$s."
+msgstr ""
+
+#: config/config.php:121
+msgid "Three"
+msgstr ""
+
+#: includes/CPT/Podium.php:152 includes/Templates/single-podium.php:30
+msgid "Timetable"
+msgstr ""
+
+#: includes/CPT/Podium.php:172
+msgid "Title"
+msgstr ""
+
+#: includes/CPT/Booth.php:288
+msgid "Top left"
+msgstr ""
+
+#: includes/CPT/Booth.php:289
+msgid "Top right"
+msgstr ""
+
+#: config/config.php:120
+msgid "Two"
+msgstr ""
+
+#: includes/CPT/Booth.php:427
+msgid "User Name"
+msgstr ""
+
+#: config/config.php:328 config/config.php:404
+msgid "Video Screen 1"
+msgstr ""
+
+#: config/config.php:335 config/config.php:405
+msgid "Video Screen 2"
+msgstr ""
+
+#: includes/CPT/Podium.php:207 includes/CPT/Booth.php:275
+msgid "Video URL"
+msgstr ""
+
+#: includes/CPT/Booth.php:255
+msgid "Videos and Video Conferences"
+msgstr ""
+
+#: includes/CPT/Booth.php:31
+msgid "View Booth"
+msgstr ""
+
+#: includes/CPT/Exposition.php:31
+msgid "View Exposition"
+msgstr ""
+
+#: includes/CPT/Foyer.php:31
+msgid "View Foyer"
+msgstr ""
+
+#: includes/CPT/Hall.php:30
+msgid "View Hall"
+msgstr ""
+
+#: includes/CPT/Podium.php:30
+msgid "View Podium"
+msgstr ""
+
+#: config/config.php:220 config/config.php:244 config/config.php:260
+msgid "Wert 1"
+msgstr ""
+
+#: config/config.php:221 config/config.php:248 config/config.php:264
+msgid "Wert 2"
+msgstr ""
+
+#: config/config.php:268
+msgid "Wert 3"
+msgstr ""
+
+#. Description of the plugin
+msgid "WordPress plugin for virtual events, expositions and congresses"
+msgstr ""
+
+#: config/config.php:131 config/config.php:142
+msgid "Yes"
+msgstr ""
