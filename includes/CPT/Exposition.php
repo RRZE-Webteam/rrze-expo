@@ -45,6 +45,7 @@ class Exposition {
             'items_list'            => _x('Expositions list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'rrze-expo'),
         ];
 
+        $capabilities = CPT::makeCapabilities('exposition', 'expositions');
         $args = [
             'label' => __('Exposition', 'rrze-expo'),
             'description' => __('Add and edit exposition informations', 'rrze-expo'),
@@ -63,8 +64,7 @@ class Exposition {
             'publicly_queryable'        => true,
             'delete_with_user'          => false,
             'show_in_rest'              => false,
-            'capability_type'           => 'exposition',
-            'map_meta_cap'              => true
+            'capabilities'              => $capabilities,
         ];
 
         register_post_type('exposition', $args);
