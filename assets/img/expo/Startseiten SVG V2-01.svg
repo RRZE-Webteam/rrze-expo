@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 4096 1080" style="enable-background:new 0 0 4096 1080;" xml:space="preserve">
+<style type="text/css">
+	.schildakzent{fill:#FFFFFF;}
+	.fahnenakzent1{fill:#FFFFFF;}
+	.fahnenakzent2{fill:#FFFFFF;}
+	.fahnenakzent3{fill:#FFFFFF;}
+	.st0{opacity:0.5;}
+</style>
+<image style="overflow:visible;enable-background:new    ;" width="4096" height="124" id="boden" xlink:href="D8C06BD6.png"  transform="matrix(1 0 0 1 0 956)">
+</image>
+<image style="overflow:visible;enable-background:new    ;" width="754" height="27" id="querstreben" xlink:href="D8C06BDA.png"  transform="matrix(1 0 0 1 2833 393)">
+</image>
+<g id="fahne3">
+	
+		<image style="overflow:visible;enable-background:new    ;" width="200" height="529" id="image" xlink:href="D8C06BDD.png"  transform="matrix(1 0 0 1 3362 29)">
+	</image>
+</g>
+<g id="fahne2">
+	
+		<image style="overflow:visible;enable-background:new    ;" width="200" height="529" id="image-2" xlink:href="D8C06BDE.png"  transform="matrix(1 0 0 1 3100 29)">
+	</image>
+</g>
+<g id="fahne1">
+	
+		<image style="overflow:visible;enable-background:new    ;" width="199" height="529" id="image-3" xlink:href="D8C06BDC.png"  transform="matrix(1 0 0 1 2833 29)">
+	</image>
+</g>
+<g id="fahne3akzent" class="st0">
+	<g>
+		<path class="fahnenakzent3" d="M3562,558c-66.8,0-133.4,0-200,0c0-176.3,0-352.6,0-529c66.7,0,133.4,0,200,0
+			C3562,205.3,3562,381.6,3562,558z"/>
+	</g>
+</g>
+<g id="fahne2akzent" class="st0">
+	<g>
+		<path class="fahnenakzent2" d="M3300,558c-66.8,0-133.4,0-200,0c0-176.3,0-352.6,0-529c66.7,0,133.4,0,200,0
+			C3300,205.3,3300,381.6,3300,558z"/>
+	</g>
+</g>
+<g id="fahne1akzent" class="st0">
+	<g>
+		<path class="fahnenakzent1" d="M3032,558c-66.5,0-132.7,0-199,0c0-176.3,0-352.6,0-529c66.3,0,132.7,0,199,0
+			C3032,205.3,3032,381.6,3032,558z"/>
+	</g>
+</g>
+<image style="overflow:visible;enable-background:new    ;" width="766" height="761" id="fahnenmast" xlink:href="D8C06BDB.png"  transform="matrix(1 0 0 1 2832 17)">
+</image>
+<g id="schildflaeche">
+	
+		<image style="overflow:visible;enable-background:new    ;" width="969" height="468" id="image-4" xlink:href="D8C06BD5.png"  transform="matrix(1 0 0 1 1628 284)">
+	</image>
+</g>
+<g id="schildflaecheakzent" class="st0">
+	<g>
+		<path class="schildakzent" d="M2597,752c-323.2,0-646.1,0-969,0c0-156,0-312,0-468c323,0,646,0,969,0C2597,440,2597,596,2597,752z
+			"/>
+	</g>
+</g>
+<image style="overflow:visible;enable-background:new    ;" width="1113" height="774" id="schildgestell" xlink:href="D8C06BD7.png"  transform="matrix(1 0 0 1 1554 195)">
+</image>
+<image style="overflow:visible;enable-background:new    ;" width="612" height="220" id="banklinks" xlink:href="D8C06BD4.png"  transform="matrix(1 0 0 1 829 773)">
+</image>
+<image style="overflow:visible;enable-background:new    ;" width="617" height="220" id="bankrechts" xlink:href="53CF9649.png"  transform="matrix(1 0 0 1 2775 773)">
+</image>
+</svg>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) -->
+<svg version="1.1" id="Gruppe_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 4096 1080" style="display:none;" preserveAspectRatio="xMidYMin slice">
+	<defs>
+		<symbol id="floor">
+			<image style="overflow:visible;enable-background:new;" width="4096" height="124" id="boden" xlink:href="D8C06BD6.png" transform="matrix(1 0 0 1 0 956)">
+			</image>
+		</symbol>
+		<symbol id="panel">
+			<image style="overflow:visible;enable-background:new;" width="969" height="468" id="schildflaeche" xlink:href="D8C06BD5.png" transform="translate(75 90)">
+				</image>
+			<rect class="schildakzent" width="969" height="468" fill="#fff" style="opacity:0.9;" transform="translate(75 90)"/>
+			<image style="overflow:visible;enable-background:new;" width="1113" height="774" id="schildgestell" xlink:href="D8C06BD7.png">
+			</image>
+		</symbol>
+		<symbol id="flag">
+			<image style="overflow:visible;enable-background:new;" width="225" height="27" id="querstrebe" xlink:href="querstrebe.png" transform="translate(1 400)">
+			</image>
+			<image style="overflow:visible;enable-background:new;" width="199" height="529" id="fahne" xlink:href="fahne.png" transform="translate(3)">
+			</image>
+			<rect class="fahnenakzent" width="199" height="529" fill="#fff" style="opacity:0.5;" transform="translate(3)"/>
+			<image style="overflow:visible;enable-background:new;" width="235" height="761" id="fahnenmast" xlink:href="fahnenmast.png" transform="translate(0)">
+			</image>
+		</symbol>
+		<symbol id="bench">
+			<image style="overflow:visible;enable-background:new;" width="612" height="220" id="bank" xlink:href="D8C06BD4.png" transform="">
+			</image>
+		</symbol>
+	</defs>
+</svg>

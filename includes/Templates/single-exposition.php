@@ -5,6 +5,7 @@ namespace RRZE\Expo;
 defined('ABSPATH') || exit;
 
 use RRZE\Expo\CPT\CPT;
+use function RRZE\Expo\Config\getConstants;
 
 CPT::expoHeader();
 ?>
@@ -23,8 +24,31 @@ CPT::expoHeader();
             'posts_per_page'   => 1,
             'fields'        => 'ids'
         ]);
+        $constants = getConstants();
         ?>
         <div id="rrze-expo-exposition" class="exposition" style="background-image: url('<?php echo $backgroundImage;?>'); color: #000;">
+            <svg version="1.1" class="expo-exposition" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use class="floor" xlink:href="#floor" />
+                <?php
+                for ($i = 1; $i <= 3; $i++) {
+                    $flag = CPT::getMeta($meta, 'rrze-expo-exposition-flag' . $i);
+                    if ($flag != '') {
+                        $flagSettings = $constants['template_elements']['exposition']['flag' . $i];
+                        echo ' <use xlink:href="#flag" class="flag-'. $i . '" transform="translate(' . $flagSettings['x'] . ' ' . $flagSettings['y'] . ') scale(.8)"/>';
+                        echo '<foreignObject class="flag-content" width="' . ($flagSettings['width'] * .8) . '" height="' . ($flagSettings['height'] * .76) . '" x="' . ($flagSettings['x'] + 2) . '" y="' . ($flagSettings['y'] + 21) . '"><a href="' . $flag . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $flag . '" style=" height: 100%; object-fit: contain; object-position: 50% 0;"/></a></foreignObject>';
+                    }
+                }
+                $panelSettings = $constants['template_elements']['exposition']['panel'];
+                $panelText = CPT::getMeta($meta, 'rrze-expo-exposition-panel-content');
+                echo '<use class="panel" xlink:href="#panel" transform="translate(1300 240) scale(.95)"/>
+                    <foreignObject class="main-panel" x="'. ($panelSettings['x'] + 82).'" y="'. ($panelSettings['y'] + 94) .'" width="'. ($panelSettings['width'] * .92).'" height="'. ($panelSettings['height'] * .92).'">
+                        <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . $panelText . '</div></body>
+                    </foreignObject>';
+                ?>
+
+                <use class="bench-1" xlink:href="#bench" transform="translate(990 840) scale(.8)"/>
+                <use class="bench-2" xlink:href="#bench" transform="translate(2950 860) scale(-.8 .8)" />
+            </svg>
         <?php
 
         // Hidden Structured Data

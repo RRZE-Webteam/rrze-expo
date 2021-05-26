@@ -135,6 +135,8 @@ class CPT
             case 'foyer':
                 $templateDir = '/rrze-expo/assets/img/foyer/';
                 break;
+            case 'exposition':
+                $templateDir = '/rrze-expo/assets/img/expo/';
         }
         $file = WP_PLUGIN_DIR . $templateDir . 'template.svg';
         if ($file) {
@@ -165,7 +167,7 @@ class CPT
 
     public function cssToFooter() {
         global $post;
-        if (!in_array($post->post_type, ['booth', 'hall', 'podium', 'foyer', 'exposition']))
+        if (!$post || !in_array($post->post_type, ['booth', 'hall', 'podium', 'foyer', 'exposition']))
             return;
         $meta = get_post_meta($post->ID);
 

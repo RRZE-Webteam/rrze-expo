@@ -64,6 +64,7 @@ class Podium {
             'delete_with_user'          => false,
             'show_in_rest'              => false,
             'capabilities'              => $capabilities,
+            'map_meta_cap'              => true,
         ];
 
         register_post_type('podium', $args);
