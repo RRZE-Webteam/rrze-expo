@@ -208,5 +208,42 @@ class Exposition {
                 '1.0' => '100%'],
         ]);
 
+        // Info
+        $cmb_elements = new_cmb2_box([
+            'id'            => 'rrze-expo-exposition-elements',
+            'title'         => __('Information Elements', 'rrze-expo'),
+            'object_types'  => ['exposition'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $cmb_elements->add_field([
+            'name'      => __('Welcome Panel Content', 'rrze-expo'),
+            'id'        => 'rrze-expo-exposition-panel-content',
+            'type'      => 'wysiwyg',
+            'default'          => '',
+            /*'options' => [
+                'teeny' => true,
+            ],*/
+        ]);
+        for ($i=1; $i<4; $i++) {
+            $cmb_elements->add_field([
+                'name'    => __('Flag', 'rrze-expo') . ' ' . $i,
+                'id'      => 'rrze-expo-exposition-flag'.$i,
+                'type'    => 'file',
+                'options' => array(
+                    'url' => false, // Hide the text input for the url
+                ),
+                // query_args are passed to wp.media's library query.
+                'query_args' => array(
+                    'type' => array(
+                        'image/gif',
+                        'image/jpeg',
+                        'image/png',
+                    ),
+                ),
+                'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+            ]);
+        }
     }
 }

@@ -520,6 +520,32 @@ function getConstants() {
                     'height' => '',
                 ],
             ],
+            'exposition' => [
+                'panel' => [
+                    'x' => 1300,
+                    'y' => 240,
+                    'width' => 969,
+                    'height' => 468,
+                ],
+                'flag1' => [
+                    'x' => 2440,
+                    'y' => 210,
+                    'width' => 199,
+                    'height' => 529,
+                ],
+                'flag2' => [
+                    'x' => 2650,
+                    'y' => 210,
+                    'width' => 199,
+                    'height' => 529,
+                ],
+                'flag3' => [
+                    'x' => 2860,
+                    'y' => 210,
+                    'width' => 199,
+                    'height' => 529,
+                ],
+            ],
         ],
     ];
 }

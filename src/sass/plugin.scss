@@ -233,7 +233,7 @@ Plugin Style
             content: "";
         }
     }
-    .exposition, .hall, .podium {
+    .hall, .podium {
         padding: 10px;
         @media screen and (min-width: 37.5em) {
             padding: 30px;
@@ -374,6 +374,15 @@ Plugin Style
 
 #rrze-expo-foyer {
     svg.expo-foyer {
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+#rrze-expo-exposition {
+    svg.expo-exposition {
         width: 100%;
         height: 100%;
         display: block;
