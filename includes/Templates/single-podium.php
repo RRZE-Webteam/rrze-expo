@@ -31,32 +31,40 @@ CPT::expoHeader();
                 <?php
                     $timeslots = CPT::getMeta($meta, 'rrze-expo-podium-timeslots');
                     //var_dump($timeslots);
-                    // group by day
-                    $i = 0;
-                    foreach ($timeslots as $timeslot) {
-                        $startdateYmd = date('Y-m-d', $timeslot['start']);
-                        $startdateTimestamp = strtotime($startdateYmd);
-                        $timeslotsGrouped[$startdateTimestamp][$i]['starttime'] = date('H:i', $timeslot['start']);
-                        $timeslotsGrouped[$startdateTimestamp][$i]['endtime'] = date('H:i', $timeslot['end']);
-                        $timeslotsGrouped[$startdateTimestamp][$i]['title'] = $timeslot['title'];
-                        $timeslotsGrouped[$startdateTimestamp][$i]['url'] = $timeslot['url'];
-                        $timeslotsGrouped[$startdateTimestamp][$i]['booth'] = $timeslot['booth'];
-                        $i++;
-                    }
-                    //var_dump($timeslotsGrouped);
-                    foreach ($timeslotsGrouped as $day => $timeslotDay) {
-                        echo '<h3>'.date('d.m.Y', $startdateTimestamp).'</h3>';
-                        echo '<table>';
-                        foreach ($timeslotDay as $timeslotDetails) {
-                            echo '<tr>';
-                            echo '<td>'.$timeslotDetails['starttime'].' - '.$timeslotDetails['endtime'].'</td>';
-                            echo '<td><span class="talk-title">' . $timeslotDetails['title'] . '</span>';
-                            if (isset($timeslotDetails['booth'])) {
-                                echo '<br /><a href="'.get_permalink($timeslotDetails['booth']).'">'. get_the_title($timeslotDetails['booth']).'</a>';
+                    if ($timeslots == '') {
+                        echo __('No Sessions available', 'rrze-expo');
+                    } else {
+                        // group by day
+                        $i = 0;
+                        foreach ($timeslots as $timeslot) {
+                            if (array_key_exists('start', $timeslot)) {
+                                $startdateYmd = date('Y-m-d', $timeslot['start']);
+                                $startdateTimestamp = strtotime($startdateYmd);
+                            } else {
+                                $startdateTimestamp = 'no-date';
                             }
-                            echo '</tr>';
+                            $timeslotsGrouped[$startdateTimestamp][$i]['starttime'] = array_key_exists('start', $timeslot) ? date('H:i', $timeslot['start']) : '';
+                            $timeslotsGrouped[$startdateTimestamp][$i]['endtime'] = array_key_exists('end', $timeslot) ? date('H:i', $timeslot['end']) : '';
+                            $timeslotsGrouped[$startdateTimestamp][$i]['title'] = array_key_exists('title', $timeslot) ? $timeslot['title'] : '';
+                            $timeslotsGrouped[$startdateTimestamp][$i]['url'] = array_key_exists('url', $timeslot) ? $timeslot['url'] : '';
+                            $timeslotsGrouped[$startdateTimestamp][$i]['booth'] = array_key_exists('booth', $timeslot) ? $timeslot['booth'] : '';
+                            $i++;
                         }
-                        echo '</table>';
+                        var_dump($timeslotsGrouped);
+                        foreach ($timeslotsGrouped as $day => $timeslotDay) {
+                            echo '<h3>' . date('d.m.Y', $startdateTimestamp) . '</h3>';
+                            echo '<table>';
+                            foreach ($timeslotDay as $timeslotDetails) {
+                                echo '<tr>';
+                                echo '<td>' . $timeslotDetails['starttime'] . ' - ' . $timeslotDetails['endtime'] . '</td>';
+                                echo '<td><span class="talk-title">' . $timeslotDetails['title'] . '</span>';
+                                if (isset($timeslotDetails['booth'])) {
+                                    echo '<br /><a href="' . get_permalink($timeslotDetails['booth']) . '">' . get_the_title($timeslotDetails['booth']) . '</a>';
+                                }
+                                echo '</tr>';
+                            }
+                            echo '</table>';
+                        }
                     }
                 ?>
             </div>

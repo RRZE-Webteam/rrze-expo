@@ -218,7 +218,7 @@ Plugin Style
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        color: #fff;
+        //color: #fff;
         overflow: hidden;
         display: block;
         padding: 0;
@@ -300,6 +300,12 @@ Plugin Style
     }
     .icon-instagram-color {
         fill:#e4405f;
+    }
+    .icon-linkedin-color {
+        fill:#0a66c2;
+    }
+    .icon-xing-color {
+        fill:#126567;
     }
     #scrolldown {
         display: none;

@@ -546,6 +546,9 @@ function getConstants() {
                     'height' => 529,
                 ],
             ],
+            'podium1' => [
+                
+            ],
         ],
     ];
 }
