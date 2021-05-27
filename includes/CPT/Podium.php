@@ -161,9 +161,9 @@ class Podium {
             'type'        => 'group',
             //'description' => __( 'Add up to 3 video embedding urls, e.g. https://www.fau.tv/webplayer/id/123456. Display: 1 - top left screen, 2- top right screen, 3 - table monitor.', 'rrze-expo' ),
             'options'     => array(
-                'group_title'       => __( 'Timeslot {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
-                'add_button'        => __( 'Add Another Timeslot', 'rrze-expo' ),
-                'remove_button'     => __( 'Remove Timeslot', 'rrze-expo' ),
+                'group_title'       => __( 'Session {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
+                'add_button'        => __( 'Add Another Session', 'rrze-expo' ),
+                'remove_button'     => __( 'Remove Session', 'rrze-expo' ),
                 'sortable'          => true,
                 // 'closed'         => true, // true to have the groups closed by default
                 // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
@@ -175,7 +175,7 @@ class Podium {
             'type' => 'text',
         ]);
         $cmb_timetable->add_group_field($video_group_id, [
-            'name' => __( 'Start', 'rrze-expo' ),
+            'name' => __( 'Start (Date/Time)', 'rrze-expo' ),
             'id'   => 'start',
             'type' => 'text_datetime_timestamp',
             'date_format' => 'd.m.Y',
@@ -190,7 +190,7 @@ class Podium {
             ),
         ] );
         $cmb_timetable->add_group_field($video_group_id, [
-            'name' => __( 'End', 'rrze-expo' ),
+            'name' => __( 'End (Date/Time)', 'rrze-expo' ),
             'id'   => 'end',
             'type' => 'text_datetime_timestamp',
             'date_format' => 'd.m.Y',
