@@ -30,7 +30,7 @@ CPT::expoHeader();
                 echo '<use xlink:href="#table" x="'.$tableSettings['x'].'" y="'.$tableSettings['y'].'" />';
                 ?>
 
-                <use xlink:href="#tablet" />
+                <!--<use xlink:href="#tablet" />-->
                 <?php
                 for ($i = 1; $i <= 6; $i++) {
                     $boardContent = CPT::getMeta($meta, 'rrze-expo-foyer-board-'.$i);
@@ -65,7 +65,12 @@ CPT::expoHeader();
                     }
                 }
                 $centerSettings = $constants['template_elements']['foyer']['board-center'];
-                echo '<use xlink:href="#panel-mitte" x="'.$centerSettings['x'].'" y="'.$centerSettings['y'].'" />';
+                $centerText = CPT::getMeta($meta, 'rrze-expo-foyer-panel-content');
+                echo '<use xlink:href="#panel-mitte" x="'.$centerSettings['x'].'" y="'.$centerSettings['y'].'" />
+                    <foreignObject class="main-panel" x="'. ($centerSettings['x']).'" y="'. ($centerSettings['y']) .'" width="'. ($centerSettings['width']).'" height="'. ($centerSettings['height']).'">
+                        <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode($centerText) . '</div></body>
+                    </foreignObject>';
+
                 ?><!--<use xlink:href="#icons" />-->
             </svg>
 

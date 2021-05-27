@@ -161,12 +161,12 @@ class Podium {
             'type'        => 'group',
             //'description' => __( 'Add up to 3 video embedding urls, e.g. https://www.fau.tv/webplayer/id/123456. Display: 1 - top left screen, 2- top right screen, 3 - table monitor.', 'rrze-expo' ),
             'options'     => array(
-                'group_title'       => __( 'Timeslot {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                'group_title'       => __( 'Timeslot {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
                 'add_button'        => __( 'Add Another Timeslot', 'rrze-expo' ),
                 'remove_button'     => __( 'Remove Timeslot', 'rrze-expo' ),
                 'sortable'          => true,
                 // 'closed'         => true, // true to have the groups closed by default
-                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
             ),
         ] );
         $cmb_timetable->add_group_field($video_group_id, [

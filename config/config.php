@@ -508,9 +508,9 @@ function getConstants() {
                 ],
                 'board-center' => [
                     'x' => 1762,
-                    'y' => 1,
-                    'width' => '',
-                    'height' => '',
+                    'y' => 0,
+                    'width' => '551',
+                    'height' => '585',
                     'arrow-position' => 'translate(3038 688) scale(.2) rotate(135)'
                 ],
                 'table' => [
