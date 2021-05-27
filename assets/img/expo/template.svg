@@ -10,7 +10,7 @@
 		<symbol id="panel">
 			<image style="overflow:visible;enable-background:new;" width="969" height="468" id="schildflaeche" xlink:href="D8C06BD5.png" transform="translate(75 90)">
 				</image>
-			<rect class="schildakzent" width="969" height="468" fill="#fff" style="opacity:0.9;" transform="translate(75 90)"/>
+			<rect class="schildakzent" width="969" height="468" fill="#fff" style="opacity:0.8;" transform="translate(75 90)"/>
 			<image style="overflow:visible;enable-background:new;" width="1113" height="774" id="schildgestell" xlink:href="D8C06BD7.png">
 			</image>
 		</symbol>

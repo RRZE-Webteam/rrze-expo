@@ -211,7 +211,7 @@ class Exposition {
         // Info
         $cmb_elements = new_cmb2_box([
             'id'            => 'rrze-expo-exposition-elements',
-            'title'         => __('Information Elements', 'rrze-expo'),
+            'title'         => __('Information Material', 'rrze-expo'),
             'object_types'  => ['exposition'],
             'context'       => 'normal',
             'priority'      => 'high',

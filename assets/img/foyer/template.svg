@@ -33,8 +33,9 @@
 		<symbol id="panel-mitte">
 			<image style="overflow:visible;enable-background:new;" width="551" height="585" id="Informationstafel" xlink:href="520EA5DF.png">
 			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="551" height="585" id="informationstafelakzent" xlink:href="DC1DF6C7.png">
-			</image>
+			<rect class="schildakzent" width="551" height="585" fill="#fff" style="opacity:0.8;"/>
+			<!--<image style="overflow:visible;opacity:0.5;enable-background:new;" width="551" height="585" id="informationstafelakzent" xlink:href="DC1DF6C7.png">
+			</image>-->
 		</symbol>
 		<symbol id="icons">
 			<image style="overflow:visible;enable-background:new;" width="1799" height="688" id="icons" xlink:href="DC1DF6E2.png"  transform="matrix(1 0 0 1 1212 54)">

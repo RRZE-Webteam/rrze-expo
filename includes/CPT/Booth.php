@@ -349,12 +349,12 @@ class Booth {
             'type'        => 'group',
             'description' => __( 'Choose up to 2 roll-up images.', 'rrze-expo' ),
             'options'     => array(
-                'group_title'       => __( 'Roll-up {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                'group_title'       => __( 'Roll-up {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
                 'add_button'        => __( 'Add Another Roll-up', 'rrze-expo' ),
                 'remove_button'     => __( 'Remove Roll-up', 'rrze-expo' ),
                 'sortable'          => true,
                 // 'closed'         => true, // true to have the groups closed by default
-                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
             ),
         ] );
         $cmb_rollups->add_group_field($rollup_group_id, [
@@ -389,12 +389,12 @@ class Booth {
             'type'        => 'group',
             'description' => __( 'Choose up to 4 PDF flyers.', 'rrze-expo' ),
             'options'     => array(
-                'group_title'       => __( 'Flyer {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                'group_title'       => __( 'Flyer {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
                 'add_button'        => __( 'Add Another Flyer', 'rrze-expo' ),
                 'remove_button'     => __( 'Remove Flyer', 'rrze-expo' ),
                 'sortable'          => true,
                 // 'closed'         => true, // true to have the groups closed by default
-                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
             ),
         ] );
         $cmb_flyer->add_group_field($flyer_group_id, [
@@ -445,12 +445,12 @@ class Booth {
             'type'        => 'group',
             //'description' => __( '', 'rrze-expo' ),
             'options'     => array(
-                'group_title'       => __( 'Social Media Item {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                'group_title'       => __( 'Social Media Item {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
                 'add_button'        => __( 'Add Another Item', 'rrze-expo' ),
                 'remove_button'     => __( 'Remove Item', 'rrze-expo' ),
                 'sortable'          => true,
                 // 'closed'         => true, // true to have the groups closed by default
-                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
             ),
         ] );
         $socialMedia = $constants['social-media'];

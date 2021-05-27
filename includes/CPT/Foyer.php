@@ -103,6 +103,16 @@ class Foyer {
             'show_names'    => true,
         ]);
 
+        $cmb->add_field([
+            'name'      => __('Info Panel Content', 'rrze-expo'),
+            'id'        => 'rrze-expo-foyer-panel-content',
+            'type'      => 'wysiwyg',
+            'default'          => '',
+            /*'options' => [
+                'teeny' => true,
+            ],*/
+        ]);
+
         $boardContent = CPT::getPosts('hall');
         $podiums = CPT::getPosts('podium');
         foreach ($podiums as $k => $v) {
@@ -116,10 +126,10 @@ class Foyer {
                 //'description' => __( '', 'rrze-expo' ),
                 'repeatable'  => false,
                 'options'     => array(
-                    'group_title'       => __( 'Board '.$i, 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+                    'group_title'       => __( 'Direction Board', 'rrze-expo' ) . ' '.$i, // since version 1.1.4, {#} gets replaced by row number
                     'sortable'          => false,
                     // 'closed'         => true, // true to have the groups closed by default
-                    // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+                    // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
                 ),
             ] );
             $cmb->add_group_field($board_content_group_id, [
