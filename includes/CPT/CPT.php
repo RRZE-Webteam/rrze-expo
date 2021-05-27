@@ -156,10 +156,16 @@ class CPT
             'twitter',
             'xing',
             'homepage',
+            'linkedin',
+            'link',
         ];
         echo '<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><defs>';
         foreach ($icons as $icon) {
-            $iconSvg = file_get_contents(WP_PLUGIN_DIR . '/rrze-expo/assets/img/'.$icon.'.svg');
+            if (file_exists(WP_PLUGIN_DIR . '/rrze-expo/assets/img/'.$icon.'.svg')) {
+                $iconSvg = file_get_contents(WP_PLUGIN_DIR . '/rrze-expo/assets/img/'.$icon.'.svg');
+            } else {
+                $iconSvg = file_get_contents(WP_PLUGIN_DIR . '/rrze-expo/assets/img/link.svg');
+            }
             echo str_replace(['<svg xmlns="http://www.w3.org/2000/svg"', '</svg>'], ['<symbol id="'.$icon.'"', '</symbol>'], $iconSvg);
         }
         echo '</defs></svg>';
