@@ -233,7 +233,7 @@ Plugin Style
             content: "";
         }
     }
-    .hall, .podium {
+    .hall {
         padding: 10px;
         @media screen and (min-width: 37.5em) {
             padding: 30px;
@@ -241,9 +241,25 @@ Plugin Style
     }
     .podium {
         .schedule {
-            background: #0b7cac;
-            padding: 10px;
-            width: 500px;
+            background: #fff;
+            padding: 20px;
+            //width: 500px;
+            h2 {
+                font-size: 1.6em;
+                text-align: center;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+            table {
+                margin-bottom: 10px;
+            }
+            td {
+                font-size: 1.2em;
+            }
+        }
+        .video-error {
+            font-size: 1.6em;
         }
     }
     .booth {
@@ -371,6 +387,15 @@ Plugin Style
 
 #rrze-expo-booth {
     svg.expo-booth {
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+#rrze-expo-podium {
+    svg.expo-podium {
         width: 100%;
         height: 100%;
         display: block;

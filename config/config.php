@@ -547,7 +547,22 @@ function getConstants() {
                 ],
             ],
             'podium1' => [
-                
+                'schedule' => [
+                    'x' => 1050,
+                    'y' => 205,
+                    'width' => 450,
+                    'height' => 780,
+                ],
+                'video' => [
+                    'x' => 1640,
+                    'y' => 204,
+                    'width' => 1135,
+                    'height' => 780,
+                ],
+                'deco' => [
+                    'plant1' => __('Plant 1', 'rrze-expo'),
+                    'plant2' => __('Plant 2', 'rrze-expo'),
+                ],
             ],
         ],
     ];
