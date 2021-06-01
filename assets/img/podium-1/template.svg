@@ -4,7 +4,7 @@
 	 viewBox="0 0 4096 1080" style="display:none;" preserveAspectRatio="xMidYMin slice">
 	<defs>
 		<symbol id="floor">
-			<image style="overflow:visible;enable-background:new;" width="4096" height="124" id="boden" xlink:href="589B222D.png"  transform="matrix(1 0 0 1 0 956)">
+			<image style="overflow:visible;enable-background:new;" width="4096" height="124" id="boden" xlink:href="../template-assets/floor-wood.png"  transform="matrix(1 0 0 1 0 956)">
 			</image>
 		</symbol>
 		<symbol id="podium">

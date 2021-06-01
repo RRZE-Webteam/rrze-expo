@@ -27,11 +27,16 @@ CPT::expoHeader();
         }
         $title = get_the_title();
         // Schedule
-        $scheduleSettings = $constants['template_elements']['podium'.$templateNo]['schedule'];
+        if (array_key_exists('schedule', $constants['template_elements']['podium'.$templateNo])) {
+            $scheduleSettings = $constants['template_elements']['podium'.$templateNo]['schedule'];
+        } else {
+            $scheduleSettings = $constants['template_elements']['podium'.$templateNo]['video'];
+        }
         $schedule = '';
         $timeslots = CPT::getMeta($meta, 'rrze-expo-podium-timeslots');
         //var_dump($timeslots);
         if ($timeslots == '') {
+            $timeslots = [];
             $schedule = __('No Talks available', 'rrze-expo');
         } else {
             $schedule .= '<div class="schedule"><h2>' . __('Schedule', 'rrze-expo') . '</h2>';
@@ -80,7 +85,7 @@ CPT::expoHeader();
                 // Plugin rrze-video active -> use plugin
                 if ($rrzeVideoActive) {
                     $videoContent = do_shortcode('[fauvideo url="' . $url . '"]');
-                    $video = '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . $videoContent . '</foreignObject>';
+                    $video = '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '"><div class="video-container" style="width:100%; height:100%;">' . $videoContent . '</div></foreignObject>';
                 }
                 // Plugin rrze-video not active or source not supported by plugin -> make link
                 if (!$rrzeVideoActive || strpos($videoContent, 'Unbekannte Videoquelle')) {
@@ -91,7 +96,7 @@ CPT::expoHeader();
                 }
                 break;
             } else {
-                $video = '<text class="video-error" x="' . ($videoSettings['x'] + 50) . '" y="' . ($videoSettings['y'] + 100) . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . __('Currently no video available', 'rrze-expo') . '</text>';
+                //$video = '<text class="video-error" x="' . ($videoSettings['x'] + 50) . '" y="' . ($videoSettings['y'] + 100) . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . __('Currently no video available', 'rrze-expo') . '</text>';
             }
         }
 
@@ -102,19 +107,19 @@ CPT::expoHeader();
             <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
             <svg version="1.1" class="expo-podium template-<?php echo $templateNo; ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
-                <use class="podium" xlink:href="#podium" x="100" />
                 <?php
                 // Deco
                 $deco = CPT::getMeta($meta, 'rrze-expo-podium-decorations');
                 if ($deco != '') {
                     if (in_array('plant1', $deco)) {
-                        echo '<use xlink:href="#plant1" transform="scale(-1.1 1.1) translate(-5650 -100)"/>';
+                        echo '<use xlink:href="#plant1"/>';
                     }
                     if (in_array('plant2', $deco)) {
-                        //echo '<use xlink:href="#plant2" transform="scale(1.05) translate(-150 -60)"/>';
                         echo '<use xlink:href="#plant2"/>';
                     }
-                }
+                } ?>
+                <use class="podium" xlink:href="#podium" x="100" />
+                <?php
                 echo '<foreignObject class="schedule" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y']) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'">
                         <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
                     </foreignObject>';
