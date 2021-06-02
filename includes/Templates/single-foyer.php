@@ -28,10 +28,42 @@ CPT::expoHeader();
                 <!--<use class="backwall" xlink:href="#wall" />-->
                 <?php $tableSettings = $constants['template_elements']['foyer']['table'];
                 echo '<use xlink:href="#table" x="'.$tableSettings['x'].'" y="'.$tableSettings['y'].'" />';
-                ?>
 
-                <!--<use xlink:href="#tablet" />-->
-                <?php
+                // Table Screen
+                $videoTable = CPT::getMeta($meta, 'rrze-expo-foyer-video-table');
+                if ($videoTable != '') {
+                    $videoSettings = $constants['template_elements']['foyer']['tablet'];
+                    echo '<a href="' . $videoTable . '"><use class="video-tablet" xlink:href="#tablet" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" /></a>';
+                }
+
+                // Table Icon
+                switch (CPT::getMeta($meta, 'rrze-expo-foyer-table-icon')) {
+                    case 'info':
+                        $iconSettings = $constants['template_elements']['foyer']['info-icon'];
+                        echo '<path transform="translate('.$iconSettings['x'].' '.$iconSettings['y'].') scale('.$iconSettings['width'].' '.$iconSettings['height'].')" fill="#fff" stroke="#bbb" stroke-width="5" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/>';
+                        break;
+                    case 'foyer-logo':
+                        if (has_post_thumbnail()){
+                            $iconSettings = $constants['template_elements']['foyer']['logo'];
+                            //echo '<image xlink:href="'.get_the_post_thumbnail_url($foyerId, 'expo-logo').'" width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'" />';
+                            echo '<svg width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'">
+                            <image xlink:href="'.get_the_post_thumbnail_url($foyerId, 'expo-logo').'" />
+                            </svg>';
+                        }
+                        break;
+                    case 'expo-logo':
+                        $iconSettings = $constants['template_elements']['foyer']['logo'];
+                        $expoID = CPT::getMeta($meta, 'rrze-expo-foyer-exposition');
+                        echo '<svg class="table-logo" width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'">
+                            <image xlink:href="'.get_the_post_thumbnail_url($expoID, 'expo-logo').'" preserveAspectRatio="xMinYMin" />
+                            </svg>';
+                        break;
+                    case 'none':
+                    default:
+                        break;
+                }
+
+                // Direction Boards
                 for ($i = 1; $i <= 6; $i++) {
                     $boardContent = CPT::getMeta($meta, 'rrze-expo-foyer-board-'.$i);
                     if ($boardContent == '')
@@ -39,8 +71,14 @@ CPT::expoHeader();
                     if (!empty($boardContent)) {
                         $boardSettings = $constants['template_elements']['foyer']['board'.$i];
                         echo '<g class="foyer-board-'.$i.'">';
-                        echo '<use xlink:href="#panel" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
-                        echo '<use xlink:href="#arrow" class="board-arrow-'.$i.'" transform="'.$boardSettings['arrow-position'].'" fill="#444" stroke="#000" stroke-width="5" />';
+                        if ($i < 4) {
+                            echo '<use xlink:href="#panel-left" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
+                            $textX = $boardSettings['x'] + 140;
+                        } else {
+                            echo '<use xlink:href="#panel-right" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
+                            $textX = $boardSettings['x'] + 40;
+                        }
+                        echo '<use xlink:href="#arrow" class="board-arrow-'.$i.'" transform="'.$boardSettings['arrow-position'].'" fill="#555" stroke="#333" stroke-width="5" />';
                         if ($boardContent[0]['rrze-expo-foyer-board-'.$i.'-content'] == 'custom') {
                             $linkText = 'Custom';
                         } else {
@@ -48,19 +86,11 @@ CPT::expoHeader();
                             $linkText = get_the_title($linkID);
                             if (strpos($linkText, '<br>') != false) {
                                 $titleParts = explode('<br>', $linkText);
-                                //$linkText = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
                                 $linkText = '<tspan>' . implode('</tspan><tspan>', $titleParts) . '</tspan>';
                             }
-                            //echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$linkText.'</text>';
-
                             $linkURL = get_permalink($linkID);
                         }
-                        if ($i < 4) {
-                            $textX = $boardSettings['x'] + 140;
-                        } else {
-                            $textX = $boardSettings['x'] + 40;
-                        }
-                        echo '<a href="'.$linkURL.'"><text x="'.$textX.'" y="'.($boardSettings['y'] + 150).'" font-size="40" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$linkText.'</text></a>';
+                        echo '<a href="'.$linkURL.'"><text x="'.$textX.'" y="'.($boardSettings['y'] + 100).'" font-size="40" fill="'.CPT::getMeta($meta, 'rrze-expo-foyer-font-color').'" aria-hidden="true">'.$linkText.'</text></a>';
                         echo '</g>';
                     }
                 }
@@ -71,7 +101,40 @@ CPT::expoHeader();
                         <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode($centerText) . '</div></body>
                     </foreignObject>';
 
-                ?><!--<use xlink:href="#icons" />-->
+                // Social Media
+                $socialMedia = CPT::getMeta($meta, 'rrze-expo-foyer-social-media');
+                if ($socialMedia == '')
+                    $socialMedia = [];
+                if ($socialMedia != []) {
+                    $socialMediaData = $constants['social-media'];
+                    $socialMediaSettings = $constants['template_elements']['foyer']['social-media'];
+                    echo '<g><use xlink:href="#some_panel" x="'.$socialMediaSettings['x'].'" y="'.$socialMediaSettings['y'].'"/>';
+                    $iconsX = $socialMediaSettings['x'] + 20;
+                    $iconsY = $socialMediaSettings['y'] + 30;
+                    foreach ($socialMedia as $i => $media) {
+                        if (!isset($media['medianame']) || !isset($media['username']))
+                            continue;
+                        switch ($socialMediaSettings['direction']) {
+                            case 'landscape':
+                                $translateX = $iconsX + $i * ($socialMediaSettings['width'] + 10);
+                                $translateY = $iconsY;
+                                break;
+                            case 'portrait':
+                            default:
+                                $translateX = $iconsX;
+                                $translateY = $iconsY + $i * ($socialMediaSettings['height'] + 10);
+                        }
+                        $class = 'icon-'.$media['medianame'];
+                        if ($socialMediaSettings['color'] == true) {
+                            $class .= '-color';
+                        }
+                        echo '<a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '" title="'.ucfirst($media['medianame']).': '.$media['username'].'">
+                            <use xlink:href="#' . $media['medianame'] . '" width="'.$socialMediaSettings['width'].'" height="'.$socialMediaSettings['height'].'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
+                            </a>';
+                    }
+                    echo '</g>';
+                }
+                ?>
             </svg>
 
         <?php if ($hasContent) { ?>

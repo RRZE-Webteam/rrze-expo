@@ -12,22 +12,38 @@
 			</image>
 		</symbol>
 		<symbol id="table">
+			<image id="pult2" class="cls-1" width="627" height="268" transform="translate(1804 743)" xlink:href="table2.png"/>
+			<image id="pult2akzent" class="cls-2" width="627" height="268" transform="translate(1804 743)" xlink:href="table2accent.png"/>
+			<image id="Tischplatte" class="cls-1" width="699" height="42" transform="translate(1769 716)" xlink:href="table2top.png"/>
+		</symbol>
+		<symbol id="table1">
 			<image style="overflow:visible;enable-background:new;" id="informationspult" xlink:href="520EA5CB.png" width="627" height="268" transform="matrix(1 0 0 1 1805 743)">
 			</image>
 			<image style="overflow:visible;enable-background:new;" id="tischplatte" xlink:href="520EA5D4.png" width="699" height="42" transform="matrix(1 0 0 1 1769 716)">
 			</image>
 		</symbol>
 		<symbol id="tablet">
-			<image style="overflow:visible;enable-background:new;" id="tablet" xlink:href="520EA5D7.png"  transform="matrix(1 0 0 1 2252 623)">
+			<image style="overflow:visible;" xlink:href="../template-assets/tablet.png">
 			</image>
-			<g id="tabletbildschirm">
-				<polygon class="tabletbildschirm" points="2260.7,631.7 2260.7,717.4 2413.9,717.4 2413.9,630.9" fill="#FFFFFF"/>
-			</g>
+			<rect id="tabletbildschirm" width="153" height="84" transform="translate(9 9)" style="opacity:0.7;fill:#FFFFFF;"/>
+			<rect id="tabletbildschirmakzent" width="153" height="84" transform="translate(9 9)" style="opacity:0.5;fill:#FFFFFF;"/>
+			<path class="icon-video" fill="#333" transform="translate(60 15) scale(.09)" d="M336.2 64H47.8C21.4 64 0 85.4 0 111.8v288.4C0 426.6 21.4 448 47.8 448h288.4c26.4 0 47.8-21.4 47.8-47.8V111.8c0-26.4-21.4-47.8-47.8-47.8zm189.4 37.7L416 177.3v157.4l109.6 75.5c21.2 14.6 50.4-.3 50.4-25.8V127.5c0-25.4-29.1-40.4-50.4-25.8z"/>
+			<text x="37" y="83" font-size="24" fill="#333">Live Chat</text>
 		</symbol>
-		<symbol id="panel">
-			<image style="overflow:visible;enable-background:new;" width="553" height="256" id="_1A" xlink:href="panel.png" >
+		<symbol id="some_panel">
+			<image id="socialmediapanel" xlink:href="../template-assets/social-media-panel.png"/>
+			<!--<image id="socialmediapanelakzent" class="cls-2" width="91" height="398" transform="translate(1655 594)" xlink:href="Foyer-Stand-27-01-20217.png"/>-->
+		</symbol>
+		<symbol id="panel-left">
+			<image style="overflow:visible;enable-background:new;" width="554" height="171" xlink:href="panel-left.png" >
 			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="553" height="256" id="_1Aakzent" xlink:href="panel-akzent.png">
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="554" height="171" xlink:href="panel-accent-left.png">
+			</image>
+		</symbol>
+		<symbol id="panel-right">
+			<image style="overflow:visible;enable-background:new;" width="553" height="171" xlink:href="panel-right.png" >
+			</image>
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="554" height="171" xlink:href="panel-akzent.png">
 			</image>
 		</symbol>
 		<symbol id="panel-mitte">

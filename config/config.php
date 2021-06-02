@@ -466,45 +466,45 @@ function getConstants() {
             'foyer' => [
                 'board1' => [
                     'x' => 1100,
-                    'y' => 30,
+                    'y' => 15,
                     'width' => '',
-                    'height' => '',
-                    'arrow-position' => 'translate(1100 100) scale(.2) rotate(-45)'
+                    'height' => 171,
+                    'arrow-position' => 'translate(1100 70) scale(.15) rotate(-45)'
                 ],
                 'board2' => [
                     'x' => 1100,
-                    'y' => 330,
+                    'y' => 215,
                     'width' => '',
-                    'height' => '',
-                    'arrow-position' => 'translate(1120 450) scale(.2) rotate(-90)'
+                    'height' => 171,
+                    'arrow-position' => 'translate(1115 308) scale(.15) rotate(-90)'
                 ],
                 'board3' => [
                     'x' => 1100,
-                    'y' => 630,
+                    'y' => 415,
                     'width' => '',
-                    'height' => '',
-                    'arrow-position' => 'translate(1170 773) scale(.2) rotate(-135)'
+                    'height' => 171,
+                    'arrow-position' => 'translate(1153 525) scale(.15) rotate(-135)'
                 ],
                 'board4' => [
                     'x' => 2420,
-                    'y' => 30,
+                    'y' => 15,
                     'width' => '',
-                    'height' => '',
-                    'arrow-position' => 'translate(2905 28) scale(.2) rotate(45)'
+                    'height' => 171,
+                    'arrow-position' => 'translate(2917 17) scale(.15) rotate(45)'
                 ],
                 'board5' => [
                     'x' => 2420,
-                    'y' => 330,
+                    'y' => 215,
                     'width' => '',
-                    'height' => '',
-                    'arrow-position' => 'translate(2955 350) scale(.2) rotate(90)'
+                    'height' => 171,
+                    'arrow-position' => 'translate(2955 232) scale(.15) rotate(90)'
                 ],
                 'board6' => [
                     'x' => 2420,
-                    'y' => 630,
+                    'y' => 415,
                     'width' => '',
-                    'height' => '',
-                    'arrow-position' => 'translate(2975 700) scale(.2) rotate(135)'
+                    'height' => 171,
+                    'arrow-position' => 'translate(2975 470) scale(.15) rotate(135)'
                 ],
                 'board-center' => [
                     'x' => 1762,
@@ -518,6 +518,33 @@ function getConstants() {
                     'y' => 0,
                     'width' => '',
                     'height' => '',
+                ],
+                'tablet' => [
+                    'x' => 2180,
+                    'y' => 618,
+                    'width' => 173,
+                    'height' => 102,
+                ],
+                'info-icon' => [
+                    'x' => 1780,
+                    'y' => 790,
+                    'width' => .35,
+                    'height' => .35,
+                ],
+                'logo' => [
+                    'x' => 1780,
+                    'y' => 780,
+                    'width' => 500,
+                    'height' => 200,
+                ],
+                'social-media' => [
+                    'title' => __('Social Media Panel', 'rrze-expo'),
+                    'direction' => 'portrait',
+                    'color' => true,
+                    'x' => 1560,
+                    'y' => 600,
+                    'width' => 50,
+                    'height' => 50,
                 ],
             ],
             'exposition' => [
