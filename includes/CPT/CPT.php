@@ -132,6 +132,10 @@ class CPT
                 $templateNo = get_post_meta($post->ID,'rrze-expo-booth-template', true);
                 $templateDir = '/rrze-expo/assets/img/booth-' . absint($templateNo).'/';
                 break;
+            case 'podium':
+                $templateNo = get_post_meta($post->ID,'rrze-expo-podium-template', true);
+                $templateDir = '/rrze-expo/assets/img/podium-' . absint($templateNo).'/';
+                break;
             case 'foyer':
                 $templateDir = '/rrze-expo/assets/img/foyer/';
                 break;
@@ -448,6 +452,7 @@ class CPT
             $boothIDs = get_posts([
                 'post_type' => 'booth',
                 'status'    => 'publish',
+                'numberposts' => '-1',
                 'meta_key'  => 'rrze-expo-booth-hall',
                 'meta_value'    => $hallID,
                 'orderby'   => 'title',
@@ -488,6 +493,7 @@ class CPT
         $hallIDs = get_posts([
             'post_type' => 'hall',
             'status'    => 'publish',
+            'numberposts' => '-1',
             'meta_key'  => 'rrze-expo-hall-exposition',
             'meta_value'    => $expoID,
             'orderby'   => 'title',
@@ -527,6 +533,7 @@ class CPT
         $podiumIDs = get_posts([
             'post_type' => 'podium',
             'status'    => 'publish',
+            'numberposts' => '-1',
             'meta_key'  => 'rrze-expo-podium-exposition',
             'meta_value'    => $expoID,
             'orderby'   => 'title',

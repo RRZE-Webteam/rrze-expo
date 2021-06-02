@@ -4,6 +4,8 @@
 namespace RRZE\Expo\CPT;
 
 
+use function RRZE\Expo\Config\getConstants;
+
 class Podium {
 
     public function __construct($pluginFile) {
@@ -90,6 +92,32 @@ class Podium {
             'options'          => CPT::getPosts('exposition'),
         ]);
 
+        //Layout
+        $cmb_layout = new_cmb2_box([
+            'id'            => 'rrze-expo-podium-layout',
+            'title'         => __('Layout', 'rrze-expo'),
+            'object_types'  => ['podium'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
+        $cmb_layout->add_field([
+            'name'      => __('Podium Template', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-podium-template',
+            'type'      => 'select',
+            'default'          => '1',
+            'options'          => [ '1' => __('Template 1', 'rrze-expo'),
+                '2' => __('Template 2', 'rrze-expo'),
+            ],
+        ]);
+        $cmb_layout->add_field([
+            'name'      => __('Decoration Elements', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-podium-decorations',
+            'type'      => 'multicheck',
+            'options_cb'          => [$this, 'getDecoObjects'],
+        ]);
         // Background Image
         $cmb_background = new_cmb2_box([
             'id'            => 'rrze-expo-podium-background',
@@ -161,9 +189,9 @@ class Podium {
             'type'        => 'group',
             //'description' => __( 'Add up to 3 video embedding urls, e.g. https://www.fau.tv/webplayer/id/123456. Display: 1 - top left screen, 2- top right screen, 3 - table monitor.', 'rrze-expo' ),
             'options'     => array(
-                'group_title'       => __( 'Session {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
-                'add_button'        => __( 'Add Another Session', 'rrze-expo' ),
-                'remove_button'     => __( 'Remove Session', 'rrze-expo' ),
+                'group_title'       => __( 'Talk {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
+                'add_button'        => __( 'Add Another Talk', 'rrze-expo' ),
+                'remove_button'     => __( 'Remove Talk', 'rrze-expo' ),
                 'sortable'          => true,
                 // 'closed'         => true, // true to have the groups closed by default
                 // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
@@ -231,4 +259,16 @@ class Podium {
         $booths = CPT::getPosts('booth', $expoID);
         return $booths;
     }
+
+    function getDecoObjects($field) {
+        $boothID = $field->object_id;
+        $template = get_post_meta($boothID, 'rrze-expo-podium-template', true);
+        if ($template == '')
+            return;
+        $constants = getConstants();
+        $objects = $constants['template_elements']['podium'.$template]['deco'];
+        return $objects;
+    }
+
+
 }

@@ -50,7 +50,7 @@ class Foyer {
             'label' => __('Foyer', 'rrze-expo'),
             'description' => __('Add and edit foyer informations', 'rrze-expo'),
             'labels' => $labels,
-            'supports'                  => ['title', 'editor', 'author'],
+            'supports'                  => ['title', 'editor', 'author', 'thumbnail'],
             'hierarchical'              => false,
             'public'                    => true,
             'show_ui'                   => true,
@@ -93,16 +93,6 @@ class Foyer {
             'options'          => CPT::getPosts('exposition'),
         ]);
 
-        // Direction Board
-        $cmb = new_cmb2_box([
-            'id'            => 'rrze-expo-foyer-general',
-            'title'         => __('Direction Board', 'rrze-expo'),
-            'object_types'  => ['foyer'],
-            'context'       => 'normal',
-            'priority'      => 'high',
-            'show_names'    => true,
-        ]);
-
         $cmb->add_field([
             'name'      => __('Info Panel Content', 'rrze-expo'),
             'id'        => 'rrze-expo-foyer-panel-content',
@@ -112,6 +102,37 @@ class Foyer {
                 'teeny' => true,
             ],*/
         ]);
+        $cmb->add_field([
+            'name' => __( 'Table Screen (Live Chat)', 'rrze-expo' ),
+            'description' => __( 'Enter video conference or chat tool link.', 'rrze-expo' ),
+            'id'   => 'rrze-expo-foyer-video-table',
+            'type' => 'text_url',
+            // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+
+
+        $cmb->add_field([
+            'name'      => __('Table Icon', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-foyer-table-icon',
+            'type'      => 'select',
+            'default'          => 'logo',
+            'options'          => [ 'none' => __('No Icon', 'rrze-expo'),
+                'foyer-logo' => __('Foyer Logo', 'rrze-expo'),
+                'expo-logo' => __('Exposition Logo', 'rrze-expo'),
+                'info' => __('Info Icon', 'rrze-expo')],
+        ]);
+
+
+        // Direction Board
+        $cmb_panels = new_cmb2_box([
+            'id'            => 'rrze-expo-foyer-panels',
+            'title'         => __('Direction Board', 'rrze-expo'),
+            'object_types'  => ['foyer'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
+        ]);
 
         $boardContent = CPT::getPosts('hall');
         $podiums = CPT::getPosts('podium');
@@ -120,7 +141,7 @@ class Foyer {
         }
         $boardContent['custom'] = __('Custom Link');
         for ($i=1; $i<7; $i++) {
-            $board_content_group_id = $cmb->add_field( [
+            $board_content_group_id = $cmb_panels->add_field( [
                 'id'          => 'rrze-expo-foyer-board-'.$i,
                 'type'        => 'group',
                 //'description' => __( '', 'rrze-expo' ),
@@ -132,7 +153,7 @@ class Foyer {
                     // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
                 ),
             ] );
-            $cmb->add_group_field($board_content_group_id, [
+            $cmb_panels->add_group_field($board_content_group_id, [
                     'name'      => __('Content', 'rrze-expo'),
                     //'desc'    => __('', 'rrze-expo'),
                     'id'        => 'rrze-expo-foyer-board-'.$i.'-content',
@@ -141,13 +162,13 @@ class Foyer {
                     'default'          => '',
                     'options'          => $boardContent,
                 ]);
-            $cmb->add_group_field($board_content_group_id, [
+            $cmb_panels->add_group_field($board_content_group_id, [
                 'name'      => __('Custom link text', 'rrze-expo'),
                 //'desc'    => __('', 'rrze-expo'),
                 'id'        => 'rrze-expo-foyer-board-'.$i.'-text',
                 'type'      => 'text',
             ]);
-            $cmb->add_group_field($board_content_group_id, [
+            $cmb_panels->add_group_field($board_content_group_id, [
                 'name'      => __('Custom link', 'rrze-expo'),
                 //'desc'    => __('', 'rrze-expo'),
                 'id'        => 'rrze-expo-foyer-board-'.$i.'-link',
@@ -155,30 +176,48 @@ class Foyer {
             ]);
         }
 
-
-        /*$menus = wp_get_nav_menus();
-        foreach ($menus as $menu) {
-            $optionsMenu[$menu->term_id] = $menu->name;
-        }
-        $cmb->add_field([
-            'name'      => __('Foyer Menu 1', 'rrze-expo'),
-            'desc'    => __('If no menu is set, halls will be ordered alphabetically.', 'rrze-expo'),
-            'id'        => 'rrze-expo-foyer-menu-halls',
-            'type'      => 'select',
-            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
-            'default'          => '',
-            'options'          => $optionsMenu,
+        // Social Media Panel
+        $cmb_social_media = new_cmb2_box([
+            'id'            => 'rrze-expo-foyer-social-media-box',
+            'title'         => __('Social Media', 'rrze-expo'),
+            'object_types'  => ['foyer'],
+            'context'       => 'normal',
+            'priority'      => 'high',
+            'show_names'    => true,
         ]);
-
-        $cmb->add_field([
-            'name'      => __('Foyer Menu 2', 'rrze-expo'),
-            'desc'    => __('If no menu is set, podiums will be ordered alphabetically.', 'rrze-expo'),
-            'id'        => 'rrze-expo-foyer-menu-podiums',
-            'type'      => 'select',
+        $social_media_group_id = $cmb_social_media->add_field( [
+            'id'          => 'rrze-expo-foyer-social-media',
+            'type'        => 'group',
+            //'description' => __( '', 'rrze-expo' ),
+            'options'     => array(
+                'group_title'       => __( 'Social Media Item {#}', 'rrze-expo' ), // since version 1.1.4, {#} gets replaced by row number
+                'add_button'        => __( 'Add Another Item', 'rrze-expo' ),
+                'remove_button'     => __( 'Remove Item', 'rrze-expo' ),
+                'sortable'          => true,
+                // 'closed'         => true, // true to have the groups closed by default
+                // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'rrze-expo' ), // Performs confirmation before removing group.
+            ),
+        ] );
+        $socialMedia = $constants['social-media'];
+        foreach ($socialMedia as $soMeName => $soMeUrl) {
+            if ($soMeName != 'website') {
+                $soMeOptions[$soMeName] = ucfirst($soMeName);
+            }
+        }
+        $cmb_social_media->add_group_field($social_media_group_id, [
+            'name'             => __('Social Media Type', 'rrze-expo'),
+            //'desc'             => 'Select an option',
+            'id'               => 'medianame',
+            'type'             => 'select',
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
-            'default'          => '',
-            'options'          => $optionsMenu,
-        ]);*/
+            'default'          => 'custom',
+            'options'          => $soMeOptions,
+        ]);
+        $cmb_social_media->add_group_field($social_media_group_id, [
+            'type'  => 'text_medium',
+            'name'  => __('User Name', 'rrze-expo'),
+            'id'    => 'username',
+        ]);
 
         // Background Image
         $cmb_background = new_cmb2_box([

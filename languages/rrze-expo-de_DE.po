@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RRZE-Expo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-30 07:39+0000\n"
-"PO-Revision-Date: 2021-05-27 08:51+0000\n"
+"PO-Revision-Date: 2021-05-31 14:21+0000\n"
 "Last-Translator: Barbara Bothe <info@barbara-bothe.de>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -41,7 +41,7 @@ msgstr "Foyer hinzufügen oder bearbeiten"
 msgid "Add and edit hall informations"
 msgstr "Messehalle hinzufügen oder bearbeiten"
 
-#: includes/CPT/Podium.php:50
+#: includes/CPT/Podium.php:52
 msgid "Add and edit podium informations"
 msgstr "Podium hinzufügen oder bearbeiten"
 
@@ -57,11 +57,11 @@ msgstr "Element hinzufügen"
 msgid "Add Another Roll-up"
 msgstr "Rollup hinzufügen"
 
-#: includes/CPT/Podium.php:165
-msgid "Add Another Timeslot"
-msgstr "Timeslot hinzufügen"
+#: includes/CPT/Podium.php:193
+msgid "Add Another Talk"
+msgstr "Vortrag hinzufügen"
 
-#: includes/CPT/Hall.php:26 includes/CPT/Podium.php:26
+#: includes/CPT/Hall.php:26 includes/CPT/Podium.php:28
 #: includes/CPT/Booth.php:27 includes/CPT/Foyer.php:27
 msgid "Add New"
 msgstr "Hinzufügen"
@@ -102,12 +102,12 @@ msgctxt "Add New on Toolbar"
 msgid "Hall"
 msgstr "Messehalle"
 
-#: includes/CPT/Podium.php:25
+#: includes/CPT/Podium.php:27
 msgctxt "Add New on Toolbar"
 msgid "Podium"
 msgstr "Podium"
 
-#: includes/CPT/Podium.php:27
+#: includes/CPT/Podium.php:29
 msgid "Add New Podium"
 msgstr "Podium hinzufügen"
 
@@ -131,7 +131,7 @@ msgctxt "Admin Menu text"
 msgid "Halls"
 msgstr "Messehallen"
 
-#: includes/CPT/Podium.php:24
+#: includes/CPT/Podium.php:26
 msgctxt "Admin Menu text"
 msgid "Podiums"
 msgstr "Podiums"
@@ -164,15 +164,15 @@ msgstr "Alle Foyers"
 msgid "All Halls"
 msgstr "Alle Messehallen"
 
-#: includes/CPT/Podium.php:31
+#: includes/CPT/Podium.php:33
 msgid "All Podiums"
 msgstr "Alle Podien"
 
-#: includes/CPT/CPT.php:408
+#: includes/CPT/CPT.php:418
 msgid "Back to Foyer"
 msgstr "Zurück zum Foyer"
 
-#: includes/CPT/CPT.php:403
+#: includes/CPT/CPT.php:413
 msgid "Back to Hall"
 msgstr "Zurück zur Messehalle"
 
@@ -190,21 +190,21 @@ msgstr "Wandfarbe"
 
 #: includes/CPT/Exposition.php:157 includes/CPT/Exposition.php:164
 #: includes/CPT/Hall.php:109 includes/CPT/Hall.php:116
-#: includes/CPT/Podium.php:96 includes/CPT/Podium.php:103
+#: includes/CPT/Podium.php:124 includes/CPT/Podium.php:131
 #: includes/CPT/Booth.php:155 includes/CPT/Booth.php:162
-#: includes/CPT/Foyer.php:176 includes/CPT/Foyer.php:183
+#: includes/CPT/Foyer.php:186 includes/CPT/Foyer.php:193
 msgid "Background Image"
 msgstr "Hintergrundbild"
 
 #: includes/CPT/Exposition.php:184 includes/CPT/Hall.php:136
-#: includes/CPT/Podium.php:123 includes/CPT/Booth.php:182
-#: includes/CPT/Foyer.php:203
+#: includes/CPT/Podium.php:151 includes/CPT/Booth.php:182
+#: includes/CPT/Foyer.php:213
 msgid "Background Image Overlay"
 msgstr "Bildüberlagerung für Hintergrundbild"
 
 #: includes/CPT/Exposition.php:193 includes/CPT/Hall.php:145
-#: includes/CPT/Podium.php:132 includes/CPT/Booth.php:191
-#: includes/CPT/Foyer.php:212
+#: includes/CPT/Podium.php:160 includes/CPT/Booth.php:191
+#: includes/CPT/Foyer.php:222
 msgid "Background Overlay Opacity"
 msgstr "Transparenz für Hintergrund-Bildüberlagerung"
 
@@ -265,29 +265,33 @@ msgstr "Kontakt"
 msgid "Contact Information"
 msgstr "Kontaktinformationen"
 
-#: includes/CPT/Foyer.php:126
+#: includes/CPT/Foyer.php:136
 msgid "Content"
 msgstr "Inhalt"
 
-#: includes/CPT/Foyer.php:141
+#: includes/Templates/single-podium.php:94
+msgid "Currently no video available"
+msgstr "Derzeit läuft kein Vortrag."
+
+#: includes/CPT/Foyer.php:151
 msgid "Custom link"
 msgstr "Eigener Link"
 
-#: includes/CPT/Foyer.php:135
+#: includes/CPT/Foyer.php:145
 msgid "Custom link text"
 msgstr "Eigener Linktext"
 
 #: includes/CPT/Exposition.php:190 includes/CPT/Hall.php:142
-#: includes/CPT/Podium.php:129 includes/CPT/Booth.php:188
-#: includes/CPT/Foyer.php:209
+#: includes/CPT/Podium.php:157 includes/CPT/Booth.php:188
+#: includes/CPT/Foyer.php:219
 msgid "Dark"
 msgstr "Dunkel"
 
-#: includes/CPT/Booth.php:286
+#: includes/CPT/Podium.php:115 includes/CPT/Booth.php:286
 msgid "Decoration Elements"
 msgstr "Dekorationen"
 
-#: includes/CPT/Foyer.php:99
+#: includes/CPT/Foyer.php:99 includes/CPT/Foyer.php:129
 msgid "Direction Board"
 msgstr "Wegweiser"
 
@@ -315,7 +319,7 @@ msgstr "Foyer bearbeiten"
 msgid "Edit Hall"
 msgstr "Messehalle bearbeiten"
 
-#: includes/CPT/Podium.php:29
+#: includes/CPT/Podium.php:31
 msgid "Edit Podium"
 msgstr "Podium bearbeiten"
 
@@ -327,15 +331,15 @@ msgstr "E-Mail"
 msgid "Email Address"
 msgstr "E-Mail-Adresse"
 
-#: includes/CPT/Podium.php:193
-msgid "End"
-msgstr "Ende"
+#: includes/CPT/Podium.php:221
+msgid "End (Date/Time)"
+msgstr "Ende (Datum/Zeit)"
 
 #: includes/CPT/Exposition.php:102
 msgid "End Date"
 msgstr "Enddatum"
 
-#: includes/Templates/single-exposition.php:44
+#: includes/Templates/single-exposition.php:87
 msgid "Enter the foyer"
 msgstr "Zum Foyer"
 
@@ -352,7 +356,7 @@ msgid "Event Subtitle"
 msgstr "Untertitel der Veranstaltung"
 
 #: includes/CPT/Exposition.php:50 includes/CPT/Hall.php:83
-#: includes/CPT/Podium.php:84 includes/CPT/Booth.php:88
+#: includes/CPT/Podium.php:86 includes/CPT/Booth.php:88
 #: includes/CPT/Foyer.php:87
 msgid "Exposition"
 msgstr "Messe"
@@ -399,20 +403,20 @@ msgid "Foyer"
 msgstr "Foyer"
 
 #: includes/CPT/Exposition.php:79 includes/CPT/Hall.php:76
-#: includes/CPT/Podium.php:77 includes/CPT/Booth.php:81
+#: includes/CPT/Podium.php:79 includes/CPT/Booth.php:81
 #: includes/CPT/Foyer.php:80
 msgid "General Information"
 msgstr "Allgemeine Informationen"
 
-#: includes/CPT/CPT.php:318
+#: includes/CPT/CPT.php:328
 msgid "Go to content area"
 msgstr "Zum Inhaltsbereich"
 
-#: includes/CPT/CPT.php:320
+#: includes/CPT/CPT.php:330
 msgid "Go to main navigation"
 msgstr "Zum Hauptmenü"
 
-#: includes/CPT/CPT.php:319
+#: includes/CPT/CPT.php:329
 msgid "Go to search"
 msgstr "Zur Suche"
 
@@ -440,7 +444,7 @@ msgstr "https://blogs.fau.de/webworking/"
 msgid "https://github.com/RRZE-Webteam/rrze-expo"
 msgstr "https://github.com/RRZE-Webteam/rrze-expo"
 
-#: includes/CPT/Foyer.php:184
+#: includes/CPT/Foyer.php:194
 msgid ""
 "If no background image is set, the exposition background image will be "
 "displayed."
@@ -448,7 +452,7 @@ msgstr ""
 "Wenn kein Hintergrundbild eingestellt ist, wird das Messe-Hintergrundbild "
 "angezeigt."
 
-#: includes/CPT/Hall.php:117 includes/CPT/Podium.php:104
+#: includes/CPT/Hall.php:117 includes/CPT/Podium.php:132
 msgid ""
 "If no background image is set, the foyer background image will be displayed."
 msgstr ""
@@ -474,11 +478,15 @@ msgstr ""
 msgid "Image"
 msgstr "Bild"
 
+#: includes/CPT/Foyer.php:107
+msgid "Info Panel Content"
+msgstr "Inhalt Info-Panel"
+
 #: includes/CPT/Exposition.php:214 includes/Templates/single-booth.php:311
 msgid "Information Material"
 msgstr "Info-Material"
 
-#: includes/CPT/Booth.php:212
+#: includes/CPT/Podium.php:98 includes/CPT/Booth.php:212
 msgid "Layout"
 msgstr "Layout"
 
@@ -487,8 +495,8 @@ msgid "Left Screen"
 msgstr "Linker Monitor"
 
 #: includes/CPT/Exposition.php:189 includes/CPT/Hall.php:141
-#: includes/CPT/Podium.php:128 includes/CPT/Booth.php:187
-#: includes/CPT/Foyer.php:208
+#: includes/CPT/Podium.php:156 includes/CPT/Booth.php:187
+#: includes/CPT/Foyer.php:218
 msgid "Light"
 msgstr "Hell"
 
@@ -544,11 +552,11 @@ msgstr "Neues Foyer"
 msgid "New Hall"
 msgstr "Neue Messehalle"
 
-#: includes/CPT/Podium.php:28
+#: includes/CPT/Podium.php:30
 msgid "New Podium"
 msgstr "Neues Podium"
 
-#: includes/CPT/CPT.php:398
+#: includes/CPT/CPT.php:408
 msgid "Next Booth"
 msgstr "Nächster Messestand"
 
@@ -564,7 +572,7 @@ msgstr "Keine Messestände im Papierkorb gefunden"
 msgid "No Booths found."
 msgstr "Keine Messestände gefunden."
 
-#: includes/CPT/Foyer.php:130
+#: includes/CPT/Foyer.php:140
 msgid "No content"
 msgstr "Kein Inhalt"
 
@@ -592,17 +600,21 @@ msgstr "Keine Messehallen im Papierkorb gefunden."
 msgid "No Halls found."
 msgstr "Keine Messehallen gefunden."
 
-#: includes/CPT/Podium.php:34
+#: includes/CPT/Podium.php:36
 msgid "No Podiums found in Trash."
 msgstr "Keine Podien im Papierkorb gefunden."
 
-#: includes/CPT/Podium.php:33
+#: includes/CPT/Podium.php:35
 msgid "No Podiums found."
 msgstr "Keine Podien gefunden."
 
 #: includes/CPT/Booth.php:331
 msgid "No Schedule"
 msgstr "Kein Zeitplan"
+
+#: includes/Templates/single-podium.php:35
+msgid "No Talks available"
+msgstr "Keine Vorträge gefunden."
 
 #: config/config.php:86
 msgid "Number Input"
@@ -628,7 +640,7 @@ msgstr "Organisation"
 msgid "Organisation 2"
 msgstr "Organisator - Zeile 2"
 
-#: includes/Templates/single-exposition.php:79
+#: includes/Templates/single-exposition.php:43
 msgid "Organizer"
 msgstr "Organisator"
 
@@ -661,7 +673,7 @@ msgctxt ""
 msgid "Hall Logo"
 msgstr "Messehallen-Logo"
 
-#: includes/CPT/Podium.php:35
+#: includes/CPT/Podium.php:37
 msgctxt ""
 "Overrides the “Featured Image” phrase for this post type. Added in 4.3"
 msgid "Podium Logo"
@@ -695,7 +707,7 @@ msgctxt ""
 msgid "Insert into hall"
 msgstr "In Messestandtext einfügen"
 
-#: includes/CPT/Podium.php:40
+#: includes/CPT/Podium.php:42
 msgctxt ""
 "Overrides the “Insert into post”/”Insert into page” phrase (used when "
 "inserting media into a post). Added in 4.4"
@@ -726,7 +738,7 @@ msgctxt ""
 msgid "Remove hall logo"
 msgstr "Messehalle-Logo entfernen"
 
-#: includes/CPT/Podium.php:37
+#: includes/CPT/Podium.php:39
 msgctxt ""
 "Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
 msgid "Remove podium logo"
@@ -756,7 +768,7 @@ msgctxt ""
 msgid "Set hall logo"
 msgstr "Messehalle-Logo festlegen"
 
-#: includes/CPT/Podium.php:36
+#: includes/CPT/Podium.php:38
 msgctxt ""
 "Overrides the “Set featured image” phrase for this post type. Added in 4.3"
 msgid "Set podium logo"
@@ -790,7 +802,7 @@ msgctxt ""
 msgid "Uploaded to this hall"
 msgstr "Zu dieser Messehalle hochladen"
 
-#: includes/CPT/Podium.php:41
+#: includes/CPT/Podium.php:43
 msgctxt ""
 "Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used "
 "when viewing media attached to a post). Added in 4.4"
@@ -821,7 +833,7 @@ msgctxt ""
 msgid "Use as hall logo"
 msgstr "Alle Messehallen-Logo verwenden"
 
-#: includes/CPT/Podium.php:38
+#: includes/CPT/Podium.php:40
 msgctxt ""
 "Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
 msgid "Use as podium logo"
@@ -847,11 +859,11 @@ msgstr "PDF-Datei"
 msgid "PDF Flyers"
 msgstr "PDF-Flyer"
 
-#: config/config.php:371 config/config.php:459
+#: config/config.php:371 config/config.php:459 config/config.php:563
 msgid "Plant 1"
 msgstr "Pflanze 1"
 
-#: config/config.php:372 config/config.php:460
+#: config/config.php:372 config/config.php:460 config/config.php:564
 msgid "Plant 2"
 msgstr "Pflanze 2"
 
@@ -862,7 +874,7 @@ msgstr ""
 "Bitte achten Sie auf ausreichend Kontrast zwischen Schrift und Wandfarbe."
 
 #: includes/CPT/Hall.php:87 includes/CPT/Hall.php:101
-#: includes/CPT/Podium.php:88 includes/CPT/Podium.php:222
+#: includes/CPT/Podium.php:90 includes/CPT/Podium.php:250
 #: includes/CPT/Booth.php:92 includes/CPT/Booth.php:102
 #: includes/CPT/Booth.php:467 includes/CPT/Foyer.php:91
 msgid "Please select"
@@ -873,9 +885,13 @@ msgstr "Bitte auswählen"
 msgid "Plugins: %1$s: %2$s"
 msgstr "Plugins: %1$s: %2$s"
 
-#: includes/CPT/Podium.php:49
+#: includes/CPT/Podium.php:51
 msgid "Podium"
 msgstr "Podium"
+
+#: includes/CPT/Podium.php:105
+msgid "Podium Template"
+msgstr "Podium-Vorlage"
 
 #: includes/CPT/Booth.php:23
 msgctxt "Post type general name"
@@ -897,7 +913,7 @@ msgctxt "Post type general name"
 msgid "Halls"
 msgstr "Messehallen"
 
-#: includes/CPT/Podium.php:22
+#: includes/CPT/Podium.php:24
 msgctxt "Post type general name"
 msgid "Podiums"
 msgstr "Podien"
@@ -922,7 +938,7 @@ msgctxt "Post type singular name"
 msgid "Hall"
 msgstr "Messehalle"
 
-#: includes/CPT/Podium.php:23
+#: includes/CPT/Podium.php:25
 msgctxt "Post type singular name"
 msgid "Podium"
 msgstr "Podium"
@@ -935,7 +951,7 @@ msgstr "PLZ"
 msgid "Preview Image"
 msgstr "Vorschau-Bild"
 
-#: includes/CPT/CPT.php:389
+#: includes/CPT/CPT.php:399
 msgid "Previous Booth"
 msgstr "Vorheriger Messestand"
 
@@ -947,19 +963,19 @@ msgstr ""
 msgid "Radio button description."
 msgstr ""
 
-#: includes/Templates/single-foyer.php:73
-#: includes/Templates/single-foyer.php:75
+#: includes/Templates/single-foyer.php:78
+#: includes/Templates/single-foyer.php:80
 #: includes/Templates/single-booth.php:259
 #: includes/Templates/single-booth.php:261
 #: includes/Templates/single-hall.php:42 includes/Templates/single-hall.php:44
+#: includes/Templates/single-exposition.php:107
 #: includes/Templates/single-exposition.php:109
-#: includes/Templates/single-exposition.php:111
-#: includes/Templates/single-podium.php:64
-#: includes/Templates/single-podium.php:66
+#: includes/Templates/single-podium.php:127
+#: includes/Templates/single-podium.php:129
 msgid "Read more"
 msgstr "Weiterlesen"
 
-#: includes/CPT/Podium.php:219
+#: includes/CPT/Podium.php:247
 msgid "Related Booth"
 msgstr "Zugehöriger Messestand"
 
@@ -975,9 +991,9 @@ msgstr "Element entfernen"
 msgid "Remove Roll-up"
 msgstr "Rollup entfernen"
 
-#: includes/CPT/Podium.php:166
-msgid "Remove Timeslot"
-msgstr "Termin entfernen"
+#: includes/CPT/Podium.php:194
+msgid "Remove Talk"
+msgstr "Vortrag entfernen"
 
 #: includes/CPT/Booth.php:311 includes/CPT/Booth.php:334
 msgid "Right Screen"
@@ -1013,6 +1029,10 @@ msgstr "RRZE Webteam"
 msgid "RRZE Webteam on Github"
 msgstr "RRZE Webteam auf Github"
 
+#: includes/Templates/single-podium.php:37
+msgid "Schedule"
+msgstr "Zeitplan"
+
 #: includes/CPT/Booth.php:325
 msgid "Schedule Location"
 msgstr "Anzeige des Zeitplans"
@@ -1045,7 +1065,7 @@ msgctxt ""
 msgid "Filter halls list"
 msgstr ""
 
-#: includes/CPT/Podium.php:42
+#: includes/CPT/Podium.php:44
 msgctxt ""
 "Screen reader text for the filter links heading on the post type listing "
 "screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4"
@@ -1080,7 +1100,7 @@ msgctxt ""
 msgid "Halls list"
 msgstr ""
 
-#: includes/CPT/Podium.php:44
+#: includes/CPT/Podium.php:46
 msgctxt ""
 "Screen reader text for the items list heading on the post type listing "
 "screen. Default “Posts list”/”Pages list”. Added in 4.4"
@@ -1115,7 +1135,7 @@ msgctxt ""
 msgid "Halls list navigation"
 msgstr ""
 
-#: includes/CPT/Podium.php:43
+#: includes/CPT/Podium.php:45
 msgctxt ""
 "Screen reader text for the pagination heading on the post type listing "
 "screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4"
@@ -1138,11 +1158,11 @@ msgstr "Foyers suchen"
 msgid "Search Halls"
 msgstr "Messehallen suchen"
 
-#: includes/CPT/Podium.php:32
+#: includes/CPT/Podium.php:34
 msgid "Search Podiums"
 msgstr "Podien suchen"
 
-#: includes/CPT/Podium.php:214
+#: includes/CPT/Podium.php:242
 msgid "Short description"
 msgstr "Kurzbeschreibung"
 
@@ -1154,7 +1174,7 @@ msgstr "Homepage anzeigen:"
 msgid "Side Panel"
 msgstr "Seiten-Panel"
 
-#: includes/CPT/CPT.php:316
+#: includes/CPT/CPT.php:326
 msgid "Skiplinks"
 msgstr "Sprungmarken"
 
@@ -1174,9 +1194,9 @@ msgstr "Social-Media-Panel"
 msgid "Social Media Type"
 msgstr "Social-Media-Typ"
 
-#: includes/CPT/Podium.php:178
-msgid "Start"
-msgstr "Start"
+#: includes/CPT/Podium.php:206
+msgid "Start (Date/Time)"
+msgstr "Start (Datum/Zeit)"
 
 #: includes/CPT/Exposition.php:95
 msgid "Start Date"
@@ -1190,11 +1210,15 @@ msgstr "Straße"
 msgid "Table Screen (Live Chat)"
 msgstr "Tischmonitor (Live Chat)"
 
-#: includes/CPT/Booth.php:224
+#: includes/CPT/Podium.php:192
+msgid "Talk {#}"
+msgstr "Vortrag {#}"
+
+#: includes/CPT/Podium.php:110 includes/CPT/Booth.php:224
 msgid "Template 1"
 msgstr "Vorlage 1"
 
-#: includes/CPT/Booth.php:225
+#: includes/CPT/Podium.php:111 includes/CPT/Booth.php:225
 msgid "Template 2"
 msgstr "Vorlage 2"
 
@@ -1250,7 +1274,7 @@ msgctxt ""
 msgid "Hall archives"
 msgstr "Messehallen-Archiv"
 
-#: includes/CPT/Podium.php:39
+#: includes/CPT/Podium.php:41
 msgctxt ""
 "The post type archive label used in nav menus. Default “Post Archives”. "
 "Added in 4.4"
@@ -1288,15 +1312,11 @@ msgstr ""
 msgid "Three"
 msgstr "Drei"
 
-#: includes/CPT/Podium.php:164
-msgid "Timeslot {#}"
-msgstr "Termin {#}"
-
-#: includes/CPT/Podium.php:153 includes/Templates/single-podium.php:30
+#: includes/CPT/Podium.php:181
 msgid "Timetable"
 msgstr "Zeitplan"
 
-#: includes/CPT/Podium.php:173
+#: includes/CPT/Podium.php:201
 msgid "Title"
 msgstr "Titel"
 
@@ -1321,7 +1341,7 @@ msgstr "Rechter Monitor"
 msgid "Video Screen Table"
 msgstr "Linker Monitor"
 
-#: includes/CPT/Podium.php:208
+#: includes/CPT/Podium.php:236
 msgid "Video URL"
 msgstr "Video-URL"
 
@@ -1349,7 +1369,7 @@ msgstr "Foyer ansehen"
 msgid "View Hall"
 msgstr "Messehalle ansehen"
 
-#: includes/CPT/Podium.php:30
+#: includes/CPT/Podium.php:32
 msgid "View Podium"
 msgstr "Podium ansehen"
 
