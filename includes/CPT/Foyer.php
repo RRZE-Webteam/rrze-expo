@@ -174,6 +174,30 @@ class Foyer {
                 'id'        => 'rrze-expo-foyer-board-'.$i.'-link',
                 'type'      => 'text_url',
             ]);
+            $cmb_panels->add_group_field( $board_content_group_id, [
+                'name'    => __('Board Color', 'rrze-expo'),
+                'id'      => 'rrze-expo-foyer-board-'.$i.'-color',
+                'type'    => 'colorpicker',
+                'default' => '#ffffff',
+                'attributes' => [
+                    'data-colorpicker' => json_encode( [
+                        'palettes' => [ '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ],
+                    ] ),
+                ],
+            ] );
+            $cmb_panels->add_group_field( $board_content_group_id, [
+                'name'    => __('Font Color', 'rrze-expo'),
+                'desc'    => __('Please make sure there is enough contrast between font and backwall color.', 'rrze-expo'),
+                'id'      => 'rrze-expo-foyer-board-'.$i.'-font-color',
+                'type'    => 'colorpicker',
+                'default' => '#000000',
+                'attributes' => [
+                    'data-colorpicker' => json_encode( [
+                        'palettes' => [ '#000000', '#ffffff', '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ],
+                    ] ),
+                ],
+            ] );
+
         }
 
         // Social Media Panel

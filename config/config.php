@@ -471,42 +471,42 @@ function getConstants() {
                 'board1' => [
                     'x' => 1100,
                     'y' => 15,
-                    'width' => '',
+                    'width' => 554,
                     'height' => 171,
                     'arrow-position' => 'translate(1100 70) scale(.15) rotate(-45)'
                 ],
                 'board2' => [
                     'x' => 1100,
                     'y' => 215,
-                    'width' => '',
+                    'width' => 554,
                     'height' => 171,
                     'arrow-position' => 'translate(1115 308) scale(.15) rotate(-90)'
                 ],
                 'board3' => [
                     'x' => 1100,
                     'y' => 415,
-                    'width' => '',
+                    'width' => 554,
                     'height' => 171,
                     'arrow-position' => 'translate(1153 525) scale(.15) rotate(-135)'
                 ],
                 'board4' => [
                     'x' => 2420,
                     'y' => 15,
-                    'width' => '',
+                    'width' => 554,
                     'height' => 171,
                     'arrow-position' => 'translate(2917 17) scale(.15) rotate(45)'
                 ],
                 'board5' => [
                     'x' => 2420,
                     'y' => 215,
-                    'width' => '',
+                    'width' => 554,
                     'height' => 171,
                     'arrow-position' => 'translate(2955 232) scale(.15) rotate(90)'
                 ],
                 'board6' => [
                     'x' => 2420,
                     'y' => 415,
-                    'width' => '',
+                    'width' => 554,
                     'height' => 171,
                     'arrow-position' => 'translate(2975 470) scale(.15) rotate(135)'
                 ],
