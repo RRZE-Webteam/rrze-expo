@@ -71,6 +71,7 @@ CPT::expoHeader();
             }
         }
         $accentColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
+        $wallImage = CPT::getMeta($meta, 'rrze-expo-booth-backwall-image');
         $wallSettings = $constants['template_elements']['booth'.$templateNo]['wall'];
         $title = get_the_title();
         $fontSize = CPT::getMeta($meta, 'rrze-expo-booth-font-size');
@@ -79,7 +80,12 @@ CPT::expoHeader();
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
             <svg version="1.1" class="expo-booth template-<?php echo $templateNo; ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
-                <?php echo '<rect x="'.$wallSettings['x'].'" y="'.$wallSettings['y'].'" width="'.$wallSettings['width'].'" height="'.$wallSettings['height'].'" style="fill:'. $accentColor.'"/>'; ?>
+                <?php
+                    echo '<rect x="' . $wallSettings['x'] . '" y="' . $wallSettings['y'] . '" width="' . $wallSettings['width'] . '" height="' . $wallSettings['height'] . '" style="fill:' . $accentColor . '"/>';
+                if ($wallImage != '') {
+                    echo '<image xlink:href="'.$wallImage.'" class="wall-image" width="'.$wallSettings['width'].'" height="'.$wallSettings['height'].'"  x="'.$wallSettings['x'].'" y="'.$wallSettings['y'].'" preserveAspectRatio="xMinYMin meet" />';
+                    }
+                ?>
                 <use class="backwall" xlink:href="#backwall-color" />
                 <use xlink:href="#table" />
                 <?php
