@@ -315,7 +315,7 @@ CPT::expoHeader();
         }
         echo '<div class="rrze-expo-booth-links">'
             . '<h2>'.__('Information Material', 'rrze-expo').'</h2>';
-        if ($videos != '') {
+        if ($videos['left'] != '' || $videos['right'] != '') {
             echo '<h3>' . __('Videos', 'rrze-expo') . '</h3>';
             echo '<ul class="booth-links">';
             foreach ($videos as $location => $url) {
