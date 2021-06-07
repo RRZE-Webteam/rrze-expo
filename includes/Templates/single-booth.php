@@ -202,10 +202,10 @@ CPT::expoHeader();
                 }
 
                 // Roll-Ups
+                $rollupSettings = $constants['template_elements']['booth' . $templateNo]['rollup'];
                 if ($scheduleLocation != 'rollup') {
                     $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
                     if ($rollups != '') {
-                        $rollupSettings = $constants['template_elements']['booth' . $templateNo]['rollup'];
                         if (isset($rollups[0])) {
                             $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
                             echo '<use xlink:href="#rollup" />';
@@ -257,6 +257,12 @@ CPT::expoHeader();
                     }
                     if (in_array('plant2', $deco)) {
                         echo '<use xlink:href="#plant2" />';
+                    }
+                    if (in_array('plant3', $deco)) {
+                        echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
+                    }
+                    if (in_array('plant4', $deco)) {
+                        echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
                     }
                 }
                 ?>
