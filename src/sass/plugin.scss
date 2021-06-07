@@ -365,10 +365,10 @@ Plugin Style
             display: block;
             background-color: rgba(255,255,255,.7);
             padding: 10px;
-            flex-basis: 220px;
-            flex-grow: 0;
+            flex-grow: 1;
             box-shadow: 0 2px 5px rgba(0,0,0,.5);
-            margin-bottom: 20px;
+            margin: 10px 10px 30px;
+            text-align: center;
         }
         img {
             box-shadow: none; // fix für FAU-Einrichtungen
