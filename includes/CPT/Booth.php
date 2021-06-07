@@ -265,7 +265,7 @@ class Booth {
         ));
         $cmb_layout->add_field( array(
             'name'    => __('Font Color', 'rrze-expo'),
-            'desc'    => __('Please make shure there is enough contrast between font and backwall color.', 'rrze-expo'),
+            'desc'    => __('Please make sure there is enough contrast between font and background color.', 'rrze-expo'),
             'id'      => 'rrze-expo-booth-font-color',
             'type'    => 'colorpicker',
             'default' => '#000000',

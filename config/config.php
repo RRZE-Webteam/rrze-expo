@@ -370,8 +370,8 @@ function getConstants() {
                 'deco' => [
                     'plant1' => __('Plant 1 Right', 'rrze-expo'),
                     'plant2' => __('Plant 2 Right', 'rrze-expo'),
-                    'plant3' => __('Plant 1 Left', 'rrze-expo'),
-                    'plant4' => __('Plant 2 Left', 'rrze-expo'),
+                    'plant3' => __('Plant 1 Left (Replaces Roll Up)', 'rrze-expo'),
+                    'plant4' => __('Plant 2 Left (Replaces Roll Up)', 'rrze-expo'),
                     //'seats-left' => __('Seats left side', 'rrze-expo'),
                     //'seats-right' => __('Seats right side', 'rrze-expo'),
                     //'owl' => __('Owl', 'rrze-expo'),

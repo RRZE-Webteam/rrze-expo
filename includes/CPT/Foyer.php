@@ -187,7 +187,7 @@ class Foyer {
             ] );
             $cmb_panels->add_group_field( $board_content_group_id, [
                 'name'    => __('Font Color', 'rrze-expo'),
-                'desc'    => __('Please make sure there is enough contrast between font and backwall color.', 'rrze-expo'),
+                'desc'    => __('Please make sure there is enough contrast between font and background color.', 'rrze-expo'),
                 'id'      => 'rrze-expo-foyer-board-'.$i.'-font-color',
                 'type'    => 'colorpicker',
                 'default' => '#000000',
