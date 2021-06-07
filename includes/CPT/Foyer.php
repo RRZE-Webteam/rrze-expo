@@ -59,7 +59,7 @@ class Foyer {
             'show_in_admin_bar'         => true,
             'menu_icon'                 => 'dashicons-store',
             'can_export'                => true,
-            'has_archive'               => 'foyer',
+            'has_archive'               => false,
             'exclude_from_search'       => true,
             'publicly_queryable'        => true,
             'delete_with_user'          => false,
