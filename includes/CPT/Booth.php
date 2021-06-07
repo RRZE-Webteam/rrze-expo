@@ -59,7 +59,6 @@ class Booth {
             'show_in_admin_bar'         => true,
             'menu_icon'                 => 'dashicons-store',
             'can_export'                => true,
-            //'has_archive'               => 'booth',
             'has_archive'               => false,
             'exclude_from_search'       => true,
             'publicly_queryable'        => true,
@@ -146,8 +145,6 @@ class Booth {
             'id'   => 'rrze-expo-booth-contactinfo',
             'type' => 'textarea_small',
         ] );
-
-
 
         // Background Image
         $cmb_background = new_cmb2_box([
@@ -248,9 +245,27 @@ class Booth {
             // 	'alpha' => true, // Make this a rgba color picker.
             // ),
         ) );
+        $cmb_layout->add_field(array(
+            'name'    => __('Back Wall Image', 'rrze-expo'),
+            'desc'    => __('Recommended Resolution: 1135 x 782 px', 'rrze-expo'),
+            'id'      => 'rrze-expo-booth-backwall-image',
+            'type'    => 'file',
+            'options' => array(
+                'url' => false, // Hide the text input for the url
+            ),
+            // query_args are passed to wp.media's library query.
+            'query_args' => array(
+                'type' => array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                ),
+            ),
+            'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+        ));
         $cmb_layout->add_field( array(
             'name'    => __('Font Color', 'rrze-expo'),
-            'desc'    => __('Please make shure there is enough contrast between font and backwall color.', 'rrze-expo'),
+            'desc'    => __('Please make sure there is enough contrast between font and background color.', 'rrze-expo'),
             'id'      => 'rrze-expo-booth-font-color',
             'type'    => 'colorpicker',
             'default' => '#000000',

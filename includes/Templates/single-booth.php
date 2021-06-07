@@ -71,6 +71,7 @@ CPT::expoHeader();
             }
         }
         $accentColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
+        $wallImage = CPT::getMeta($meta, 'rrze-expo-booth-backwall-image');
         $wallSettings = $constants['template_elements']['booth'.$templateNo]['wall'];
         $title = get_the_title();
         $fontSize = CPT::getMeta($meta, 'rrze-expo-booth-font-size');
@@ -79,7 +80,12 @@ CPT::expoHeader();
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
             <svg version="1.1" class="expo-booth template-<?php echo $templateNo; ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
-                <?php echo '<rect x="'.$wallSettings['x'].'" y="'.$wallSettings['y'].'" width="'.$wallSettings['width'].'" height="'.$wallSettings['height'].'" style="fill:'. $accentColor.'"/>'; ?>
+                <?php
+                    echo '<rect x="' . $wallSettings['x'] . '" y="' . $wallSettings['y'] . '" width="' . $wallSettings['width'] . '" height="' . $wallSettings['height'] . '" style="fill:' . $accentColor . '" rx="4" ry="4" />';
+                if ($wallImage != '') {
+                    echo '<image xlink:href="'.$wallImage.'" class="wall-image" width="'.$wallSettings['width'].'" height="'.$wallSettings['height'].'"  x="'.$wallSettings['x'].'" y="'.$wallSettings['y'].'" preserveAspectRatio="xMinYMin meet" />';
+                    }
+                ?>
                 <use class="backwall" xlink:href="#backwall-color" />
                 <use xlink:href="#table" />
                 <?php
@@ -196,10 +202,10 @@ CPT::expoHeader();
                 }
 
                 // Roll-Ups
+                $rollupSettings = $constants['template_elements']['booth' . $templateNo]['rollup'];
                 if ($scheduleLocation != 'rollup') {
                     $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
                     if ($rollups != '') {
-                        $rollupSettings = $constants['template_elements']['booth' . $templateNo]['rollup'];
                         if (isset($rollups[0])) {
                             $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
                             echo '<use xlink:href="#rollup" />';
@@ -251,6 +257,12 @@ CPT::expoHeader();
                     }
                     if (in_array('plant2', $deco)) {
                         echo '<use xlink:href="#plant2" />';
+                    }
+                    if (in_array('plant3', $deco)) {
+                        echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
+                    }
+                    if (in_array('plant4', $deco)) {
+                        echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
                     }
                 }
                 ?>
@@ -309,7 +321,7 @@ CPT::expoHeader();
         }
         echo '<div class="rrze-expo-booth-links">'
             . '<h2>'.__('Information Material', 'rrze-expo').'</h2>';
-        if ($videos != '') {
+        if ($videos['left'] != '' || $videos['right'] != '') {
             echo '<h3>' . __('Videos', 'rrze-expo') . '</h3>';
             echo '<ul class="booth-links">';
             foreach ($videos as $location => $url) {

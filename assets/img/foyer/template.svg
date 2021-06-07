@@ -37,13 +37,9 @@
 		<symbol id="panel-left">
 			<image style="overflow:visible;enable-background:new;" width="554" height="171" xlink:href="panel-left.png" >
 			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="554" height="171" xlink:href="panel-accent-left.png">
-			</image>
 		</symbol>
 		<symbol id="panel-right">
 			<image style="overflow:visible;enable-background:new;" width="553" height="171" xlink:href="panel-right.png" >
-			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="554" height="171" xlink:href="panel-akzent.png">
 			</image>
 		</symbol>
 		<symbol id="panel-mitte">
