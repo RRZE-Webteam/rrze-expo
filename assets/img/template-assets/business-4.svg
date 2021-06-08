@@ -1,0 +1,274 @@
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 280 704" style="enable-background:new 0 0 280 704;" xml:space="preserve">
+<style type="text/css">
+#businesscharakter4-rrze-expo{
+	/*Hautfarben*/
+	--hautfarbe: #FBBE7D;
+	--hautschatten: #E78052;
+
+	/*Anzugfarben*/
+	--anzugbasis: #313032;
+	--anzugschatten: #272727;
+	--anzugbasisdunklerakzent: #252426;
+	--anzuglicht: #5A595B; /*Kragen heller als Basiston*/
+
+	--hemdbasis: #E5E6E8;
+	--knoepfe: #F1F1F1;
+	--hemdschatten: #9490A7;
+
+
+	--guertel: #804603;
+	--guertelschnalle: #E3E4E3; /*Steuert auch die Broschenfassung*/
+
+	--krawatte: #3A2D3C; /*Steuert hier Kette*/
+
+	/*Haare*/
+	--haarfarbe: #1A1A1A;
+
+	/*Sonstiges*/
+	--tablet: #E6E7E8;
+
+
+	--augenfarbe: #231F20;
+	--schuhfarbe: #231F20;
+	--mund: #E78052;
+	}
+
+	#businesscharakter4-rrze-expo .st0{fill:#252426; fill: var(--anzugbasisdunklerakzent, #252426);} /*Anzugbasis dunklerer Ton*/
+	#businesscharakter4-rrze-expo .st1{fill:#313032; fill: var(--anzugbasis, #313032);} /*Anzugbasis*/
+	#businesscharakter4-rrze-expo .st2{opacity:0.5;fill:#272727; fill: var(--anzugschatten, #272727);} /*Schlagschattenfarbe Anzug*/
+
+	#businesscharakter4-rrze-expo .st3{fill:#9490A7; fill: var(--hemdschatten, #9490A7);} /*Kragen Hemdschatten*/
+
+	#businesscharakter4-rrze-expo .st4{fill:#FBBE7D; fill: var(--hautfarbe, #FBBE7D);} /*Hautbasis Hals*/
+	#businesscharakter4-rrze-expo .st5{fill:#E78052; fill: var(--hautschatten, #E78052);} /*Hautbasis Hals*/
+	#businesscharakter4-rrze-expo .st6{fill:#E5E6E8; fill: var(--hemdbasis, #E5E6E8);} /*Hemdbasis*/
+	#businesscharakter4-rrze-expo .st7{fill:#A9A6B9; fill: var(--hemdschatten, #A9A6B9);} /*Hemdschatten*/
+	#businesscharakter4-rrze-expo .st8{fill:#F1F1F1; fill: var(--knoepfe, #F1F1F1);} /*Hemdknoepfe*/
+	#businesscharakter4-rrze-expo .st9{fill:#804603; fill: var(--guertel, #804603);} /*Guertel*/
+	#businesscharakter4-rrze-expo .st10{fill:#E3E4E3; fill: var(--guertelschnalle, #E3E4E3);} /*Guertelschnalle*/
+	#businesscharakter4-rrze-expo .st11{fill:#3A2D3C; fill: var(--krawatte, #3A2D3C);} /*Krawatte*/
+	#businesscharakter4-rrze-expo .st12{fill:#231F20; fill: var(--augenfarbe, #231F20);} /*Augen*/
+	#businesscharakter4-rrze-expo .st13{fill:#5A595B; fill: var(--anzuglicht, #5A595B);} /*Anzugkragen Heller als Basis*/
+	#businesscharakter4-rrze-expo .st14{fill:#FBB57A; fill: var(--hautfarbe, #FBB57A);} /*Hautbasis Gesicht*/
+	#businesscharakter4-rrze-expo .st15{fill:#1A1A1A; fill: var(--haarfarbe, #1A1A1A);} /*Haare und Augenbrauen*/
+	#businesscharakter4-rrze-expo .st16{fill:#FFFFFF;} /*Zaehne*/
+	#businesscharakter4-rrze-expo .st17{fill:#E6E7E8; fill: var(--tablet, #E6E7E8);} /*Tablet*/
+	#businesscharakter4-rrze-expo .st18{fill:#FAB57A; fill: var(--hautfarbe, #FAB57A);} /*Hand Hauttonbasis*/
+
+	#businesscharakter4-rrze-expo .st19{fill:#231F20; fill: var(--schuhfarbe, #231F20);} /*Schuhfarbe*/
+	#businesscharakter4-rrze-expo .st20{fill:#E78052; fill: var(--mund, #E78052);} /*Mund*/
+</style>
+<g id="businesscharakter4-rrze-expo">
+	<path id="businesscharakter4-rrze-expo-Oberarm_Anzug_etwas_dunkler_als_Anzugbasis" class="st0" d="M27.4,312.4c5.3-44.3,20.9-122.7,40.3-142.1
+		c9.5,13.3,15,25.6,14.1,57.3l-20.6,83C46.6,325.3,36.6,329,27.4,312.4z"/>
+	<path id="businesscharakter4-rrze-expo-Vorderarm_Anzug_etwas_dunkler_als_Anzugbasis" class="st0" d="M46.4,282.4l42.7,60.1l-10.3,28.7
+		c-12.9-5.1-43-38.6-49.8-52.8C21.4,303.2,46.4,282.4,46.4,282.4z"/>
+	<path id="businesscharakter4-rrze-expo-Anzughose" class="st1" d="M81.7,320.4c0,0-5,91.6,13.7,188.3c1.2,6,7.9,127.7,3.9,150h35c0,0,15.2-93.7,1.8-152.9
+		l-5.2-68l-5.9-44.5c0,0,21,106,29.1,124c8.2,18,16.7,142.7,16.7,142.7l33.5,0.1c0,0,8.8-81.5-11.7-161.5c0,0-11-148.1-16.8-176.2
+		L81.7,320.4z"/>
+	<path id="businesscharakter4-rrze-expo-Schlagschatten_Anzug" class="st2" d="M137.6,402.9l-12-63.6l-20.2,7.2l-1.8,64.4c0,0-16.6,1.6-20.4,1.1
+		c-3.6-53.2-1.5-91.6-1.5-91.6l94.2,2c2.4,11.4,5.6,42.4,8.5,75.3C177.9,398.7,137.6,402.9,137.6,402.9z"/>
+	<polygon id="businesscharakter4-rrze-expo-Kragen_Hemd_dunkel" class="st3" points="164.1,134.1 147.4,132.4 127.3,135.7 117.5,141.5 118.8,154 131.8,146
+		148.1,143.3 168.7,146.8 	"/>
+	<path id="businesscharakter4-rrze-expo-Hals" class="st4" d="M158.1,117.8c0,0,0,30.2,6,42.7c6,12.5-39.7,26.3-39.7,26.3s-19.4-12.5-11.2-24.1
+		c8.2-11.6,9.9-34.9,9.9-34.9L158.1,117.8z"/>
+	<path id="businesscharakter4-rrze-expo-Kinnschatten_Haut_dunkel" class="st5" d="M126.6,143.3c-1.9-1.5-3.4-3.4-4.9-5.2c1.1-6,1.4-10.4,1.4-10.4l34.9-9.9
+		c0,0,0,2.1,0.1,5.5c-4.1,8-8.5,16-14,23C138.3,147.4,131.4,147.2,126.6,143.3z"/>
+	<path id="businesscharakter4-rrze-expo-Hemdbasis" class="st6" d="M68.8,169.5c2.2-2,46.2-22.4,46.2-22.4l7.8,28l42.7-30.6c0,0,43.7,26.2,46.3,28.9
+		c1.7,1.7-11.6,37.2-21.3,62.8c-5.5,14.6-5,10.8-10,25.9c-5,15.1-2.1,52.6-2.1,52.6L104,325.9l-21.1-3.9l-3.4-27.6l-5.4-94
+		C74,200.5,66.6,171.5,68.8,169.5L68.8,169.5z"/>
+	<path id="businesscharakter4-rrze-expo-Kragenschatten_Krawattenschatten" class="st7" d="M124.6,188.7c0.1,10.4,0.4,20.7,0.4,31.1c0.1,10.7,2.1,20.8,2.8,31.4
+		c0,0.4-0.3,4.2,0.3,4.5c1.1-0.3-0.3-79.8-0.3-79.8l8.8-8.8l8.9,4.6c0,0,22.7-21.8,25.3-23.8c-5.3-3.2-5.4-3.4-5.4-3.4l-41.5,29.7
+		C124.2,179,124.5,183.8,124.6,188.7L124.6,188.7z"/>
+	<path id="businesscharakter4-rrze-expo-Kragenschatten_Hemd_dunkel" class="st7" d="M132.2,154l-1,15.3c15.6-1.2,37.3-22.9,37.3-22.9l-4.4-12.2L132.2,154z"/>
+	<g id="businesscharakter4-rrze-expo-Knopfreihe">
+		<path class="st8" d="M122.7,177.9c1.2,0,2.1,0.9,2.1,2.1c0,1.2-0.9,2.1-2.1,2.1c-1.2,0-2.1-0.9-2.1-2.1
+			C120.6,178.9,121.5,177.9,122.7,177.9L122.7,177.9z"/>
+		<path class="st8" d="M122.4,220.3c1.2,0,2.1,0.9,2.1,2.1c0,1.2-0.9,2.1-2.1,2.1c-1.2,0-2.1-0.9-2.1-2.1
+			C120.3,221.2,121.3,220.3,122.4,220.3L122.4,220.3z"/>
+		<path class="st8" d="M122.2,262.6c1.2,0,2.1,0.9,2.1,2.1c0,1.2-0.9,2.1-2.1,2.1c-1.2,0-2.1-0.9-2.1-2.1
+			C120.1,263.5,121.1,262.6,122.2,262.6L122.2,262.6z"/>
+		<path class="st8" d="M115.8,304.9c1.2,0,2.1,0.9,2.1,2.1c0,1.2-0.9,2.1-2.1,2.1c-1.2,0-2.1-0.9-2.1-2.1
+			C113.7,305.8,114.6,304.9,115.8,304.9L115.8,304.9z"/>
+	</g>
+	<path id="businesscharakter4-rrze-expo-Guertel" class="st9" d="M109,330.4c16.7,0,67.3-6.9,67.3-6.9l0.7-8.7c0,0-55.3,6.5-68,6.5c-15.8,0-27.8-1.1-27.9-1.1
+		l-0.6,9.3C81,329.5,92.9,330.4,109,330.4L109,330.4z"/>
+	<path id="businesscharakter4-rrze-expo-Guertelschnalle" class="st10" d="M107.4,331c-1.1-1-1.8-2.4-1.9-3.9l0-1c-0.1-1.5,0.5-3,1.5-4.1c1-1.1,2.4-1.8,3.9-1.9
+		l6.6-0.3c3.1-0.1,5.8,2.3,5.9,5.4l0,1c0.1,1.5-0.5,3-1.5,4.1c-1,1.1-2.4,1.8-3.9,1.9l-6.6,0.3c-0.1,0-0.2,0-0.3,0
+		C109.8,332.5,108.4,332,107.4,331L107.4,331z M117.6,322.4l-6.6,0.3h0c-0.8,0-1.6,0.4-2.1,1c-0.6,0.6-0.8,1.4-0.8,2.2l0,1
+		c0,0.8,0.4,1.6,1,2.1c0.6,0.6,1.4,0.8,2.2,0.8l6.6-0.3c0.8,0,1.6-0.4,2.1-1c0.6-0.6,0.8-1.4,0.8-2.2l0-1c-0.1-1.7-1.5-2.9-3.1-2.9
+		C117.7,322.4,117.6,322.4,117.6,322.4L117.6,322.4z"/>
+	<polygon id="businesscharakter4-rrze-expo-Krawatte" class="st11" points="115.5,305.2 128.4,295.1 126.4,175 117.9,175 104.9,295.1 	"/>
+	<path id="businesscharakter4-rrze-expo-Schuhrechts" class="st19" d="M205.4,654.1c-1.8-11.8-34.8-9.2-35.5,0.1c-0.7,9.3-5.2,13.4-5.2,18.8
+		c0,5.4-0.6,14.3,19.1,14.3c19.8,0,24.2-7.7,24.2-14.3C208.1,666.4,207.1,665.8,205.4,654.1L205.4,654.1z"/>
+	<path id="businesscharakter4-rrze-expo-Schuhsohlerechts" class="st19" d="M164.9,677.3c0.7,4.8,3.9,10,18.9,10c17.4,0,22.9-6,24-11.9
+		C195.1,683.8,175.8,687.1,164.9,677.3L164.9,677.3z"/>
+	<path id="businesscharakter4-rrze-expo-Rechte_Anzugseite" class="st1" d="M137,243.1c0.9-15.8,31.5-96.7,31.5-96.7c17,10,33.4,19.4,44,26.9
+		c5.8,14.6-21,85-21,85l11.5,131.6c-13,5.8-58.6,9.6-58.6,9.6S136.2,258.9,137,243.1z"/>
+	<path id="businesscharakter4-rrze-expo-Anzugkragen_Akzent_hell_1_" class="st13" d="M177.2,180.7l-10.9,4.5l6.1,7c0,0-25.8,45-35.5,53.1c0-0.9,0-1.6,0.1-2.2
+		c0.9-15.8,31.5-96.7,31.5-96.7c3.4,2,6.8,4,10.2,6C178.8,158,177.2,180.7,177.2,180.7z"/>
+	<path id="businesscharakter4-rrze-expo-Linkeanzugseite" class="st1" d="M67.8,169.9c7-5.2,47.4-23.7,47.4-23.7L96.6,256l3.2,144.6c-17.9,1.2-26.1-2.1-26.1-2.1
+		c-6.7-83.1-2.9-194.5-2.9-194.5C68.5,186.2,67.8,169.9,67.8,169.9z"/>
+	<path id="businesscharakter4-rrze-expo-Anzugkragen_Akzent_hell" class="st13" d="M93.5,186.1l7.5-4.9l-7-3.2c0,0,7.4-21.4,9.4-26.2c6.8-3.2,11.8-5.5,11.8-5.5
+		l-15.9,93.6C96.5,232.1,93.5,186.1,93.5,186.1z"/>
+	<path id="businesscharakter4-rrze-expo-Kragenhellrechts" class="st6" d="M164.1,134.1L132.2,154c0,0,3,12.4,12.9,15.9l23.4-23.5L164.1,134.1z"/>
+	<path id="businesscharakter4-rrze-expo-Kragenschatten" class="st7" d="M118.6,151.3c0,0-3.9,14.4-15.7,17.4l7.8-20.7l6.9-6.5L118.6,151.3z"/>
+	<path id="businesscharakter4-rrze-expo-Kragen_hemd_hell_links" class="st6" d="M110.6,147.9l9.3,17c0,0-2.5-7.9-2.9-12.7c-0.4-4.8,0.5-10.8,0.5-10.8
+		L110.6,147.9z"/>
+	<g>
+		<path id="businesscharakter4-rrze-expo-Krawattenknotenrechts" class="st11" d="M125.7,156.5l7.2,0.2c0,0,2.4,5.3,3.7,6.9c1.4,1.7-4.2,2-4.2,2L125.7,156.5z"/>
+		<path id="businesscharakter4-rrze-expo-Krawattenknotenlinks" class="st11" d="M117,156.5c0,0-1.4,0.1-2-0.3c-0.6-0.4-1.5,6.1-1.1,7.5
+			C114.4,165,117,156.5,117,156.5L117,156.5z"/>
+		<polygon id="businesscharakter4-rrze-expo-Krawattenknoten" class="st11" points="129.4,156.5 117,156.5 113.9,163.6 117.9,175 126.4,175 134.4,165.3 		"/>
+	</g>
+	<path id="businesscharakter4-rrze-expo-Schuhlinks" class="st19" d="M99.9,652.8c0,0-8.7,7.7-12.1,8.2c-3.4,0.5-27.8,1.1-27.8,19.9c8.2,6.8,46.3,2.5,76,0.4
+		c1.7-2.9,0.7-17.2-1.6-22.7C112.3,658.7,104,654.4,99.9,652.8L99.9,652.8z"/>
+	<path id="businesscharakter4-rrze-expo-Schuhsohle_links" class="st19" d="M98.2,679.7c-11.9,1.6-26.5,2.4-37.7-3.3c-0.4,1.4-0.6,2.9-0.6,4.5
+		c8.2,6.8,46.3,2.5,76,0.4c0.5-0.9,0.8-2.7,0.8-5.1C123.9,676.5,111.2,677.9,98.2,679.7L98.2,679.7z"/>
+	<g id="businesscharakter4-rrze-expo-Haar_und_Gesicht">
+		<g id="businesscharakter4-rrze-expo-Gesicht">
+			<g>
+				<g id="businesscharakter4-rrze-expo-Ohr_rechts_Hautschatten">
+					<g>
+						<g>
+							<path class="st5" d="M163.7,92.4c-1.3,6.3,0.8,12,4.7,12.9c3.9,0.8,8.2-3.5,9.6-9.8c1.3-6.3-0.8-12-4.7-12.9
+								C169.3,81.8,165,86.2,163.7,92.4L163.7,92.4z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Ohr_links_Hautschatten">
+					<g>
+						<g>
+							<path class="st5" d="M95.2,95.4c1.3,6.3,5.6,10.7,9.5,9.9c4-0.8,6.1-6.6,4.8-12.8c-1.3-6.3-5.6-10.7-9.5-9.9
+								C96,83.4,93.9,89.2,95.2,95.4L95.2,95.4z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Gesicht_Hautbasis">
+					<g>
+						<g>
+							<path class="st14" d="M136.6,45.3c31.6,0,33.5,29.7,33.6,33.2c0,0.2,0,0.4,0,0.6c-0.2,3.3-2,33.8-5.1,39.7
+								c-2.5,4.8-21.6,20.6-23.4,20.6h-1.5H133h-1.5c-1.8,0-20.9-15.8-23.4-20.6c-3-5.8-4.9-36.4-5.1-39.7c0-0.2,0-0.4,0-0.6
+								C103.1,75,105,45.3,136.6,45.3L136.6,45.3z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Haarschatten">
+					<g>
+						<g>
+							<path class="st5" d="M164.6,71.6c-1.9-1.8-3-4-4.5-6.1c-1.7-2.4-4.2-4-7.2-4.2c-3.2-0.2-6.2,1-9.2,1.8
+								c-5.1,1.4-10.4,1.8-15.7,2.1c-2.6,0.1-5.3,0.2-7.9,0.3c-1.7,0-3.6-0.1-5.2,0.3c-1.7,0.5-2.7,2.2-3.7,3.6
+								c-0.6,0.9-0.4,1.4-1.8,2.3c-0.4,0.3-0.7,0.3-1.1,0.6c-0.9,0.8-1.6,2.6-2.2,3.7c-1.2,2.7-2.1,5.6-2.8,8.5
+								c-0.2-2.6-0.3-4.6-0.3-5.3c0-0.2,0-0.4,0-0.6c0.1-3.6,2-33.2,33.6-33.2c26.8,0,32.3,21.3,33.4,30
+								C168,74.3,166.2,73.1,164.6,71.6z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Augerechts">
+					<g>
+						<g>
+							<path class="st12" d="M151.4,85c-2.2-0.2-4.2,2.1-4.3,5.3c-0.2,3.2,1.5,5.9,3.7,6.2c2.2,0.2,4.2-2.1,4.3-5.3
+								C155.3,88,153.6,85.2,151.4,85L151.4,85z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Augelinks">
+					<g>
+						<g>
+							<path class="st12" d="M122.4,85c-2.2-0.2-4.2,2.1-4.3,5.3c-0.2,3.2,1.5,5.9,3.7,6.2c2.2,0.2,4.2-2.1,4.3-5.3
+								C126.3,88,124.7,85.2,122.4,85L122.4,85z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Augenbrauelinks">
+					<g>
+						<g>
+							<path class="st15" d="M110.2,76.9c0.5-0.2,9.3-5.3,21-2.2c0.8,0.2,1.6,4.5,1,4.6c-0.2,0-0.4,0-0.6,0
+								c-10.9-2.7-19.6,0.2-19.8,0.3c-0.9,0.3-2,0-2.5-0.7C108.8,78.1,109.2,77.2,110.2,76.9L110.2,76.9z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Augenbrauerechts">
+					<g>
+						<g>
+							<path class="st15" d="M163,76c-0.5-0.2-9.3-5.3-21-2.2c-0.8,0.2-1.6,4.5-1,4.6c0.2,0,0.4,0,0.6,0c10.9-2.7,19.6,0.2,19.8,0.3
+								c0.9,0.3,2,0,2.5-0.7C164.3,77.2,163.9,76.4,163,76L163,76z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Nase">
+					<g>
+						<g>
+							<path class="st5" d="M136.1,102c-0.5,1.3-0.5,1.1-0.1,2.1c0.3,0.7,0.9,1.4,1.3,1.9c0.8,1.3-2.8,0.8-3.4-0.1
+								c-0.5-0.8-1.8-2.1-2.1-3.2c-0.3-1.3,0.3-1.7,0.9-2.5c1.8-2.1,2.9-4.8,3.5-8C136.4,90.9,138,97.6,136.1,102L136.1,102z"/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Mund">
+					<g>
+						<g>
+							<path class="st20" d="M124.5,114.5c0,0,6.7,10.7,12.8,10.7c6.1,0,12.6-10.7,12.6-10.7C141.2,113.2,132.7,113.2,124.5,114.5z"
+								/>
+						</g>
+					</g>
+				</g>
+				<g id="businesscharakter4-rrze-expo-Zaehne">
+					<g>
+						<g>
+							<path class="st16" d="M147.7,117.6c1.4-1.8,2.2-3.2,2.2-3.2c-8.7-1.3-17.1-1.3-25.4,0c0,0,0.8,1.3,2.1,2.9
+								C133.6,118.4,140.7,118.5,147.7,117.6z"/>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+		<g id="businesscharakter4-rrze-expo-Haare">
+			<g>
+				<g>
+					<path class="st15" d="M154.9,55.3c0,0,10.1,5.8,8.7,12.3l4,4l2.2,11.5c0,0,9.7-23.1,7.9-28.5c-1.8-5.4-15.4-14.7-15.4-14.7
+						L154.9,55.3z"/>
+				</g>
+			</g>
+			<g>
+				<g>
+					<path class="st15" d="M117.7,56.4c0,0-10.1,5.8-8.7,12.3l-4,4l-2.2,11.5c0,0-9.7-23.1-7.9-28.5c1.8-5.4,15.4-14.7,15.4-14.7
+						L117.7,56.4z"/>
+				</g>
+			</g>
+			<g>
+				<g>
+					<g>
+						<path class="st15" d="M104.1,31c-4.3-7.4,4-11.3,4-11.3c2.6,1.7,7.8-0.5,19.9,0.1c12.4,0.6,36,5.4,38.9,21.6
+							c4.8,27.6-62,18.9-62,18.9c-4.8-8.1-5.4-14.8-3.4-20.1C99.2,34.6,102,30.3,104.1,31z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g id="businesscharakter4-rrze-expo-Tablet">
+		<path class="st17" d="M158.5,434.8l93.9-43.8c1.7-0.8,2.4-2.8,1.6-4.4l-31.9-68.4c-0.8-1.7-2.8-2.4-4.4-1.6l-93.9,43.8
+			c-1.7,0.8-2.4,2.8-1.6,4.4l31.9,68.4C154.9,434.9,156.9,435.6,158.5,434.8z"/>
+	</g>
+	<g id="businesscharakter4-rrze-expo-Arm_rechts">
+		<g>
+			<g>
+				<path class="st18" d="M216.3,375.8l4.9,27.2c0,0-3.1,16.8-10.1,13c0,0-4.6,8.9-9.1,5.5c0,0-6.7,8.4-8.9,2.2c0,0-3.6,7.7-6.2,5
+					c-2.6-2.6,2.6-18.7,2.6-18.7c-0.5,1.2-8.6,2.6-7-0.2c1.7-2.9,2.4-8.6,2.4-19.2c0-10.6,9-19.9,9-19.9L216.3,375.8z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path class="st18" d="M212.6,173.5c13.8,8.1,14.8,97.9,13.6,112.5c-1.2,14.5-10,89.9-10,89.9c-7.2,1.9-14.7-0.1-22.3-5.3
+					c4-32.3-2.9-54.1,5.9-82.4c-6.3-22.3-5.2-34.1-11-48.7C188.9,239.5,198.8,165.5,212.6,173.5z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path class="st1" d="M212.6,173.5c13.8,8.1,14.8,97.9,13.6,112.5c-1.2,14.5-6.1,88.7-6.1,88.7c-7.2,1.9-22.2-1.8-29.9-7
+					c-0.4-32.9,2.6-77.7,2.6-77.7s-3.5-33.8-4-50.4C188.9,239.5,198.8,165.5,212.6,173.5z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

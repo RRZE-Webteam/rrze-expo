@@ -376,6 +376,26 @@ function getConstants() {
                     //'seats-right' => __('Seats right side', 'rrze-expo'),
                     //'owl' => __('Owl', 'rrze-expo'),
                 ],
+                'persona' => [
+                    1 => [
+                        'x' => 2100,
+                        'y' => 400,
+                        'width' => 300,
+                        'height' => 620,
+                    ],
+                    2 => [
+                        'x' => 2210,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 610,
+                    ],
+                    3 => [
+                        'x' => 2370,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 600,
+                    ],
+                ],
             ],
             'booth2' => [
                 'title' => [
@@ -465,6 +485,26 @@ function getConstants() {
                     //'seats-left' => __('Seats left side', 'rrze-expo'),
                     //'seats-right' => __('Seats right side', 'rrze-expo'),
                     //'owl' => __('Owl', 'rrze-expo'),
+                ],
+                'persona' => [
+                    1 => [
+                        'x' => 2050,
+                        'y' => 400,
+                        'width' => 300,
+                        'height' => 620,
+                    ],
+                    2 => [
+                        'x' => 2210,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 610,
+                    ],
+                    3 => [
+                        'x' => 2370,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 600,
+                    ],
                 ],
             ],
             'foyer' => [
