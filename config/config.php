@@ -320,6 +320,12 @@ function getConstants() {
                         'height' => 160,
                     ],
                 ],
+                'website' => [
+                    'x' => 1615,
+                    'y' => 622,
+                    'width' => 1135,
+                    'height' => 781,
+                ],
                 'social-media' => [
                     'title' => __('Social Media Panel', 'rrze-expo'),
                     'direction' => 'portrait',
@@ -376,6 +382,26 @@ function getConstants() {
                     //'seats-right' => __('Seats right side', 'rrze-expo'),
                     //'owl' => __('Owl', 'rrze-expo'),
                 ],
+                'persona' => [
+                    1 => [
+                        'x' => 2100,
+                        'y' => 400,
+                        'width' => 300,
+                        'height' => 620,
+                    ],
+                    2 => [
+                        'x' => 2210,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 610,
+                    ],
+                    3 => [
+                        'x' => 2370,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 600,
+                    ],
+                ],
             ],
             'booth2' => [
                 'title' => [
@@ -405,6 +431,12 @@ function getConstants() {
                         'width' => 300,
                         'height' => 240,
                     ],
+                ],
+                'website' => [
+                    'x' => 1492,
+                    'y' => 610,
+                    'width' => 1135,
+                    'height' => 781,
                 ],
                 'social-media' => [
                     'title' => __('Social Media Panel', 'rrze-expo'),
@@ -465,6 +497,26 @@ function getConstants() {
                     //'seats-left' => __('Seats left side', 'rrze-expo'),
                     //'seats-right' => __('Seats right side', 'rrze-expo'),
                     //'owl' => __('Owl', 'rrze-expo'),
+                ],
+                'persona' => [
+                    1 => [
+                        'x' => 2050,
+                        'y' => 400,
+                        'width' => 300,
+                        'height' => 620,
+                    ],
+                    2 => [
+                        'x' => 2210,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 610,
+                    ],
+                    3 => [
+                        'x' => 2370,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 600,
+                    ],
                 ],
             ],
             'foyer' => [
