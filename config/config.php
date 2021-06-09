@@ -320,6 +320,12 @@ function getConstants() {
                         'height' => 160,
                     ],
                 ],
+                'website' => [
+                    'x' => 1615,
+                    'y' => 622,
+                    'width' => 1135,
+                    'height' => 781,
+                ],
                 'social-media' => [
                     'title' => __('Social Media Panel', 'rrze-expo'),
                     'direction' => 'portrait',
@@ -425,6 +431,12 @@ function getConstants() {
                         'width' => 300,
                         'height' => 240,
                     ],
+                ],
+                'website' => [
+                    'x' => 1492,
+                    'y' => 610,
+                    'width' => 1135,
+                    'height' => 781,
                 ],
                 'social-media' => [
                     'title' => __('Social Media Panel', 'rrze-expo'),

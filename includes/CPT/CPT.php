@@ -159,7 +159,7 @@ class CPT
             'instagram',
             'twitter',
             'xing',
-            'homepage',
+            'website',
             'linkedin',
             'link',
         ];

@@ -97,15 +97,6 @@ CPT::expoHeader();
                     }
                 }
 
-                // Homepage
-                $websiteLocations = CPT::getMeta($meta, 'rrze-expo-booth-website-locations');
-                if ($websiteLocations == '')
-                    $websiteLocations = [];
-                if (in_array('wall', $websiteLocations) && $website != '') {
-                    $websiteSettings = $constants['template_elements']['booth'.$templateNo]['logo']['wall'];
-                    echo '<text x="'.$websiteSettings['x'].'" y="'.($websiteSettings['y'] + $websiteSettings['height'] + 30).'" font-size="30" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.str_replace(['https://', 'http://'], '', $website).'</text>';
-                }
-
                 // Videos
                 $videos['left'] = CPT::getMeta($meta, 'rrze-expo-booth-video-left');
                 $videos['right'] = CPT::getMeta($meta, 'rrze-expo-booth-video-right');
@@ -138,16 +129,34 @@ CPT::expoHeader();
 
                 // Personas
                 for ($i=1; $i<=3; $i++) {
-                    $persona = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
+                    $persona[$i] = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
                     $personaSettings = $constants['template_elements']['booth'.$templateNo]['persona'][$i];
-                    if ($persona != '') {
-                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona.'.svg';
+                    if ($persona[$i] != '') {
+                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i].'.svg';
                         if ($file) {
                             $svg = file_get_contents($file);
                             echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
                         }
                     }
                 }
+
+                // Website Wall
+                $website = CPT::getMeta($meta, 'rrze-expo-booth-website');
+                $websiteLocations = CPT::getMeta($meta, 'rrze-expo-booth-website-locations');
+                if ($websiteLocations == '')
+                    $websiteLocations = [];
+                if (in_array('wall', $websiteLocations) && $website != '') {
+                    $websiteSettings = $constants['template_elements']['booth'.$templateNo]['website'];
+                    if ($videos['left'] == '' && $videos['right'] == '') {
+                        $websiteSettings['x'] = $constants['template_elements']['booth'.$templateNo]['video_left']['x'];
+                        $websiteSettings['y'] = $constants['template_elements']['booth'.$templateNo]['video_left']['y'] - 220;
+                    } elseif ($persona[1] == '' && $persona[2] == '' && $persona[3] == '') {
+                        $websiteSettings['x'] = $constants['template_elements']['booth'.$templateNo]['logo']['wall']['x'];
+                        $websiteSettings['y'] = $constants['template_elements']['booth'.$templateNo]['logo']['wall']['y'] + $constants['template_elements']['booth'.$templateNo]['logo']['wall']['height'] + 30;
+                    }
+                    echo '<text x="'.$websiteSettings['x'].'" y="'.($websiteSettings['y']).'" font-size="30" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.str_replace(['https://', 'http://'], '', $website).'</text>';
+                }
+
 
                 //Table
                 echo '<use xlink:href="#table" />';
@@ -181,7 +190,6 @@ CPT::expoHeader();
                 $socialMedia = CPT::getMeta($meta, 'rrze-expo-booth-social-media');
                 if ($socialMedia == '')
                     $socialMedia = [];
-                $website = CPT::getMeta($meta, 'rrze-expo-booth-website');
                 if ($socialMedia != [] || in_array('panel', $websiteLocations)) {
                     echo '<g><use xlink:href="#some_panel" />';
                     $socialMediaData = $constants['social-media'];
@@ -209,6 +217,7 @@ CPT::expoHeader();
                             </a>';
                     }
                     if (in_array('panel', $websiteLocations) && $website != '') {
+                        $i++;
                         switch ($socialMediaSettings['direction']) {
                             case 'landscape':
                                 $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
@@ -217,7 +226,7 @@ CPT::expoHeader();
                             case 'portrait':
                             default:
                                 $translateX = $socialMediaSettings['x'];
-                            $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
+                                $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
                         }
                         $class = 'icon-website';
                         if ($socialMediaSettings['color'] == true) {
@@ -236,7 +245,7 @@ CPT::expoHeader();
                     $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
                     if ($rollups != '') {
                         if (isset($rollups[0])) {
-                            $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'medium');
+                            $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'full');
                             echo '<use xlink:href="#rollup" />';
                             echo '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>';
                         }
