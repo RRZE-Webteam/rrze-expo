@@ -88,15 +88,6 @@ CPT::expoHeader();
                 }
                 echo '<use class="backwall" xlink:href="#backwall-color" />';
 
-                // Logo
-                if (has_post_thumbnail()){
-                    $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
-                    foreach ($logoLocations as $logoLocation) {
-                        $logoLocationSettings = $constants['template_elements']['booth'.$templateNo]['logo'][$logoLocation];
-                        echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['width'].'" height="'.$logoLocationSettings['height'].'"  x="'.$logoLocationSettings['x'].'" y="'.$logoLocationSettings['y'].'" />';
-                    }
-                }
-
                 // Videos
                 $videos['left'] = CPT::getMeta($meta, 'rrze-expo-booth-video-left');
                 $videos['right'] = CPT::getMeta($meta, 'rrze-expo-booth-video-right');
@@ -166,6 +157,15 @@ CPT::expoHeader();
                     $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
                 }
                 echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
+
+                // Logo
+                if (has_post_thumbnail()){
+                    $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
+                    foreach ($logoLocations as $logoLocation) {
+                        $logoLocationSettings = $constants['template_elements']['booth'.$templateNo]['logo'][$logoLocation];
+                        echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['width'].'" height="'.$logoLocationSettings['height'].'"  x="'.$logoLocationSettings['x'].'" y="'.$logoLocationSettings['y'].'" />';
+                    }
+                }
 
                 // Flyers
                 $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
