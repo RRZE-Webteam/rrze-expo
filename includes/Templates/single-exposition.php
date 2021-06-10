@@ -25,48 +25,6 @@ CPT::expoHeader();
             'fields'        => 'ids'
         ]);
         $constants = getConstants();
-        // Hidden Structured Data
-        echo '<meta itemprop="name" content="'.get_the_title().'">';
-        echo '<meta itemprop="image" content="'.get_the_post_thumbnail_url($expositionId, 'medium').'">';
-        echo '<meta itemprop="eventAttendanceMode" content="https://schema.org/OnlineEventAttendanceMode">';
-        echo '<meta itemprop="eventStatus" content="https://schema.org/EventScheduled">';
-        echo '<span itemprop="location" itemscope itemtype="https://schema.org/VirtualLocation">'.'<span itemprop="url" content="'.get_permalink().'">'.'</span>';
-
-        $orga = '<span itemprop="name">' . CPT::getMeta($meta,'rrze-expo-exposition-organisation') . '</span>';
-        $orga2 = CPT::getMeta($meta,'rrze-expo-exposition-organisation2');
-        $street = '<meta itemprop="streetAddress" content="'.CPT::getMeta($meta,'rrze-expo-exposition-street').'">';
-        $postalCode = '<meta itemprop="postalCode" content="'.CPT::getMeta($meta,'rrze-expo-exposition-postalcode').'">';
-        $locality = '<meta itemprop="addressLocality" content="'.CPT::getMeta($meta,'rrze-expo-exposition-locality').'">';
-        $orgaURL = '<meta itemprop="url" content="' . get_home_url() . '">';
-
-        echo '<div itemprop="organizer" itemscope itemtype="https://schema.org/Organization">'
-            . __('Organizer', 'rrze-expo') . ': ' . $orga
-            . $street.$postalCode.$locality.$orgaURL
-            . '</div>';
-
-        $startDateRaw =  CPT::getMeta($meta,'rrze-expo-exposition-startdate');
-        $endDateRaw =  CPT::getMeta($meta,'rrze-expo-exposition-enddate');
-        $startDate = '';
-        $endDate = '';
-        if (!empty($startDateRaw)) {
-            $startDate = '<span class="expo-start-date" itemprop="startDate" content="'.date('Y-m-d', $startDateRaw).'">'.date_i18n(get_option('date_format'), $startDateRaw).'</span>';
-        }
-        if (!empty($endDateRaw)) {
-            $endDate = '<span class="expo-end-date" itemprop="endDate" content="'.date('Y-m-d', $endDateRaw).'">'.date_i18n(get_option('date_format'), $endDateRaw).'</span>';
-        }
-        if (!empty($startDateRaw)) {
-            $date = $startDate;
-            if (!empty($endDateRaw) && ($startDateRaw != $endDateRaw)) {
-                $date .= ' - ' . $endDate;
-            } else {
-                $date .= '<meta itemprop="endDate" content="'.date('Y-m-d', $startDateRaw).'">';
-            }
-        } elseif (!empty($endDateRaw)) {
-            $date = $endDate;
-        } else {
-            $date = '';
-        }
-        echo $date;
         ?>
 
         <div id="rrze-expo-exposition" class="exposition" style="background-image: url('<?php echo $backgroundImage;?>'); color: #000;">
@@ -111,13 +69,54 @@ CPT::expoHeader();
         <?php } ?>
         </div>
 
-        <?php if ($hasContent) { ?>
-            <div id="rrze-expo-exposition-content" name="rrze-expo-exposition-content" class="" itemprop="description">
-                <?php the_content(); ?>
-            </div>
-        <?php } ?>
+        <?php
+        echo '<div id="rrze-expo-exposition-content" name="rrze-expo-exposition-content" class="" itemprop="description">';
+        if ($hasContent) {
+            echo '<div class="rrze-expo-exposition-text">';
+            the_content();
+            echo '</div>';
+        }
+        $orga = CPT::getMeta($meta,'rrze-expo-exposition-organisation');
+        $orga2 = CPT::getMeta($meta,'rrze-expo-exposition-organisation2');
+        $street = CPT::getMeta($meta,'rrze-expo-exposition-street');
+        $postalCode = CPT::getMeta($meta,'rrze-expo-exposition-postalcode');
+        $locality = CPT::getMeta($meta,'rrze-expo-exposition-locality');
+        $orgaURL = get_home_url();
+        $hasContact = strlen($orga.$orga2.$street.$postalCode.$locality) > 0 ? true : false;
 
-    <?php endwhile; ?>
+        // Hidden Structured Data
+        echo '<meta itemprop="name" content="'.get_the_title().'">';
+        echo '<meta itemprop="image" content="'.get_the_post_thumbnail_url($expositionId, 'medium').'">';
+        echo '<meta itemprop="eventAttendanceMode" content="https://schema.org/OnlineEventAttendanceMode">';
+        echo '<meta itemprop="eventStatus" content="https://schema.org/EventScheduled">';
+        echo '<span itemprop="location" itemscope itemtype="https://schema.org/VirtualLocation">'.'<span itemprop="url" content="'.get_permalink().'">'.'</span></span>';
+
+        if ($hasContact) {
+            echo '<div class="rrze-expo-exposition-organizer" itemprop="organizer" itemscope itemtype="https://schema.org/Organization">';
+            echo ($orga != '' ? '<h2>' . __('Organizer', 'rrze-expo') . ': </h2><span itemprop="name">' . $orga . '</span>' : '');
+            echo ($orga2 != '' ? '<br />'.$orga2 : '');
+            echo ($street != '' ? '<br /><span itemprop="streetAddress">'.$street.'</span>' : '');
+            echo ($postalCode != '' ? '<br /><span itemprop="postalCode">'.$postalCode.'</span>' : '');
+            echo ($locality != '' ? ' <span itemprop="addressLocality">'.$locality.'</span>' : '');
+            echo '<meta itemprop="url" content="' . $orgaURL . '">';
+            echo '</div>';
+        }
+
+        $startDateRaw =  CPT::getMeta($meta,'rrze-expo-exposition-startdate');
+        $endDateRaw =  CPT::getMeta($meta,'rrze-expo-exposition-enddate');
+        if (!empty($startDateRaw)) {
+            $startDate = '<meta itemprop="startDate" content="'.date('Y-m-d', $startDateRaw).'" />';
+        }
+        if (!empty($endDateRaw)) {
+            $endDate = '<meta itemprop="endDate" content="'.date('Y-m-d', $endDateRaw).'" />';
+        } else {
+            $endDate = '<meta itemprop="endDate" content="'.date('Y-m-d', $startDateRaw).'" />';
+        }
+        echo $startDate . $endDate;
+
+        echo '</div>';
+
+    endwhile; ?>
 
 </main>
 

@@ -167,6 +167,23 @@ CPT::expoHeader();
                     }
                 }
 
+                // Deco
+                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
+                if ($deco != '') {
+                    if (in_array('plant1', $deco)) {
+                        echo '<use xlink:href="#plant1" />';
+                    }
+                    if (in_array('plant2', $deco)) {
+                        echo '<use xlink:href="#plant2" />';
+                    }
+                    if (in_array('plant3', $deco)) {
+                        echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
+                    }
+                    if (in_array('plant4', $deco)) {
+                        echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
+                    }
+                }
+
                 // Flyers
                 $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
                 if ($flyers != '') {
@@ -271,23 +288,6 @@ CPT::expoHeader();
                         <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
                     </foreignObject>';
                 }
-
-                // Deco
-                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
-                if ($deco != '') {
-                    if (in_array('plant1', $deco)) {
-                        echo '<use xlink:href="#plant1" />';
-                    }
-                    if (in_array('plant2', $deco)) {
-                        echo '<use xlink:href="#plant2" />';
-                    }
-                    if (in_array('plant3', $deco)) {
-                        echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
-                    }
-                    if (in_array('plant4', $deco)) {
-                        echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
-                    }
-                }
                 ?>
             </svg>
             <?php if ($hasContent) { ?>
@@ -347,10 +347,12 @@ CPT::expoHeader();
         if ($videos['left'] != '' || $videos['right'] != '') {
             echo '<h3>' . __('Videos', 'rrze-expo') . '</h3>';
             echo '<ul class="booth-links">';
+            $i = 1;
             foreach ($videos as $location => $url) {
-                if ($location == 'table')
+                if ($location == 'table' || $url == '')
                     continue;
-                echo '<li><a href="' . $url . '" class="lightbox">' . 'Video ' . $location . '</a></li>';
+                echo '<li><a href="' . $url . '" class="lightbox">' . 'Video ' . $i . '</a></li>';
+                $i++;
             }
             echo '</ul>';
         }
