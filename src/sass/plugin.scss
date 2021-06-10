@@ -266,7 +266,8 @@ Plugin Style
         }
     }
     .booth {
-        foreignObject.video .rrze-video {
+        foreignObject.video .rrze-video,
+        foreignObject.video .wp-video {
             border: 7px outset #333;
         }
         .schedule {
@@ -365,13 +366,14 @@ Plugin Style
     ul.hall-menu {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: flex-start;
         margin: 0;
         li {
             display: block;
             background-color: rgba(255,255,255,.7);
             padding: 10px;
-            flex-grow: 1;
+            flex-basis: 240px;
+            flex-grow: 0;
             box-shadow: 0 2px 5px rgba(0,0,0,.5);
             margin: 10px 10px 30px;
             text-align: center;
