@@ -442,7 +442,7 @@ function getConstants() {
                     'title' => __('Social Media Panel', 'rrze-expo'),
                     'direction' => 'landscape',
                     'color' => false,
-                    'x' => 1595,
+                    'x' => 1585,
                     'y' => 104,
                     'width' => 40,
                     'height' => 40,
