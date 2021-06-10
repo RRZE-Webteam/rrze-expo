@@ -326,6 +326,12 @@ Plugin Style
     .icon-xing-color {
         fill:#126567;
     }
+    .icon-youtube-color {
+        fill:#ff0000;
+    }
+    .icon-website-color {
+        fill:#ddd;
+    }
     #scrolldown {
         display: none;
         @media screen and (min-width: 66.25em) {
@@ -552,18 +558,47 @@ Plugin Style
         }
     }
     .rrze-expo-booth-links {
+        h3,
         ul.booth-links {
-            margin-bottom: 5px;
+
             * {
                 font-size: 16px;
                 @media screen and (min-width: 66.25em) {
                     font-size: 17px;
                 }
             }
+        }
+        ul.booth-links {
+            margin-bottom: 5px;
             padding-left: 20px;
-            li {
+        }
+        h3 {
+            margin-top: 5px;
+        }
+    }
+}
 
-            }
+#rrze-expo-exposition-content {
+    .rrze-expo-exposition-text {
+        @media screen and (min-width: 37.5em) {
+            width: 67%;
+            float: left;
+        }
+    }
+    .rrze-expo-exposition-organizer {
+        border-bottom: 1px solid #aaa;
+        border-top: 1px solid #aaa;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        @media screen and (min-width: 37.5em) {
+            width: 30%;
+            float: right;
+            padding-left: 15px;
+            margin-left: 15px;
+            border-left: 1px solid #aaa;
+            border-bottom: none;
+            margin-bottom: 30px;
+            border-top: none;
         }
     }
 }
