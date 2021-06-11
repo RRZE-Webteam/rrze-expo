@@ -1,61 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) -->
 <svg version="1.1" id="Gruppe_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 4096 1080" style="display:none;" preserveAspectRatio="xMidYMin slice">
+	 viewBox="0 0 4096 1080" style="display:none;" preserveAspectRatio=" xMidYMin slice">
 	<defs>
 		<symbol id="floor">
-			<image style="overflow:visible;enable-background:new;" width="4096" height="124" id="boden" xlink:href="EEA42FB.png"  transform="matrix(1 0 0 1 0 956)">
+			<image style="overflow:visible;enable-background:new;" width="4096" height="124" id="boden" xlink:href="EEA42FB.png" transform="matrix(1 0 0 1 0 956)">
 			</image>
 		</symbol>
 		<symbol id="backwall">
-			<image style="overflow:visible;enable-background:new;" width="2587" height="1080" id="wand" xlink:href="EEA42F9.png"  transform="matrix(1 0 0 1 -1 0)">
+			<image style="overflow:visible;enable-background:new;" width="2587" height="1080" id="wand" xlink:href="EEA42F9.png" transform="matrix(1 0 0 1 -1 0)">
 			</image>
 		</symbol>
 		<symbol id="backwall-color">
-			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="2587" height="1080" id="wandakzent" xlink:href="EEA42FF.png"  transform="matrix(1 0 0 1 -1 0)">
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="2587" height="1080" id="wandakzent" xlink:href="EEA42FF.png" transform="matrix(1 0 0 1 -1 0)">
 			</image>
 		</symbol>
-		<symbol id="flyer_stand">
-			<image style="overflow:visible;enable-background:new;" width="207" height="582" id="aufsteller" xlink:href="EEA42F6.png"  transform="matrix(1 0 0 1 2613 402)">
+		<symbol id="flyer_display_plain">
+			<image width="207" height="582" transform="translate(2613 402)" xlink:href="flyer-display-plain.png"/>
+		</symbol>
+		<symbol id="flyer_display">
+			<image style="overflow:visible;enable-background:new;" width="207" height="582" id="aufsteller" xlink:href="flyer-display.png" transform="matrix(1 0 0 1 2613 402)">
 			</image>
 		</symbol>
 		<symbol id="table">
-			<image style="overflow:visible;enable-background:new    ;" width="121" height="229" id="pultbasis" xlink:href="27DBAE59.png"  transform="matrix(1 0 0 1 1667 792)">
+			<image style="overflow:visible;enable-background:new;" width="121" height="229" id="pultbasis" xlink:href="27DBAE59.png" transform="matrix(1 0 0 1 1667 792)">
 			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new    ;" width="121" height="229" id="pultbasisakzent" xlink:href="27DBAE5B.png"  transform="matrix(1 0 0 1 1667 792)">
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="121" height="229" id="pultbasisakzent" xlink:href="27DBAE5B.png" transform="matrix(1 0 0 1 1667 792)">
 			</image>
-			<image style="overflow:visible;enable-background:new    ;" width="286" height="39" id="pultplatte" xlink:href="27DBAE46.png"  transform="matrix(1 0 0 1 1612 770)">
+			<image style="overflow:visible;enable-background:new;" width="286" height="39" id="pultplatte" xlink:href="27DBAE46.png" transform="matrix(1 0 0 1 1612 770)">
+			</image>
+		</symbol>
+		<symbol id="rollup_plain">
+			<path d="M1399,883H1060V336h339Z" fill="#ededed"/>
+			<path d="M1399,299H1060V175h339Z" fill="#ededed"/>
+			<image style="overflow:visible;enable-background:new;" width="375" height="1017" id="rollupstand" xlink:href="EEA4307.png" transform="matrix(1 0 0 1 1041 0)">
 			</image>
 		</symbol>
 		<symbol id="rollup">
-			<image style="overflow:visible;enable-background:new    ;" width="375" height="1017" id="rollupstand" xlink:href="EEA4307.png"  transform="matrix(1 0 0 1 1041 0)">
+			<image style="overflow:visible;enable-background:new;" width="375" height="1017" id="rollupstand" xlink:href="EEA4307.png" transform="matrix(1 0 0 1 1041 0)">
 			</image>
-			<image style="overflow:visible;enable-background:new    ;" width="339" height="547" id="rollupflaeche" xlink:href="EEA4309.png"  transform="matrix(1 0 0 1 1060 336)">
+			<image style="overflow:visible;enable-background:new;" width="339" height="547" id="rollupflaeche" xlink:href="EEA4309.png" transform="matrix(1 0 0 1 1060 336)">
 			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new    ;" width="339" height="547" id="rollupflaecheakzent" xlink:href="EEA430B.png"  transform="matrix(1 0 0 1 1060 336)">
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="339" height="547" id="rollupflaecheakzent" xlink:href="EEA430B.png" transform="matrix(1 0 0 1 1060 336)">
 			</image>
-			<image style="overflow:visible;enable-background:new    ;" width="339" height="124" id="logoflaeche" xlink:href="27DBAE58.png"  transform="matrix(1 0 0 1 1060 175)">
+			<image style="overflow:visible;enable-background:new;" width="339" height="124" id="logoflaeche" xlink:href="27DBAE58.png" transform="matrix(1 0 0 1 1060 175)">
 			</image>
-			<image style="overflow:visible;opacity:0.5;enable-background:new    ;" width="339" height="124" id="logoflaecheakzent" xlink:href="27DBAE5F.png"  transform="matrix(1 0 0 1 1060 175)">
+			<image style="overflow:visible;opacity:0.5;enable-background:new;" width="339" height="124" id="logoflaecheakzent" xlink:href="27DBAE5F.png" transform="matrix(1 0 0 1 1060 175)">
 			</image>
 		</symbol>
+		<symbol id="some_panel_plain">
+			<image style="overflow:visible;enable-background:new;" width="349" height="158" xlink:href="some-panel.png" transform="matrix(1 0 0 1 1556 0)">
+			</image>
+			<path d="M1887,155H1575V93h312Z" fill="#6e6e6e"/>
+		</symbol>
 		<symbol id="some_panel">
-			<image style="overflow:visible;enable-background:new;" width="349" height="158" id="socialmediapanel" xlink:href="EEA42F7.png"  transform="matrix(1 0 0 1 1556 0)">
+			<image style="overflow:visible;enable-background:new;" width="349" height="158" xlink:href="some-panel.png" transform="matrix(1 0 0 1 1556 0)">
+			</image>
+		</symbol>
+		<symbol id="flower_pot_plain">
+			<image style="overflow:visible;enable-background:new;" width="267" height="233" xlink:href="../template-assets/pot-light-plain.png" transform="matrix(1 0 0 1 2830 789)">
+			</image>
+		</symbol>
+		<symbol id="flower_pot">
+			<image style="overflow:visible;enable-background:new;" width="267" height="233" xlink:href="../template-assets/pot-light.png" transform="matrix(1 0 0 1 2830 789)">
 			</image>
 		</symbol>
 		<symbol id="plant1">
-			<image style="overflow:visible;enable-background:new;" width="267" height="233" id="blumentopf" xlink:href="../template-assets/pot-light.png"  transform="matrix(1 0 0 1 2830 789)">
-			</image>
-			<image style="overflow:visible;enable-background:new;" width="439" height="686" id="palme" xlink:href="../template-assets/palme1.png"  transform="matrix(1 0 0 1 2779 133)">
+			<image style="overflow:visible;enable-background:new;" width="439" height="686" xlink:href="../template-assets/palme1.png" transform="matrix(1 0 0 1 2779 133)">
 		</symbol>
 		<symbol id="plant2">
-			<image style="overflow:visible;enable-background:new;" width="267" height="233" id="blumentopf" xlink:href="../template-assets/pot-light.png"  transform="matrix(1 0 0 1 2830 789)">
-			</image>
-			<image style="overflow:visible;" id="palme2" xlink:href="../template-assets/palme2.png" transform="translate(2480, 26) scale(1.3)">
+			<image style="overflow:visible;" xlink:href="../template-assets/palme2.png" transform="translate(2480, 26) scale(1.3)">
 			</image>
 		</symbol>
 		<symbol id="tablet">
-			<image style="overflow:visible;" width="173" height="102" id="tablet" xlink:href="../template-assets/tablet.png"  transform="matrix(1 0 0 1 1666.3889 673.8889)"></image>
+			<image style="overflow:visible;" width="173" height="102" id="tablet" xlink:href="../template-assets/tablet.png" transform="matrix(1 0 0 1 1666.3889 673.8889)"></image>
 			<rect id="tabletbildschirm" x="1674.7" y="682.2" class="st0" width="153.3" height="86.2" style="opacity:0.7;fill:#FFFFFF;"/>
 			<rect id="tabletbildschirmakzent" x="1674.7" y="682.2" class="st1" width="153.3" height="86.2" style="opacity:0.5;fill:#FFFFFF;"/>
 			<path class="icon-video" fill="#333" transform="translate(1725, 691) scale(.09)" d="M336.2 64H47.8C21.4 64 0 85.4 0 111.8v288.4C0 426.6 21.4 448 47.8 448h288.4c26.4 0 47.8-21.4 47.8-47.8V111.8c0-26.4-21.4-47.8-47.8-47.8zm189.4 37.7L416 177.3v157.4l109.6 75.5c21.2 14.6 50.4-.3 50.4-25.8V127.5c0-25.4-29.1-40.4-50.4-25.8z"/>
