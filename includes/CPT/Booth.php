@@ -222,6 +222,13 @@ class Booth {
                 '2' => __('Template 2', 'rrze-expo'),
             ],
         ]);
+        $cmb_layout->add_field( array(
+            'name' => __('Plain textures', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'   => 'rrze-expo-booth-plain-texture',
+            'type' => 'checkbox',
+            'show_on_cb' => [$this, 'getBoothTemplate'],
+        ) );
         $cmb_layout->add_field( [
             'name'    => __('Logo', 'rrze-expo'),
             //'desc'    => __('', 'rrze-expo'),
@@ -541,5 +548,11 @@ class Booth {
             $locations[$location] = $data['title'];
         }
         return $locations;
+    }
+
+    function getBoothTemplate($field) {
+        $boothID = $field->object_id;
+        $template = get_post_meta($boothID, 'rrze-expo-booth-template', true);
+        return ($template == '2');
     }
 }

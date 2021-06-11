@@ -75,6 +75,17 @@ CPT::expoHeader();
         $wallSettings = $constants['template_elements']['booth'.$templateNo]['wall'];
         $title = get_the_title();
         $fontSize = CPT::getMeta($meta, 'rrze-expo-booth-font-size');
+        if ($templateNo == '2' && CPT::getMeta($meta, 'rrze-expo-booth-plain-texture') == 'on') {
+            $pot = 'flower_pot_plain';
+            $flyerDisplay = 'flyer_display_plain';
+            $sociaMediaPanel = 'some_panel_plain';
+            $rollupPanel = 'rollup_plain';
+        } else {
+            $pot = 'flower_pot';
+            $flyerDisplay = 'flyer_display';
+            $sociaMediaPanel = 'some_panel';
+            $rollupPanel = 'rollup';
+        }
         ?>
         <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
@@ -179,24 +190,29 @@ CPT::expoHeader();
                 $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
                 if ($deco != '') {
                     if (in_array('plant1', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" />';
                         echo '<use xlink:href="#plant1" />';
                     }
                     if (in_array('plant2', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" />';
                         echo '<use xlink:href="#plant2" />';
                     }
                     if (in_array('plant3', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" x="-1780" y="0" />';
                         echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
                     }
                     if (in_array('plant4', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" transform="translate(4100 0), scale(-1 1)" />';
                         echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
                     }
+
                 }
 
                 // Flyers
                 $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
                 if ($flyers != '') {
                     $flyerSettings = $constants['template_elements']['booth'.$templateNo]['flyers'];
-                    echo '<g><use xlink:href="#flyer_stand" />';
+                    echo '<g><use xlink:href="#'.$flyerDisplay.'" />';
                     foreach ($flyers as $i => $flyer) {
                         $translateY = $flyerSettings['y'] + $i * ($flyerSettings['height'] + 20);
                         if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
@@ -219,7 +235,7 @@ CPT::expoHeader();
                 if ($socialMedia == '')
                     $socialMedia = [];
                 if ($socialMedia != [] || in_array('panel', $websiteLocations)) {
-                    echo '<g><use xlink:href="#some_panel" />';
+                    echo '<g><use xlink:href="#'.$sociaMediaPanel.'" />';
                     $socialMediaData = $constants['social-media'];
                     $socialMediaSettings = $constants['template_elements']['booth'.$templateNo]['social-media'];
                     $i = 0;
@@ -274,12 +290,12 @@ CPT::expoHeader();
                     if ($rollups != '') {
                         if (isset($rollups[0])) {
                             $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'full');
-                            echo '<use xlink:href="#rollup" />';
+                            echo '<use xlink:href="#'.$rollupPanel.'" />';
                             echo '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>';
                         }
                     }
                 } else {
-                    echo '<use xlink:href="#rollup" />';
+                    echo '<use xlink:href="#'.$rollupPanel.'" />';
                 }
 
                 // Logo Panel

@@ -15,7 +15,7 @@
 			<image style="overflow:visible;opacity:0.5;" id="wandakzent" xlink:href="8DF26099_schwarz.png" transform="matrix(1 0 0 1 1452 203)" >
 			</image>
 		</symbol>
-		<symbol id="flyer_stand">
+		<symbol id="flyer_display">
 			<image style="overflow:visible;" id="prospekthalter" xlink:href="8DF26098.png" transform="matrix(1 0 0 1 2614 402)">
 			</image>
 		</symbol>
