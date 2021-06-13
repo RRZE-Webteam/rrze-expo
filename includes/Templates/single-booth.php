@@ -186,6 +186,11 @@ CPT::expoHeader();
                 }
                 echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
 
+                // Logo Table
+                if (has_post_thumbnail() && in_array('table', $logoLocations)){
+                    echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['table']['width'].'" height="'.$logoLocationSettings['table']['height'].'"  x="'.$logoLocationSettings['table']['x'].'" y="'.$logoLocationSettings['table']['y'].'" />';
+                }
+
                 // Deco
                 $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
                 if ($deco != '') {
