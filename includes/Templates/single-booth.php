@@ -228,10 +228,10 @@ CPT::expoHeader();
                         } else {
                             echo '<image xlink:href="' . $flyer['preview'] . '" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>';
                         }
-                        echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 45).'" y="'. ($translateY-15) .'" width="60" height="60">
-                        <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
-                    </foreignObject>';
                         if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
+                            echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 45).'" y="'. ($translateY-15) .'" width="60" height="60">
+                                <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
+                                </foreignObject>';
                             echo '</a>';
                         }
                     }
