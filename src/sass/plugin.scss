@@ -8,42 +8,44 @@ Plugin Style
         height: 60px;
         position: relative;
         display: table;
-        margin: 50px auto;
+        //margin: 50px auto;
     }
     div.puls {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         -moz-border-radius: 50%;
         -webkit-border-radius: 50%;
-        border: 2px solid #5dd39e;
+        border: 3px solid #fff;
         display: table;
         background: transparent;
         position: absolute;
         left: 50%;
         top: 50%;
-        margin: -15px 0 0 -15px;
-        -webkit-animation: pulsate 1s ease-out;
+        margin: -20px 0 0 -20px;
+        -webkit-animation: pulsate 5s ease-out;
         -webkit-animation-iteration-count: infinite;
         opacity: 0.0;
+        box-shadow: 0 2px 5px rgba(0,0,0,.5);
     }
     @-webkit-keyframes pulsate {
-        0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
-        50% {opacity: 1.0;}
-        100% {-webkit-transform: scale(3.2, 3.2); opacity: 0.0;}
+        0% {-webkit-transform: scale(0.1, 0.1); opacity: 1;}
+        50% {opacity: 0.4;}
+        100% {-webkit-transform: scale(1.5, 1.5); opacity: 0.0;}
     }
     div.puls-middle {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         -moz-border-radius: 50%;
         -webkit-border-radius: 50%;
-        background: #ff1654;
+        background: #fff;
         position: absolute;
         left: 50%;
         top: 50%;
-        margin: -10px 0 0 -10px;
+        margin: -12px 0 0 -12px;
         z-index: 99;
+        box-shadow: 0 2px 5px rgba(0,0,0,.5);
     }
 
     ul.jumplinks {

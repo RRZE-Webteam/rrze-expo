@@ -36,7 +36,10 @@ CPT::expoHeader();
                     if ($flag != '') {
                         $flagSettings = $constants['template_elements']['exposition']['flag' . $i];
                         echo ' <use xlink:href="#flag" class="flag-'. $i . '" transform="translate(' . $flagSettings['x'] . ' ' . $flagSettings['y'] . ') scale(.8)"/>';
-                        echo '<foreignObject class="flag-content" width="' . ($flagSettings['width'] * .8) . '" height="' . ($flagSettings['height'] * .76) . '" x="' . ($flagSettings['x'] + 2) . '" y="' . ($flagSettings['y'] + 21) . '"><a href="' . $flag . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $flag . '" style=" height: 100%; object-fit: contain; object-position: 50% 0;"/></a></foreignObject>';
+                        echo '<foreignObject class="flag-content" width="' . ($flagSettings['width'] * .8) . '" height="' . ($flagSettings['height'] * .76) . '" x="' . ($flagSettings['x'] + 2) . '" y="' . ($flagSettings['y'] + 21) . '"><a href="' . $flag . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $flag . '" style=" height: 100%; object-fit: contain; object-position: 50% 0;"/></a></foreignObject>'
+                        .'<foreignObject x="'. ($flagSettings['x'] + $flagSettings['width'] - 90).'" y="'. ($flagSettings['y'] + 15) .'" width="60" height="60">
+                        <body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $flag . '" style="display: block; height: 100%; text-align: center;" class="lightbox">' . CPT::pulsatingDot() . '</a></body>
+                    </foreignObject>';
                     }
                 }
                 $panelSettings = $constants['template_elements']['exposition']['panel'];
@@ -54,11 +57,32 @@ CPT::expoHeader();
                     .'<foreignObject class="main-panel" x="'. ($panelSettings['x'] + 82).'" y="'. ($panelSettings['y'] + 94) .'" width="'. ($panelSettings['width'] * .92).'" height="'. ($panelSettings['height'] * .92).'">
                         <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode($panelText) . '</div></body>
                     </foreignObject>'
+                    . '<foreignObject x="'. ($panelSettings['x'] + $panelSettings['width'] - 70).'" y="'. ($panelSettings['y'] + 100) .'" width="60" height="60">
+                        <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
+                    </foreignObject>'
                     . $foyerLinkClose;
                 ?>
 
                 <use class="bench-1" xlink:href="#bench" transform="translate(990 840) scale(.8)"/>
                 <use class="bench-2" xlink:href="#bench" transform="translate(2950 860) scale(-.8 .8)" />
+
+                <?php
+                // Personas
+                $personas = $constants['template_elements']['exposition']['persona'];
+                $numPersonas = count($personas);
+                for ($i=1; $i<=$numPersonas; $i++) {
+                    $persona[$i] = CPT::getMeta($meta, 'rrze-expo-exposition-persona-'.$i);
+                    $personaSettings = $personas[$i];
+                        if ($persona[$i] != '') {
+                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i].'.svg';
+                        if ($file) {
+                        $svg = file_get_contents($file);
+                        echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
+                        }
+                    }
+                }
+                ?>
+
             </svg>
 
         <?php if ($hasContent) { ?>

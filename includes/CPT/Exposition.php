@@ -154,7 +154,7 @@ class Exposition {
         // Background Image
         $cmb_background = new_cmb2_box([
             'id'            => 'rrze-expo-exposition-background',
-            'title'         => __('Background Image', 'rrze-expo'),
+            'title'         => __('Layout', 'rrze-expo'),
             'object_types'  => ['exposition'],
             'context'       => 'normal',
             'priority'      => 'high',
@@ -207,6 +207,32 @@ class Exposition {
                 '0.9' => '90%',
                 '1.0' => '100%'],
         ]);
+
+        $personas = $constants['template_elements']['exposition']['persona'];
+        $numPersonas = count($personas);
+        for ($i=1; $i<=$numPersonas; $i++) {
+            $cmb_background->add_field([
+                'name' => __('Persona', 'rrze-expo') . " $i",
+                //'desc'    => __('', 'rrze-expo'),
+                'id' => 'rrze-expo-exposition-persona-'.$i,
+                'type' => 'select',
+                'default' => '',
+                'options' => ['' => __('No Character', 'rrze-expo'),
+                    'business-1' => __('Business Character', 'rrze-expo') . " 1",
+                    'business-2' => __('Business Character', 'rrze-expo') . " 2",
+                    'business-3' => __('Business Character', 'rrze-expo') . " 3",
+                    'business-4' => __('Business Character', 'rrze-expo') . " 4",
+                    'student-1' => __('Student', 'rrze-expo') . " 1",
+                    'student-2' => __('Student', 'rrze-expo') . " 2",
+                    'student-3' => __('Student', 'rrze-expo') . " 3",
+                    'student-4-fau' => __('FAU Student', 'rrze-expo') . " 1",
+                    'student-5-fau' => __('FAU Student', 'rrze-expo') . " 2",
+                    'student-6-fau' => __('FAU Student', 'rrze-expo') . " 3",
+                    'student-7-fau' => __('FAU Student', 'rrze-expo') . " 4",],
+            ]);
+        }
+
+
 
         // Info
         $cmb_elements = new_cmb2_box([

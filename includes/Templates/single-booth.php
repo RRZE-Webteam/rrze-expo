@@ -186,6 +186,11 @@ CPT::expoHeader();
                 }
                 echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
 
+                // Logo Table
+                if (has_post_thumbnail() && in_array('table', $logoLocations)){
+                    echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['table']['width'].'" height="'.$logoLocationSettings['table']['height'].'"  x="'.$logoLocationSettings['table']['x'].'" y="'.$logoLocationSettings['table']['y'].'" />';
+                }
+
                 // Deco
                 $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
                 if ($deco != '') {
@@ -223,6 +228,9 @@ CPT::expoHeader();
                         } else {
                             echo '<image xlink:href="' . $flyer['preview'] . '" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>';
                         }
+                        echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 45).'" y="'. ($translateY-15) .'" width="60" height="60">
+                        <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
+                    </foreignObject>';
                         if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
                             echo '</a>';
                         }
@@ -297,12 +305,14 @@ CPT::expoHeader();
                 } else {
                     echo '<use xlink:href="#'.$rollupPanel.'" />';
                 }
+                echo '<foreignObject x="'. ($rollupSettings['x'] + $rollupSettings['width'] - 70).'" y="'. ($rollupSettings['y'] + 2) .'" width="60" height="60">
+                        <body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body>
+                    </foreignObject>';
 
                 // Logo Panel
                 if (has_post_thumbnail() && in_array('panel', $logoLocations)){
                     echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['panel']['width'].'" height="'.$logoLocationSettings['panel']['height'].'"  x="'.$logoLocationSettings['panel']['x'].'" y="'.$logoLocationSettings['panel']['y'].'" />';
                 }
-
 
                 // Schedule
                 if ($schedule != '') {
@@ -339,11 +349,6 @@ CPT::expoHeader();
         $hasContact = ($contactName != '' || $website != '' || $contactEmail != '' || $contactInfo != '' ? true : false);
         if ($hasContent) {
             echo '<div class="rrze-expo-booth-text">';
-
-            /*<!--<div class="puls-container">
-                <div class="puls-middle"></div>
-                <div class="puls"></div>
-            </div>-->*/
             the_content();
             echo '</div>';
         }
