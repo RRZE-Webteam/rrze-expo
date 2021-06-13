@@ -26,42 +26,7 @@ CPT::expoHeader();
             <svg version="1.1" class="expo-foyer" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <!--<use class="backwall" xlink:href="#wall" />-->
-                <?php $tableSettings = $constants['template_elements']['foyer']['table'];
-                echo '<use xlink:href="#table" x="'.$tableSettings['x'].'" y="'.$tableSettings['y'].'" />';
-
-                // Table Screen
-                $videoTable = CPT::getMeta($meta, 'rrze-expo-foyer-video-table');
-                if ($videoTable != '') {
-                    $videoSettings = $constants['template_elements']['foyer']['tablet'];
-                    echo '<a href="' . $videoTable . '"><use class="video-tablet" xlink:href="#tablet" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" /></a>';
-                }
-
-                // Table Icon
-                switch (CPT::getMeta($meta, 'rrze-expo-foyer-table-icon')) {
-                    case 'info':
-                        $iconSettings = $constants['template_elements']['foyer']['info-icon'];
-                        echo '<path transform="translate('.$iconSettings['x'].' '.$iconSettings['y'].') scale('.$iconSettings['width'].' '.$iconSettings['height'].')" fill="#fff" stroke="#bbb" stroke-width="5" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/>';
-                        break;
-                    case 'foyer-logo':
-                        if (has_post_thumbnail()){
-                            $iconSettings = $constants['template_elements']['foyer']['logo'];
-                            //echo '<image xlink:href="'.get_the_post_thumbnail_url($foyerId, 'expo-logo').'" width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'" />';
-                            echo '<svg width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'">
-                            <image xlink:href="'.get_the_post_thumbnail_url($foyerId, 'expo-logo').'" />
-                            </svg>';
-                        }
-                        break;
-                    case 'expo-logo':
-                        $iconSettings = $constants['template_elements']['foyer']['logo'];
-                        $expoID = CPT::getMeta($meta, 'rrze-expo-foyer-exposition');
-                        echo '<svg class="table-logo" width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'">
-                            <image xlink:href="'.get_the_post_thumbnail_url($expoID, 'expo-logo').'" preserveAspectRatio="xMinYMin" />
-                            </svg>';
-                        break;
-                    case 'none':
-                    default:
-                        break;
-                }
+                <?php
 
                 // Direction Boards
                 for ($i = 1; $i <= 6; $i++) {
@@ -105,6 +70,59 @@ CPT::expoHeader();
                     <foreignObject class="main-panel" x="'. ($centerSettings['x']).'" y="'. ($centerSettings['y']) .'" width="'. ($centerSettings['width']).'" height="'. ($centerSettings['height']).'">
                         <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode($centerText) . '</div></body>
                     </foreignObject>';
+
+                // Personas
+                $personas = $constants['template_elements']['foyer']['persona'];
+                $numPersonas = count($personas);
+                for ($i=1; $i<=$numPersonas; $i++) {
+                    $persona[$i] = CPT::getMeta($meta, 'rrze-expo-foyer-persona-'.$i);
+                    $personaSettings = $personas[$i];
+                    if ($persona[$i] != '') {
+                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i].'.svg';
+                        if ($file) {
+                            $svg = file_get_contents($file);
+                            echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
+                        }
+                    }
+                }
+
+                // Table
+                $tableSettings = $constants['template_elements']['foyer']['table'];
+                echo '<use xlink:href="#table" x="'.$tableSettings['x'].'" y="'.$tableSettings['y'].'" />';
+
+                // Table Screen
+                $videoTable = CPT::getMeta($meta, 'rrze-expo-foyer-video-table');
+                if ($videoTable != '') {
+                    $videoSettings = $constants['template_elements']['foyer']['tablet'];
+                    echo '<a href="' . $videoTable . '"><use class="video-tablet" xlink:href="#tablet" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" /></a>';
+                }
+
+                // Table Icon
+                switch (CPT::getMeta($meta, 'rrze-expo-foyer-table-icon')) {
+                    case 'info':
+                        $iconSettings = $constants['template_elements']['foyer']['info-icon'];
+                        echo '<path transform="translate('.$iconSettings['x'].' '.$iconSettings['y'].') scale('.$iconSettings['width'].' '.$iconSettings['height'].')" fill="#fff" stroke="#bbb" stroke-width="5" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/>';
+                        break;
+                    case 'foyer-logo':
+                        if (has_post_thumbnail()){
+                            $iconSettings = $constants['template_elements']['foyer']['logo'];
+                            //echo '<image xlink:href="'.get_the_post_thumbnail_url($foyerId, 'expo-logo').'" width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'" />';
+                            echo '<svg width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'">
+                            <image xlink:href="'.get_the_post_thumbnail_url($foyerId, 'expo-logo').'" />
+                            </svg>';
+                        }
+                        break;
+                    case 'expo-logo':
+                        $iconSettings = $constants['template_elements']['foyer']['logo'];
+                        $expoID = CPT::getMeta($meta, 'rrze-expo-foyer-exposition');
+                        echo '<svg class="table-logo" width="'.$iconSettings['width'].'" height="'.$iconSettings['height'].'"  x="'.$iconSettings['x'].'" y="'.$iconSettings['y'].'">
+                            <image xlink:href="'.get_the_post_thumbnail_url($expoID, 'expo-logo').'" preserveAspectRatio="xMinYMin" />
+                            </svg>';
+                        break;
+                    case 'none':
+                    default:
+                        break;
+                }
 
                 // Social Media
                 $socialMedia = CPT::getMeta($meta, 'rrze-expo-foyer-social-media');

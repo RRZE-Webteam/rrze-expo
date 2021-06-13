@@ -576,7 +576,7 @@ function getConstants() {
                     'height' => '',
                 ],
                 'tablet' => [
-                    'x' => 2180,
+                    'x' => 2080,
                     'y' => 618,
                     'width' => 173,
                     'height' => 102,
@@ -601,6 +601,26 @@ function getConstants() {
                     'y' => 600,
                     'width' => 50,
                     'height' => 50,
+                ],
+                'persona' => [
+                    1 => [
+                        'x' => 930,
+                        'y' => 420,
+                        'width' => 300,
+                        'height' => 620,
+                    ],
+                    2 => [
+                        'x' => 2190,
+                        'y' => 400,
+                        'width' => 300,
+                        'height' => 600,
+                    ],
+                    3 => [
+                        'x' => 2820,
+                        'y' => 450,
+                        'width' => 300,
+                        'height' => 610,
+                    ],
                 ],
             ],
             'exposition' => [
