@@ -543,4 +543,11 @@ class CPT
         ]);
         return $podiumIDs;
     }
+
+    public static function pulsatingDot() {
+        return '<div class="puls-container">
+                <div class="puls-middle"></div>
+                <div class="puls"></div>
+                </div>';
+    }
 }
