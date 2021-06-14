@@ -229,7 +229,7 @@ CPT::expoHeader();
                             echo '<image xlink:href="' . $flyer['preview'] . '" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>';
                         }
                         if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
-                            echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 45).'" y="'. ($translateY-15) .'" width="60" height="60">
+                            echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 100).'" y="'. ($translateY-20) .'" width="150" height="150">
                                 <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
                                 </foreignObject>';
                             echo '</a>';
@@ -298,16 +298,16 @@ CPT::expoHeader();
                     if ($rollups != '') {
                         if (isset($rollups[0])) {
                             $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'full');
-                            echo '<use xlink:href="#'.$rollupPanel.'" />';
-                            echo '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>';
+                            echo '<g class="booth-rollup">'
+                                . '<use xlink:href="#'.$rollupPanel.'" />'
+                                . '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>'
+                                . '<foreignObject x="'. ($rollupSettings['x'] + $rollupSettings['width'] - 150).'" y="'. ($rollupSettings['y']) .'" width="150" height="150"><body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body></foreignObject>'
+                                .'</g>';
                         }
                     }
                 } else {
                     echo '<use xlink:href="#'.$rollupPanel.'" />';
                 }
-                echo '<foreignObject x="'. ($rollupSettings['x'] + $rollupSettings['width'] - 70).'" y="'. ($rollupSettings['y'] + 2) .'" width="60" height="60">
-                        <body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body>
-                    </foreignObject>';
 
                 // Logo Panel
                 if (has_post_thumbnail() && in_array('panel', $logoLocations)){
@@ -389,7 +389,7 @@ CPT::expoHeader();
             foreach ($videos as $location => $url) {
                 if ($location == 'table' || $url == '')
                     continue;
-                echo '<li><a href="' . $url . '" class="lightbox">' . 'Video ' . $i . '</a></li>';
+                echo '<li><a href="' . $url . '">' . 'Video ' . $i . '</a></li>';
                 $i++;
             }
             echo '</ul>';
@@ -399,7 +399,7 @@ CPT::expoHeader();
             echo '<ul class="booth-links">';
             foreach ($flyers as $flyer) {
                 if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
-                    echo '<li><a href="' . $flyer['pdf'] . '" class="lightbox">' . get_the_title($flyer['pdf_id']) . '</a></li>';
+                    echo '<li><a href="' . $flyer['pdf'] . '">' . get_the_title($flyer['pdf_id']) . '</a></li>';
                 }
             }
             echo '</ul>';
