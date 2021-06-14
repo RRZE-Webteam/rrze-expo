@@ -221,7 +221,7 @@ CPT::expoHeader();
                     foreach ($flyers as $i => $flyer) {
                         $translateY = $flyerSettings['y'] + $i * ($flyerSettings['height'] + 20);
                         if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
-                            echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '" class="lightbox">';
+                            echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '">';
                         }
                         if (!array_key_exists('preview', $flyer) || $flyer['preview'] == false) {
                             echo '<use xlink:href="#flyer_default" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '"/>';

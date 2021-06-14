@@ -36,18 +36,6 @@ CPT::expoHeader();
                     if (!empty($boardContent)) {
                         $boardSettings = $constants['template_elements']['foyer']['board'.$i];
                         $fontColor = (isset($boardContent[0]['rrze-expo-foyer-board-'.$i.'-font-color']) ? $boardContent[0]['rrze-expo-foyer-board-'.$i.'-font-color'] : '#333');
-                        echo '<g class="foyer-board-'.$i.'">';
-                        if ($i < 4) {
-                            echo '<use xlink:href="#panel-left" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
-                            $textX = $boardSettings['x'] + 140;
-                        } else {
-                            echo '<use xlink:href="#panel-right" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
-                            $textX = $boardSettings['x'] + 40;
-                        }
-                        if (array_key_exists('rrze-expo-foyer-board-'.$i.'-color', $boardContent[0])) {
-                            echo '<rect class="foyer-board" x="' . $boardSettings['x'] . '" y="' . $boardSettings['y'] . '" width="' . $boardSettings['width'] . '" height="' . $boardSettings['height'] . '" rx="4" ry="4" style="fill:' . $boardContent[0]['rrze-expo-foyer-board-' . $i . '-color'] . '"/>';
-                        }
-                        echo '<use xlink:href="#arrow" class="board-arrow-'.$i.'" transform="'.$boardSettings['arrow-position'].'" fill="'.$fontColor.'" />';
                         if ($boardContent[0]['rrze-expo-foyer-board-'.$i.'-content'] == 'custom') {
                             $linkText = isset($boardContent[0]['rrze-expo-foyer-board-'.$i.'-text']) ? $boardContent[0]['rrze-expo-foyer-board-'.$i.'-text'] : '';
                             $linkURL = isset($boardContent[0]['rrze-expo-foyer-board-'.$i.'-link']) ? $boardContent[0]['rrze-expo-foyer-board-'.$i.'-link'] : '';
@@ -60,8 +48,21 @@ CPT::expoHeader();
                             }
                             $linkURL = get_permalink($linkID);
                         }
-                        echo '<a href="'.$linkURL.'"><text x="'.$textX.'" y="'.($boardSettings['y'] + 100).'" font-size="40" fill="'.$fontColor.'" aria-hidden="true">'.$linkText.'</text></a>';
-                        echo '</g>';
+                        echo '<g class="foyer-board-'.$i.'">'
+                            . '<a href="'.$linkURL.'">';
+                        if ($i < 4) {
+                            echo '<use xlink:href="#panel-left" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
+                            $textX = $boardSettings['x'] + 140;
+                        } else {
+                            echo '<use xlink:href="#panel-right" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
+                            $textX = $boardSettings['x'] + 40;
+                        }
+                        if (array_key_exists('rrze-expo-foyer-board-'.$i.'-color', $boardContent[0])) {
+                            echo '<rect class="foyer-board" x="' . $boardSettings['x'] . '" y="' . $boardSettings['y'] . '" width="' . $boardSettings['width'] . '" height="' . $boardSettings['height'] . '" rx="4" ry="4" style="fill:' . $boardContent[0]['rrze-expo-foyer-board-' . $i . '-color'] . '"/>';
+                        }
+                        echo '<use xlink:href="#arrow" class="board-arrow-'.$i.'" transform="'.$boardSettings['arrow-position'].'" fill="'.$fontColor.'" />';
+                        echo '<text x="'.$textX.'" y="'.($boardSettings['y'] + 100).'" font-size="40" fill="'.$fontColor.'" aria-hidden="true">'.$linkText.'</text>';
+                        echo '</a></g>';
                     }
                 }
                 $centerSettings = $constants['template_elements']['foyer']['board-center'];
