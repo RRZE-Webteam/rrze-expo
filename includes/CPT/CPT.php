@@ -395,7 +395,7 @@ class CPT
                     if ($orderNo > 0) {
                     $prevBoothID = $boothIDsOrdered[$orderNo-1]; ?>
                     <li class="prev-booth">
-                        <a href="<?php echo get_permalink($prevBoothID);?>" class="">
+                        <a href="<?php echo get_permalink($prevBoothID);?>#rrze-expo-booth" class="">
                             <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
                             <span class="nav-prev-text"><?php echo __('Previous Booth','rrze-expo') . ':<br />' . get_the_title($prevBoothID);?></span>
                         </a>
@@ -404,7 +404,7 @@ class CPT
                 <?php if (($orderNo + 1) < count($boothIDsOrdered)) {
                     $nextBoothID = $boothIDsOrdered[($orderNo + 1)]; ?>
                     <li class="next-booth">
-                        <a href="<?php echo get_permalink($nextBoothID);?>" class="">
+                        <a href="<?php echo get_permalink($nextBoothID);?>#rrze-expo-booth" class="">
                             <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
                             <span class="nav-next-text"><?php echo __('Next Booth','rrze-expo') . ':<br />' . get_the_title($nextBoothID);?></span>
                         </a>

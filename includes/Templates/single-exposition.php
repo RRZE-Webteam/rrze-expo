@@ -11,7 +11,12 @@ CPT::expoHeader();
 ?>
 
 <main class="rrze-expo" itemscope itemtype="https://schema.org/Event">
-    <?php while ( have_posts() ) : the_post();
+    <?php
+    $isIOS = (strpos($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad'));
+    $isSafari = (strpos($_SERVER['HTTP_USER_AGENT'],'Safari') !== false && strpos($_SERVER['HTTP_USER_AGENT'],'Chrome') === false);
+    $macFix = ($isIOS === true || $isSafari === true);
+
+    while ( have_posts() ) : the_post();
         $hasContent = (get_the_content() != '');
         $expositionId = get_the_ID();
         $meta = get_post_meta($expositionId);
@@ -53,11 +58,15 @@ CPT::expoHeader();
                     .$foyerLinkOpen
                     .'<foreignObject class="main-panel" x="'. ($panelSettings['x'] + 82).'" y="'. ($panelSettings['y'] + 94) .'" width="'. ($panelSettings['width'] * .92).'" height="'. ($panelSettings['height'] * .92).'">
                         <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode($panelText) . '</div></body>
-                    </foreignObject>'
-                    . '<foreignObject x="'. ($panelSettings['x'] + $panelSettings['width'] - 70).'" y="'. ($panelSettings['y'] + 100) .'" width="60" height="60">
+                    </foreignObject>';
+                if ($macFix) {
+                    echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(2210 360) scale(.1)" stroke="#333" stroke-width="15" />';
+                } else {
+                    echo '<foreignObject x="'. ($panelSettings['x'] + $panelSettings['width'] - 70).'" y="'. ($panelSettings['y'] + 100) .'" width="60" height="60">
                         <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
-                    </foreignObject>'
-                    . $foyerLinkClose;
+                    </foreignObject>';
+                }
+                    echo $foyerLinkClose;
                 ?>
 
                 <use class="bench-1" xlink:href="#bench" transform="translate(990 840) scale(.8)"/>

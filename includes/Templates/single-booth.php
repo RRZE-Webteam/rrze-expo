@@ -16,6 +16,10 @@ CPT::expoHeader();
 <main>
     <?php
     CPT::expoNav();
+    $isIOS = (strpos($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad'));
+    $isSafari = (strpos($_SERVER['HTTP_USER_AGENT'],'Safari') !== false && strpos($_SERVER['HTTP_USER_AGENT'],'Chrome') === false);
+    $macFix = ($isIOS === true || $isSafari === true);
+
     while ( have_posts() ) : the_post();
         $hasContent = (get_the_content() != '');
         $boothID = get_the_ID();
@@ -113,14 +117,14 @@ CPT::expoHeader();
                             if ($scheduleLocation == $location.'-screen') {
                                 continue;
                             }
-                            if (strpos($url, get_home_url()) !== false) {
+                            if (!$macFix && strpos($url, get_home_url()) !== false) {
                                 // Videos uploaded in Media
                                 echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[video width="854" height="480" mp4="' . $url . '"][/video]') . '</foreignObject>';
-                            } elseif (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php')) {
+                            } elseif (!$macFix && (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'))) {
                                 // RRZE-Video Plugin for fau.tv, Youtube etc.
                                 echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[fauvideo url="' . $url . '"]') . '</foreignObject>';
                             } else {
-                                // Fallback if no
+                                // Fallback
                                 if ($location == 'left') {
                                     $translate = '1300, 340';
                                 } else {
@@ -220,6 +224,7 @@ CPT::expoHeader();
                     echo '<g><use xlink:href="#'.$flyerDisplay.'" />';
                     foreach ($flyers as $i => $flyer) {
                         $translateY = $flyerSettings['y'] + $i * ($flyerSettings['height'] + 20);
+                        $translateYMac = 430 + $i * ($flyerSettings['height'] + 20);
                         if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
                             echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '">';
                         }
@@ -229,9 +234,13 @@ CPT::expoHeader();
                             echo '<image xlink:href="' . $flyer['preview'] . '" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>';
                         }
                         if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
-                            echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 100).'" y="'. ($translateY-20) .'" width="150" height="150">
+                            if ($macFix) {
+                                echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(2755 '.$translateYMac.') scale(.09)" stroke="#333" stroke-width="15" />';
+                            } else {
+                                echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 100).'" y="'. ($translateY-20) .'" width="150" height="150">
                                 <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
                                 </foreignObject>';
+                            }
                             echo '</a>';
                         }
                     }
@@ -300,9 +309,13 @@ CPT::expoHeader();
                             $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'full');
                             echo '<g class="booth-rollup">'
                                 . '<use xlink:href="#'.$rollupPanel.'" />'
-                                . '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>'
-                                . '<foreignObject x="'. ($rollupSettings['x'] + $rollupSettings['width'] - 150).'" y="'. ($rollupSettings['y']) .'" width="150" height="150"><body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body></foreignObject>'
-                                .'</g>';
+                                . '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>';
+                            if ($macFix) {
+                                echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(' . ($rollupSettings['x'] + $rollupSettings['width'] - 50) . ' ' . ($rollupSettings['y'] + 20) . ') scale(.1)" stroke="#333" stroke-width="15" />';
+                            } else {
+                                echo '<foreignObject x="' . ($rollupSettings['x'] + $rollupSettings['width'] - 150) . '" y="' . ($rollupSettings['y']) . '" width="150" height="150"><body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body></foreignObject>';
+                            }
+                            echo '</g>';
                         }
                     }
                 } else {

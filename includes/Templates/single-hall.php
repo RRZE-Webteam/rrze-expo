@@ -32,9 +32,9 @@ CPT::expoHeader();
                 $link = get_permalink($boothID);
                 echo '<li>';
                 if (has_post_thumbnail($boothID)) {
-                    echo '<a class="booth-title" href="'.$link.'"><img class="booth-logo" src="'.get_the_post_thumbnail_url($boothID, 'small').'"></a>';
+                    echo '<a class="booth-title" href="'.$link.'#rrze-expo-booth"><img class="booth-logo" src="'.get_the_post_thumbnail_url($boothID, 'small').'"></a>';
                 }
-                echo '<a class="booth-title" href="'.$link.'">'.get_the_title($boothID).'</a>';
+                echo '<a class="booth-title" href="'.$link.'#rrze-expo-booth">'.get_the_title($boothID).'</a>';
                 echo '</li>';
             }
             echo "</ul>";
