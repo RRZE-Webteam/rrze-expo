@@ -29,11 +29,12 @@ CPT::expoHeader();
             $boothIDs = CPT::getBoothOrder($hallId);
             echo '<ul class="hall-menu">';
             foreach ( $boothIDs as $boothID){
+                $link = get_permalink($boothID);
                 echo '<li>';
                 if (has_post_thumbnail($boothID)) {
-                    echo '<img class="booth-logo" src="'.get_the_post_thumbnail_url($boothID, 'small').'">';
+                    echo '<a class="booth-title" href="'.$link.'"><img class="booth-logo" src="'.get_the_post_thumbnail_url($boothID, 'small').'"></a>';
                 }
-                echo '<a class="booth-title" href="'.get_permalink($boothID).'">'.get_the_title($boothID).'</a>';
+                echo '<a class="booth-title" href="'.$link.'">'.get_the_title($boothID).'</a>';
                 echo '</li>';
             }
             echo "</ul>";

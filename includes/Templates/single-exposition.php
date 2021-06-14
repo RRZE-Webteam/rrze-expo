@@ -36,10 +36,7 @@ CPT::expoHeader();
                     if ($flag != '') {
                         $flagSettings = $constants['template_elements']['exposition']['flag' . $i];
                         echo ' <use xlink:href="#flag" class="flag-'. $i . '" transform="translate(' . $flagSettings['x'] . ' ' . $flagSettings['y'] . ') scale(.8)"/>';
-                        echo '<foreignObject class="flag-content" width="' . ($flagSettings['width'] * .8) . '" height="' . ($flagSettings['height'] * .76) . '" x="' . ($flagSettings['x'] + 2) . '" y="' . ($flagSettings['y'] + 21) . '"><a href="' . $flag . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $flag . '" style=" height: 100%; object-fit: contain; object-position: 50% 0;"/></a></foreignObject>'
-                        .'<foreignObject x="'. ($flagSettings['x'] + $flagSettings['width'] - 90).'" y="'. ($flagSettings['y'] + 15) .'" width="60" height="60">
-                        <body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $flag . '" style="display: block; height: 100%; text-align: center;" class="lightbox">' . CPT::pulsatingDot() . '</a></body>
-                    </foreignObject>';
+                        echo '<foreignObject class="flag-content" width="' . ($flagSettings['width'] * .8) . '" height="' . ($flagSettings['height'] * .76) . '" x="' . ($flagSettings['x'] + 2) . '" y="' . ($flagSettings['y'] + 21) . '"><img src="' . $flag . '" style=" height: 100%; object-fit: contain; object-position: 50% 0;"/></foreignObject>';
                     }
                 }
                 $panelSettings = $constants['template_elements']['exposition']['panel'];
