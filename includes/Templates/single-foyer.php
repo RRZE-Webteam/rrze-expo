@@ -30,39 +30,53 @@ CPT::expoHeader();
 
                 // Direction Boards
                 for ($i = 1; $i <= 6; $i++) {
+                    $linkID = '';
+                    $linkURL = '';
                     $boardContent = CPT::getMeta($meta, 'rrze-expo-foyer-board-'.$i);
-                    if ($boardContent == '')
+                    if ($boardContent == '' || empty($boardContent))
                         continue;
-                    if (!empty($boardContent)) {
+                    if (isset($boardContent[0]['rrze-expo-foyer-board-'.$i.'-content'])) {
                         $boardSettings = $constants['template_elements']['foyer']['board'.$i];
                         $fontColor = (isset($boardContent[0]['rrze-expo-foyer-board-'.$i.'-font-color']) ? $boardContent[0]['rrze-expo-foyer-board-'.$i.'-font-color'] : '#333');
+                        $fontSize = $boardContent[0]['rrze-expo-foyer-board-'.$i.'-font-size'];
                         if ($boardContent[0]['rrze-expo-foyer-board-'.$i.'-content'] == 'custom') {
                             $linkText = isset($boardContent[0]['rrze-expo-foyer-board-'.$i.'-text']) ? $boardContent[0]['rrze-expo-foyer-board-'.$i.'-text'] : '';
                             $linkURL = isset($boardContent[0]['rrze-expo-foyer-board-'.$i.'-link']) ? $boardContent[0]['rrze-expo-foyer-board-'.$i.'-link'] : '';
                         } else {
                             $linkID = $boardContent[0]['rrze-expo-foyer-board-'.$i.'-content'];
                             $linkText = get_the_title($linkID);
-                            if (strpos($linkText, '<br>') != false) {
+                            /*if (strpos($linkText, '<br>') != false) {
                                 $titleParts = explode('<br>', $linkText);
                                 $linkText = '<tspan>' . implode('</tspan><tspan>', $titleParts) . '</tspan>';
-                            }
-                            $linkURL = get_permalink($linkID);
+                            }*/
+                            $linkURL = $linkID != '' ? get_permalink($linkID) : '';
                         }
-                        echo '<g class="foyer-board-'.$i.'">'
-                            . '<a href="'.$linkURL.'">';
+                        echo '<g class="foyer-board-'.$i.'">';
+                        if ($linkURL != '') {
+                            echo '<a href="'.$linkURL.'">';
+                        }
                         if ($i < 4) {
                             echo '<use xlink:href="#panel-left" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
-                            $textX = $boardSettings['x'] + 140;
+                            $textX = $boardSettings['x'] + 120;
                         } else {
                             echo '<use xlink:href="#panel-right" x="'.$boardSettings['x'].'" y="'.$boardSettings['y'].'" />';
                             $textX = $boardSettings['x'] + 40;
                         }
+                        $textY = $boardSettings['y'] + 80 + ($fontSize/2.5);
                         if (array_key_exists('rrze-expo-foyer-board-'.$i.'-color', $boardContent[0])) {
                             echo '<rect class="foyer-board" x="' . $boardSettings['x'] . '" y="' . $boardSettings['y'] . '" width="' . $boardSettings['width'] . '" height="' . $boardSettings['height'] . '" rx="4" ry="4" style="fill:' . $boardContent[0]['rrze-expo-foyer-board-' . $i . '-color'] . '"/>';
                         }
                         echo '<use xlink:href="#arrow" class="board-arrow-'.$i.'" transform="'.$boardSettings['arrow-position'].'" fill="'.$fontColor.'" />';
-                        echo '<text x="'.$textX.'" y="'.($boardSettings['y'] + 100).'" font-size="40" fill="'.$fontColor.'" aria-hidden="true">'.$linkText.'</text>';
-                        echo '</a></g>';
+                        if (strpos($linkText, '<br>') !== false) {
+                            $linkTextParts = explode('<br>', $linkText);
+                            $linkText = '<tspan>' . implode('</tspan><tspan x="'.$textX.'" dy="'.($fontSize * 1.12).'">', $linkTextParts) . '</tspan>';
+                            $textY -= ($fontSize * 0.5);
+                        }
+                        echo '<text x="' . $textX . '" y="' . $textY . '" font-size="' . $fontSize . '" fill="' . $fontColor . '" aria-hidden="true">' . $linkText . '</text>';
+                        if ($linkURL != '') {
+                            echo '</a>';
+                        }
+                        echo '</g>';
                     }
                 }
                 $centerSettings = $constants['template_elements']['foyer']['board-center'];

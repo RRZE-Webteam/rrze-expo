@@ -189,6 +189,7 @@ class Foyer {
                 //'desc'    => __('', 'rrze-expo'),
                 'id'        => 'rrze-expo-foyer-board-'.$i.'-text',
                 'type'      => 'text',
+                'sanitization_cb' => [$this, 'textSanitize'],
             ]);
             $cmb_panels->add_group_field($board_content_group_id, [
                 'name'      => __('Custom link', 'rrze-expo'),
@@ -219,7 +220,20 @@ class Foyer {
                     ] ),
                 ],
             ] );
-
+            $cmb_panels->add_group_field( $board_content_group_id, [
+                'name'      => __('Font Size', 'rrze-expo'),
+                //'desc'    => __('', 'rrze-expo'),
+                'id'        => 'rrze-expo-foyer-board-'.$i.'-font-size',
+                'type'      => 'select',
+                'default'          => '40',
+                'options'          => ['30' => '30',
+                    '40' => '40',
+                    '50' => '50',
+                    '60' => '60',
+                    '70' => '70',
+                    '80' => '80',
+                    '90' => '90'],
+            ]);
         }
 
         // Social Media Panel
@@ -322,5 +336,9 @@ class Foyer {
                 '1.0' => '100%'],
         ]);
 
+    }
+
+    function textSanitize($originalValue, $args, $field) {
+        return wp_kses($originalValue, ['br' => [], 'em' => [], 'strong' => [], 'b' => [], 'i' => [], 'sup' => [], 'sub' => []],);
     }
 }
