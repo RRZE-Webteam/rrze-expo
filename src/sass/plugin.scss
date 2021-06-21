@@ -399,7 +399,7 @@ Plugin Style
     ul.hall-menu {
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start;
+        justify-content: center;
         margin: 0;
         padding: 0;
         li {
@@ -594,6 +594,9 @@ Plugin Style
         }
     }
     .rrze-expo-booth-links {
+        @media screen and (min-width: 37.5em) {
+            clear: right;
+        }
         h3,
         ul.booth-links {
 
@@ -636,5 +639,23 @@ Plugin Style
             margin-bottom: 30px;
             border-top: none;
         }
+    }
+}
+
+#rrze-expo-hall .hall-title {
+    color: #fff;
+    font-size: 5vmin;
+    font-weight: normal;
+    padding: 0 5px 10px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    @media screen and (min-width: 37.5em) {
+        width: 90%;
+        padding: 5px 10px 15px;
+    }
+    @media screen and (min-width: 66.25em) {
+        width: 80%;
+        padding: 10px 10px 20px;
     }
 }

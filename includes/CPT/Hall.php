@@ -159,6 +159,22 @@ class Hall {
                 '0.9' => '90%',
                 '1.0' => '100%'],
         ]);
+        $cmb_background->add_field( array(
+            'name'    => __('Font Color', 'rrze-expo'),
+            'desc'    => __('Please make sure there is enough contrast between font and background color.', 'rrze-expo'),
+            'id'      => 'rrze-expo-hall-font-color',
+            'type'    => 'colorpicker',
+            'default' => '#000000',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => array( '#000000', '#ffffff', '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
 
     }
 }

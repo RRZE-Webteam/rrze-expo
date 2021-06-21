@@ -15,6 +15,7 @@ CPT::expoHeader();
     while ( have_posts() ) : the_post();
         $hasContent = (get_the_content() != '');
         $hallId = get_the_ID();
+        $title = str_replace('<br>', ' ', get_the_title());
         $meta = get_post_meta($hallId);
         $backgroundImage = CPT::getMeta($meta, 'rrze-expo-hall-background-image');
         if ($backgroundImage == '') {
@@ -24,8 +25,8 @@ CPT::expoHeader();
         } ?>
 
         <div id="rrze-expo-hall" class="hall" style="background-image: url('<?php echo $backgroundImage;?>');">
-
             <?php
+            echo '<h1 class="hall-title" style="color: ' . CPT::getMeta($meta, 'rrze-expo-hall-font-color') . ';">' . $title . '</h1>';
             $boothIDs = CPT::getBoothOrder($hallId);
             echo '<ul class="hall-menu">';
             foreach ( $boothIDs as $boothID){
