@@ -36,6 +36,9 @@ class CPT
         add_filter('single_template', [$this, 'includeSingleTemplate']);
         add_action('wp_footer', [$this, 'svgToFooter']);
         add_action('wp_head', [$this, 'cssToFooter']);
+        if ( function_exists( 'wpel_init' ) ) {
+            add_action( 'wpel_apply_settings', [$this, 'disableWPExternalLinks'], 10 );
+        }
     }
 
     public function activation()
@@ -549,5 +552,13 @@ class CPT
                 <div class="puls-middle"></div>
                 <div class="puls"></div>
                 </div>';
+    }
+
+    public function disableWPExternalLinks() {
+        $ignoredCPTs = ['booth', 'podium', 'hall', 'foyer', 'exposition'];
+        if ( in_array( get_post_type(), $ignoredCPTs ) ) {
+          return false;
+        }
+        return true;
     }
 }
