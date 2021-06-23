@@ -171,9 +171,8 @@ CPT::expoHeader();
                     $websiteLocations = [];
                 if (in_array('wall', $websiteLocations) && $website != '') {
                     $websiteSettings = $constants['template_elements']['booth'.$templateNo]['website'];
-                    if ($videos['left'] == '' && $videos['right'] == '') {
+                    if ($videos['left'] == '' && $videos['right'] == '' && !in_array($scheduleLocation, ['left-screen', 'right-screen']) ) {
                         $websiteSettings['x'] = $constants['template_elements']['booth'.$templateNo]['video_left']['x'];
-                        //$websiteSettings['y'] = $constants['template_elements']['booth'.$templateNo]['video_left']['y'] - 220;
                         $websiteSettings['y'] = $constants['template_elements']['booth'.$templateNo]['video_left']['y'] + 50;
                     } elseif ($persona[1] == '' && $persona[2] == '' && $persona[3] == '') {
                         $websiteSettings['x'] = $constants['template_elements']['booth'.$templateNo]['logo']['wall']['x'];
