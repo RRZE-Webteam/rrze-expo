@@ -273,8 +273,18 @@ Plugin Style
         }
     }
     .podium {
-        .rrze-video, .plyr {
+        foreignObject.video {
+            background: #000;
+        }
+        .rrze-video,.wp-video, .plyr {
             height: 100%;
+            video {
+                object-fit: contain;
+                height: 100%;
+            }
+        }
+        .wp-video {
+            margin: 0 auto;
         }
         .schedule {
             background: #fff;
@@ -302,6 +312,7 @@ Plugin Style
         foreignObject.video .rrze-video,
         foreignObject.video .wp-video {
             border: 7px outset #333;
+            background: #222;
         }
         .schedule {
             h2 {

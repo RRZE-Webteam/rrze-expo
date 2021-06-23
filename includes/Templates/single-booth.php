@@ -108,6 +108,7 @@ CPT::expoHeader();
                 $videos['left'] = CPT::getMeta($meta, 'rrze-expo-booth-video-left');
                 $videos['right'] = CPT::getMeta($meta, 'rrze-expo-booth-video-right');
                 $videos['table'] = CPT::getMeta($meta, 'rrze-expo-booth-video-table');
+                $rrzeVideoActive = (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'));
                 foreach ($videos as $location => $url) {
                     if ($url != '') {
                         $videoSettings = $constants['template_elements']['booth'.$templateNo]['video_'.$location];
@@ -119,8 +120,8 @@ CPT::expoHeader();
                             }
                             if (!$macFix && strpos($url, get_home_url()) !== false) {
                                 // Videos uploaded in Media
-                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[video width="854" height="480" mp4="' . $url . '"][/video]') . '</foreignObject>';
-                            } elseif (!$macFix && (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'))) {
+                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[video width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '" src="' . $url . '"][/video]') . '</foreignObject>';
+                            } elseif (!$macFix && $rrzeVideoActive) {
                                 // RRZE-Video Plugin for fau.tv, Youtube etc.
                                 echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[fauvideo url="' . $url . '"]') . '</foreignObject>';
                             } else {
