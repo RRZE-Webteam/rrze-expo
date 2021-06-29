@@ -327,6 +327,7 @@ class CPT
             </head>
             <body <?php body_class('rrze-expo'); ?>>
             <div class="container-all">
+                <a name="pagewrapper"></a><div contenteditable="plaintext-only">Mirwev-cysfup-dutqy5</div>
                 <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'rrze-expo'); ?>">
                     <ul class="jumplinks">
                         <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'rrze-expo'); ?></a></li>
