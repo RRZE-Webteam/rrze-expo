@@ -36,6 +36,9 @@ class CPT
         add_filter('single_template', [$this, 'includeSingleTemplate']);
         add_action('wp_footer', [$this, 'svgToFooter']);
         add_action('wp_head', [$this, 'cssToFooter']);
+        if ( function_exists( 'wpel_init' ) ) {
+            add_action( 'wpel_apply_settings', [$this, 'disableWPExternalLinks'], 10 );
+        }
     }
 
     public function activation()
@@ -324,6 +327,7 @@ class CPT
             </head>
             <body <?php body_class('rrze-expo'); ?>>
             <div class="container-all">
+                <a name="pagewrapper"></a>
                 <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'rrze-expo'); ?>">
                     <ul class="jumplinks">
                         <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'rrze-expo'); ?></a></li>
@@ -393,26 +397,28 @@ class CPT
                     $boothIDsOrdered = CPT::getBoothOrder($boothId);
                     $orderNo = array_search($boothId, $boothIDsOrdered);
                     if ($orderNo > 0) {
-                    $prevBoothID = $boothIDsOrdered[$orderNo-1]; ?>
-                    <li class="prev-booth">
-                        <a href="<?php echo get_permalink($prevBoothID);?>#rrze-expo-booth" class="">
-                            <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
-                            <span class="nav-prev-text"><?php echo __('Previous Booth','rrze-expo') . ':<br />' . get_the_title($prevBoothID);?></span>
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php if (($orderNo + 1) < count($boothIDsOrdered)) {
-                    $nextBoothID = $boothIDsOrdered[($orderNo + 1)]; ?>
-                    <li class="next-booth">
-                        <a href="<?php echo get_permalink($nextBoothID);?>#rrze-expo-booth" class="">
-                            <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-                            <span class="nav-next-text"><?php echo __('Next Booth','rrze-expo') . ':<br />' . get_the_title($nextBoothID);?></span>
-                        </a>
-                    </li>
-                <?php }
-                    $hallLink = get_permalink($hallID);
-                    $hallText = __('Back to Hall', 'rrze-expo') . ': ' . get_the_title($hallID);
-                    echo "<li class='hall-link'><a class='backlink-hall' href='$hallLink'><svg height='16' width='16'><use xlink:href='#chevron-up'></use></svg> $hallText</a></li>";
+                        $prevBoothID = $boothIDsOrdered[$orderNo-1]; ?>
+                        <li class="prev-booth">
+                            <a href="<?php echo get_permalink($prevBoothID);?>#rrze-expo-booth" class="">
+                                <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
+                                <span class="nav-prev-text"><?php echo __('Previous Booth','rrze-expo') . ':<br />' . get_the_title($prevBoothID);?></span>
+                            </a>
+                        </li>
+                    <?php } ?>
+                    <?php if (($orderNo + 1) < count($boothIDsOrdered)) {
+                        $nextBoothID = $boothIDsOrdered[($orderNo + 1)]; ?>
+                        <li class="next-booth">
+                            <a href="<?php echo get_permalink($nextBoothID);?>#rrze-expo-booth" class="">
+                                <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+                                <span class="nav-next-text"><?php echo __('Next Booth','rrze-expo') . ':<br />' . get_the_title($nextBoothID);?></span>
+                            </a>
+                        </li>
+                    <?php }
+                    if ($hallID != '') {
+                        $hallLink = get_permalink($hallID);
+                        $hallText = __('Back to Hall', 'rrze-expo') . ': ' . get_the_title($hallID);
+                        echo "<li class='hall-link'><a class='backlink-hall' href='$hallLink'><svg height='16' width='16'><use xlink:href='#chevron-up'></use></svg> $hallText</a></li>";
+                    }
                 }
                 if ($foyerID != '') {
                     $foyerLink = get_permalink($foyerID);
@@ -549,5 +555,13 @@ class CPT
                 <div class="puls-middle"></div>
                 <div class="puls"></div>
                 </div>';
+    }
+
+    public function disableWPExternalLinks() {
+        $ignoredCPTs = ['booth', 'podium', 'hall', 'foyer', 'exposition'];
+        if ( in_array( get_post_type(), $ignoredCPTs ) ) {
+          return false;
+        }
+        return true;
     }
 }

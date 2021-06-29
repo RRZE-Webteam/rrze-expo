@@ -38,8 +38,8 @@ class Main {
         $settings->onLoaded();
 
         // Shortcode-Klasse wird instanziiert.
-        $shortcode = new Shortcode($this->pluginFile, $settings);
-        $shortcode->onLoaded();
+        //$shortcode = new Shortcode($this->pluginFile, $settings);
+        //$shortcode->onLoaded();
 
         // Posttypes
         $cpt = new CPT($this->pluginFile);

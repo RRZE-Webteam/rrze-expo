@@ -108,6 +108,7 @@ CPT::expoHeader();
                 $videos['left'] = CPT::getMeta($meta, 'rrze-expo-booth-video-left');
                 $videos['right'] = CPT::getMeta($meta, 'rrze-expo-booth-video-right');
                 $videos['table'] = CPT::getMeta($meta, 'rrze-expo-booth-video-table');
+                $rrzeVideoActive = (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'));
                 foreach ($videos as $location => $url) {
                     if ($url != '') {
                         $videoSettings = $constants['template_elements']['booth'.$templateNo]['video_'.$location];
@@ -119,8 +120,8 @@ CPT::expoHeader();
                             }
                             if (!$macFix && strpos($url, get_home_url()) !== false) {
                                 // Videos uploaded in Media
-                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[video width="854" height="480" mp4="' . $url . '"][/video]') . '</foreignObject>';
-                            } elseif (!$macFix && (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'))) {
+                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[video width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '" src="' . $url . '"][/video]') . '</foreignObject>';
+                            } elseif (!$macFix && $rrzeVideoActive) {
                                 // RRZE-Video Plugin for fau.tv, Youtube etc.
                                 echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[fauvideo url="' . $url . '"]') . '</foreignObject>';
                             } else {
@@ -170,9 +171,8 @@ CPT::expoHeader();
                     $websiteLocations = [];
                 if (in_array('wall', $websiteLocations) && $website != '') {
                     $websiteSettings = $constants['template_elements']['booth'.$templateNo]['website'];
-                    if ($videos['left'] == '' && $videos['right'] == '') {
+                    if ($videos['left'] == '' && $videos['right'] == '' && !in_array($scheduleLocation, ['left-screen', 'right-screen']) ) {
                         $websiteSettings['x'] = $constants['template_elements']['booth'.$templateNo]['video_left']['x'];
-                        //$websiteSettings['y'] = $constants['template_elements']['booth'.$templateNo]['video_left']['y'] - 220;
                         $websiteSettings['y'] = $constants['template_elements']['booth'.$templateNo]['video_left']['y'] + 50;
                     } elseif ($persona[1] == '' && $persona[2] == '' && $persona[3] == '') {
                         $websiteSettings['x'] = $constants['template_elements']['booth'.$templateNo]['logo']['wall']['x'];
@@ -307,13 +307,28 @@ CPT::expoHeader();
                     if ($rollups != '') {
                         if (isset($rollups[0])) {
                             $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'full');
+                            $rollupClickable = (isset($rollups[0]['clickable']) && $rollups[0]['clickable'] == 'on');
                             echo '<g class="booth-rollup">'
                                 . '<use xlink:href="#'.$rollupPanel.'" />'
-                                . '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox"><img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/></a></foreignObject>';
-                            if ($macFix) {
-                                echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(' . ($rollupSettings['x'] + $rollupSettings['width'] - 50) . ' ' . ($rollupSettings['y'] + 20) . ') scale(.1)" stroke="#333" stroke-width="15" />';
+                                . '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '">';
+                            if ($rollupClickable) {
+                                echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox">';
                             } else {
-                                echo '<foreignObject x="' . ($rollupSettings['x'] + $rollupSettings['width'] - 150) . '" y="' . ($rollupSettings['y']) . '" width="150" height="150"><body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body></foreignObject>';
+                                echo '<div style="height: 100%; text-align: center;">';
+                            }
+                            echo '<img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/>';
+                            if ($rollupClickable) {
+                                echo '</a>';
+                            } else {
+                                echo '</div>';
+                            }
+                            echo '</foreignObject>';
+                            if ($rollupClickable) {
+                                if ($macFix) {
+                                    echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(' . ($rollupSettings['x'] + $rollupSettings['width'] - 50) . ' ' . ($rollupSettings['y'] + 20) . ') scale(.1)" stroke="#333" stroke-width="15" />';
+                                } else {
+                                    echo '<foreignObject x="' . ($rollupSettings['x'] + $rollupSettings['width'] - 150) . '" y="' . ($rollupSettings['y']) . '" width="150" height="150"><body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body></foreignObject>';
+                                }
                             }
                             echo '</g>';
                         }
@@ -322,7 +337,7 @@ CPT::expoHeader();
                     echo '<use xlink:href="#'.$rollupPanel.'" />';
                 }
 
-                // Logo Panel
+                /// Logo Panel
                 if (has_post_thumbnail() && in_array('panel', $logoLocations)){
                     echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['panel']['width'].'" height="'.$logoLocationSettings['panel']['height'].'"  x="'.$logoLocationSettings['panel']['x'].'" y="'.$logoLocationSettings['panel']['y'].'" />';
                 }
@@ -393,39 +408,42 @@ CPT::expoHeader();
             echo ($contactInfo != '' ? '<div class="contact-info">' . $contactInfo . '</div>' : '')
                 . '</div>';
         }
-        echo '<div class="rrze-expo-booth-links">'
-            . '<h2>'.__('Information Material', 'rrze-expo').'</h2>';
+
+        $infoText = '';
         if ($videos['left'] != '' || $videos['right'] != '') {
-            echo '<h3>' . __('Videos', 'rrze-expo') . '</h3>';
-            echo '<ul class="booth-links">';
+            $infoText .= '<h3>' . __('Videos', 'rrze-expo') . '</h3>';
+            $infoText .= '<ul class="booth-links">';
             $i = 1;
             foreach ($videos as $location => $url) {
                 if ($location == 'table' || $url == '')
                     continue;
-                echo '<li><a href="' . $url . '">' . 'Video ' . $i . '</a></li>';
+                $infoText .= '<li><a href="' . $url . '">' . 'Video ' . $i . '</a></li>';
                 $i++;
             }
-            echo '</ul>';
+            $infoText .= '</ul>';
         }
         if ($flyers != '') {
-            echo '<h3>' . __('Flyers', 'rrze-expo') . '</h3>';
-            echo '<ul class="booth-links">';
+            $infoText .= '<h3>' . __('Flyers', 'rrze-expo') . '</h3>';
+            $infoText .= '<ul class="booth-links">';
             foreach ($flyers as $flyer) {
                 if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
-                    echo '<li><a href="' . $flyer['pdf'] . '">' . get_the_title($flyer['pdf_id']) . '</a></li>';
+                    $infoText .= '<li><a href="' . $flyer['pdf'] . '">' . get_the_title($flyer['pdf_id']) . '</a></li>';
                 }
             }
-            echo '</ul>';
+            $infoText .= '</ul>';
         }
-        if (!empty($rollups)) {
-            echo '<h3>' . __('Roll Up', 'rrze-expo') . '</h3>';
-            echo '<ul class="booth-links">';
-            echo '<li><a href="' . $rollups[0]['file'] . '" class="lightbox">' . get_the_title($rollups[0]['file_id']) . '</a></li>';
-            echo '</ul>';
+        if (!empty($rollups) && $rollupClickable) {
+            $infoText .= '<h3>' . __('Roll Up', 'rrze-expo') . '</h3>';
+            $infoText .= '<ul class="booth-links">';
+            $infoText .= '<li><a href="' . $rollups[0]['file'] . '" class="lightbox">' . get_the_title($rollups[0]['file_id']) . '</a></li>';
+            $infoText .= '</ul>';
         }
-        echo '</ul>';
-
-        echo '</div>';
+        if ($infoText != '') {
+            echo '<div class="rrze-expo-booth-links">'
+                . '<h2>'.__('Information Material', 'rrze-expo').'</h2>'
+                . $infoText
+                . '</div>';
+        }
 
         echo '</div>';
 

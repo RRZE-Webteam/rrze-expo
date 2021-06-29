@@ -13,6 +13,9 @@ CPT::expoHeader();
 <main>
     <?php
     $constants = getConstants();
+    $isIOS = (strpos($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad'));
+    $isSafari = (strpos($_SERVER['HTTP_USER_AGENT'],'Safari') !== false && strpos($_SERVER['HTTP_USER_AGENT'],'Chrome') === false);
+    $macFix = ($isIOS === true || $isSafari === true);
     CPT::expoNav();
     while ( have_posts() ) : the_post();
         $hasContent = (get_the_content() != '');
@@ -83,14 +86,17 @@ CPT::expoHeader();
                 $rrzeVideoActive = (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'));
                 $videoContent = '';
                 // Plugin rrze-video active -> use plugin
-                if ($rrzeVideoActive) {
+                if (!$macFix && strpos($url, get_home_url()) !== false) {
+                    // Videos uploaded in Media
+                    $video = '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[video width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '" src="' . $url . '"][/video]') . '</foreignObject>';
+                } elseif (!$macFix && $rrzeVideoActive) {
                     $videoContent = do_shortcode('[fauvideo url="' . $url . '"]');
                     $video = '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '"><div class="video-container" style="width:100%; height:100%;">' . $videoContent . '</div></foreignObject>';
                 }
                 // Plugin rrze-video not active or source not supported by plugin -> make link
-                if (!$rrzeVideoActive || strpos($videoContent, 'Unbekannte Videoquelle')) {
+                if ($macFix || strpos($videoContent, 'Unbekannte Videoquelle')) {
                     $video = '<a href="' . $url . '">
-                                <rect class="video" x="' . ($videoSettings['x'] + 5) . '" y="' . ($videoSettings['y'] + 5) . '" width="' . ($videoSettings['width'] -10) . '" height="' . ($videoSettings['width'] * .6) . '" fill="#333" stroke="#191919" stroke-width="5"></rect>
+                                <rect class="video" x="' . ($videoSettings['x'] + 5) . '" y="' . ($videoSettings['y'] + 5) . '" width="' . ($videoSettings['width'] -10) . '" height="' . ($videoSettings['height'] - 10) . '" fill="#333" stroke="#191919" stroke-width="5"></rect>
                                 <use xlink:href="#video-play" fill="#ccc" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" transform="translate(1270 310) scale(.5)"/>
                                 </a>';
                 }

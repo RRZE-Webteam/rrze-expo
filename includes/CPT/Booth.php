@@ -418,6 +418,13 @@ class Booth {
             ),
             'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
         ]);
+        $cmb_rollups->add_group_field($rollup_group_id,[
+            'name' => __('Clickable', 'rrze-expo'),
+            'desc'    => __('Roll-up image opens in a lightbox for detailed view and is listed in the info box.', 'rrze-expo'),
+            'id'   => 'clickable',
+            'type' => 'checkbox',
+        ]);
+
 
         // Flyer
         $cmb_flyer = new_cmb2_box([
