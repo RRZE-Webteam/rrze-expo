@@ -286,26 +286,32 @@ Plugin Style
         .wp-video {
             margin: 0 auto;
         }
-        .schedule {
-            background: #fff;
-            padding: 20px;
-            //width: 500px;
-            h2 {
-                font-size: 1.6em;
-                text-align: center;
-            }
-            h3 {
-                font-size: 1.2em;
-            }
-            table {
-                margin-bottom: 10px;
-            }
-            td {
-                font-size: 1.2em;
-            }
-        }
         .video-error {
             font-size: 1.6em;
+        }
+        foreignObject.schedule {
+            .schedule-content {
+                padding: 20px;
+                background: #fff;
+                height: 777px;
+                overflow-y: auto;
+                h2 {
+                    font-size: 1.6em;
+                    text-align: center;
+                }
+
+                h3 {
+                    font-size: 1.2em;
+                }
+
+                table {
+                    margin-bottom: 10px;
+                }
+
+                td {
+                    font-size: 1.2em;
+                }
+            }
         }
     }
     .booth {
@@ -324,6 +330,7 @@ Plugin Style
             }
             ul {
                 margin: 0;
+                padding: 0
             }
             li {
                 font-size: 1.1em;
@@ -340,6 +347,8 @@ Plugin Style
             .schedule-rollup {
                 padding: 5%;
                 background-color: #E6E6E6;
+                height: 777px;
+                overflow-y: auto;
                 h2 {
                     font-size: 1.6em;
                 }
@@ -349,6 +358,8 @@ Plugin Style
             }
             .schedule-left-screen,
             .schedule-right-screen {
+                height: 200px;
+                overflow-y: auto;
                 background-color: #E6E6E6;
                 border: 7px outset #333;
                 padding: 1%;
