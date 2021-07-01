@@ -42,7 +42,7 @@ CPT::expoHeader();
             $timeslots = [];
             $schedule = __('No Talks available', 'rrze-expo');
         } else {
-            $schedule .= '<div class="schedule"><h2>' . __('Schedule', 'rrze-expo') . '</h2>';
+            $schedule .= '<div class="schedule-content"><h2>' . __('Schedule', 'rrze-expo') . '</h2>';
             // group by day
             $i = 0;
             foreach ($timeslots as $timeslot) {
@@ -66,7 +66,7 @@ CPT::expoHeader();
                     $schedule .= '<tr>';
                     $schedule .= '<td>' . $timeslotDetails['starttime'] . ' - ' . $timeslotDetails['endtime'] . '</td>';
                     $schedule .= '<td><span class="talk-title">' . $timeslotDetails['title'] . '</span>';
-                    if (isset($timeslotDetails['booth'])) {
+                    if (isset($timeslotDetails['booth']) && $timeslotDetails['booth'] != '') {
                         $schedule .= '<br /><a href="' . get_permalink($timeslotDetails['booth']) . '">' . get_the_title($timeslotDetails['booth']) . '</a>';
                     }
                     $schedule .= '</tr>';
@@ -126,9 +126,11 @@ CPT::expoHeader();
                 } ?>
                 <use class="podium" xlink:href="#podium" x="100" />
                 <?php
-                echo '<foreignObject class="schedule" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y']) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'">
+                if ($templateNo == 1 || ($templateNo == 2 && $video == '')) {
+                    echo '<foreignObject class="schedule" x="' . $scheduleSettings['x'] . '" y="' . ($scheduleSettings['y']) . '" width="' . $scheduleSettings['width'] . '" height="' . $scheduleSettings['height'] . '">
                         <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
                     </foreignObject>';
+                }
                 echo $video;
 
                 ?>
