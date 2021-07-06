@@ -334,6 +334,23 @@ class Booth {
             'options_cb'          => [$this, 'getDecoObjects'],
         ]);
 
+        for ($i=1; $i<=3; $i++) {
+            $cmb_layout->add_field([
+                'name' => __('Seat', 'rrze-expo') . " $i",
+                //'desc'    => __('', 'rrze-expo'),
+                'id' => 'rrze-expo-booth-seat-'.$i,
+                'type' => 'select',
+                'default' => '',
+                'options' => ['' => __('No Seat', 'rrze-expo'),
+                    'fau' => __('FAU (dark blue)', 'rrze-expo'),
+                    'med' => __('Med (light blue)', 'rrze-expo'),
+                    'nat' => __('Nat (green)', 'rrze-expo'),
+                    'phil' => __('Phil (yellow)', 'rrze-expo'),
+                    'rw' => __('RW (red)', 'rrze-expo'),
+                    'tf' => __('Tech (grey)', 'rrze-expo'),],
+            ]);
+        }
+
 
         // AV Media
         $cmb_videos = new_cmb2_box([

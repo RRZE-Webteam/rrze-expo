@@ -146,6 +146,23 @@ class Foyer {
             ]);
         }
 
+        for ($i=1; $i<=3; $i++) {
+            $cmb->add_field([
+                'name' => __('Seat', 'rrze-expo') . " $i",
+                //'desc'    => __('', 'rrze-expo'),
+                'id' => 'rrze-expo-foyer-seat-'.$i,
+                'type' => 'select',
+                'default' => '',
+                'options' => ['' => __('No Seat', 'rrze-expo'),
+                    'fau' => __('FAU (dark blue)', 'rrze-expo'),
+                    'med' => __('Med (light blue)', 'rrze-expo'),
+                    'nat' => __('Nat (green)', 'rrze-expo'),
+                    'phil' => __('Phil (yellow)', 'rrze-expo'),
+                    'rw' => __('RW (red)', 'rrze-expo'),
+                    'tf' => __('Tech (grey)', 'rrze-expo'),],
+            ]);
+        }
+
         // Direction Board
         $cmb_panels = new_cmb2_box([
             'id'            => 'rrze-expo-foyer-panels',

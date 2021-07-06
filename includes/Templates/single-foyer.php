@@ -172,6 +172,18 @@ CPT::expoHeader();
                     }
                     echo '</g>';
                 }
+
+                // Seats
+                for ($i=1; $i<=3; $i++) {
+                    $seat[$i] = CPT::getMeta($meta, 'rrze-expo-foyer-seat-'.$i);
+                    $seatSettings = $constants['template_elements']['foyer']['seat'][$i];
+                    if ($seat[$i] != '') {
+                        $file = WP_PLUGIN_URL . '/rrze-expo/assets/img/template-assets/beanbag_'.$seat[$i].'_'.$i.'.png';
+                        if ($file) {
+                            echo '<image xlink:href="'.$file.'" preserveAspectRatio="xMidYMin meet" width="'.$seatSettings['width'].'" height="'.$seatSettings['height'].'"  x="'.$seatSettings['x'].'" y="'.$seatSettings['y'].'" />';
+                        }
+                    }
+                }
                 ?>
             </svg>
 
