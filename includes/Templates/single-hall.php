@@ -26,7 +26,20 @@ CPT::expoHeader();
 
         <div id="rrze-expo-hall" class="hall" style="background-image: url('<?php echo $backgroundImage;?>');">
             <?php
-            echo '<h1 class="hall-title" style="color: ' . CPT::getMeta($meta, 'rrze-expo-hall-font-color') . ';">' . $title . '</h1>';
+            $titleStyle = '';
+            $titleColor = CPT::getMeta($meta, 'rrze-expo-hall-font-color');
+            if ($titleColor != '') {
+                $titleStyle = 'color: ' . $titleColor . ';';
+            }
+            if ($backgroundImage != '' && $titleColor != '') {
+                $hexRGB = str_replace('#', '', $titleColor);
+                if(hexdec(substr($hexRGB,0,2))+hexdec(substr($hexRGB,2,2))+hexdec(substr($hexRGB,4,2))> 381){
+                    $titleStyle .= ' text-shadow: 0 0 5px #000;'; //bright color -> dark shadow
+                }else{
+                    $titleStyle .= ' text-shadow: 0 0 5px #fff;'; //dark color -> light shadow
+                }
+            }
+            echo '<h1 class="hall-title" style="' . $titleStyle . '">' . $title . '</h1>';
             $boothIDs = CPT::getBoothOrder($hallId);
             echo '<ul class="hall-menu">';
             foreach ( $boothIDs as $boothID){
