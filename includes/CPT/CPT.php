@@ -391,7 +391,7 @@ class CPT
             }
         }
         if (in_array($post->post_type, ['booth', 'hall', 'podium'])) { ?>
-            <nav class="booth-nav"><ul>
+            <nav class="booth-nav" aria-label="<?php _e('Booth Navigation', 'rrze-expo');?>"><ul>
                 <?php if ($post->post_type == 'booth') {
                     $boothId = $post->ID;
                     $boothIDsOrdered = CPT::getBoothOrder($boothId);
@@ -400,8 +400,8 @@ class CPT
                         $prevBoothID = $boothIDsOrdered[$orderNo-1]; ?>
                         <li class="prev-booth">
                             <a href="<?php echo get_permalink($prevBoothID);?>#rrze-expo-booth" class="">
-                                <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
-                                <span class="nav-prev-text"><?php echo __('Previous Booth','rrze-expo') . ':<br />' . get_the_title($prevBoothID);?></span>
+                                <svg height="16" width="16" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
+                                <span class="nav-prev-text"><?php echo __('Previous Booth','rrze-expo') . '<span class="booth-title">:<br />' . get_the_title($prevBoothID);?></span></span>
                             </a>
                         </li>
                     <?php } ?>
@@ -409,8 +409,8 @@ class CPT
                         $nextBoothID = $boothIDsOrdered[($orderNo + 1)]; ?>
                         <li class="next-booth">
                             <a href="<?php echo get_permalink($nextBoothID);?>#rrze-expo-booth" class="">
-                                <svg height="40" width="40" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-                                <span class="nav-next-text"><?php echo __('Next Booth','rrze-expo') . ':<br />' . get_the_title($nextBoothID);?></span>
+                                <span class="nav-next-text"><?php echo __('Next Booth','rrze-expo') . '<span class="booth-title">:<br />' . get_the_title($nextBoothID);?></span></span>
+                                <svg height="16" width="16" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
                             </a>
                         </li>
                     <?php }

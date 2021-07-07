@@ -26,7 +26,7 @@ Plugin Style
         -webkit-border-radius: 50%;
         border: 10px solid #fff;
         display: table;
-        background: transparent;
+        background: #000;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -34,7 +34,7 @@ Plugin Style
         -webkit-animation: pulsate 5s ease-out;
         -webkit-animation-iteration-count: infinite;
         opacity: 0.0;
-        box-shadow: 0 2px 5px rgba(0,0,0,.5);
+        box-shadow: 0 0 15px #000;
         @media screen and (min-width: 37.5em) {
             width: 40px;
             height: 40px;
@@ -162,6 +162,8 @@ Plugin Style
             ul {
                 display: table;
                 margin: 0 auto;
+                padding: 0;
+                text-align: center;
             }
             li {
                 list-style-type: none;
@@ -177,7 +179,7 @@ Plugin Style
                 background: #f3f3f5;
                 padding: 5px;
                 svg {
-                    vertical-align: text-top;
+                    vertical-align: top;
                     fill: #036;
                 }
                 a {
@@ -186,29 +188,53 @@ Plugin Style
             }
             li.prev-booth,
             li.next-booth {
-                display: block;
-                position: absolute;
-                top: 40vh;
-                padding: 0;
-                z-index: 100;
+                font-size: 14px;
+                @media screen and (min-width: 37.5em) {
+                    display: block;
+                    position: absolute;
+                    top: 40vmin;
+                    padding: 0;
+                    z-index: 100;
+                    font-size: revert;
+                }
                 &:hover {
                     .nav-prev-text {
-                        left: 40px;
+                        @media screen and (min-width: 37.5em) {
+                            left: 65px;
+                        }
                     }
                     .nav-next-text {
-                        right: 40px;
+                        @media screen and (min-width: 37.5em) {
+                            right: 65px;
+                        }
                     }
                 }
                 &.prev-booth {
-                    left: 0px;
+                    left: 5px;
                     a {
                         padding: 5px 5px 5px 0;
+                        @media screen and (min-width: 37.5em) {
+                            padding: 0;
+                        }
+                    }
+                    svg {
+                        @media screen and (min-width: 37.5em) {
+                            padding: 7px 7px 7px 2px;
+                        }
                     }
                 }
                 &.next-booth {
-                    right: 0;
+                    right: 5px;
                     a {
                         padding: 5px 0 5px 5px;
+                        @media screen and (min-width: 37.5em) {
+                            padding: 0;
+                        }
+                    }
+                    svg {
+                        @media screen and (min-width: 37.5em) {
+                            padding: 7px 2px 7px 7px;
+                        }
                     }
                 }
                 a {
@@ -216,25 +242,62 @@ Plugin Style
                 }
                 .nav-prev-text,
                 .nav-next-text {
-                    display: block;
-                    position: absolute;
-                    min-width: 200px;
-                    top: 0;
-                    background-color: rgba(255,255,255,.8);
-                    padding: 5px;
+                    @media screen and (min-width: 37.5em) {
+                        display: block;
+                        position: absolute;
+                        min-width: 200px;
+                        max-width: 300px;
+                        top: 0;
+                        background-color: rgba(255, 255, 255, .8);
+                        padding: 5px;
+                    }
+                    .booth-title {
+                        display: none;
+                        @media screen and (min-width: 37.5em) {
+                            display: inline;
+                        }
+                    }
                 }
                 .nav-prev-text {
-                    left: -200px;
-                    transition: left 300ms;
+                    @media screen and (min-width: 37.5em) {
+                        left: -300px;
+                        transition: left 300ms;
+                    }
                 }
                 .nav-next-text {
-                    right: -200px;
-                    transition: right 300ms;
+                    @media screen and (min-width: 37.5em) {
+                        right: -300px;
+                        transition: right 300ms;
+                    }
                 }
                 svg {
-                    fill: #fff;
-                    -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
-                    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+                    width: 16px;
+                    height: 16px;
+                    fill: #036;
+                    vertical-align: top;
+                    @media screen and (min-width: 37.5em) {
+                        fill: #fff;
+                        -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+                        filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+                        border-radius: 50%;
+                        background-color: rgba(0,0,0,.4);
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+            }
+            li.prev-booth {
+                float: left;
+                text-align: left;
+                @media screen and (min-width: 37.5em) {
+                    float: none;
+                }
+            }
+            li.next-booth {
+                float: right;
+                text-align: right;
+                @media screen and (min-width: 37.5em) {
+                    float: none;
                 }
             }
         }
@@ -415,6 +478,14 @@ Plugin Style
                 vertical-align: bottom;
                 -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
                 filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, .9));
+                border-radius: 50%;
+                background-color: rgba(0,0,0,.3);
+                padding: 5px 5px 1px 5px;
+                @media screen and (min-width: 37.5em) {
+                    width: 60px;
+                    height: 60px;
+                    padding: 7px 7px 2px 7px;
+                }
             }
         }
     }
