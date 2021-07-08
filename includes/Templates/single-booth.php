@@ -52,7 +52,10 @@ CPT::expoHeader();
             foreach ($podiums as $id => $podium) {
                 $talks = get_post_meta($id, 'rrze-expo-podium-timeslots', true);
                 foreach ($talks as $talk) {
-                    if (isset($talk['booth']) && $talk['booth'] == $boothID) {
+                    if (!is_array($talk['booth'])) {
+                        $talk['booth'] = [$talk['booth']];
+                    }
+                    if (isset($talk['booth']) && in_array($boothID,$talk['booth'])) {
                         $boothTalks[$id][] = $talk;
                     }
                 }
@@ -74,6 +77,7 @@ CPT::expoHeader();
                 $schedule .= '</ul></div>';
             }
         }
+
         $accentColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
         $wallImage = CPT::getMeta($meta, 'rrze-expo-booth-backwall-image');
         $wallSettings = $constants['template_elements']['booth'.$templateNo]['wall'];

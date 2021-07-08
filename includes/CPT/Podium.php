@@ -245,11 +245,13 @@ class Podium {
         ]);
         $cmb_timetable->add_group_field($video_group_id, [
             'name' => __( 'Related Booth', 'rrze-expo' ),
+            'desc' => __( 'Press CTRL key to select or unselect multiple entries.', 'rrze-expo' ),
             'id'   => 'booth',
-            'type'      => 'select',
+            'type'      => 'select_multiple',
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
             'default'          => '-1',
             'options_cb'          => [$this, 'getExpoBooths'],
+            'attributes'    => ['size' => '5'],
         ] );
     }
 

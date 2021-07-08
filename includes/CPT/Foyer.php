@@ -153,7 +153,7 @@ class Foyer {
                 'id' => 'rrze-expo-foyer-seat-'.$i,
                 'type' => 'select',
                 'default' => '',
-                'options' => ['' => __('No Seat', 'rrze-expo'),
+                'options' => ['' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
                     'fau' => __('FAU (dark blue)', 'rrze-expo'),
                     'med' => __('Med (light blue)', 'rrze-expo'),
                     'nat' => __('Nat (green)', 'rrze-expo'),
