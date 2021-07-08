@@ -67,7 +67,15 @@ CPT::expoHeader();
                     $schedule .= '<td>' . $timeslotDetails['starttime'] . ' - ' . $timeslotDetails['endtime'] . '</td>';
                     $schedule .= '<td><span class="talk-title">' . $timeslotDetails['title'] . '</span>';
                     if (isset($timeslotDetails['booth']) && $timeslotDetails['booth'] != '') {
-                        $schedule .= '<br /><a href="' . get_permalink($timeslotDetails['booth']) . '">' . get_the_title($timeslotDetails['booth']) . '</a>';
+                        if (!is_array($timeslotDetails['booth'])) {
+                            $timeslotDetails['booth'] = [$timeslotDetails['booth']];
+                        }
+                        $schedule .= '<br />';
+                        $boothLinks = [];
+                        foreach ($timeslotDetails['booth'] as $boothID) {
+                            $boothLinks[] = '<a href="' . get_permalink($boothID) . '">' . str_replace('<br>',' ',get_the_title($boothID))   . '</a>';
+                        }
+                        $schedule .= implode(', ', $boothLinks);
                     }
                     $schedule .= '</tr>';
                 }

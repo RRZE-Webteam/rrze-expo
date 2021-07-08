@@ -52,7 +52,10 @@ CPT::expoHeader();
             foreach ($podiums as $id => $podium) {
                 $talks = get_post_meta($id, 'rrze-expo-podium-timeslots', true);
                 foreach ($talks as $talk) {
-                    if (isset($talk['booth']) && $talk['booth'] == $boothID) {
+                    if (!is_array($talk['booth'])) {
+                        $talk['booth'] = [$talk['booth']];
+                    }
+                    if (isset($talk['booth']) && in_array($boothID,$talk['booth'])) {
                         $boothTalks[$id][] = $talk;
                     }
                 }
@@ -74,6 +77,7 @@ CPT::expoHeader();
                 $schedule .= '</ul></div>';
             }
         }
+
         $accentColor = CPT::getMeta($meta, 'rrze-expo-booth-backwall-color');
         $wallImage = CPT::getMeta($meta, 'rrze-expo-booth-backwall-image');
         $wallSettings = $constants['template_elements']['booth'.$templateNo]['wall'];
@@ -358,6 +362,18 @@ CPT::expoHeader();
                     echo '<foreignObject class="schedule schedule-'.$scheduleLocation.'" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'">
                         <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
                     </foreignObject>';
+                }
+
+                // Seats
+                for ($i=1; $i<=3; $i++) {
+                    $seat[$i] = CPT::getMeta($meta, 'rrze-expo-booth-seat-'.$i);
+                    $seatSettings = $constants['template_elements']['booth'.$templateNo]['seat'][$i];
+                    if ($seat[$i] != '') {
+                        $file = WP_PLUGIN_URL . '/rrze-expo/assets/img/template-assets/beanbag_'.$seat[$i].'_'.$i.'.png';
+                        if ($file) {
+                            echo '<image xlink:href="'.$file.'" preserveAspectRatio="xMidYMin meet" width="'.$seatSettings['width'].'" height="'.$seatSettings['height'].'"  x="'.$seatSettings['x'].'" y="'.$seatSettings['y'].'" />';
+                        }
+                    }
                 }
                 ?>
             </svg>

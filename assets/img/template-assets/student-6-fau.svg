@@ -32,7 +32,7 @@
 	#student-6-fau-rrze-expo .st9{fill:#808386;} /*Absatz*/
 	#student-6-fau-rrze-expo .st10{fill:#8E3089;} /*Unwichtig da verdeckt*/
 	#student-6-fau-rrze-expo .st11{fill:#3C3C3B;} /*Hosenbasis*/
-	#student-6-fau-rrze-expo .st12{clip-path:url(#SVGID_2_);}
+	#student-6-fau-rrze-expo .st12{clip-path:url(#student-6-fau-SVGID_2_);}
 	#student-6-fau-rrze-expo .st13{fill:#004070; fill: var(--fauFarbton, #004070);} /*FAU originalton*/
 	#student-6-fau-rrze-expo .st14{opacity:0.5;} /*Schatten*/
 	#student-6-fau-rrze-expo .st15{fill:#A6B0B6;} /*Schattenfarbe Arm*/
@@ -47,7 +47,7 @@
 	#student-6-fau-rrze-expo .st24{fill:#003359; fill: var(--fauFarbtonDunkler, #003359);} /*Multifunktionsschal Schatten*/
 	#student-6-fau-rrze-expo .st25{fill:#FFFFFF;} /*FAU logofarbe*/
 	#student-6-fau-rrze-expo .st26{opacity:0.8;} /*Fau logodeckkraft Multifunktionsschal*/
-	#student-6-fau-rrze-expo .st27{clip-path:url(#SVGID_4_);}
+	#student-6-fau-rrze-expo .st27{clip-path:url(#student-6-fau-SVGID_4_);}
 </style>
 <g id="student-6-fau-rrze-expo">
 <g id="Basischarakter">
@@ -215,10 +215,10 @@
 	</g>
 	<g id="fau_BeschnittgruppeSiegel">
 		<defs>
-			<path id="SVGID_1_" d="M94.9,235.9c0,0-8,53-4.8,116.7l76.5,1l15.1-48.6l-5.9-85.3l-67.3-1.2L94.9,235.9z"/>
+			<path id="student-6-fau-SVGID_1_" d="M94.9,235.9c0,0-8,53-4.8,116.7l76.5,1l15.1-48.6l-5.9-85.3l-67.3-1.2L94.9,235.9z"/>
 		</defs>
-		<clipPath id="SVGID_2_">
-			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		<clipPath id="student-6-fau-SVGID_2_">
+			<use xlink:href="#student-6-fau-SVGID_1_"  style="overflow:visible;"/>
 		</clipPath>
 		<g class="st12">
 			<g>
@@ -1441,10 +1441,10 @@
 </g>
 <g id="fau_Beschnittgruppe_Multifunktionsschal" class="st26">
 	<defs>
-		<path id="SVGID_3_" class="st26" d="M166.9,171.6l4,15.4c0,0-29.9,4.3-30.4,4.3s0.9-19.4,0.9-19.4L166.9,171.6z"/>
+		<path id="student-6-fau-SVGID_3_" class="st26" d="M166.9,171.6l4,15.4c0,0-29.9,4.3-30.4,4.3s0.9-19.4,0.9-19.4L166.9,171.6z"/>
 	</defs>
-	<clipPath id="SVGID_4_">
-		<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+	<clipPath id="student-6-fau-SVGID_4_">
+		<use xlink:href="#student-6-fau-SVGID_3_"  style="overflow:visible;"/>
 	</clipPath>
 	<g class="st27">
 		<g>
