@@ -44,13 +44,13 @@ Plugin Style
     }
     @-webkit-keyframes pulsate {
         0% {-webkit-transform: scale(0.1, 0.1); opacity: 1;}
-        80% {opacity: 0.5;}
+        80% {opacity: 0.7;}
         100% {-webkit-transform: scale(0.8, 0.8); opacity: 0.0;}
     }
     @media screen and (min-width: 37.5em) {
         @-webkit-keyframes pulsate {
             0% {-webkit-transform: scale(0.1, 0.1); opacity: 1;}
-            70% {opacity: 0.4;}
+            70% {opacity: 0.6;}
             100% {-webkit-transform: scale(1.5, 1.5); opacity: 0.0;}
         }
     }
@@ -239,6 +239,10 @@ Plugin Style
                 }
                 a {
                     display: block;
+                    @media screen and (min-width: 37.5em) {
+                        color: #000;
+                        text-shadow: 0 0 3px #fff;
+                    }
                 }
                 .nav-prev-text,
                 .nav-next-text {
@@ -255,6 +259,7 @@ Plugin Style
                         display: none;
                         @media screen and (min-width: 37.5em) {
                             display: inline;
+                            font-weight: bold;
                         }
                     }
                 }
