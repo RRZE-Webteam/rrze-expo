@@ -55,9 +55,9 @@
 			</image>
 		</symbol>
 		<symbol id="tablet">
-			<image style="overflow:visible;" width="173" height="102" id="tablet" xlink:href="../template-assets/tablet.png" transform="matrix(1 0 0 1 1696.5 680)"></image>
-			<rect id="tabletbildschirm" x="1705.2" y="689" class="st0" width="153.5" height="85.6" style="opacity:0.7;fill:#FFFFFF;"/>
-			<rect id="tabletbildschirmakzent" x="1705.2" y="689" class="st1" width="153.5" height="85.6" style="opacity:0.5;fill:#FFFFFF;"/>
+			<image style="overflow:visible;" width="173" height="102" xlink:href="../template-assets/tablet.png" transform="matrix(1 0 0 1 1696.5 680)"></image>
+			<rect id="tabletbildschirm" x="1705.2" y="689" class="st0" width="153.5" height="85.6" style="opacity:0.7;fill:var(--tabletbildschirm_fill,#FFFFFF);"/>
+			<rect id="tabletbildschirmakzent" x="1705.2" y="689" class="st1" width="153.5" height="85.6" style="opacity:0.5;fill:var(--tabletbildschirmakzent_fill,red);"/>
 			<path class="icon-video" fill="#333" transform="translate(1755, 695) scale(.09)" d="M336.2 64H47.8C21.4 64 0 85.4 0 111.8v288.4C0 426.6 21.4 448 47.8 448h288.4c26.4 0 47.8-21.4 47.8-47.8V111.8c0-26.4-21.4-47.8-47.8-47.8zm189.4 37.7L416 177.3v157.4l109.6 75.5c21.2 14.6 50.4-.3 50.4-25.8V127.5c0-25.4-29.1-40.4-50.4-25.8z"/>
 			<text x="1734" y="763" font-size="24" fill="#333">Live Chat</text>
 		</symbol>

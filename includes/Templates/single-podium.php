@@ -118,6 +118,7 @@ CPT::expoHeader();
         ?>
 
         <div id="rrze-expo-podium" class="podium" style="background-image: url('<?php echo $backgroundImage;?>');">
+            <a id="page-start"></a>
             <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
             <svg version="1.1" class="expo-podium template-<?php echo $templateNo; ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />

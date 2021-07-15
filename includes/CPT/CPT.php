@@ -287,11 +287,12 @@ class CPT
 
                     <body <?php body_class('fau-events rrze-expo'); ?>>
                         <div class="container-all">
-                            <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'fau-events'); ?>">
+                            <nav id="skiplinks" aria-label="<?php _e('Skiplinks', 'rrze-expo'); ?>">
                                 <ul class="skiplinks">
-                                    <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'fau-events'); ?></a></li>
-                                    <li><a href="#desktop-search" data-target="#desktop-search .searchform input" data-firstchild="1" class="skiplink-search"><?php _e('Go to search', 'fau-events'); ?></a></li>
-                                    <li><a href="#desktop-navigation" data-target="#desktop-navigation ul li a" data-firstchild="1" class="skiplink-nav"><?php _e('Go to main navigation', 'fau-events'); ?></a></li>
+                                    <li><a href="#page-start" data-target="#page-start" data-firstchild="0" class="skiplink-content"><?php _e('Go to content area', 'rrze-expo'); ?></a></li>
+                                    <?php if ($post->post_type == 'booth') { ?>
+                                        <li><a href="#booth-navigation" data-target="#desktop-navigation ul li a" data-firstchild="1" class="skiplink-nav"><?php _e('Go to main navigation', 'rrze-expo'); ?></a></li>
+                                    <?php } ?>
                                 </ul>
                             </nav>
                             <header id="masthead" class="site-header" role="banner">
@@ -393,7 +394,7 @@ class CPT
             }
         }
         if (in_array($post->post_type, ['booth', 'hall', 'podium'])) { ?>
-            <nav class="booth-nav" aria-label="<?php _e('Booth Navigation', 'rrze-expo');?>"><ul>
+            <nav id="booth-navigation" class="booth-nav" aria-label="<?php _e('Booth Navigation', 'rrze-expo');?>"><ul>
                 <?php if ($post->post_type == 'booth') {
                     $boothId = $post->ID;
                     $boothIDsOrdered = CPT::getBoothOrder($boothId);

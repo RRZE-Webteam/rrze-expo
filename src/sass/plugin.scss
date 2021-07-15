@@ -169,6 +169,9 @@ Plugin Style
                 list-style-type: none;
                 a {
                     text-decoration: none;
+                    &:hover, &:focus, &:active {
+                        text-decoration: underline;
+                    }
                 }
             }
             li.hall-link,
@@ -197,7 +200,7 @@ Plugin Style
                     z-index: 100;
                     font-size: revert;
                 }
-                &:hover {
+                &:hover, &:focus, &:active {
                     .nav-prev-text {
                         @media screen and (min-width: 37.5em) {
                             left: 65px;
@@ -242,6 +245,12 @@ Plugin Style
                     @media screen and (min-width: 37.5em) {
                         color: #000;
                         text-shadow: 0 0 3px #fff;
+                    }
+                    &:hover, &:focus, &:active {
+                        svg {
+                            background-color: rgba(0, 0, 0, .6);
+                            border: 1px dashed #fff;
+                        }
                     }
                 }
                 .nav-prev-text,
@@ -493,6 +502,14 @@ Plugin Style
                 }
             }
         }
+        &:hover, &:focus, &:active {
+            .scroll-down-icon {
+                @media screen and (min-width: 66.25em) {
+                    background-color: rgba(0, 0, 0, .6);
+                    border: 1px dashed #fff;
+                }
+            }
+        }
     }
     ul.hall-menu {
         display: flex;
@@ -552,6 +569,22 @@ Plugin Style
         }
     }
 
+}
+a.tablet-link {
+    display: block;
+    &:focus {
+        border: 2px dashed #fff;
+    }
+}
+#tablet {
+     #tabletbildschirmakzent {
+        --tabletbildschirmakzent_fill: #ffffff;
+    }
+    &:hover, &:focus, &:active {
+        #tabletbildschirmakzent {
+            --tabletbildschirmakzent_fill: #333333;
+        }
+    }
 }
 
 #rrze-expo-booth {

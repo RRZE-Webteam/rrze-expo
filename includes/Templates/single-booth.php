@@ -97,6 +97,7 @@ CPT::expoHeader();
         ?>
         <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
+            <a id="page-start"></a>
             <svg version="1.1" class="expo-booth template-<?php echo $templateNo; ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <?php
@@ -117,7 +118,7 @@ CPT::expoHeader();
                     if ($url != '') {
                         $videoSettings = $constants['template_elements']['booth'.$templateNo]['video_'.$location];
                         if ($location == 'table') {
-                            echo '<a href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
+                            echo '<a class="tablet-link" href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
                         } else {
                             if ($scheduleLocation == $location.'-screen') {
                                 continue;

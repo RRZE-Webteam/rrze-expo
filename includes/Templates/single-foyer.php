@@ -23,6 +23,7 @@ CPT::expoHeader();
 
         <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
         <div id="rrze-expo-foyer" class="foyer" style="background-image: url('<?php echo $backgroundImage;?>');">
+            <a id="page-start"></a>
             <svg version="1.1" class="expo-foyer" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <!--<use class="backwall" xlink:href="#wall" />-->
