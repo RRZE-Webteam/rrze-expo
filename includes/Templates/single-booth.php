@@ -83,6 +83,7 @@ CPT::expoHeader();
         $wallSettings = $constants['template_elements']['booth'.$templateNo]['wall'];
         $title = get_the_title();
         $fontSize = CPT::getMeta($meta, 'rrze-expo-booth-font-size');
+        $gallery = CPT::getMeta($meta, 'rrze-expo-booth-gallery');
         if ($templateNo == '2' && CPT::getMeta($meta, 'rrze-expo-booth-plain-texture') == 'on') {
             $pot = 'flower_pot_plain';
             $flyerDisplay = 'flyer_display_plain';
@@ -118,7 +119,11 @@ CPT::expoHeader();
                     if ($url != '') {
                         $videoSettings = $constants['template_elements']['booth'.$templateNo]['video_'.$location];
                         if ($location == 'table') {
-                            echo '<a class="tablet-link" href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
+                            if ($templateNo == '2' && !empty($gallery)) {
+                                continue;
+                            } else {
+                                echo '<a class="tablet-link" href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
+                            }
                         } else {
                             if ($scheduleLocation == $location.'-screen') {
                                 continue;
@@ -142,6 +147,22 @@ CPT::expoHeader();
                                 </a>';
                             }
                         }
+                    }
+                }
+
+                // Gallery
+                if (!empty($gallery)) {
+                    $galleryStartId = array_key_first($gallery);
+                    $galleryStartURL = reset($gallery);
+                    $gallerySettings = $constants['template_elements']['booth'.$templateNo]['gallery'];
+                    echo '<a href="' . $galleryStartURL.'" data-fancybox="booth-gallery">'
+                        . '<use class="gallery-tablet" xlink:href="#gallery" />'
+                        . '<text x="' . $gallerySettings['x'] . '" y="' . $gallerySettings['y'] . '" font-size="24" fill="#333">'. __('Gallery', 'rrze-expo').'</text>'
+                        . '</a>';
+                    foreach ( (array) $gallery as $attachment_id => $attachment_url ) {
+                        if ($attachment_id == $galleryStartId)
+                            continue;
+                        echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" style="display: none;">'.$attachment_url.'</a>';
                     }
                 }
 
@@ -464,7 +485,15 @@ CPT::expoHeader();
 
         echo '</div>';
 
-        endwhile; ?>
+        if (!empty($gallery)) {
+            echo '<script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $.fancybox.defaults.loop = true;
+            });
+            </script>';
+        }
+
+    endwhile; ?>
 
 </main>
 

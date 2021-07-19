@@ -599,4 +599,20 @@ class CPT
         return;
     }
 
+    public static function outputFileList( $file_list_meta_id, $img_size = 'medium' ) {
+        // Get the list of files
+        $files = get_post_meta( get_the_ID(), $file_list_meta_id, 1 );
+        $out = '<div class="file-list-wrap" style="">';
+        // Loop through them and output an image
+        foreach ( (array) $files as $attachment_id => $attachment_url ) {
+            $out .=  '<div class="file-list-image">';
+            $out .= '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery">'.$attachment_url.'</a>';
+            //$out .= wp_get_attachment_image( $attachment_id, $img_size );
+            $out .= '</div>';
+            // data-lightbox="booth-gallery"
+        }
+        $out .= '</div>';
+        return $out;
+    }
+
 }

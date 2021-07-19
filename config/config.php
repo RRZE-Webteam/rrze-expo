@@ -356,6 +356,13 @@ function getConstants() {
                     'width' => 100,
                     'height' => 60,
                 ],
+                'gallery' => [
+                    'title' => __('Gallery', 'rrze-expo'),
+                    'x' => 1975,
+                    'y' => 765,
+                    'width' => 100,
+                    'height' => 60,
+                ],
                 'schedule' => [
                     'title' => __('Our Talks', 'rrze-expo'),
                 ],
@@ -485,6 +492,13 @@ function getConstants() {
                     'title' => __('Video Screen Table', 'rrze-expo'),
                     'x' => 1840,
                     'y' => 370,
+                    'width' => 100,
+                    'height' => 60,
+                ],
+                'gallery' => [
+                    'title' => __('Gallery', 'rrze-expo'),
+                    'x' => 1715,
+                    'y' => 760,
                     'width' => 100,
                     'height' => 60,
                 ],
