@@ -41,6 +41,8 @@ class CPT
         }
         add_action( 'cmb2_render_select_multiple', [$this, 'renderMultipleSelect'], 10, 5 );
         add_filter( 'cmb2_sanitize_select_multiple', [$this,'sanitizeMultipleSelect'], 10, 2 );
+        add_action( 'cmb2_render_persona_field', [$this, 'renderPersonaField'], 10, 5 );
+        add_filter( 'cmb2_sanitize_persona_field', [$this, 'sanitizePersonaField'], 10, 5 );
     }
 
     public function activation()
@@ -599,6 +601,58 @@ class CPT
         return;
     }
 
+    public function renderPersonaField( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
+        // make sure we specify each part of the value we need.
+        $escaped_value = wp_parse_args( $escaped_value, array(
+            'persona' => '',
+            'skin-color' => '',
+            'hair-color'      => '',
+        ) );
+
+        echo '<div><label for="' . $field_type_object->_id( '_persona' ) . '">'.__('Persona', 'rrze-expo').'</label> ';
+        $personas = self::constantOptions('personas', true);
+        $personaNo = substr($field_type_object->_name(), -1);
+        // TODO: $oldValue für Abwärtskompatibilität – beim nächsten Update entfernen!
+        $oldValue = get_post_meta($object_id, 'rrze-expo-booth-persona-'.$personaNo, true);
+        $personaOptions = '';
+        foreach ( $personas as $k => $v ) {
+            $personaOptions .= '<option value="'. $k .'" '. selected( in_array($k, [$escaped_value['persona'], $oldValue]), true, false ) .'>'. $v .'</option>';
+        }
+        echo $field_type_object->select( [
+			'name'    => $field_type_object->_name( '[persona]' ),
+			'id'      => $field_type_object->_id( '_persona' ),
+			'options' => $personaOptions,
+			'desc'    => '',
+		] );
+        echo '</div>';
+
+        echo '<div><p><label for="' . $field_type_object->_id( '_skin-color' ) . '">'.__('Skin Color', 'rrze-expo').'</label></p>';
+        $skinColor = '<label style="display:inline-block;padding:5px;border:1px solid #eee;"><input type="radio" class="cmb2-option" name="' . $field_type_object->_name( '[skin-color]' ) . '" id="' . $field_type_object->_id( '_skin-color' ) . '" value="" ' . checked('', $escaped_value['skin-color'], false) . '>' . __('Default', 'rrze-expo') . '</label>';
+        $skinColorOptions = self::constantOptions('skin-colors');
+        foreach ( $skinColorOptions as $value => $name ) {
+            $checked = ( isset($escaped_value['skin-color']) &&  $value == $escaped_value['skin-color'] ) ? 'checked="checked"' : '';
+            $skinColor .= '<label style="display:inline-block;background-color:'.esc_attr( $value ).';padding:5px;color:'.esc_attr( $value ).';font-family:monospace,monospace;"><input type="radio" class="cmb2-option" name="' . $field_type_object->_name( '[skin-color]' ) . '" id="' . $field_type_object->_id( '_skin-color' ) . '" value="' . esc_attr( $value ) . '" ' . $checked . '>' . esc_html( $name ) . '</label>';
+        }
+        echo $skinColor;
+        echo '</div>';
+
+        echo '<div><p><label for="' . $field_type_object->_id( '_hair-color' ) . '">'.__('Hair Color', 'rrze-expo').'</label></p>';
+        $hairColor = '<label style="display:inline-block;padding:5px;border:1px solid #eee;"><input type="radio" class="cmb2-option" name="' . $field_type_object->_name( '[hair-color]' ) . '" id="' . $field_type_object->_id( '_hair-color' ) . '" value="" ' . checked('', $escaped_value['hair-color'], false) . '>' . __('Default', 'rrze-expo') . '</label>';
+        $hairColorOptions = self::constantOptions('hair-colors');
+        foreach ( $hairColorOptions as $value => $name ) {
+            $checked = ( isset($escaped_value['hair-color']) &&  $value == $escaped_value['hair-color'] ) ? 'checked="checked"' : '';
+            $hairColor .= '<label style="display:inline-block;background-color:'.esc_attr( $value ).';padding:5px;color:'.esc_attr( $value ).';font-family:monospace,monospace;"><input type="radio" class="cmb2-option" name="' . $field_type_object->_name( '[hair-color]' ) . '" id="' . $field_type_object->_id( '_hair-color' ) . '" value="' . esc_attr( $value ) . '" ' . $checked . '>' . esc_html( $name ) . '</label>';
+        }
+        echo $hairColor;
+        echo '</div>';
+
+        echo $field_type_object->_desc( true );
+    }
+
+    public function sanitizePersonaField( $override_value, $value ) {
+
+    }
+
     public static function outputFileList( $file_list_meta_id, $img_size = 'medium' ) {
         // Get the list of files
         $files = get_post_meta( get_the_ID(), $file_list_meta_id, 1 );
@@ -615,4 +669,65 @@ class CPT
         return $out;
     }
 
+    /**
+     * Increases or decreases the brightness of a color by a percentage of the current brightness.
+     * @param   string  $hexCode        Supported formats: `#FFF`, `#FFFFFF`, `FFF`, `FFFFFF`
+     * @param   float   $adjustPercent  A number between -1 and 1. E.g. 0.3 = 30% lighter; -0.4 = 40% darker.
+     * @return  string
+     * @author  maliayas (https://stackoverflow.com/a/54393956)
+     */
+    public static function adjustBrightness($hexCode, $adjustPercent) {
+        $hexCode = ltrim($hexCode, '#');
+        if (strlen($hexCode) == 3) {
+            $hexCode = $hexCode[0] . $hexCode[0] . $hexCode[1] . $hexCode[1] . $hexCode[2] . $hexCode[2];
+        }
+        $hexCode = array_map('hexdec', str_split($hexCode, 2));
+        foreach ($hexCode as & $color) {
+            $adjustableLimit = $adjustPercent < 0 ? $color : 255 - $color;
+            $adjustAmount = ceil($adjustableLimit * $adjustPercent);
+
+            $color = str_pad(dechex($color + $adjustAmount), 2, '0', STR_PAD_LEFT);
+        }
+        return '#' . implode($hexCode);
+    }
+
+    public static function makePersonaStyles($skinColor = '', $hairColor = '') {
+        $personaStyles = '';
+        if ($skinColor != '') {
+            $personaStyles .= '--hautfarbe: '.$skinColor.';';
+            $personaStyles .= '--hautschatten: ' . CPT::adjustBrightness($skinColor, -0.1) . ';';
+            $personaStyles .= '--hautlicht: '.CPT::adjustBrightness($skinColor, 0.1).';';
+        }
+        if ($hairColor !='') {
+            $personaStyles .= '--haarfarbe: ' . $hairColor . ';';
+            $personaStyles .= '--haarschatten: ' . CPT::adjustBrightness($hairColor, -0.3) . ';';
+            $personaStyles .= '--haarlicht: ' . CPT::adjustBrightness($hairColor, 0.2) . ';';
+            if (in_array($hairColor, ['#009966', '#3399FF'])) {
+                $personaStyles .= '--bartbrauen: ' . ($skinColor != '' ? CPT::adjustBrightness($skinColor, -0.5) : CPT::adjustBrightness('#F1C27D', -0.5)) . ';';
+            } else {
+                $personaStyles .= '--bartbrauen: ' . CPT::adjustBrightness($hairColor, -0.5) . ';';
+            }
+        }
+
+        return $personaStyles;
+    }
+
+    /*
+     * Makes options array for CMB2 radio, checkbox and select options
+     */
+    public static function constantOptions($constant, $assoc = false) {
+        $constants = getConstants();
+        $optionsRaw = $constants[$constant];
+        $options = [];
+        foreach ($optionsRaw as $k => $v) {
+            if (!is_string($v))
+                continue;
+            if ($assoc === true) {
+                $options[$k] = $v;
+            } else {
+                $options[$v] = $v;
+            }
+        }
+        return $options;
+    }
 }

@@ -77,16 +77,32 @@ CPT::expoHeader();
                 // Personas
                 $personas = $constants['template_elements']['exposition']['persona'];
                 $numPersonas = count($personas);
+                $personaStyles = '';
                 for ($i=1; $i<=$numPersonas; $i++) {
-                    $persona[$i] = CPT::getMeta($meta, 'rrze-expo-exposition-persona-'.$i);
+                    $personaRaw = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
+                    // TODO: Abwärtskompatibilität – beim nächsten Update entfernen!
+                    if (!is_array($personaRaw)) {
+                        $persona[$i]['persona'] = CPT::getMeta($meta, 'rrze-expo-exposition-persona-' . $i);
+                        //var_dump($persona[$i]['persona']);
+                    } else {
+                        $persona[$i] = $personaRaw;
+                    }
                     $personaSettings = $personas[$i];
-                        if ($persona[$i] != '') {
-                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i].'.svg';
+                    if (!empty($persona[$i]['persona'])) {
+                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i]['persona'].'.svg';
                         if ($file) {
-                        $svg = file_get_contents($file);
-                        echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
+                            $svg = file_get_contents($file);
+                            echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
+                            $skinColor = (isset($persona[$i]['skin-color']) ? $persona[$i]['skin-color'] : '#F1C27D');
+                            $hairColor = (isset($persona[$i]['hair-color']) ? $persona[$i]['hair-color'] : '#754C29');
+                            $personaStyles .= '#'.$persona[$i]['persona'].'-rrze-expo {'
+                                . CPT::makePersonaStyles($skinColor, $hairColor)
+                                . '}';
                         }
                     }
+                }
+                if ($personaStyles != '') {
+                    echo '<style type="text/css">' . $personaStyles . '</style>';
                 }
                 ?>
 

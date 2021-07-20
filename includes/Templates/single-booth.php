@@ -178,16 +178,31 @@ CPT::expoHeader();
                 }
 
                 // Personas
+                $personaStyles = '';
                 for ($i=1; $i<=3; $i++) {
-                    $persona[$i] = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
+                    $personaRaw = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
+                    // TODO: Abwärtskompatibilität – beim nächsten Update entfernen!
+                    if (!is_array($personaRaw)) {
+                        $persona[$i]['persona'] = CPT::getMeta($meta, 'rrze-expo-booth-persona-' . $i);
+                    } else {
+                        $persona[$i] = $personaRaw;
+                    }
                     $personaSettings = $constants['template_elements']['booth'.$templateNo]['persona'][$i];
-                    if ($persona[$i] != '') {
-                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i].'.svg';
+                    if (!empty($persona[$i]['persona'])) {
+                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i]['persona'].'.svg';
                         if ($file) {
                             $svg = file_get_contents($file);
                             echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
+                            $skinColor = (isset($persona[$i]['skin-color']) ? $persona[$i]['skin-color'] : '#F1C27D');
+                            $hairColor = (isset($persona[$i]['hair-color']) ? $persona[$i]['hair-color'] : '#754C29');
+                            $personaStyles .= '#'.$persona[$i]['persona'].'-rrze-expo {'
+                                . CPT::makePersonaStyles($skinColor, $hairColor)
+                                . '}';
                         }
                     }
+                }
+                if ($personaStyles != '') {
+                    echo '<style type="text/css">' . $personaStyles . '</style>';
                 }
 
                 // Website Wall

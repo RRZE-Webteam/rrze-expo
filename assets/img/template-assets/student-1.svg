@@ -29,7 +29,7 @@
 	#student-1-rrze-expo .st0{fill:#E78052; fill: var(--hautschatten, #E78052);} /*Hautschatten Haar und Hals*/
 	#student-1-rrze-expo .st1{fill:#165B3A; fill: var(--rucksack, #2BB673);} /*Schuhbasis */
 	#student-1-rrze-expo .st2{fill:#2BB673; fill: var(--rucksacktraeger, #2BB673);} /*Schuhakzent */
-	#student-1-rrze-expo .st3{fill:#F1F2F2;} /*Shuhkappe */
+	#student-1-rrze-expo .st3{fill:#F1F2F2;} /*Schuhkappe */
 	#student-1-rrze-expo .st4{fill:#D1D3D4;} /*Schuhsohle und Schnürsenkel */
 	#student-1-rrze-expo .st5{fill:#808285;} /*Schuhsohlenschatten*/
 	#student-1-rrze-expo .st6{fill:#6C0D1B; fill: var(--rucksack, #6C0D1B);} /*Rucksack*/
@@ -48,7 +48,7 @@
 	#student-1-rrze-expo .st19{fill:#231F20; fill: var(--augenfarbe, #231F20);} /*Augenfarbe*/
 	#student-1-rrze-expo .st20{fill:#FFFFFF;} /*Mundraum*/
 	#student-1-rrze-expo .st21{fill:#806142; fill: var(--haarlicht, #806142);} /*Haarlicht*/
-	#student-1-rrze-expo .st22{fill:#7F3B33; fill: var(--haarfarbe, #603913);} /*Augenbrauen*/
+	#student-1-rrze-expo .st22{fill:var(--bartbrauen, #754C29);} /*Augenbrauen*/
 	#student-1-rrze-expo .st23{fill:#BE1E2D; fill: var(--rucksacktraeger, #BE1E2D);} /*Rucksackträger*/
 	#student-1-rrze-expo .st24{fill:#ADB7C4; fill: var(--mantelaermel, #ADB7C4);} /*Ärmelbund*/
 </style>

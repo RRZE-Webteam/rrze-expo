@@ -358,4 +358,12 @@ class Foyer {
     function textSanitize($originalValue, $args, $field) {
         return wp_kses($originalValue, ['br' => [], 'em' => [], 'strong' => [], 'b' => [], 'i' => [], 'sup' => [], 'sub' => []],);
     }
+
+    function getSkinOptions($field): array {
+        return CPT::constantOptions('skin-colors');
+    }
+
+    function getHairOptions($field): array {
+        return CPT::constantOptions('hair-colors');
+    }
 }
