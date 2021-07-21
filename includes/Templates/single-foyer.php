@@ -84,22 +84,37 @@ CPT::expoHeader();
                 $centerText = CPT::getMeta($meta, 'rrze-expo-foyer-panel-content');
                 echo '<use xlink:href="#panel-mitte" x="'.$centerSettings['x'].'" y="'.$centerSettings['y'].'" />
                     <foreignObject class="main-panel" x="'. ($centerSettings['x']).'" y="'. ($centerSettings['y']) .'" width="'. ($centerSettings['width']).'" height="'. ($centerSettings['height']).'">
-                        <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode($centerText) . '</div></body>
+                        <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode(wpautop($centerText)) . '</div></body>
                     </foreignObject>';
 
                 // Personas
                 $personas = $constants['template_elements']['foyer']['persona'];
                 $numPersonas = count($personas);
+                $personaStyles = '';
                 for ($i=1; $i<=$numPersonas; $i++) {
-                    $persona[$i] = CPT::getMeta($meta, 'rrze-expo-foyer-persona-'.$i);
+                    $personaRaw = CPT::getMeta($meta, 'rrze-expo-foyer-persona-'.$i);
+                    // TODO: Abwärtskompatibilität – beim nächsten Update entfernen!
+                    if (!is_array($personaRaw)) {
+                        $persona[$i]['persona'] = CPT::getMeta($meta, 'rrze-expo-foyer-persona-' . $i);
+                    } else {
+                        $persona[$i] = $personaRaw;
+                    }
                     $personaSettings = $personas[$i];
-                    if ($persona[$i] != '') {
-                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i].'.svg';
+                    if (!empty($persona[$i]['persona'])) {
+                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i]['persona'].'.svg';
                         if ($file) {
                             $svg = file_get_contents($file);
                             echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
+                            $skinColor = (isset($persona[$i]['skin-color']) ? $persona[$i]['skin-color'] : '#F1C27D');
+                            $hairColor = (isset($persona[$i]['hair-color']) ? $persona[$i]['hair-color'] : '#754C29');
+                            $personaStyles .= '#'.$persona[$i]['persona'].'-rrze-expo {'
+                                . CPT::makePersonaStyles($skinColor, $hairColor)
+                                . '}';
                         }
                     }
+                }
+                if ($personaStyles != '') {
+                    echo '<style type="text/css">' . $personaStyles . '</style>';
                 }
 
                 // Table

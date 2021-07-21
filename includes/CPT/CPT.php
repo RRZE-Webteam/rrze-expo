@@ -609,11 +609,11 @@ class CPT
             'hair-color'      => '',
         ) );
 
-        echo '<div><label for="' . $field_type_object->_id( '_persona' ) . '">'.__('Persona', 'rrze-expo').'</label> ';
+        echo '<div style="margin-bottom: 1.5em;"><label for="' . $field_type_object->_id( '_persona' ) . '" style="font-weight: bold;margin-right: .5em;">'.__('Persona', 'rrze-expo').' </label>';
         $personas = self::constantOptions('personas', true);
-        $personaNo = substr($field_type_object->_name(), -1);
         // TODO: $oldValue für Abwärtskompatibilität – beim nächsten Update entfernen!
-        $oldValue = get_post_meta($object_id, 'rrze-expo-booth-persona-'.$personaNo, true);
+        $oldValue = get_post_meta($object_id, $field_type_object->_name(), true);
+        $oldValue = is_string($oldValue) ? $oldValue : '';
         $personaOptions = '';
         foreach ( $personas as $k => $v ) {
             $personaOptions .= '<option value="'. $k .'" '. selected( in_array($k, [$escaped_value['persona'], $oldValue]), true, false ) .'>'. $v .'</option>';
@@ -626,7 +626,7 @@ class CPT
 		] );
         echo '</div>';
 
-        echo '<div><p><label for="' . $field_type_object->_id( '_skin-color' ) . '">'.__('Skin Color', 'rrze-expo').'</label></p>';
+        echo '<div style="margin-bottom: 1.5em;"><label for="' . $field_type_object->_id( '_skin-color' ) . '" style="font-weight: bold;margin-right: .5em;">'.__('Skin Color', 'rrze-expo').' </label>';
         $skinColor = '<label style="display:inline-block;padding:5px;border:1px solid #eee;"><input type="radio" class="cmb2-option" name="' . $field_type_object->_name( '[skin-color]' ) . '" id="' . $field_type_object->_id( '_skin-color' ) . '" value="" ' . checked('', $escaped_value['skin-color'], false) . '>' . __('Default', 'rrze-expo') . '</label>';
         $skinColorOptions = self::constantOptions('skin-colors');
         foreach ( $skinColorOptions as $value => $name ) {
@@ -636,7 +636,7 @@ class CPT
         echo $skinColor;
         echo '</div>';
 
-        echo '<div><p><label for="' . $field_type_object->_id( '_hair-color' ) . '">'.__('Hair Color', 'rrze-expo').'</label></p>';
+        echo '<div><label for="' . $field_type_object->_id( '_hair-color' ) . '" style="font-weight: bold;margin-right: .5em;">'.__('Hair Color', 'rrze-expo').' </label>';
         $hairColor = '<label style="display:inline-block;padding:5px;border:1px solid #eee;"><input type="radio" class="cmb2-option" name="' . $field_type_object->_name( '[hair-color]' ) . '" id="' . $field_type_object->_id( '_hair-color' ) . '" value="" ' . checked('', $escaped_value['hair-color'], false) . '>' . __('Default', 'rrze-expo') . '</label>';
         $hairColorOptions = self::constantOptions('hair-colors');
         foreach ( $hairColorOptions as $value => $name ) {
@@ -708,7 +708,6 @@ class CPT
                 $personaStyles .= '--bartbrauen: ' . CPT::adjustBrightness($hairColor, -0.5) . ';';
             }
         }
-
         return $personaStyles;
     }
 

@@ -586,12 +586,4 @@ class Booth {
         $template = get_post_meta($boothID, 'rrze-expo-booth-template', true);
         return ($template == '2');
     }
-
-    function getSkinOptions($field): array {
-        return CPT::constantOptions('skin-colors');
-    }
-
-    function getHairOptions($field): array {
-        return CPT::constantOptions('hair-colors');
-    }
 }

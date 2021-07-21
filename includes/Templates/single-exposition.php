@@ -79,7 +79,7 @@ CPT::expoHeader();
                 $numPersonas = count($personas);
                 $personaStyles = '';
                 for ($i=1; $i<=$numPersonas; $i++) {
-                    $personaRaw = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
+                    $personaRaw = CPT::getMeta($meta, 'rrze-expo-exposition-persona-'.$i);
                     // TODO: Abwärtskompatibilität – beim nächsten Update entfernen!
                     if (!is_array($personaRaw)) {
                         $persona[$i]['persona'] = CPT::getMeta($meta, 'rrze-expo-exposition-persona-' . $i);
