@@ -304,25 +304,13 @@ class Booth {
                 '100' => '100'],
         ]);
 
+        // Persona
         for ($i=1; $i<=3; $i++) {
             $cmb_layout->add_field([
-                'name' => __('Persona', 'rrze-expo') . " $i",
+                'name'      => __('Persona', 'rrze-expo') . " $i",
                 //'desc'    => __('', 'rrze-expo'),
-                'id' => 'rrze-expo-booth-persona-'.$i,
-                'type' => 'select',
-                'default' => '',
-                'options' => ['' => __('No Character', 'rrze-expo'),
-                    'business-1' => __('Business Character', 'rrze-expo') . " 1",
-                    'business-2' => __('Business Character', 'rrze-expo') . " 2",
-                    'business-3' => __('Business Character', 'rrze-expo') . " 3",
-                    'business-4' => __('Business Character', 'rrze-expo') . " 4",
-                    'student-1' => __('Student', 'rrze-expo') . " 1",
-                    'student-2' => __('Student', 'rrze-expo') . " 2",
-                    'student-3' => __('Student', 'rrze-expo') . " 3",
-                    'student-4-fau' => __('FAU Student', 'rrze-expo') . " 1",
-                    'student-5-fau' => __('FAU Student', 'rrze-expo') . " 2",
-                    'student-6-fau' => __('FAU Student', 'rrze-expo') . " 3",
-                    'student-7-fau' => __('FAU Student', 'rrze-expo') . " 4",],
+                'id'        => 'rrze-expo-booth-persona-'.$i,
+                'type'      => 'persona_field',
             ]);
         }
 
@@ -382,6 +370,7 @@ class Booth {
             'type' => 'text_url',
             // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
         ] );
+
         $cmb_videos->add_field([
             'name' => __( 'Schedule Location', 'rrze-expo' ),
             'description' => __( 'The schedule lists live talks related to this booth. It replaces either the roll up or one of the video locations.', 'rrze-expo' ),
@@ -395,6 +384,24 @@ class Booth {
                 'right-screen' => __( 'Right Screen', 'rrze-expo' ),
             ],
         ] );
+
+        $cmb_videos->add_field( array(
+            'name' => __('Gallery', 'rrze-expo'),
+            'desc' => '',
+            'id'   => 'rrze-expo-booth-gallery',
+            'type' => 'file_list',
+            // 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
+            'query_args' => array( 'type' => 'image' ), // Only images attachment
+            // Optional, override default text strings
+            'text' => array(
+                'add_upload_files_text' => __('Add or Upload Files', 'rrze-expo'), // default: "Add or Upload Files"
+                'remove_image_text' => __('Remove Image', 'rrze-expo'), // default: "Remove Image"
+                'file_text' => __('File', 'rrze-expo').':', // default: "File:"
+                'file_download_text' => __('Download', 'rrze-expo'), // default: "Download"
+                'remove_text' => __('Remove ', 'rrze-expo'), // default: "Remove"
+            ),
+        ) );
+
 
         // Rollups
         $cmb_rollups = new_cmb2_box([

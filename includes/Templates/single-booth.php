@@ -83,6 +83,7 @@ CPT::expoHeader();
         $wallSettings = $constants['template_elements']['booth'.$templateNo]['wall'];
         $title = get_the_title();
         $fontSize = CPT::getMeta($meta, 'rrze-expo-booth-font-size');
+        $gallery = CPT::getMeta($meta, 'rrze-expo-booth-gallery');
         if ($templateNo == '2' && CPT::getMeta($meta, 'rrze-expo-booth-plain-texture') == 'on') {
             $pot = 'flower_pot_plain';
             $flyerDisplay = 'flyer_display_plain';
@@ -97,6 +98,7 @@ CPT::expoHeader();
         ?>
         <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
+            <a id="page-start"></a>
             <svg version="1.1" class="expo-booth template-<?php echo $templateNo; ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <?php
@@ -117,7 +119,11 @@ CPT::expoHeader();
                     if ($url != '') {
                         $videoSettings = $constants['template_elements']['booth'.$templateNo]['video_'.$location];
                         if ($location == 'table') {
-                            echo '<a href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
+                            if ($templateNo == '2' && !empty($gallery)) {
+                                continue;
+                            } else {
+                                echo '<a class="tablet-link" href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
+                            }
                         } else {
                             if ($scheduleLocation == $location.'-screen') {
                                 continue;
@@ -144,28 +150,61 @@ CPT::expoHeader();
                     }
                 }
 
+                // Gallery
+                if (!empty($gallery)) {
+                    $galleryStartId = array_key_first($gallery);
+                    $galleryStartURL = reset($gallery);
+                    $gallerySettings = $constants['template_elements']['booth'.$templateNo]['gallery'];
+                    echo '<a href="' . $galleryStartURL.'" data-fancybox="booth-gallery">'
+                        . '<use class="gallery-tablet" xlink:href="#gallery" />'
+                        . '<text x="' . $gallerySettings['x'] . '" y="' . $gallerySettings['y'] . '" font-size="24" fill="#333">'. __('Gallery', 'rrze-expo').'</text>'
+                        . '</a>';
+                    foreach ( (array) $gallery as $attachment_id => $attachment_url ) {
+                        if ($attachment_id == $galleryStartId)
+                            continue;
+                        echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" style="display: none;">'.$attachment_url.'</a>';
+                    }
+                }
+
                 // Logo Wall
                 if (has_post_thumbnail()){
                     $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
-                    foreach ($logoLocations as $logoLocation) {
-                        $logoLocationSettings[$logoLocation] = $constants['template_elements']['booth'.$templateNo]['logo'][$logoLocation];
-                    }
-                    if (in_array('wall', $logoLocations)) {
-                        echo '<image xlink:href="' . get_the_post_thumbnail_url($post, 'expo-logo') . '" preserveAspectRatio="xMidYMin meet" width="' . $logoLocationSettings['wall']['width'] . '" height="' . $logoLocationSettings['wall']['height'] . '"  x="' . $logoLocationSettings['wall']['x'] . '" y="' . $logoLocationSettings['wall']['y'] . '" />';
+                    if ($logoLocations != '') {
+                        foreach ($logoLocations as $logoLocation) {
+                            $logoLocationSettings[$logoLocation] = $constants['template_elements']['booth' . $templateNo]['logo'][$logoLocation];
+                        }
+                        if (in_array('wall', $logoLocations)) {
+                            echo '<image xlink:href="' . get_the_post_thumbnail_url($post, 'expo-logo') . '" preserveAspectRatio="xMidYMin meet" width="' . $logoLocationSettings['wall']['width'] . '" height="' . $logoLocationSettings['wall']['height'] . '"  x="' . $logoLocationSettings['wall']['x'] . '" y="' . $logoLocationSettings['wall']['y'] . '" />';
+                        }
                     }
                 }
 
                 // Personas
+                $personaStyles = '';
                 for ($i=1; $i<=3; $i++) {
-                    $persona[$i] = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
+                    $personaRaw = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
+                    // TODO: Abwärtskompatibilität – beim nächsten Update entfernen!
+                    if (!is_array($personaRaw)) {
+                        $persona[$i]['persona'] = CPT::getMeta($meta, 'rrze-expo-booth-persona-' . $i);
+                    } else {
+                        $persona[$i] = $personaRaw;
+                    }
                     $personaSettings = $constants['template_elements']['booth'.$templateNo]['persona'][$i];
-                    if ($persona[$i] != '') {
-                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i].'.svg';
+                    if (!empty($persona[$i]['persona'])) {
+                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i]['persona'].'.svg';
                         if ($file) {
                             $svg = file_get_contents($file);
                             echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
+                            $skinColor = (isset($persona[$i]['skin-color']) ? $persona[$i]['skin-color'] : '#F1C27D');
+                            $hairColor = (isset($persona[$i]['hair-color']) ? $persona[$i]['hair-color'] : '#754C29');
+                            $personaStyles .= '#'.$persona[$i]['persona'].'-rrze-expo {'
+                                . CPT::makePersonaStyles($skinColor, $hairColor)
+                                . '}';
                         }
                     }
+                }
+                if ($personaStyles != '') {
+                    echo '<style type="text/css">' . $personaStyles . '</style>';
                 }
 
                 // Website Wall
@@ -195,7 +234,7 @@ CPT::expoHeader();
                 echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
 
                 // Logo Table
-                if (has_post_thumbnail() && in_array('table', $logoLocations)){
+                if (has_post_thumbnail() && is_array($logoLocations) && in_array('table', $logoLocations)){
                     echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['table']['width'].'" height="'.$logoLocationSettings['table']['height'].'"  x="'.$logoLocationSettings['table']['x'].'" y="'.$logoLocationSettings['table']['y'].'" />';
                 }
 
@@ -463,7 +502,15 @@ CPT::expoHeader();
 
         echo '</div>';
 
-        endwhile; ?>
+        if (!empty($gallery)) {
+            echo '<script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $.fancybox.defaults.loop = true;
+            });
+            </script>';
+        }
+
+    endwhile; ?>
 
 </main>
 

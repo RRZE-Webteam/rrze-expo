@@ -25,6 +25,7 @@ CPT::expoHeader();
         } ?>
 
         <div id="rrze-expo-hall" class="hall" style="background-image: url('<?php echo $backgroundImage;?>');">
+            <a id="page-start"></a>
             <?php
             $titleStyle = '';
             $titleColor = CPT::getMeta($meta, 'rrze-expo-hall-font-color');

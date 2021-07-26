@@ -144,6 +144,12 @@ class Foyer {
                     'student-6-fau' => __('FAU Student', 'rrze-expo') . " 3",
                     'student-7-fau' => __('FAU Student', 'rrze-expo') . " 4",],
             ]);
+            $cmb->add_field([
+                'name'      => __('Persona', 'rrze-expo') . " $i",
+                //'desc'    => __('', 'rrze-expo'),
+                'id'        => 'rrze-expo-foyer-persona-'.$i,
+                'type'      => 'persona_field',
+            ]);
         }
 
         for ($i=1; $i<=3; $i++) {
@@ -358,4 +364,5 @@ class Foyer {
     function textSanitize($originalValue, $args, $field) {
         return wp_kses($originalValue, ['br' => [], 'em' => [], 'strong' => [], 'b' => [], 'i' => [], 'sup' => [], 'sub' => []],);
     }
+
 }
