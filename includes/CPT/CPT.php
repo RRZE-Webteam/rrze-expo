@@ -132,7 +132,7 @@ class CPT
 
     public static function svgToFooter() {
         global $post;
-        if (!in_array($post->post_type,  ['booth', 'podium', 'foyer', 'exposition']))
+        if (!in_array($post->post_type,  ['booth', 'hall', 'podium', 'foyer', 'exposition']))
             return;
         switch ($post->post_type) {
             case 'booth':
