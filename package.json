@@ -1,6 +1,6 @@
 {
 	"name": "rrze-expo",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"description": "Basic template for all WordPress CMS plugins.",
 	"main": "rrze-expo.php",
 	"scripts": {
