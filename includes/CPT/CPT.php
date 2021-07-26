@@ -368,17 +368,19 @@ class CPT
 
     public static function expoNav() {
         global $post;
+        $postType = $post->post_type;
+        $hallID = '';
         $foyerID = '';
         $expoID = '';
-        if ($post->post_type == 'foyer') {
+        if ($postType == 'foyer') {
             $foyerID = $post->ID;
         } else {
-            if ($post->post_type == 'booth') {
+            if ($postType == 'booth') {
                 $hallID = get_post_meta($post->ID, 'rrze-expo-booth-hall', true);
-            } elseif ($post->post_type == 'hall') {
+            } elseif ($postType == 'hall') {
                 $hallID = $post->ID;
             }
-            $expoID = get_post_meta($post->ID, 'rrze-expo-'.$post->post_type.'-exposition', true);
+            $expoID = get_post_meta($post->ID, 'rrze-expo-'.$postType.'-exposition', true);
             if ($expoID != '') {
                 $foyer = get_posts([
                     'post_type'     => 'foyer',
@@ -395,26 +397,55 @@ class CPT
                 }
             }
         }
-        if (in_array($post->post_type, ['booth', 'hall', 'podium'])) { ?>
-            <nav id="booth-navigation" class="booth-nav" aria-label="<?php _e('Booth Navigation', 'rrze-expo');?>"><ul>
-                <?php if ($post->post_type == 'booth') {
-                    $boothId = $post->ID;
-                    $boothIDsOrdered = CPT::getBoothOrder($boothId);
-                    $orderNo = array_search($boothId, $boothIDsOrdered);
+        if (in_array($postType, ['booth', 'hall', 'podium'])) {
+            switch ($postType) {
+                case 'booth':
+                    $labels = [
+                        'nav' => __('Booth Navigation', 'rrze-expo'),
+                        'next' => __('Next Booth','rrze-expo'),
+                        'prev' => __('Previous Booth','rrze-expo'),
+                    ];
+                    break;
+                case 'hall':
+                    $labels = [
+                        'nav' => __('Hall Navigation', 'rrze-expo'),
+                        'next' => __('Next Hall','rrze-expo'),
+                        'prev' => __('Previous Hall','rrze-expo'),
+                    ];
+                    break;
+                case 'podium':
+                    $labels = [
+                        'nav' => __('Podium Navigation', 'rrze-expo'),
+                        'next' => __('Next Podium','rrze-expo'),
+                        'prev' => __('Previous Podium','rrze-expo'),
+                    ];
+                    break;
+            } ?>
+            <nav id="rrze-expo-navigation" class="<?php echo $postType;?>-nav" aria-label="<?php echo $labels['nav'];?>"><ul>
+                <?php if (in_array($postType, ['booth','podium'])) {
+                    $itemId = $post->ID;
+                    switch ($postType) {
+                        case 'booth':
+                            $idsOrdered = CPT::getBoothOrder($itemId);
+                            break;
+                        case 'podium':
+                            $idsOrdered = CPT::getPodiumOrder($itemId);
+                    }
+                    $orderNo = array_search($itemId, $idsOrdered);
                     if ($orderNo > 0) {
-                        $prevBoothID = $boothIDsOrdered[$orderNo-1]; ?>
-                        <li class="prev-booth">
-                            <a href="<?php echo get_permalink($prevBoothID);?>#rrze-expo-booth" class="">
+                        $prevItemID = $idsOrdered[$orderNo-1]; ?>
+                        <li class="prev-<?php echo $postType;?>">
+                            <a href="<?php echo get_permalink($prevItemID);?>#rrze-expo-<?php echo $postType;?>" class="">
                                 <svg height="16" width="16" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
-                                <span class="nav-prev-text"><?php echo __('Previous Booth','rrze-expo') . '<span class="booth-title">:<br />' . get_the_title($prevBoothID);?></span></span>
+                                <span class="nav-prev-text"><?php echo $labels['prev'] . '<span class="'.$postType.'-title">:<br />' . get_the_title($prevItemID);?></span></span>
                             </a>
                         </li>
                     <?php } ?>
-                    <?php if (($orderNo + 1) < count($boothIDsOrdered)) {
-                        $nextBoothID = $boothIDsOrdered[($orderNo + 1)]; ?>
-                        <li class="next-booth">
-                            <a href="<?php echo get_permalink($nextBoothID);?>#rrze-expo-booth" class="">
-                                <span class="nav-next-text"><?php echo __('Next Booth','rrze-expo') . '<span class="booth-title">:<br />' . get_the_title($nextBoothID);?></span></span>
+                    <?php if (($orderNo + 1) < count($idsOrdered)) {
+                        $nextItemID = $idsOrdered[($orderNo + 1)]; ?>
+                        <li class="next-<?php echo $postType;?>">
+                            <a href="<?php echo get_permalink($nextItemID);?>#rrze-expo-<?php echo $postType;?>" class="">
+                                <span class="nav-next-text"><?php echo $labels['next'] . '<span class="'.$postType.'-title">:<br />' . get_the_title($nextItemID);?></span></span>
                                 <svg height="16" width="16" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
                             </a>
                         </li>
@@ -432,7 +463,7 @@ class CPT
                 }
                 ?>
             </ul></nav>
-            <?php }
+        <?php }
     }
 
     /**
@@ -517,31 +548,14 @@ class CPT
 
     /**
      * getPodiumOrder
-     * returns an array of hall IDs in the same exposition, ordered by foyer menu order, or alphabetically if no menu is set
+     * returns an array of podium IDs in the same exposition,ordered alphabetically
      * @param int $itemID
      * @return array
      */
     public static function getPodiumOrder($itemID) {
         $postType = get_post_type($itemID);
         $expoID = get_post_meta($itemID, 'rrze-expo-'.$postType.'-exposition', true);
-        $podiumIDs = [];
 
-        // If post type is foyer and foyer menu is set -> get podium order by menu order
-        if ($postType == 'foyer') {
-            $menuID = get_post_meta($itemID, 'rrze-expo-foyer-menu-podiums', true);
-            if ($menuID != '') {
-                $items = wp_get_nav_menu_items(absint($menuID));
-                foreach ( $items as $item) {
-                    if ($item->menu_item_parent == 0) {
-                        $podiumIDs[] = $item->object_id;
-                    }
-                }
-                return $podiumIDs;
-            }
-
-        }
-
-        // If hall Array is (still) empty -> get halls of this exposition ordered alphbetically
         $podiumIDs = get_posts([
             'post_type' => 'podium',
             'status'    => 'publish',

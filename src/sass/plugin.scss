@@ -157,7 +157,7 @@ Plugin Style
     main {
         position: relative;
         overflow-x: hidden;
-        .booth-nav {
+        #rrze-expo-navigation {
             background: #f3f3f5;
             ul {
                 display: table;
@@ -190,7 +190,9 @@ Plugin Style
                 }
             }
             li.prev-booth,
-            li.next-booth {
+            li.next-booth,
+            li.prev-podium,
+            li.next-podium {
                 font-size: 14px;
                 @media screen and (min-width: 37.5em) {
                     display: block;
@@ -212,7 +214,8 @@ Plugin Style
                         }
                     }
                 }
-                &.prev-booth {
+                &.prev-booth,
+                &.prev-podium {
                     left: 5px;
                     a {
                         padding: 5px 5px 5px 0;
@@ -226,7 +229,8 @@ Plugin Style
                         }
                     }
                 }
-                &.next-booth {
+                &.next-booth,
+                &.next-podium {
                     right: 5px;
                     a {
                         padding: 5px 0 5px 5px;
@@ -264,7 +268,8 @@ Plugin Style
                         background-color: rgba(255, 255, 255, .8);
                         padding: 5px;
                     }
-                    .booth-title {
+                    .booth-title,
+                    .podium-title {
                         display: none;
                         @media screen and (min-width: 37.5em) {
                             display: inline;
@@ -300,14 +305,16 @@ Plugin Style
                     }
                 }
             }
-            li.prev-booth {
+            li.prev-booth,
+            li.prev-podium {
                 float: left;
                 text-align: left;
                 @media screen and (min-width: 37.5em) {
                     float: none;
                 }
             }
-            li.next-booth {
+            li.next-booth,
+            li.next-podium {
                 float: right;
                 text-align: right;
                 @media screen and (min-width: 37.5em) {
