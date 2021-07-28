@@ -12,12 +12,12 @@ class Hall {
     }
 
     public function onLoaded(){
-        add_action('init', [$this, 'hallPostType']);
+        add_action('init', [__CLASS__, 'hallPostType']);
         add_action('cmb2_admin_init', [$this, 'hallFields']);
     }
 
     // Register Custom Post Type
-    public function hallPostType(){
+    public static function hallPostType(){
         $labels = [
             'name'                  => _x('Halls', 'Post type general name', 'rrze-expo'),
             'singular_name'         => _x('Hall', 'Post type singular name', 'rrze-expo'),

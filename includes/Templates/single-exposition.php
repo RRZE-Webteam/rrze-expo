@@ -152,12 +152,12 @@ CPT::expoHeader();
         $startDateRaw =  CPT::getMeta($meta,'rrze-expo-exposition-startdate');
         $endDateRaw =  CPT::getMeta($meta,'rrze-expo-exposition-enddate');
         if (!empty($startDateRaw)) {
-            $startDate = '<meta itemprop="startDate" content="'.date('Y-m-d', $startDateRaw).'" />';
+            $startDate = '<meta itemprop="startDate" content="'.date(DATE_ISO8601, $startDateRaw).'" />';
         }
         if (!empty($endDateRaw)) {
-            $endDate = '<meta itemprop="endDate" content="'.date('Y-m-d', $endDateRaw).'" />';
+            $endDate = '<meta itemprop="endDate" content="'.date(DATE_ISO8601, $endDateRaw).'" />';
         } else {
-            $endDate = '<meta itemprop="endDate" content="'.date('Y-m-d', $startDateRaw).'" />';
+            $endDate = '<meta itemprop="endDate" content="'.date(DATE_ISO8601, $startDateRaw).'" />';
         }
         echo $startDate . $endDate;
 

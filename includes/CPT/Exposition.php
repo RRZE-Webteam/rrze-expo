@@ -13,12 +13,12 @@ class Exposition {
     }
 
     public function onLoaded(){
-        add_action('init', [$this, 'expositionPostType']);
+        add_action('init', [__CLASS__, 'expositionPostType']);
         add_action('cmb2_admin_init', [$this, 'expositionFields']);
     }
 
     // Register Custom Post Type
-    public function expositionPostType(){
+    public static function expositionPostType(){
         $labels = [
             'name'                  => _x('Expositions', 'Post type general name', 'rrze-expo'),
             'singular_name'         => _x('Exposition', 'Post type singular name', 'rrze-expo'),
@@ -91,19 +91,37 @@ class Exposition {
             'type'    => 'text',
         ) );
 
-        $cmb->add_field( array(
-            'name' => __('Start Date', 'rrze-expo'),
+        $cmb->add_field([
+            'name' => __( 'Start (Date/Time)', 'rrze-expo' ),
             'id'   => 'rrze-expo-exposition-startdate',
-            'type' => 'text_date_timestamp',
+            'type' => 'text_datetime_timestamp',
             'date_format' => 'd.m.Y',
-        ) );
+            'time_format' => 'H:i',
+            'attributes' => array(
+                'data-timepicker' => json_encode(
+                    array(
+                        'timeFormat' => 'HH:mm',
+                        'stepMinute' => 5,
+                    )
+                ),
+            ),
+        ] );
 
-        $cmb->add_field( array(
-            'name' => __('End Date', 'rrze-expo'),
+        $cmb->add_field([
+            'name' => __( 'Start (Date/Time)', 'rrze-expo' ),
             'id'   => 'rrze-expo-exposition-enddate',
-            'type' => 'text_date_timestamp',
+            'type' => 'text_datetime_timestamp',
             'date_format' => 'd.m.Y',
-        ) );
+            'time_format' => 'H:i',
+            'attributes' => array(
+                'data-timepicker' => json_encode(
+                    array(
+                        'timeFormat' => 'HH:mm',
+                        'stepMinute' => 5,
+                    )
+                ),
+            ),
+        ] );
 
         $cmb->add_field( array(
             'name'    => __('Organisation', 'rrze-expo'),
@@ -134,22 +152,6 @@ class Exposition {
             'id'      => 'rrze-expo-exposition-locality',
             'type'    => 'text',
         ) );
-
-        /*$menus = wp_get_nav_menus();
-        foreach ($menus as $menu) {
-            $optionsMenu[$menu->term_id] = $menu->name;
-        }
-        $cmb->add_field([
-            'name'      => __('Exposition Menu', 'rrze-expo'),
-            'desc'    => __('If no menu is set, foyers/halls will be ordered alphabetically.', 'rrze-expo'),
-            'id'        => 'rrze-expo-exposition-menu',
-            'type'      => 'select',
-            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
-            'default'          => '',
-            'options'          => $optionsMenu,
-        ]);*/
-
-
 
         // Background Image
         $cmb_background = new_cmb2_box([
