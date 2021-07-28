@@ -13,12 +13,12 @@ class Exposition {
     }
 
     public function onLoaded(){
-        add_action('init', [$this, 'expositionPostType']);
+        add_action('init', [__CLASS__, 'expositionPostType']);
         add_action('cmb2_admin_init', [$this, 'expositionFields']);
     }
 
     // Register Custom Post Type
-    public function expositionPostType(){
+    public static function expositionPostType(){
         $labels = [
             'name'                  => _x('Expositions', 'Post type general name', 'rrze-expo'),
             'singular_name'         => _x('Exposition', 'Post type singular name', 'rrze-expo'),

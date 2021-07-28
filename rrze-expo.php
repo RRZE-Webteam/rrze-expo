@@ -108,7 +108,13 @@ function activation()
         $role->add_cap( $capability );
     }
 
-    flush_rewrite_rules();
+    add_action(
+        'init',
+        function () {
+            CPT::activation();
+            flush_rewrite_rules();
+        }
+    );
 }
 
 /**

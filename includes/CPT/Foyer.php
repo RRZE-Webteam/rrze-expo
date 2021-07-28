@@ -13,12 +13,12 @@ class Foyer {
     }
 
     public function onLoaded(){
-        add_action('init', [$this, 'foyerPostType']);
+        add_action('init', [__CLASS__, 'foyerPostType']);
         add_action('cmb2_admin_init', [$this, 'foyerFields']);
     }
 
     // Register Custom Post Type
-    public function foyerPostType(){
+    public static function foyerPostType(){
         $labels = [
             'name'                  => _x('Foyers', 'Post type general name', 'rrze-expo'),
             'singular_name'         => _x('Foyer', 'Post type singular name', 'rrze-expo'),

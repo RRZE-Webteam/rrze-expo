@@ -14,12 +14,12 @@ class Podium {
     }
 
     public function onLoaded(){
-        add_action('init', [$this, 'podiumPostType']);
+        add_action('init', [__CLASS__, 'podiumPostType']);
         add_action('cmb2_admin_init', [$this, 'podiumFields']);
     }
 
     // Register Custom Post Type
-    public function podiumPostType(){
+    public static function podiumPostType(){
         $labels = [
             'name'                  => _x('Podiums', 'Post type general name', 'rrze-expo'),
             'singular_name'         => _x('Podium', 'Post type singular name', 'rrze-expo'),

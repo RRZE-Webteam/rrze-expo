@@ -45,20 +45,15 @@ class CPT
         add_filter( 'cmb2_sanitize_persona_field', [$this, 'sanitizePersonaField'], 10, 5 );
     }
 
-    public function activation()
+    public static function activation()
     {
-        $booth = new Booth($this->pluginFile);
-        $booth->boothPostType();
+        Booth::boothPostType();
 
-        $podium = new Podium($this->pluginFile);
-        $podium->podiumPostType();
+        Podium::podiumPostType();
 
-        $hall = new Hall($this->pluginFile);
-        $hall->hallPostType();
+        Hall::hallPostType();
 
-        $expo = new Exposition($this->pluginFile);
-        $expo->expositionPostType();
-
+        Exposition::expositionPostType();
     }
 
     public static function makeCapabilities($singular = 'exposition', $plural = 'expositions') {

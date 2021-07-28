@@ -13,12 +13,12 @@ class Booth {
     }
 
     public function onLoaded(){
-        add_action('init', [$this, 'boothPostType']);
+        add_action('init', [__CLASS__, 'boothPostType']);
         add_action('cmb2_admin_init', [$this, 'boothFields']);
     }
 
     // Register Custom Post Type
-    public function boothPostType(){
+    public static function boothPostType(){
         $labels = [
             'name'                  => _x('Booths', 'Post type general name', 'rrze-expo'),
             'singular_name'         => _x('Booth', 'Post type singular name', 'rrze-expo'),
