@@ -447,13 +447,13 @@ class CPT
                     <?php }
                     if ($hallID != '') {
                         $hallLink = get_permalink($hallID);
-                        $hallText = __('Back to Hall', 'rrze-expo') . ': ' . get_the_title($hallID);
+                        $hallText = get_the_title($hallID);
                         echo "<li class='hall-link'><a class='backlink-hall' href='$hallLink'><svg height='16' width='16'><use xlink:href='#chevron-up'></use></svg> $hallText</a></li>";
                     }
                 }
                 if ($foyerID != '') {
                     $foyerLink = get_permalink($foyerID);
-                    $foyerText = __('Back to Foyer', 'rrze-expo');
+                    $foyerText = get_the_title($foyerID);
                     echo "<li class='foyer-link'><a class='backlink-foyer' href='$foyerLink'><svg height='14' width='14'><use xlink:href='#chevron-double-up'></use></svg> $foyerText</a></li>";
                 }
                 ?>
