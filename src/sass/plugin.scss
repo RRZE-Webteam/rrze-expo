@@ -93,6 +93,7 @@ Plugin Style
     }
     .site-header {
         #rrze-expo-header-content {
+            position: relative;
             max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
@@ -154,11 +155,49 @@ Plugin Style
             }
         }
     }
+    #sidebar-language_switcher {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        top: unset;
+        left: unset;
+        padding: 0;
+        @media screen and (min-width: 48em) {
+            bottom: -36px;
+            z-index: 999;
+        }
+        .widget.widget_rrze_multilang_language_switcher {
+            padding-bottom: 0;
+        }
+        .rrze-multilang {
+            padding: 0 5px;
+            height: auto;
+            &:before {
+                color: #036;
+            }
+        }
+        .widget-area .mlp_language_box ul,
+        .widget-area .rrze-multilang ul {
+            li a {
+                font-size: .9em;
+                color: #036;
+                &:hover, &:focus, &:active {
+                    color: #036;
+                }
+            }
+            @media screen and (min-width: 1200px) {
+                margin: 0;
+            }
+        }
+    }
     main {
         position: relative;
         overflow-x: hidden;
-        #rrze-expo-navigation {
+        .nav-bar {
             background: #f3f3f5;
+            position: relative;
+        }
+        #rrze-expo-navigation {
             ul {
                 display: table;
                 margin: 0 auto;
@@ -168,6 +207,7 @@ Plugin Style
             li {
                 list-style-type: none;
                 a {
+                    color: #036;
                     text-decoration: none;
                     &:hover, &:focus, &:active {
                         text-decoration: underline;
