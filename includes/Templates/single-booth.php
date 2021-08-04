@@ -9,6 +9,52 @@ use function RRZE\Expo\Config\getConstants;
 
 global $post;
 
+if (isset($_POST['email'])) {
+    $mailStatus = '';
+    $mailInfoText = '';
+    $meta = get_post_meta($post->ID);
+    $expoID = CPT::getMeta($meta, 'rrze-expo-booth-exposition');
+    $expoTitle = get_the_title($expoID);
+    $toEmail = CPT::getMeta($meta, 'rrze-expo-booth-email');
+    if ($toEmail == '')
+        return;
+    $toName = CPT::getMeta($meta, 'rrze-expo-booth-name');
+    $to = ($toName != '' ? $toName . ' <'. $toEmail . '>' : $toEmail);
+    $subject = '['.$expoTitle.'] ' .__('Message from contact form', 'rrze-expo');
+    $message = sanitize_textarea_field($_POST['message']);
+
+    //TODO: Kontaktdaten in die Nachricht einfügen!!!
+
+    $phone = sanitize_text_field($_POST['phone']);
+    $fromEmail = get_bloginfo('admin_email');
+    $headers[] = 'From: '.$fromEmail;
+    $replyEmail = sanitize_email($_POST['email']);
+    $replyName = sanitize_text_field($_POST['name']);
+    if (isset($_POST['copy']) && $_POST['copy'] == 'on') {
+        $copy = $_POST['copy'];
+        $headers[] = 'Cc: ' . ' <' . $replyEmail . '>';
+    }
+    $headers[] = 'Reply-To: ' . ($replyName != '' ? $replyName . ' <'. $replyEmail . '>' : $replyEmail);
+    //if (wp_mail( $to, $subject, $message, $headers )) {
+    if (false) {
+        $mailStatus = 'sent';
+        $mailInfoText = '<script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $("a.trigger-message").trigger("click");
+            });
+        </script>'
+            .do_shortcode('[alert style="success"]'.__('Your message has been sent!','rrze-expo').'[/alert]');
+    } else {
+        $mailStatus = 'error';
+        $mailInfoText = '<script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $("a.trigger-message").trigger("click");
+            });
+        </script>'
+            .do_shortcode('[alert style="danger"]'.__('<b>There was an error sending your message.</b><br />Please try again.','rrze-expo') . '[/alert]');
+    }
+}
+
 CPT::expoHeader();
 //get_header();
 ?>
@@ -26,10 +72,6 @@ CPT::expoHeader();
         $meta = get_post_meta($boothID);
         $expoID = CPT::getMeta($meta, 'rrze-expo-booth-exposition');
         $templateNo = CPT::getMeta($meta, 'rrze-expo-booth-template');
-        /*print "<pre>";
-        //var_dump($meta);
-        var_dump(CPT::getMeta($meta, 'rrze-expo-booth-decoration-template1'));
-        print "</pre>";*/
         $constants = getConstants();
         $backgroundImage = CPT::getMeta($meta, 'rrze-expo-booth-background-image');
         if ($backgroundImage == '') {
@@ -423,7 +465,6 @@ CPT::expoHeader();
                 </a>
             <?php } ?>
         </div>
-
         <?php
         echo '<div id="rrze-expo-booth-content" name="rrze-expo-booth-content" class="">';
         $contactName = CPT::getMeta($meta, 'rrze-expo-booth-name');
@@ -460,8 +501,9 @@ CPT::expoHeader();
 
                 echo '</ul>';
             }
-            echo ($contactInfo != '' ? '<div class="contact-info">' . $contactInfo . '</div>' : '')
-                . '</div>';
+            echo ($contactInfo != '' ? '<div class="contact-info">' . $contactInfo . '</div>' : '');
+            echo '<a data-fancybox data-src="#hidden-content" href="javascript:;" class="trigger-message">' . __('Leave a message.', 'rrze-expo') . '</a>';
+            echo '</div>';
         }
 
         $infoText = '';
@@ -502,6 +544,45 @@ CPT::expoHeader();
 
         echo '</div>';
 
+        if ($contactEmail != '') {
+            $mailStatus = (isset($mailStatus)) ? $mailStatus : '';
+            $mailInfoText = (isset($mailInfoText) ? $mailInfoText : '');
+            if ($mailStatus == 'sent') {
+                echo '<div style="display: none;" id="hidden-content">'. $mailInfoText.'</div>';
+            } else {
+                    echo '<div style="display: none;" id="hidden-content">'
+                        . $mailInfoText
+                        . '<form method="post" name="contact_form" action="#" style="max-width: 600px;">
+                        <h2 style="font-size:1.5em;margin-bottom: 1em;">' . __('Send a message to ', 'rrze-expo') . ($contactName != '' ? $contactName . ' (' : '') . $title . ($contactName != '' ? ')' : '') . '</h2>
+                        <p>
+                            <label>' . __('Your Name', 'rrze-expo') . ':<br />
+                            <input type="text" name="name" style="width:100%;" value="' . (isset($replyName) ? $replyName : '') . '"></label>
+                        </p>
+                        <p>
+                            <label>' . __('Your Email Address', 'rrze-expo') . ':<br />
+                            <input type="email" name="email" style="width:100%;" value="' . (isset($replyEmail) ? $replyEmail : '') . '"></label>
+                        </p>
+                        <p>
+                            <label>' . __('Your Phone Number (optional)', 'rrze-expo') . ':<br />
+                            <input type="text" name="phone" style="width:100%;" value="' . (isset($phone) ? $phone : '') . '"></label>
+                        </p>
+                        <p>
+                            <label>' . __('Your Message', 'rrze-expo') . ':<br />
+                            <textarea name="message" style="width:100%;">' . (isset($message) ? $message : '') . '</textarea>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                            <input type="checkbox" value="on" name="copy" style="margin-right:5px;" '. checked((isset($_POST['copy']) && $_POST['copy']), true, false) . '>' . __('Send a copy of the message to my email address.', 'rrze-expo') . '
+                            </label>
+                        </p>
+
+                        <input type="submit" value="' . __('Submit', 'rrze-expo') . '">
+                    </form>
+                </div>';
+            }
+        }
+
         if (!empty($gallery)) {
             echo '<script type="text/javascript">
             jQuery(document).ready(function($) {
@@ -518,6 +599,7 @@ CPT::expoHeader();
 
 wp_enqueue_style('rrze-expo');
 wp_enqueue_script('rrze-expo');
+wp_enqueue_style('rrze-elements');
 
 //CPT::expoFooter();
 get_footer();
