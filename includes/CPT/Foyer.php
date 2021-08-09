@@ -45,7 +45,7 @@ class Foyer {
             'items_list'            => _x('Foyers list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'rrze-expo'),
         ];
 
-        $capabilities = CPT::makeCapabilities('exposition', 'expositions');
+        $capabilities = CPT::makeCapabilities('foyer', 'foyers');
         $args = [
             'label' => __('Foyer', 'rrze-expo'),
             'description' => __('Add and edit foyer informations', 'rrze-expo'),
@@ -65,6 +65,7 @@ class Foyer {
             'delete_with_user'          => false,
             'show_in_rest'              => false,
             'capabilities'              => $capabilities,
+            'capability_type'           => 'foyer',
             'map_meta_cap'              => true,
         ];
 

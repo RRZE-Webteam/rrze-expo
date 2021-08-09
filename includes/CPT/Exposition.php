@@ -65,6 +65,7 @@ class Exposition {
             'delete_with_user'          => false,
             'show_in_rest'              => false,
             'capabilities'              => $capabilities,
+            'capability_type'           => 'exposition',
             'map_meta_cap'              => true,
         ];
 

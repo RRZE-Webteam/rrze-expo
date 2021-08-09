@@ -169,6 +169,7 @@ class CPT
             'linkedin',
             'link',
             'youtube',
+            'paper-plane',
         ];
         echo '<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><defs>';
         foreach ($icons as $icon) {

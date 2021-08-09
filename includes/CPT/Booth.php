@@ -45,7 +45,7 @@ class Booth {
             'items_list'            => _x('Booths list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'rrze-expo'),
         ];
 
-        $capabilities = CPT::makeCapabilities('exposition', 'expositions');
+        $capabilities = CPT::makeCapabilities('booth', 'booths');
         $args = [
             'label' => __('Booth', 'rrze-expo'),
             'description' => __('Add and edit booth informations', 'rrze-expo'),
@@ -65,6 +65,7 @@ class Booth {
             'delete_with_user'          => false,
             'show_in_rest'              => false,
             'capabilities'              => $capabilities,
+            'capability_type'           => 'booth',
             'map_meta_cap'              => true,
         ];
 
