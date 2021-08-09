@@ -45,21 +45,18 @@ class CPT
         add_filter( 'cmb2_sanitize_persona_field', [$this, 'sanitizePersonaField'], 10, 5 );
     }
 
-    public static function activation()
-    {
+    public static function activation() {
         Booth::boothPostType();
-
         Podium::podiumPostType();
-
         Hall::hallPostType();
-
+        Foyer::foyerPostType();
         Exposition::expositionPostType();
     }
 
     public static function makeCapabilities($singular = 'exposition', $plural = 'expositions') {
         return [
-            'edit_post'      => "edit_$singular",
-            'read_post'      => "read_$singular",
+            'edit_post'          => "edit_$singular",
+            'read_post'          => "read_$singular",
             'delete_post'        => "delete_$singular",
             'edit_posts'         => "edit_$plural",
             'edit_others_posts'  => "edit_others_$plural",
@@ -75,6 +72,7 @@ class CPT
             'create_posts'           => "edit_$plural",
         ];
     }
+
     public static function getPosts(string $postType, string $expoID = ''): array {
         $args = [
             'post_type' => $postType,
@@ -761,5 +759,35 @@ class CPT
             }
         }
         return $options;
+    }
+
+    public static function setCapsToRoles() {
+        $roles = array('editor','administrator');
+        $capTypes = [
+            'booth' => ['singular' => 'booth',
+              'plural'  => 'booths'],
+            'podium' => ['singular' => 'podium',
+              'plural'  => 'podiums'],
+            'hall' => ['singular' => 'hall',
+              'plural'  => 'halls'],
+            'foyer' => ['singular' => 'foyer',
+              'plural'  => 'foyers'],
+            'exposition' => ['singular' => 'exposition',
+              'plural'  => 'expositions'],
+            ];
+        foreach ($capTypes as $cpt => $capType) {
+            $caps[$cpt] = CPT::makeCapabilities($capType['singular'], $capType['plural']);
+        }
+
+        foreach($roles as $role) {
+	        $role = get_role($role);
+	        if (isset($role)) {
+	            foreach($caps as $cpt ) {
+	                foreach($cpt as $capability) {
+	                    $role->add_cap( $capability );
+                    }
+	            }
+	        }
+	    }
     }
 }
