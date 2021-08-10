@@ -9,54 +9,65 @@ use function RRZE\Expo\Config\getConstants;
 
 global $post;
 
-if (isset($_POST['email'])) {
-    $meta = get_post_meta($post->ID);
-    $expoID = CPT::getMeta($meta, 'rrze-expo-booth-exposition');
-    $expoTitle = get_the_title($expoID);
-    $toEmail = CPT::getMeta($meta, 'rrze-expo-booth-email');
-    if ($toEmail == '')
-        return;
-    $toName = CPT::getMeta($meta, 'rrze-expo-booth-name');
-    $to = ($toName != '' ? $toName . ' <'. $toEmail . '>' : $toEmail);
-    $subject = '['.$expoTitle.'] ' .__('Message from contact form', 'rrze-expo');
+if (isset($_POST['sent']) && $_POST['sent'] == 'true') {
+    $mailInfoText = '<script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $("a.trigger-message").trigger("click");
+                $("#fancybox-container-1").remove();
+            });
+        </script>';
     $replyPhone = isset($_POST['phone']) ? sanitize_text_field($_POST['phone']) : '';
-    $fromEmail = get_bloginfo('admin_email');
-    $headers[] = 'From: '.$fromEmail;
     $replyEmail = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
     $replyName = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
     $postMessage = isset($_POST['message']) ? sanitize_textarea_field($_POST['message']) : '';
     if (isset($_POST['copy']) && $_POST['copy'] == 'on' && $replyEmail != '') {
-        $copy = $_POST['copy'];
-        $headers[] = 'Cc: ' . ' <' . $replyEmail . '>';
+        $copy = true;
+    } else {
+        $copy = false;
     }
-    if ($replyEmail != '') {
-        $headers[] = 'Reply-To: ' . ($replyName != '' ? $replyName . ' <' . $replyEmail . '>' : $replyEmail);
-    }
-    $message = '';
-    if ($replyName != '') {
-        $message .= __('From', 'rrze-expo') . ': ' . $replyName . "\r\n";
-    }
-    if ($replyEmail != '') {
-        $message .= __('Email', 'rrze-expo') . ': ' . $replyEmail . "\r\n";
-    }
-    if ($replyPhone != '') {
-        $message .= __('Phone', 'rrze-expo') . ': ' . $replyPhone . "\r\n";
-    }
-    if ($postMessage != '') {
-        $message .= "\r\n" . __('Message', 'rrze-expo') . ":\r\n" . $postMessage;
-    }
+    if ($_POST['email'] != '' || $_POST['phone'] != '') {
+        $meta = get_post_meta($post->ID);
+        $toEmail = CPT::getMeta($meta, 'rrze-expo-booth-email');
+        if ($toEmail == '')
+            return;
+        $expoID = CPT::getMeta($meta, 'rrze-expo-booth-exposition');
+        $expoTitle = get_the_title($expoID);
+        $toName = CPT::getMeta($meta, 'rrze-expo-booth-name');
+        $to = ($toName != '' ? $toName . ' <' . $toEmail . '>' : $toEmail);
+        $subject = '[' . $expoTitle . '] ' . __('Message from contact form', 'rrze-expo');
+        $fromEmail = get_bloginfo('admin_email');
+        $headers[] = 'From: ' . $fromEmail;
+        if ($copy) {
+            $headers[] = 'Cc: ' . ' <' . $replyEmail . '>';
+        }
+        if ($replyEmail != '') {
+            $headers[] = 'Reply-To: ' . ($replyName != '' ? $replyName . ' <' . $replyEmail . '>' : $replyEmail);
+        }
+        $message = '';
+        if ($replyName != '') {
+            $message .= __('From', 'rrze-expo') . ': ' . $replyName . "\r\n";
+        }
+        if ($replyEmail != '') {
+            $message .= __('Email', 'rrze-expo') . ': ' . $replyEmail . "\r\n";
+        }
+        if ($replyPhone != '') {
+            $message .= __('Phone', 'rrze-expo') . ': ' . $replyPhone . "\r\n";
+        }
+        if ($postMessage != '') {
+            $message .= "\r\n" . __('Message', 'rrze-expo') . ":\r\n" . $postMessage;
+        }
 
-    $mailInfoText = '<script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $("a.trigger-message").trigger("click");
-            });
-        </script>';
-    if (wp_mail( $to, $subject, $message, $headers )) {
-        $mailStatus = 'sent';
-        $mailInfoText .= do_shortcode('[alert style="success"]'.__('Your message has been sent!','rrze-expo').'[/alert]');
+        if (wp_mail($to, $subject, $message, $headers)) {
+        // if (true) {
+            $mailStatus = 'sent';
+            $mailInfoText .= do_shortcode('[alert style="success"]' . __('Your message has been sent!', 'rrze-expo') . '[/alert]');
+        } else {
+            $mailStatus = 'error';
+            $mailInfoText .= do_shortcode('[alert style="danger"]' . __('<b>There was an error sending your message.</b><br /> Please try again.', 'rrze-expo') . '[/alert]');
+        }
     } else {
         $mailStatus = 'error';
-        $mailInfoText .= do_shortcode('[alert style="danger"]'.__('<b>There was an error sending your message.</b><br />Please try again.','rrze-expo') . '[/alert]');
+        $mailInfoText .= do_shortcode('[alert style="danger"]'.__('<b>There was an error sending your message.</b><br />Please enter a valid email address or phone number.','rrze-expo') . '[/alert]');
     }
 }
 
@@ -589,7 +600,7 @@ CPT::expoHeader();
                             <input type="email" name="email" style="width:100%;" value="' . (isset($replyEmail) ? $replyEmail : '') . '"></label>
                         </p>
                         <p>
-                            <label>' . __('Your Phone Number (optional)', 'rrze-expo') . ':<br />
+                            <label>' . __('Your Phone Number', 'rrze-expo') . ':<br />
                             <input type="text" name="phone" style="width:100%;" value="' . (isset($replyPhone) ? $replyPhone : '') . '"></label>
                         </p>
                         <p>
@@ -599,10 +610,10 @@ CPT::expoHeader();
                         </p>
                         <p>
                             <label>
-                            <input type="checkbox" value="on" name="copy" style="margin-right:5px;" '. checked((isset($_POST['copy']) && $_POST['copy']), true, false) . '>' . __('Send a copy of the message to my email address.', 'rrze-expo') . '
+                            <input type="checkbox" value="on" name="copy" style="margin-right:5px;" '. checked((isset($copy) && $copy == true), true, false) . '>' . __('Send a copy of the message to my email address.', 'rrze-expo') . '
                             </label>
                         </p>
-
+                        <input type="hidden" name="sent" value="true" />
                         <input type="submit" value="' . __('Submit', 'rrze-expo') . '">
                     </form>
                 </div>';
