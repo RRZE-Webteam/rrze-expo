@@ -48,7 +48,7 @@
 	#student-1-rrze-expo .st19{fill:#231F20; fill: var(--augenfarbe, #231F20);} /*Augenfarbe*/
 	#student-1-rrze-expo .st20{fill:#FFFFFF;} /*Mundraum*/
 	#student-1-rrze-expo .st21{fill:#806142; fill: var(--haarlicht, #806142);} /*Haarlicht*/
-	#student-1-rrze-expo .st22{fill:var(--bartbrauen, #754C29);} /*Augenbrauen*/
+	#student-1-rrze-expo .st22{fill:var(--augenbrauen, #754C29);} /*Augenbrauen*/
 	#student-1-rrze-expo .st23{fill:#BE1E2D; fill: var(--rucksacktraeger, #BE1E2D);} /*Rucksackträger*/
 	#student-1-rrze-expo .st24{fill:#ADB7C4; fill: var(--mantelaermel, #ADB7C4);} /*Ärmelbund*/
 </style>

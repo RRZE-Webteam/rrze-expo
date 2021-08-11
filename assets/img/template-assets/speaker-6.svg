@@ -33,7 +33,7 @@
 		#speaker-6-rrze-expo .st10{fill:#C6C6C6;} /*tablet*/
 		#speaker-6-rrze-expo .st11{fill:#FAB57A; fill: var(--hautfarbe, #FAB57A);} /*haut*/
 		#speaker-6-rrze-expo .st12{fill:#B5441B; fill: var(--haarfarbe, #B5441B);} /*haar*/
-		#speaker-4-rrze-expo .st13{fill:#754C29; fill: var(--bartbrauen, #754C29);}
+		#speaker-4-rrze-expo .st13{fill:#754C29; fill: var(--augenbrauen, #754C29);}
 
 	</style>
 	<g id="speaker-6-rrze-expo">

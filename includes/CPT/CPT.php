@@ -727,16 +727,18 @@ class CPT
         if ($skinColor != '') {
             $personaStyles .= '--hautfarbe: '.$skinColor.';';
             $personaStyles .= '--hautschatten: ' . CPT::adjustBrightness($skinColor, -0.1) . ';';
-            $personaStyles .= '--hautlicht: '.CPT::adjustBrightness($skinColor, 0.1).';';
+            $personaStyles .= '--hautlicht: ' . CPT::adjustBrightness($skinColor, 0.1) . ';';
+            $personaStyles .= '--mund: ' . CPT::adjustBrightness($skinColor, -0.2) . ';';
+            $personaStyles .= '--nase: ' . CPT::adjustBrightness($skinColor, -0.2) . ';';
         }
         if ($hairColor !='') {
             $personaStyles .= '--haarfarbe: ' . $hairColor . ';';
             $personaStyles .= '--haarschatten: ' . CPT::adjustBrightness($hairColor, -0.3) . ';';
             $personaStyles .= '--haarlicht: ' . CPT::adjustBrightness($hairColor, 0.2) . ';';
             if (in_array($hairColor, ['#009966', '#3399FF'])) {
-                $personaStyles .= '--bartbrauen: ' . ($skinColor != '' ? CPT::adjustBrightness($skinColor, -0.5) : CPT::adjustBrightness('#F1C27D', -0.5)) . ';';
+                $personaStyles .= '--augenbrauen: ' . ($skinColor != '' ? CPT::adjustBrightness($skinColor, -0.5) : CPT::adjustBrightness('#F1C27D', -0.5)) . ';';
             } else {
-                $personaStyles .= '--bartbrauen: ' . CPT::adjustBrightness($hairColor, -0.5) . ';';
+                $personaStyles .= '--augenbrauen: ' . CPT::adjustBrightness($hairColor, -0.5) . ';';
             }
         }
         return $personaStyles;
