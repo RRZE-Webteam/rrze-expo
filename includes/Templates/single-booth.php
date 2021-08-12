@@ -253,8 +253,8 @@ CPT::expoHeader();
                         if ($file) {
                             $svg = file_get_contents($file);
                             echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
-                            $skinColor = (isset($persona[$i]['skin-color']) ? $persona[$i]['skin-color'] : '#F1C27D');
-                            $hairColor = (isset($persona[$i]['hair-color']) ? $persona[$i]['hair-color'] : '#754C29');
+                            $skinColor = (isset($persona[$i]['skin-color']) ? $persona[$i]['skin-color'] : '');
+                            $hairColor = (isset($persona[$i]['hair-color']) ? $persona[$i]['hair-color'] : '');
                             $personaStyles .= '#'.$persona[$i]['persona'].'-rrze-expo {'
                                 . CPT::makePersonaStyles($skinColor, $hairColor)
                                 . '}';
