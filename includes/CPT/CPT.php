@@ -45,36 +45,32 @@ class CPT
         add_filter( 'cmb2_sanitize_persona_field', [$this, 'sanitizePersonaField'], 10, 5 );
     }
 
-    public static function activation()
-    {
+    public static function activation() {
         Booth::boothPostType();
-
         Podium::podiumPostType();
-
         Hall::hallPostType();
-
+        Foyer::foyerPostType();
         Exposition::expositionPostType();
     }
 
     public static function makeCapabilities($singular = 'exposition', $plural = 'expositions') {
         return [
-            'edit_post'      => "edit_$singular",
-            'read_post'      => "read_$singular",
+            'edit_post'          => "edit_$singular",
+            'read_post'          => "read_$singular",
             'delete_post'        => "delete_$singular",
             'edit_posts'         => "edit_$plural",
             'edit_others_posts'  => "edit_others_$plural",
             'publish_posts'      => "publish_$plural",
             'read_private_posts'     => "read_private_$plural",
-            'read'                   => "read",
             'delete_posts'           => "delete_$plural",
             'delete_private_posts'   => "delete_private_$plural",
             'delete_published_posts' => "delete_published_$plural",
             'delete_others_posts'    => "delete_others_$plural",
             'edit_private_posts'     => "edit_private_$plural",
             'edit_published_posts'   => "edit_published_$plural",
-            'create_posts'           => "edit_$plural",
         ];
     }
+
     public static function getPosts(string $postType, string $expoID = ''): array {
         $args = [
             'post_type' => $postType,
@@ -127,6 +123,8 @@ class CPT
 
     public static function svgToFooter() {
         global $post;
+        if (!$post)
+            return;
         if (!in_array($post->post_type,  ['booth', 'hall', 'podium', 'foyer', 'exposition']))
             return;
         switch ($post->post_type) {
@@ -144,10 +142,12 @@ class CPT
             case 'exposition':
                 $templateDir = '/rrze-expo/assets/img/expo/';
         }
-        $file = WP_PLUGIN_DIR . $templateDir . 'template.svg';
-        if ($file) {
-            $svg = file_get_contents($file);
-            echo str_replace('xlink:href="', 'xlink:href="'.WP_PLUGIN_URL . $templateDir, $svg);
+        if (isset($templateDir)) {
+            $file = WP_PLUGIN_DIR . $templateDir . 'template.svg';
+            if ($file) {
+                $svg = file_get_contents($file);
+                echo str_replace('xlink:href="', 'xlink:href="'.WP_PLUGIN_URL . $templateDir, $svg);
+            }
         }
 
         // Icons
@@ -165,6 +165,7 @@ class CPT
             'linkedin',
             'link',
             'youtube',
+            'paper-plane',
         ];
         echo '<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><defs>';
         foreach ($icons as $icon) {
@@ -309,6 +310,13 @@ class CPT
                                         echo '</a>';
                                     }
                                     ?>
+                                    <?php if (is_active_sidebar('sidebar-language_switcher')) { ?>
+                                        <aside id="sidebar-language_switcher" class="sidebar-language_switcher widget-area">
+                                            <div class="widget-area">
+                                                <?php dynamic_sidebar('sidebar-language_switcher'); ?>
+                                            </div><!-- .widget-area -->
+                                        </aside><!-- .sidebar-page -->
+                                    <?php } ?>
                                 </div><!-- .site-header-content -->
                             </header>
                 <?php
@@ -352,6 +360,13 @@ class CPT
                             echo '</a>';
                         }
                         ?>
+                        <?php if (is_active_sidebar('sidebar-language_switcher')) { ?>
+                            <aside id="sidebar-language_switcher" class="sidebar-language_switcher widget-area">
+                                <div class="widget-area">
+                                    <?php dynamic_sidebar('sidebar-language_switcher'); ?>
+                                </div><!-- .widget-area -->
+                            </aside><!-- .sidebar-page -->
+                        <?php } ?>
                     </div><!-- .site-header-content -->
                 </header>
         <?php }
@@ -415,49 +430,54 @@ class CPT
                         'prev' => __('Previous Podium','rrze-expo'),
                     ];
                     break;
-            } ?>
-            <nav id="rrze-expo-navigation" class="<?php echo $postType;?>-nav" aria-label="<?php echo $labels['nav'];?>"><ul>
-                <?php if (in_array($postType, ['booth','podium'])) {
-                    $itemId = $post->ID;
-                    switch ($postType) {
-                        case 'booth':
-                            $idsOrdered = CPT::getBoothOrder($itemId);
-                            break;
-                        case 'podium':
-                            $idsOrdered = CPT::getPodiumOrder($itemId);
+            }
+
+            ?>
+            <div class="nav-bar">
+                <nav id="rrze-expo-navigation" class="<?php echo $postType;?>-nav" aria-label="<?php echo $labels['nav'];?>"><ul>
+                    <?php if (in_array($postType, ['booth','podium'])) {
+                        $itemId = $post->ID;
+                        switch ($postType) {
+                            case 'booth':
+                                $idsOrdered = CPT::getBoothOrder($itemId);
+                                break;
+                            case 'podium':
+                                $idsOrdered = CPT::getPodiumOrder($itemId);
+                        }
+                        $orderNo = array_search($itemId, $idsOrdered);
+                        if ($orderNo > 0) {
+                            $prevItemID = $idsOrdered[$orderNo-1]; ?>
+                            <li class="prev-<?php echo $postType;?>">
+                                <a href="<?php echo get_permalink($prevItemID);?>#rrze-expo-<?php echo $postType;?>" class="">
+                                    <svg height="16" width="16" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
+                                    <span class="nav-prev-text"><?php echo $labels['prev'] . '<span class="'.$postType.'-title">:<br />' . get_the_title($prevItemID);?></span></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if (($orderNo + 1) < count($idsOrdered)) {
+                            $nextItemID = $idsOrdered[($orderNo + 1)]; ?>
+                            <li class="next-<?php echo $postType;?>">
+                                <a href="<?php echo get_permalink($nextItemID);?>#rrze-expo-<?php echo $postType;?>" class="">
+                                    <span class="nav-next-text"><?php echo $labels['next'] . '<span class="'.$postType.'-title">:<br />' . get_the_title($nextItemID);?></span></span>
+                                    <svg height="16" width="16" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+                                </a>
+                            </li>
+                        <?php }
+                        if ($hallID != '') {
+                            $hallLink = get_permalink($hallID);
+                            $hallText = get_the_title($hallID);
+                            echo "<li class='hall-link'><a class='backlink-hall' href='$hallLink'><svg height='16' width='16'><use xlink:href='#chevron-up'></use></svg> $hallText</a></li>";
+                        }
                     }
-                    $orderNo = array_search($itemId, $idsOrdered);
-                    if ($orderNo > 0) {
-                        $prevItemID = $idsOrdered[$orderNo-1]; ?>
-                        <li class="prev-<?php echo $postType;?>">
-                            <a href="<?php echo get_permalink($prevItemID);?>#rrze-expo-<?php echo $postType;?>" class="">
-                                <svg height="16" width="16" aria-hidden="true"><use xlink:href="#chevron-left"></use></svg>
-                                <span class="nav-prev-text"><?php echo $labels['prev'] . '<span class="'.$postType.'-title">:<br />' . get_the_title($prevItemID);?></span></span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                    <?php if (($orderNo + 1) < count($idsOrdered)) {
-                        $nextItemID = $idsOrdered[($orderNo + 1)]; ?>
-                        <li class="next-<?php echo $postType;?>">
-                            <a href="<?php echo get_permalink($nextItemID);?>#rrze-expo-<?php echo $postType;?>" class="">
-                                <span class="nav-next-text"><?php echo $labels['next'] . '<span class="'.$postType.'-title">:<br />' . get_the_title($nextItemID);?></span></span>
-                                <svg height="16" width="16" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-                            </a>
-                        </li>
-                    <?php }
-                    if ($hallID != '') {
-                        $hallLink = get_permalink($hallID);
-                        $hallText = __('Back to Hall', 'rrze-expo') . ': ' . get_the_title($hallID);
-                        echo "<li class='hall-link'><a class='backlink-hall' href='$hallLink'><svg height='16' width='16'><use xlink:href='#chevron-up'></use></svg> $hallText</a></li>";
+                    if ($foyerID != '') {
+                        $foyerLink = get_permalink($foyerID);
+                        $foyerText = get_the_title($foyerID);
+                        echo "<li class='foyer-link'><a class='backlink-foyer' href='$foyerLink'><svg height='14' width='14'><use xlink:href='#chevron-double-up'></use></svg> $foyerText</a></li>";
                     }
-                }
-                if ($foyerID != '') {
-                    $foyerLink = get_permalink($foyerID);
-                    $foyerText = __('Back to Foyer', 'rrze-expo');
-                    echo "<li class='foyer-link'><a class='backlink-foyer' href='$foyerLink'><svg height='14' width='14'><use xlink:href='#chevron-double-up'></use></svg> $foyerText</a></li>";
-                }
-                ?>
-            </ul></nav>
+                    ?>
+                </ul></nav>
+
+            </div>
         <?php }
     }
 
@@ -705,16 +725,18 @@ class CPT
         if ($skinColor != '') {
             $personaStyles .= '--hautfarbe: '.$skinColor.';';
             $personaStyles .= '--hautschatten: ' . CPT::adjustBrightness($skinColor, -0.1) . ';';
-            $personaStyles .= '--hautlicht: '.CPT::adjustBrightness($skinColor, 0.1).';';
+            $personaStyles .= '--hautlicht: ' . CPT::adjustBrightness($skinColor, 0.1) . ';';
+            $personaStyles .= '--mund: ' . CPT::adjustBrightness($skinColor, -0.2) . ';';
+            $personaStyles .= '--nase: ' . CPT::adjustBrightness($skinColor, -0.2) . ';';
         }
         if ($hairColor !='') {
             $personaStyles .= '--haarfarbe: ' . $hairColor . ';';
             $personaStyles .= '--haarschatten: ' . CPT::adjustBrightness($hairColor, -0.3) . ';';
             $personaStyles .= '--haarlicht: ' . CPT::adjustBrightness($hairColor, 0.2) . ';';
             if (in_array($hairColor, ['#009966', '#3399FF'])) {
-                $personaStyles .= '--bartbrauen: ' . ($skinColor != '' ? CPT::adjustBrightness($skinColor, -0.5) : CPT::adjustBrightness('#F1C27D', -0.5)) . ';';
+                $personaStyles .= '--augenbrauen: ' . ($skinColor != '' ? CPT::adjustBrightness($skinColor, -0.5) : CPT::adjustBrightness('#F1C27D', -0.5)) . ';';
             } else {
-                $personaStyles .= '--bartbrauen: ' . CPT::adjustBrightness($hairColor, -0.5) . ';';
+                $personaStyles .= '--augenbrauen: ' . CPT::adjustBrightness($hairColor, -0.5) . ';';
             }
         }
         return $personaStyles;
@@ -737,5 +759,35 @@ class CPT
             }
         }
         return $options;
+    }
+
+    public static function setCapsToRoles() {
+        $roles = array('editor','administrator');
+        $capTypes = [
+            'booth' => ['singular' => 'booth',
+              'plural'  => 'booths'],
+            'podium' => ['singular' => 'podium',
+              'plural'  => 'podiums'],
+            'hall' => ['singular' => 'hall',
+              'plural'  => 'halls'],
+            'foyer' => ['singular' => 'foyer',
+              'plural'  => 'foyers'],
+            'exposition' => ['singular' => 'exposition',
+              'plural'  => 'expositions'],
+            ];
+        foreach ($capTypes as $cpt => $capType) {
+            $caps[$cpt] = CPT::makeCapabilities($capType['singular'], $capType['plural']);
+        }
+
+        foreach($roles as $role) {
+	        $role = get_role($role);
+	        if (isset($role)) {
+	            foreach($caps as $cpt ) {
+	                foreach($cpt as $capability) {
+	                    $role->add_cap( $capability );
+                    }
+	            }
+	        }
+	    }
     }
 }

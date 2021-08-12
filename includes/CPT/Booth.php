@@ -45,7 +45,7 @@ class Booth {
             'items_list'            => _x('Booths list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'rrze-expo'),
         ];
 
-        $capabilities = CPT::makeCapabilities('exposition', 'expositions');
+        $capabilities = CPT::makeCapabilities('booth', 'booths');
         $args = [
             'label' => __('Booth', 'rrze-expo'),
             'description' => __('Add and edit booth informations', 'rrze-expo'),
@@ -65,6 +65,7 @@ class Booth {
             'delete_with_user'          => false,
             'show_in_rest'              => false,
             'capabilities'              => $capabilities,
+            'capability_type'           => 'booth',
             'map_meta_cap'              => true,
         ];
 
@@ -145,6 +146,12 @@ class Booth {
             'id'   => 'rrze-expo-booth-contactinfo',
             'type' => 'textarea_small',
         ] );
+        $cmb_contact->add_field( array(
+            'name' => __( 'Show Contact Form', 'rrze-expo' ),
+            'desc' => __( 'Display a simple contact form where visitors can leave their email address or phone number (optional) and a message or simply ask for beeing contacted. The message is sent directly to the booth´s email address. Information are not stored in the database.' , 'rrze-expo' ),
+            'id'   => 'rrze-expo-booth-showcontactform',
+            'type' => 'checkbox',
+        ) );
 
         // Background Image
         $cmb_background = new_cmb2_box([

@@ -4,7 +4,7 @@
 Plugin Name:     RRZE Expo
 Plugin URI:      https://github.com/RRZE-Webteam/rrze-expo
 Description:     WordPress plugin for virtual events, expositions and congresses
-Version:         1.4.1
+Version:         1.5.0
 Author:          RRZE Webteam
 Author URI:      https://blogs.fau.de/webworking/
 License:         GNU General Public License v2
@@ -102,11 +102,8 @@ function activation()
     // Ab hier können die Funktionen hinzugefügt werden,
     // die bei der Aktivierung des Plugins aufgerufen werden müssen.
     // Bspw. wp_schedule_event, flush_rewrite_rules, etc.
-    $role = get_role( 'administrator' );
-    $capabilities = CPT::makeCapabilities('exposition', 'expositions');
-    foreach ($capabilities as $capability) {
-        $role->add_cap( $capability );
-    }
+
+    CPT::setCapsToRoles();
 
     add_action(
         'init',
