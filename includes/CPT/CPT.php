@@ -43,6 +43,9 @@ class CPT
         add_filter( 'cmb2_sanitize_select_multiple', [$this,'sanitizeMultipleSelect'], 10, 2 );
         add_action( 'cmb2_render_persona_field', [$this, 'renderPersonaField'], 10, 5 );
         add_filter( 'cmb2_sanitize_persona_field', [$this, 'sanitizePersonaField'], 10, 5 );
+        // Allow Exposition as Front Page
+        add_filter( 'get_pages', [$this, 'addExpoCptToDropdown'] );
+        add_action( 'pre_get_posts', [$this, 'enableFrontPageCPT'] );
     }
 
     public static function activation() {
@@ -789,5 +792,21 @@ class CPT
 	            }
 	        }
 	    }
+    }
+
+    function addExpoCptToDropdown( $pages ){
+        $args = array(
+            'post_type' => 'exposition'
+        );
+        $items = get_posts($args);
+        $pages = array_merge($pages, $items);
+
+        return $pages;
+    }
+
+
+    function enableFrontPageCPT( $query ){
+        if(isset($query->query_vars['post_type']) && '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'])
+            $query->query_vars['post_type'] = array( 'page', 'exposition' );
     }
 }
