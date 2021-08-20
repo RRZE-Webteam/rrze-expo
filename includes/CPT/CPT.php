@@ -795,18 +795,23 @@ class CPT
     }
 
     function addExpoCptToDropdown( $pages ){
-        $args = array(
-            'post_type' => 'exposition'
-        );
-        $items = get_posts($args);
-        $pages = array_merge($pages, $items);
-
+        global $wp_customize;
+        if (is_admin() && isset( $wp_customize )) {
+            $args = array(
+                'post_type' => 'exposition'
+            );
+            $items = get_posts($args);
+            $pages = array_merge($pages, $items);
+        }
         return $pages;
     }
 
 
     function enableFrontPageCPT( $query ){
-        if(isset($query->query_vars['post_type']) && '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'])
-            $query->query_vars['post_type'] = array( 'page', 'exposition' );
+        global $wp_customize;
+        if (is_admin() && isset( $wp_customize )) {
+            if(isset($query->query_vars['post_type']) && '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'])
+                $query->query_vars['post_type'] = array( 'page', 'exposition' );
+        }
     }
 }
