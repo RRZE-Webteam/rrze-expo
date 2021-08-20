@@ -795,7 +795,8 @@ class CPT
     }
 
     function addExpoCptToDropdown( $pages ){
-        if (is_admin()) {
+        global $wp_customize;
+        if (is_admin() && isset( $wp_customize )) {
             $args = array(
                 'post_type' => 'exposition'
             );
@@ -807,7 +808,8 @@ class CPT
 
 
     function enableFrontPageCPT( $query ){
-        if (is_admin()) {
+        global $wp_customize;
+        if (is_admin() && isset( $wp_customize )) {
             if(isset($query->query_vars['post_type']) && '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'])
                 $query->query_vars['post_type'] = array( 'page', 'exposition' );
         }
