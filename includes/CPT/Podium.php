@@ -119,6 +119,23 @@ class Podium {
             'type'      => 'multicheck',
             'options_cb'          => [$this, 'getDecoObjects'],
         ]);
+        $cmb_layout->add_field( array(
+            'name'    => __('Timetable Background Color', 'rrze-expo'),
+            'id'      => 'rrze-expo-podium-timetable-background-color',
+            'type'    => 'colorpicker',
+            'default' => '#ffffff',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => array( '#dde5f0', '#f3eedf', '#ede7de', '#eaf3fc', '#e5efea', '#ebecee' ),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
+
+
         // Background Image
         $cmb_background = new_cmb2_box([
             'id'            => 'rrze-expo-podium-background',
@@ -248,7 +265,7 @@ class Podium {
             'name' => __( 'Related Booth', 'rrze-expo' ),
             'desc' => __( 'Press CTRL key to select or unselect multiple entries.', 'rrze-expo' ),
             'id'   => 'booth',
-            'type'      => 'select_multiple',
+            'type'      => 'rrze_expo_select_multiple',
             'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
             'default'          => '-1',
             'options_cb'          => [$this, 'getExpoBooths'],
@@ -273,5 +290,15 @@ class Podium {
         return $objects;
     }
 
+    function isTemplate1($field) {
+        $boothID = $field->object_id;
+        $template = get_post_meta($boothID, 'rrze-expo-podium-template', true);
+        return ($template == '1');
+    }
 
+    function isTemplate2($field) {
+        $boothID = $field->object_id;
+        $template = get_post_meta($boothID, 'rrze-expo-podium-template', true);
+        return ($template == '2');
+    }
 }

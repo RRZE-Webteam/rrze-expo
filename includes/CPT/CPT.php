@@ -39,10 +39,12 @@ class CPT
         if ( function_exists( 'wpel_init' ) ) {
             add_action( 'wpel_apply_settings', [$this, 'disableWPExternalLinks'], 10 );
         }
-        add_action( 'cmb2_render_select_multiple', [$this, 'renderMultipleSelect'], 10, 5 );
-        add_filter( 'cmb2_sanitize_select_multiple', [$this,'sanitizeMultipleSelect'], 10, 2 );
-        add_action( 'cmb2_render_persona_field', [$this, 'renderPersonaField'], 10, 5 );
-        add_filter( 'cmb2_sanitize_persona_field', [$this, 'sanitizePersonaField'], 10, 5 );
+        add_action( 'cmb2_render_rrze_expo_select_multiple', [$this, 'renderMultipleSelect'], 10, 5 );
+        add_filter( 'cmb2_sanitize_rrze_expo_select_multiple', [$this,'sanitizeMultipleSelect'], 10, 2 );
+        add_action( 'cmb2_render_rrze_expo_persona_field', [$this, 'renderPersonaField'], 10, 5 );
+        add_filter( 'cmb2_sanitize_rrze_expo_persona_field', [$this, 'sanitizePersonaField'], 10, 2 );
+        add_action( 'cmb2_render_rrze_expo_text_number', [$this, 'renderTextNumberField'], 10, 5 );
+        add_filter( 'cmb2_sanitize_rrze_expo_text_number', [$this, 'sanitizeTextNumberField'], 10, 2 );
         // Allow Exposition as Front Page
         add_filter( 'get_pages', [$this, 'addExpoCptToDropdown'] );
         add_action( 'pre_get_posts', [$this, 'enableFrontPageCPT'] );
@@ -743,6 +745,14 @@ class CPT
             }
         }
         return $personaStyles;
+    }
+
+    public static function renderTextNumberField( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
+	    echo $field_type_object->input( array( 'class' => 'cmb2-text-small', 'type' => 'number' ) );
+    }
+    public static function sanitizeTextNumberField( $null, $new ) {
+	    $new = preg_replace( "/[^0-9]/", "", $new );
+	    return $new;
     }
 
     /*

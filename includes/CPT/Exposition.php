@@ -218,7 +218,7 @@ class Exposition {
                 'name'      => __('Persona', 'rrze-expo') . " $i",
                 //'desc'    => __('', 'rrze-expo'),
                 'id'        => 'rrze-expo-exposition-persona-'.$i,
-                'type'      => 'persona_field',
+                'type'      => 'rrze_expo_persona_field',
             ]);
         }
 
@@ -240,6 +240,21 @@ class Exposition {
                 'teeny' => true,
             ],*/
         ]);
+        $cmb_elements->add_field( [
+            'name'    => __('Welcome Panel Background Color', 'rrze-expo'),
+            'id'      => 'rrze-expo-exposition-panel-background-color',
+            'type'    => 'colorpicker',
+            'default' => '#ffffff',
+            'attributes' => [
+                'data-colorpicker' => json_encode( [
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => array( '#dde5f0', '#f3eedf', '#ede7de', '#eaf3fc', '#e5efea', '#ebecee' ),
+                ] ),
+            ],
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ] );
         for ($i=1; $i<4; $i++) {
             $cmb_elements->add_field([
                 'name'    => __('Flag', 'rrze-expo') . ' ' . $i,

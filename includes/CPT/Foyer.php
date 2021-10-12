@@ -130,7 +130,7 @@ class Foyer {
                 'name'      => __('Persona', 'rrze-expo') . " $i",
                 //'desc'    => __('', 'rrze-expo'),
                 'id'        => 'rrze-expo-foyer-persona-'.$i,
-                'type'      => 'persona_field',
+                'type'      => 'rrze_expo_persona_field',
             ]);
         }
 
