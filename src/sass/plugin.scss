@@ -407,6 +407,11 @@ Plugin Style
                 height: 100%;
             }
         }
+        .schedule {
+            .talk-title {
+                font-weight: bold;
+            }
+        }
         .wp-video {
             margin: 0 auto;
         }
@@ -682,6 +687,7 @@ a.tablet-link {
         padding: 30px;
         color: #333;
         font-size: 1.4rem;
+        height: 100%;
     }
 }
 

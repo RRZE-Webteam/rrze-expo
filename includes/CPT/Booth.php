@@ -317,7 +317,7 @@ class Booth {
                 'name'      => __('Persona', 'rrze-expo') . " $i",
                 //'desc'    => __('', 'rrze-expo'),
                 'id'        => 'rrze-expo-booth-persona-'.$i,
-                'type'      => 'persona_field',
+                'type'      => 'rrze_expo_persona_field',
             ]);
         }
 

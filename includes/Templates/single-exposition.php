@@ -21,6 +21,7 @@ CPT::expoHeader();
         $expositionId = get_the_ID();
         $meta = get_post_meta($expositionId);
         $backgroundImage = CPT::getMeta($meta, 'rrze-expo-exposition-background-image');
+        $panelBackgroundColor = CPT::getMeta($meta, 'rrze-expo-exposition-panel-background-color');
         $foyerID = get_posts([
             'post_type'     => 'foyer',
             'status'        => 'publish',
@@ -55,10 +56,11 @@ CPT::expoHeader();
                     $foyerLinkClose = '';
                 }
 
+                $panelStyle = $panelBackgroundColor != '' ?' style="background-color:'. $panelBackgroundColor . '"' : '';
                 echo '<use class="panel" xlink:href="#panel" transform="translate(1300 240) scale(.95)"/>'
                     .$foyerLinkOpen
                     .'<foreignObject class="main-panel" x="'. ($panelSettings['x'] + 82).'" y="'. ($panelSettings['y'] + 94) .'" width="'. ($panelSettings['width'] * .92).'" height="'. ($panelSettings['height'] * .92).'">
-                        <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode($panelText) . '</div></body>
+                        <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content" ' . $panelStyle . '>' . do_shortcode($panelText) . '</div></body>
                     </foreignObject>';
                 if ($macFix) {
                     echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(2210 360) scale(.1)" stroke="#333" stroke-width="15" />';
