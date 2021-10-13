@@ -24,7 +24,7 @@ function getMenuSettings()
         'menu_title'    => __('RRZE Expo', 'rrze-expo'),
         'capability'    => 'manage_options',
         'menu_slug'     => 'rrze-expo',
-        'title'         => __('RRZE Expo Settings', 'rrze-expo'),
+        'title'         => __('RRZE Expo', 'rrze-expo'),
     ];
 }
 
@@ -35,14 +35,14 @@ function getMenuSettings()
 function getHelpTab()
 {
     return [
-        [
+        /*[
             'id'        => 'rrze-expo-help',
             'content'   => [
                 '<p>' . __('Here comes the Context Help content.', 'rrze-expo') . '</p>'
             ],
             'title'     => __('Overview', 'rrze-expo'),
             'sidebar'   => sprintf('<p><strong>%1$s:</strong></p><p><a href="https://blogs.fau.de/webworking">RRZE Webworking</a></p><p><a href="https://github.com/RRZE Webteam">%2$s</a></p>', __('For more information', 'rrze-expo'), __('RRZE Webteam on Github', 'rrze-expo'))
-        ]
+        ]*/
     ];
 }
 
@@ -53,14 +53,14 @@ function getHelpTab()
 function getSections()
 {
     return [
-        [
+        /*[
             'id'    => 'basic',
             'title' => __('Basic Settings', 'rrze-expo')
         ],
         [
             'id'    => 'advanced',
             'title' => __('Advanced Settings', 'rrze-expo')
-        ]
+        ]*/
     ];
 }
 
@@ -71,7 +71,7 @@ function getSections()
 function getFields()
 {
     return [
-        'basic' => [
+        /*'basic' => [
             [
                 'name'              => 'text_input',
                 'label'             => __('Text Input', 'rrze-expo'),
@@ -176,7 +176,7 @@ function getFields()
                     'button_label' => __('Choose an Image', 'rrze-expo')
                 ]
             ]
-        ]
+        ]*/
     ];
 }
 
@@ -188,7 +188,7 @@ function getFields()
 
 function getShortcodeSettings(){
 	return [
-		'block' => [
+		/*'block' => [
             'blocktype' => 'rrze-expo/SHORTCODE-NAME', // dieser Wert muss angepasst werden
 			'blockname' => 'SHORTCODE-NAME', // dieser Wert muss angepasst werden
 			'title' => 'SHORTCODE-TITEL', // Der Titel, der in der Blockauswahl im Gutenberg Editor angezeigt wird
@@ -275,7 +275,7 @@ function getShortcodeSettings(){
 			'items'   => [
 				'type' => 'string' // Variablentyp der auswählbaren Werte
 			]
-        ]
+        ]*/
     ];
 }
 
@@ -829,6 +829,32 @@ function getConstants() {
             'student-5-fau' => __('FAU Student', 'rrze-expo') . " 2",
             'student-6-fau' => __('FAU Student', 'rrze-expo') . " 3",
             'student-7-fau' => __('FAU Student', 'rrze-expo') . " 4",],
+        'colors' => [
+            'dark' => [
+                '#003366',
+                '#A36B0D',
+                '#8d1429',
+                '#0381A2',
+                '#048767',
+                '#6E7881',
+            ],
+            'darker' => [
+                '#1f4c7a',
+                '#553500',
+                '#42000c',
+                '#014e63',
+                '#00533f',
+                '#3b4956',
+            ],
+            'light' => [
+                '#dde5f0',
+                '#f3eedf',
+                '#ede7de',
+                '#eaf3fc',
+                '#e5efea',
+                '#ebecee',
+            ],
+        ],
     ];
 }
 

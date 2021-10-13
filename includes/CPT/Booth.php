@@ -252,7 +252,7 @@ class Booth {
             'attributes' => array(
                 'data-colorpicker' => json_encode( array(
                     // Iris Options set here as values in the 'data-colorpicker' array
-                    'palettes' => array( '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ),
+                    'palettes' => CPT::getDefaultColors('dark'),
                 ) ),
             ),
             // 'options' => array(
@@ -286,7 +286,7 @@ class Booth {
             'attributes' => array(
                 'data-colorpicker' => json_encode( array(
                     // Iris Options set here as values in the 'data-colorpicker' array
-                    'palettes' => array( '#000000', '#ffffff', '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ),
+                    'palettes' => CPT::getDefaultColors('font-dark'),
                 ) ),
             ),
             // 'options' => array(

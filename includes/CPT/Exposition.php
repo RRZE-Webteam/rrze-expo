@@ -244,11 +244,26 @@ class Exposition {
             'name'    => __('Welcome Panel Background Color', 'rrze-expo'),
             'id'      => 'rrze-expo-exposition-panel-background-color',
             'type'    => 'colorpicker',
-            'default' => '#ffffff',
+            'default' => '#efefef',
             'attributes' => [
                 'data-colorpicker' => json_encode( [
                     // Iris Options set here as values in the 'data-colorpicker' array
-                    'palettes' => array( '#dde5f0', '#f3eedf', '#ede7de', '#eaf3fc', '#e5efea', '#ebecee' ),
+                    'palettes' => CPT::getDefaultColors('light'),
+                ] ),
+            ],
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ] );
+        $cmb_elements->add_field( [
+            'name'    => __('Welcome Panel Font Color', 'rrze-expo'),
+            'id'      => 'rrze-expo-exposition-panel-font-color',
+            'type'    => 'colorpicker',
+            'default' => '#000000',
+            'attributes' => [
+                'data-colorpicker' => json_encode( [
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => CPT::getDefaultColors('font-dark'),
                 ] ),
             ],
             // 'options' => array(
