@@ -127,13 +127,44 @@ class Podium {
             'attributes' => array(
                 'data-colorpicker' => json_encode( array(
                     // Iris Options set here as values in the 'data-colorpicker' array
-                    'palettes' => array( '#dde5f0', '#f3eedf', '#ede7de', '#eaf3fc', '#e5efea', '#ebecee' ),
+                    'palettes' => CPT::getDefaultColors('light'),
                 ) ),
             ),
             // 'options' => array(
             // 	'alpha' => true, // Make this a rgba color picker.
             // ),
         ) );
+        $cmb_layout->add_field( array(
+            'name'    => __('Timetable Font Color', 'rrze-expo'),
+            'id'      => 'rrze-expo-podium-timetable-font-color',
+            'type'    => 'colorpicker',
+            'default' => '#000000',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => CPT::getDefaultColors('font-dark'),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
+        $cmb_layout->add_field( array(
+            'name'    => __('Timetable Link Color', 'rrze-expo'),
+            'id'      => 'rrze-expo-podium-timetable-link-color',
+            'type'    => 'colorpicker',
+            'default' => '#1f4b7a',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => CPT::getDefaultColors('font-darker'),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
+
 
 
         // Background Image

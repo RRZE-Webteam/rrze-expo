@@ -35,6 +35,10 @@ CPT::expoHeader();
 
         <div id="rrze-expo-exposition" class="exposition" style="background-image: url('<?php echo $backgroundImage;?>'); color: #000;">
             <a id="page-start"></a>
+            <style>
+                #rrze-expo-exposition .main-panel *, #rrze-expo-exposition .main-panel h1, #rrze-expo-exposition .main-panel h2, #rrze-expo-exposition .main-panel h3 {color: <?php echo CPT::getMeta($meta, 'rrze-expo-exposition-panel-font-color'); ?>;}
+                #rrze-expo-exposition .main-panel {background-color: <?php echo $panelBackgroundColor; ?>;}
+            </style>
             <svg version="1.1" class="expo-exposition" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <?php
@@ -56,11 +60,10 @@ CPT::expoHeader();
                     $foyerLinkClose = '';
                 }
 
-                $panelStyle = $panelBackgroundColor != '' ?' style="background-color:'. $panelBackgroundColor . '"' : '';
                 echo '<use class="panel" xlink:href="#panel" transform="translate(1300 240) scale(.95)"/>'
                     .$foyerLinkOpen
                     .'<foreignObject class="main-panel" x="'. ($panelSettings['x'] + 82).'" y="'. ($panelSettings['y'] + 94) .'" width="'. ($panelSettings['width'] * .92).'" height="'. ($panelSettings['height'] * .92).'">
-                        <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content" ' . $panelStyle . '>' . do_shortcode($panelText) . '</div></body>
+                        <body xmlns="http://www.w3.org/1999/xhtml"><div class="panel-content">' . do_shortcode($panelText) . '</div></body>
                     </foreignObject>';
                 if ($macFix) {
                     echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(2210 360) scale(.1)" stroke="#333" stroke-width="15" />';

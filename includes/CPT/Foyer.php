@@ -103,6 +103,51 @@ class Foyer {
                 'teeny' => true,
             ],*/
         ]);
+        $cmb->add_field( array(
+            'name'    => __('Info Panel Background Color', 'rrze-expo'),
+            'id'      => 'rrze-expo-foyer-panel-background-color',
+            'type'    => 'colorpicker',
+            'default' => '#efefef',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => CPT::getDefaultColors('light'),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
+        $cmb->add_field( array(
+            'name'    => __('Info Panel Font Color', 'rrze-expo'),
+            'id'      => 'rrze-expo-foyer-panel-font-color',
+            'type'    => 'colorpicker',
+            'default' => '#000000',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => CPT::getDefaultColors('font-dark'),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
+        $cmb->add_field( array(
+            'name'    => __('Info Panel Link Color', 'rrze-expo'),
+            'id'      => 'rrze-expo-foyer-panel-link-color',
+            'type'    => 'colorpicker',
+            'default' => '#1f4b7a',
+            'attributes' => array(
+                'data-colorpicker' => json_encode( array(
+                    // Iris Options set here as values in the 'data-colorpicker' array
+                    'palettes' => CPT::getDefaultColors('font-darker'),
+                ) ),
+            ),
+            // 'options' => array(
+            // 	'alpha' => true, // Make this a rgba color picker.
+            // ),
+        ) );
         $cmb->add_field([
             'name' => __( 'Table Screen (Live Chat)', 'rrze-expo' ),
             'description' => __( 'Enter video conference or chat tool link.', 'rrze-expo' ),
@@ -209,7 +254,7 @@ class Foyer {
                 'default' => '#ffffff',
                 'attributes' => [
                     'data-colorpicker' => json_encode( [
-                        'palettes' => [ '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ],
+                        'palettes' => CPT::getDefaultColors('dark'),
                     ] ),
                 ],
             ] );
@@ -221,7 +266,7 @@ class Foyer {
                 'default' => '#000000',
                 'attributes' => [
                     'data-colorpicker' => json_encode( [
-                        'palettes' => [ '#000000', '#ffffff', '#003366', '#A36B0D', '#8d1429', '#0381A2', '#048767', '#6E7881' ],
+                        'palettes' => CPT::getDefaultColors('font-dark'),
                     ] ),
                 ],
             ] );

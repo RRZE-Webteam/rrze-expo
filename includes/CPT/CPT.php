@@ -816,12 +816,27 @@ class CPT
         return $pages;
     }
 
-
     function enableFrontPageCPT( $query ){
         global $wp_customize;
         if (is_admin() && isset( $wp_customize )) {
             if(isset($query->query_vars['post_type']) && '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'])
                 $query->query_vars['post_type'] = array( 'page', 'exposition' );
         }
+    }
+
+    public static function getDefaultColors($type = 'dark') {
+        if (strpos($type, '-') !== false) {
+            $parts = explode('-', $type);
+            $type = $parts[1];
+            $font = true;
+        } else {
+            $font = false;
+        }
+        $constants = getConstants();
+        $colors = isset($constants['colors'][$type]) ? $constants['colors'][$type] : [];
+        if ($font) {
+            array_unshift($colors, '#000000', '#ffffff');
+        }
+        return $colors;
     }
 }
