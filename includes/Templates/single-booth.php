@@ -435,7 +435,7 @@ CPT::expoHeader();
                                 . '<use xlink:href="#'.$rollupPanel.'" />'
                                 . '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '">';
                             if ($rollupClickable) {
-                                echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" style="display: block; height: 100%; text-align: center;" class="lightbox">';
+                                echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" data-fancybox style="display: block; height: 100%; text-align: center;" class="lightbox">';
                             } else {
                                 echo '<div style="height: 100%; text-align: center;">';
                             }
