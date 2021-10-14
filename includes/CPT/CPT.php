@@ -48,6 +48,7 @@ class CPT
         // Allow Exposition as Front Page
         add_filter( 'get_pages', [$this, 'addExpoCptToDropdown'] );
         add_action( 'pre_get_posts', [$this, 'enableFrontPageCPT'] );
+        add_action('wp_enqueue_scripts', function() {wp_dequeue_script('fau-scripts');}, 99);
     }
 
     public static function activation() {

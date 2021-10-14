@@ -622,7 +622,7 @@ CPT::expoHeader();
             echo '</div>';
         }
 
-        wp_dequeue_script('fau-scripts');
+        //wp_dequeue_script('fau-scripts');
         if (!empty($gallery) || !empty($rollups)) {
             wp_enqueue_script('jquery-fancybox');
             wp_enqueue_style('rrze-elements');
