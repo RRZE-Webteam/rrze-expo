@@ -162,16 +162,13 @@ Plugin Style
         top: unset;
         left: unset;
         padding: 0;
-        @media screen and (min-width: 48em) {
-            bottom: -36px;
-            z-index: 999;
-        }
         .widget.widget_rrze_multilang_language_switcher {
             padding-bottom: 0;
         }
         .rrze-multilang {
-            padding: 0 5px;
+            padding: 3px 5px;
             height: auto;
+            display: block;
             &:before {
                 color: #036;
             }
@@ -190,6 +187,21 @@ Plugin Style
             }
         }
     }
+    &.single-hall,
+    &.single-booth,
+    &.single-podium {
+        #sidebar-language_switcher {
+            @media screen and (min-width: 48em) {
+                bottom: -36px;
+                z-index: 999;
+            }
+            .rrze-multilang {
+                display: inline-block;
+                padding: 0 5px;
+            }
+        }
+    }
+
     main {
         position: relative;
         overflow-x: hidden;
