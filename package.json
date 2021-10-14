@@ -1,6 +1,6 @@
 {
 	"name": "rrze-expo",
-	"version": "1.7.3",
+	"version": "1.7.4",
 	"description": "WordPress plugin for virtual events, expositions and congresses",
 	"main": "rrze-expo.php",
 	"scripts": {
