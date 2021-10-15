@@ -48,7 +48,7 @@ class CPT
         // Allow Exposition as Front Page
         add_filter( 'get_pages', [$this, 'addExpoCptToDropdown'] );
         add_action( 'pre_get_posts', [$this, 'enableFrontPageCPT'] );
-        add_action('wp_enqueue_scripts', function() {wp_dequeue_script('fau-scripts');}, 99);
+        add_action('wp_enqueue_scripts', [$this, 'enqueueScripts'], 99);
     }
 
     public static function activation() {
@@ -107,6 +107,13 @@ class CPT
             return unserialize($meta[$key][0]);
         } else {
             return $meta[$key][0];
+        }
+    }
+
+    public function enqueueScripts() {
+        $post = get_post();
+        if ($post && in_array($post->post_type, ['booth'])) {
+            wp_dequeue_script('fau-scripts');
         }
     }
 
