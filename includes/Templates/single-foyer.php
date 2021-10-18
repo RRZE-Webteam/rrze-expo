@@ -26,7 +26,7 @@ CPT::expoHeader();
             <style>
                 #rrze-expo-foyer .main-panel *, #rrze-expo-foyer .main-panel h1, #rrze-expo-foyer .main-panel h2, #rrze-expo-foyer .main-panel h3 {color: <?php echo CPT::getMeta($meta, 'rrze-expo-foyer-panel-font-color'); ?>;}
                 #rrze-expo-foyer .main-panel a {color: <?php echo CPT::getMeta($meta, 'rrze-expo-foyer-panel-link-color'); ?>;}
-                #rrze-expo-foyer .main-panel  {background-color: <?php echo CPT::getMeta($meta, 'rrze-expo-foyer-panel-background-color'); ?>;}
+                #rrze-expo-foyer .panel-content  {background-color: <?php echo CPT::getMeta($meta, 'rrze-expo-foyer-panel-background-color'); ?>;}
             </style>
             <a id="page-start"></a>
             <svg version="1.1" class="expo-foyer" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
