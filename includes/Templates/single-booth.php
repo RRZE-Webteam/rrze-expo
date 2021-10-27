@@ -460,7 +460,7 @@ CPT::expoHeader();
                 }
 
                 /// Logo Panel
-                if (has_post_thumbnail() && in_array('panel', $logoLocations)){
+                if (has_post_thumbnail() && is_array($logoLocations) && in_array('panel', $logoLocations)){
                     echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['panel']['width'].'" height="'.$logoLocationSettings['panel']['height'].'"  x="'.$logoLocationSettings['panel']['x'].'" y="'.$logoLocationSettings['panel']['y'].'" />';
                 }
 
