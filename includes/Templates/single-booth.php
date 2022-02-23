@@ -58,7 +58,7 @@ if (isset($_POST['sent']) && $_POST['sent'] == 'true') {
         }
 
         if (wp_mail($to, $subject, $message, $headers)) {
-        // if (true) {
+            // if (true) {
             $mailStatus = 'sent';
             $mailInfoText .= do_shortcode('[alert style="success"]' . __('Your message has been sent!', 'rrze-expo') . '[/alert]');
         } else {
@@ -166,45 +166,161 @@ CPT::expoHeader();
                     echo '<image xlink:href="'.$wallImage.'" class="wall-image" width="'.$wallSettings['width'].'" height="'.$wallSettings['height'].'"  x="'.$wallSettings['x'].'" y="'.$wallSettings['y'].'" preserveAspectRatio="xMinYMin meet" />';
                 }
 
-                // Videos
-                $videos['left'] = CPT::getMeta($meta, 'rrze-expo-booth-video-left');
-                $videos['right'] = CPT::getMeta($meta, 'rrze-expo-booth-video-right');
-                $videos['table'] = CPT::getMeta($meta, 'rrze-expo-booth-video-table');
-                $rrzeVideoActive = (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'));
-                foreach ($videos as $location => $url) {
-                    if ($url != '') {
-                        $videoSettings = $constants['template_elements']['booth'.$templateNo]['video_'.$location];
-                        if ($location == 'table') {
-                            if ($templateNo == '2' && !empty($gallery)) {
-                                continue;
-                            } else {
-                                echo '<a class="tablet-link" href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
-                            }
+                // Flyers
+                $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
+                if ($flyers != '') {
+                    $flyerSettings = $constants['template_elements']['booth'.$templateNo]['flyers'];
+                    echo '<g><use xlink:href="#'.$flyerDisplay.'" />';
+                    foreach ($flyers as $i => $flyer) {
+                        $translateY = $flyerSettings['y'] + $i * ($flyerSettings['height'] + 20);
+                        $translateYMac = 430 + $i * ($flyerSettings['height'] + 20);
+                        if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
+                            echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '">';
+                        }
+                        if (!array_key_exists('preview', $flyer) || $flyer['preview'] == false) {
+                            echo '<use xlink:href="#flyer_default" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '"/>';
                         } else {
-                            if ($scheduleLocation == $location.'-screen') {
-                                continue;
-                            }
-                            if (!$macFix && strpos($url, get_home_url()) !== false) {
-                                // Videos uploaded in Media
-                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[video width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '" src="' . $url . '"][/video]') . '</foreignObject>';
-                            } elseif (!$macFix && $rrzeVideoActive) {
-                                // RRZE-Video Plugin for fau.tv, Youtube etc.
-                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[fauvideo url="' . $url . '"]') . '</foreignObject>';
+                            echo '<image xlink:href="' . $flyer['preview'] . '" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>';
+                        }
+                        if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
+                            if ($macFix) {
+                                echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(2755 '.$translateYMac.') scale(.09)" stroke="#333" stroke-width="15" />';
                             } else {
-                                // Fallback
-                                if ($location == 'left') {
-                                    $translate = '1300, 340';
-                                } else {
-                                    $translate = '1580, 340';
-                                }
-                                echo '<a href="' . $url . '">
-                                <rect class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '" fill="#333" stroke="#191919" stroke-width="5"></rect>
-                                <use xlink:href="#video-play" fill="#ccc" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" transform="translate('.$translate.') scale(.2)"/>
-                                </a>';
+                                echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 100).'" y="'. ($translateY-20) .'" width="150" height="150">
+                            <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
+                            </foreignObject>';
                             }
+                            echo '</a>';
                         }
                     }
+                    echo '</g>';
                 }
+
+                // Social Media
+                $socialMedia = CPT::getMeta($meta, 'rrze-expo-booth-social-media');
+                $contactEmail = CPT::getMeta($meta, 'rrze-expo-booth-email');
+                $showContactForm = ((CPT::getMeta($meta, 'rrze-expo-booth-showcontactform') == 'on' && $contactEmail !='') ? true : false);
+                $website = CPT::getMeta($meta, 'rrze-expo-booth-website');
+                $websiteLocations = CPT::getMeta($meta, 'rrze-expo-booth-website-locations');
+                if ($websiteLocations == '')
+                    $websiteLocations = [];
+                if ($socialMedia == '')
+                    $socialMedia = [];
+                if ($socialMedia != [] || in_array('panel', $websiteLocations) || $showContactForm == true) {
+                    echo '<g><use xlink:href="#'.$sociaMediaPanel.'" />';
+                    $socialMediaData = $constants['social-media'];
+                    $socialMediaSettings = $constants['template_elements']['booth'.$templateNo]['social-media'];
+                    $i = 0;
+                    foreach ($socialMedia as $i => $media) {
+                        if (!isset($media['medianame']) || !isset($media['username']))
+                            continue;
+                        switch ($socialMediaSettings['direction']) {
+                            case 'landscape':
+                                $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
+                                $translateY = $socialMediaSettings['y'];
+                                break;
+                            case 'portrait':
+                            default:
+                                $translateX = $socialMediaSettings['x'];
+                                $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
+                        }
+                        $class = 'icon-'.$media['medianame'];
+                        if ($socialMediaSettings['color'] == true) {
+                            $class .= '-color';
+                        }
+                        echo '<a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '" title="'.ucfirst($media['medianame']).': '.$media['username'].'">
+                        <use xlink:href="#' . $media['medianame'] . '" width="'.$socialMediaSettings['width'].'" height="'.$socialMediaSettings['height'].'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
+                        </a>';
+                    }
+                    if (in_array('panel', $websiteLocations) && $website != '') {
+                        $i++;
+                        switch ($socialMediaSettings['direction']) {
+                            case 'landscape':
+                                $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
+                                $translateY = $socialMediaSettings['y'];
+                                break;
+                            case 'portrait':
+                            default:
+                                $translateX = $socialMediaSettings['x'];
+                                $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
+                        }
+                        $class = 'icon-website';
+                        if ($socialMediaSettings['color'] == true) {
+                            $class .= '-color';
+                        }
+                        echo '<a href="' . $website . '" title="'. __('Go to website', 'rrze-expo') .'">
+                        <use xlink:href="#website" width="'.($socialMediaSettings['width'] + 2).'" height="'.($socialMediaSettings['height'] + 2).'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
+                        </a>';
+                    }
+                    if ($showContactForm) {
+                        $i++;
+                        switch ($socialMediaSettings['direction']) {
+                            case 'landscape':
+                                $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
+                                $translateY = $socialMediaSettings['y'];
+                                break;
+                            case 'portrait':
+                            default:
+                                $translateX = $socialMediaSettings['x'];
+                                $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
+                        }
+                        $class = 'icon-paper-plane';
+                        if ($socialMediaSettings['color'] == true) {
+                            $class .= '-color';
+                        }
+                        echo '<a data-fancybox data-src="#hidden-content" href="javascript:;" class="trigger-message" title="'. __('Leave us a message', 'rrze-expo') .'">
+                        <use xlink:href="#paper-plane" width="'.($socialMediaSettings['width'] + 2).'" height="'.($socialMediaSettings['height'] + 2).'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
+                        </a>';
+                    }
+                    echo '</g>';
+                }
+
+                // Roll-Ups
+                $rollups = '';
+                $rollupSettings = $constants['template_elements']['booth' . $templateNo]['rollup'];
+                if ($scheduleLocation != 'rollup') {
+                    $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
+                    if ($rollups != '') {
+                        if (isset($rollups[0])) {
+                            $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'full');
+                            $rollupClickable = (isset($rollups[0]['clickable']) && $rollups[0]['clickable'] == 'on');
+                            echo '<g class="booth-rollup">'
+                                . '<use xlink:href="#'.$rollupPanel.'" />'
+                                . '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '">';
+                            if ($rollupClickable) {
+                                echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" data-fancybox style="display: block; height: 100%; text-align: center;" class="lightbox">';
+                            } else {
+                                echo '<div style="height: 100%; text-align: center;">';
+                            }
+                            echo '<img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/>';
+                            if ($rollupClickable) {
+                                echo '</a>';
+                            } else {
+                                echo '</div>';
+                            }
+                            echo '</foreignObject>';
+                            if ($rollupClickable) {
+                                if ($macFix) {
+                                    echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(' . ($rollupSettings['x'] + $rollupSettings['width'] - 50) . ' ' . ($rollupSettings['y'] + 20) . ') scale(.1)" stroke="#333" stroke-width="15" />';
+                                } else {
+                                    echo '<foreignObject x="' . ($rollupSettings['x'] + $rollupSettings['width'] - 150) . '" y="' . ($rollupSettings['y']) . '" width="150" height="150"><body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body></foreignObject>';
+                                }
+                            }
+                            echo '</g>';
+                        }
+                    }
+                } else {
+                    echo '<use xlink:href="#'.$rollupPanel.'" />';
+                }
+
+                //Table
+                echo '<use xlink:href="#table" />';
+                $titleSettings = $constants['template_elements']['booth'.$templateNo]['title'];
+                if (strpos($title, '<br>') != false) {
+                    $titleParts = explode('<br>', $title);
+                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
+                }
+                echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
 
                 // Gallery
                 if (!empty($gallery)) {
@@ -264,10 +380,9 @@ CPT::expoHeader();
                 }
 
                 // Website Wall
-                $website = CPT::getMeta($meta, 'rrze-expo-booth-website');
-                $websiteLocations = CPT::getMeta($meta, 'rrze-expo-booth-website-locations');
-                if ($websiteLocations == '')
-                    $websiteLocations = [];
+                $videos['table'] = CPT::getMeta($meta, 'rrze-expo-booth-video-table');
+                $videos['left'] = CPT::getMeta($meta, 'rrze-expo-booth-video-left');
+                $videos['right'] = CPT::getMeta($meta, 'rrze-expo-booth-video-right');
                 if (in_array('wall', $websiteLocations) && $website != '') {
                     $websiteSettings = $constants['template_elements']['booth'.$templateNo]['website'];
                     if ($videos['left'] == '' && $videos['right'] == '' && !in_array($scheduleLocation, ['left-screen', 'right-screen']) ) {
@@ -280,14 +395,42 @@ CPT::expoHeader();
                     echo '<text x="'.$websiteSettings['x'].'" y="'.($websiteSettings['y']).'" font-size="30" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.str_replace(['https://', 'http://'], '', $website).'</text>';
                 }
 
-                //Table
-                echo '<use xlink:href="#table" />';
-                $titleSettings = $constants['template_elements']['booth'.$templateNo]['title'];
-                if (strpos($title, '<br>') != false) {
-                    $titleParts = explode('<br>', $title);
-                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
+                // Videos
+                $rrzeVideoActive = (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'));
+                foreach ($videos as $location => $url) {
+                    if ($url != '') {
+                        $videoSettings = $constants['template_elements']['booth'.$templateNo]['video_'.$location];
+                        if ($location == 'table') {
+                            if ($templateNo == '2' && !empty($gallery)) {
+                                continue;
+                            } else {
+                                echo '<a class="tablet-link" href="' . $url . '"><use class="video-tablet" xlink:href="#tablet" /></a>';
+                            }
+                        } else {
+                            if ($scheduleLocation == $location.'-screen') {
+                                continue;
+                            }
+                            if (!$macFix && strpos($url, get_home_url()) !== false) {
+                                // Videos uploaded in Media
+                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[video width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '" src="' . $url . '"][/video]') . '</foreignObject>';
+                            } elseif (!$macFix && $rrzeVideoActive) {
+                                // RRZE-Video Plugin for fau.tv, Youtube etc.
+                                echo '<foreignObject class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '">' . do_shortcode('[fauvideo url="' . $url . '"]') . '</foreignObject>';
+                            } else {
+                                // Fallback
+                                if ($location == 'left') {
+                                    $translate = '1300, 340';
+                                } else {
+                                    $translate = '1580, 340';
+                                }
+                                echo '<a href="' . $url . '">
+                            <rect class="video" x="' . $videoSettings['x'] . '" y="' . $videoSettings['y'] . '" width="' . $videoSettings['width'] . '" height="' . $videoSettings['height'] . '" fill="#333" stroke="#191919" stroke-width="5"></rect>
+                            <use xlink:href="#video-play" fill="#ccc" x="'.$videoSettings['x'].'" y="'.$videoSettings['y'].'" transform="translate('.$translate.') scale(.2)"/>
+                            </a>';
+                            }
+                        }
+                    }
                 }
-                echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
 
                 // Logo Table
                 if (has_post_thumbnail() && is_array($logoLocations) && in_array('table', $logoLocations)){
@@ -316,149 +459,6 @@ CPT::expoHeader();
 
                 }
 
-                // Flyers
-                $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
-                if ($flyers != '') {
-                    $flyerSettings = $constants['template_elements']['booth'.$templateNo]['flyers'];
-                    echo '<g><use xlink:href="#'.$flyerDisplay.'" />';
-                    foreach ($flyers as $i => $flyer) {
-                        $translateY = $flyerSettings['y'] + $i * ($flyerSettings['height'] + 20);
-                        $translateYMac = 430 + $i * ($flyerSettings['height'] + 20);
-                        if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
-                            echo '<a href="' . $flyer['pdf'] . '" title="' . get_the_title($flyer['pdf_id']) . '">';
-                        }
-                        if (!array_key_exists('preview', $flyer) || $flyer['preview'] == false) {
-                            echo '<use xlink:href="#flyer_default" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '"/>';
-                        } else {
-                            echo '<image xlink:href="' . $flyer['preview'] . '" width="'. $flyerSettings['width'].'" height="'.$flyerSettings['height'].'" x="'.$flyerSettings['x'].'" y="' . $translateY . '" preserveAspectRatio="xMidYMin meet"/>';
-                        }
-                        if (array_key_exists('pdf', $flyer) && $flyer['pdf'] != '') {
-                            if ($macFix) {
-                                echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(2755 '.$translateYMac.') scale(.09)" stroke="#333" stroke-width="15" />';
-                            } else {
-                                echo '<foreignObject x="'. ($flyerSettings['x'] + $flyerSettings['width'] - 100).'" y="'. ($translateY-20) .'" width="150" height="150">
-                                <body xmlns="http://www.w3.org/1999/xhtml">' . CPT::pulsatingDot() . '</body>
-                                </foreignObject>';
-                            }
-                            echo '</a>';
-                        }
-                    }
-                    echo '</g>';
-                }
-
-                // Social Media
-                $socialMedia = CPT::getMeta($meta, 'rrze-expo-booth-social-media');
-                $contactEmail = CPT::getMeta($meta, 'rrze-expo-booth-email');
-                $showContactForm = ((CPT::getMeta($meta, 'rrze-expo-booth-showcontactform') == 'on' && $contactEmail !='') ? true : false);
-                if ($socialMedia == '')
-                    $socialMedia = [];
-                if ($socialMedia != [] || in_array('panel', $websiteLocations) || $showContactForm == true) {
-                    echo '<g><use xlink:href="#'.$sociaMediaPanel.'" />';
-                    $socialMediaData = $constants['social-media'];
-                    $socialMediaSettings = $constants['template_elements']['booth'.$templateNo]['social-media'];
-                    $i = 0;
-                    foreach ($socialMedia as $i => $media) {
-                        if (!isset($media['medianame']) || !isset($media['username']))
-                            continue;
-                        switch ($socialMediaSettings['direction']) {
-                            case 'landscape':
-                                $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
-                                $translateY = $socialMediaSettings['y'];
-                                break;
-                            case 'portrait':
-                            default:
-                                $translateX = $socialMediaSettings['x'];
-                                $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
-                        }
-                        $class = 'icon-'.$media['medianame'];
-                        if ($socialMediaSettings['color'] == true) {
-                            $class .= '-color';
-                        }
-                        echo '<a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '" title="'.ucfirst($media['medianame']).': '.$media['username'].'">
-                            <use xlink:href="#' . $media['medianame'] . '" width="'.$socialMediaSettings['width'].'" height="'.$socialMediaSettings['height'].'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
-                            </a>';
-                    }
-                    if (in_array('panel', $websiteLocations) && $website != '') {
-                        $i++;
-                        switch ($socialMediaSettings['direction']) {
-                            case 'landscape':
-                                $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
-                                $translateY = $socialMediaSettings['y'];
-                                break;
-                            case 'portrait':
-                            default:
-                                $translateX = $socialMediaSettings['x'];
-                                $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
-                        }
-                        $class = 'icon-website';
-                        if ($socialMediaSettings['color'] == true) {
-                            $class .= '-color';
-                        }
-                        echo '<a href="' . $website . '" title="'. __('Go to website', 'rrze-expo') .'">
-                            <use xlink:href="#website" width="'.($socialMediaSettings['width'] + 2).'" height="'.($socialMediaSettings['height'] + 2).'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
-                            </a>';
-                    }
-                    if ($showContactForm) {
-                        $i++;
-                        switch ($socialMediaSettings['direction']) {
-                            case 'landscape':
-                                $translateX = $socialMediaSettings['x'] + $i * ($socialMediaSettings['width'] + 10);
-                                $translateY = $socialMediaSettings['y'];
-                                break;
-                            case 'portrait':
-                            default:
-                                $translateX = $socialMediaSettings['x'];
-                                $translateY = $socialMediaSettings['y'] + $i * ($socialMediaSettings['height'] + 10);
-                        }
-                        $class = 'icon-paper-plane';
-                        if ($socialMediaSettings['color'] == true) {
-                            $class .= '-color';
-                        }
-                        echo '<a data-fancybox data-src="#hidden-content" href="javascript:;" class="trigger-message" title="'. __('Leave us a message', 'rrze-expo') .'">
-                            <use xlink:href="#paper-plane" width="'.($socialMediaSettings['width'] + 2).'" height="'.($socialMediaSettings['height'] + 2).'" x="'.$translateX.'" y="' . $translateY . '" class="'.$class.'" fill="#fff" stroke="#000" stroke-width="1"/>
-                            </a>';
-                    }
-                    echo '</g>';
-                }
-
-                // Roll-Ups
-                $rollups = '';
-                $rollupSettings = $constants['template_elements']['booth' . $templateNo]['rollup'];
-                if ($scheduleLocation != 'rollup') {
-                    $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
-                    if ($rollups != '') {
-                        if (isset($rollups[0])) {
-                            $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'full');
-                            $rollupClickable = (isset($rollups[0]['clickable']) && $rollups[0]['clickable'] == 'on');
-                            echo '<g class="booth-rollup">'
-                                . '<use xlink:href="#'.$rollupPanel.'" />'
-                                . '<foreignObject class="rollup-content" width="' . $rollupSettings['width'] . '" height="' . $rollupSettings['height'] . '" x="' . $rollupSettings['x'] . '" y="' . $rollupSettings['y'] . '">';
-                            if ($rollupClickable) {
-                                echo '<a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" data-fancybox style="display: block; height: 100%; text-align: center;" class="lightbox">';
-                            } else {
-                                echo '<div style="height: 100%; text-align: center;">';
-                            }
-                            echo '<img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/>';
-                            if ($rollupClickable) {
-                                echo '</a>';
-                            } else {
-                                echo '</div>';
-                            }
-                            echo '</foreignObject>';
-                            if ($rollupClickable) {
-                                if ($macFix) {
-                                    echo '<use xlink:href="#mouse-pointer" class="mouse-pointer" fill="#fff" transform="translate(' . ($rollupSettings['x'] + $rollupSettings['width'] - 50) . ' ' . ($rollupSettings['y'] + 20) . ') scale(.1)" stroke="#333" stroke-width="15" />';
-                                } else {
-                                    echo '<foreignObject x="' . ($rollupSettings['x'] + $rollupSettings['width'] - 150) . '" y="' . ($rollupSettings['y']) . '" width="150" height="150"><body xmlns="http://www.w3.org/1999/xhtml"><a href="' . $rollups[0]['file'] . '" title="' . get_the_title($rollups[0]['file_id']) . '" class="lightbox">' . CPT::pulsatingDot() . '</a></body></foreignObject>';
-                                }
-                            }
-                            echo '</g>';
-                        }
-                    }
-                } else {
-                    echo '<use xlink:href="#'.$rollupPanel.'" />';
-                }
-
                 /// Logo Panel
                 if (has_post_thumbnail() && is_array($logoLocations) && in_array('panel', $logoLocations)){
                     echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['panel']['width'].'" height="'.$logoLocationSettings['panel']['height'].'"  x="'.$logoLocationSettings['panel']['x'].'" y="'.$logoLocationSettings['panel']['y'].'" />';
@@ -478,8 +478,8 @@ CPT::expoHeader();
                             break;
                     }
                     echo '<foreignObject class="schedule schedule-'.$scheduleLocation.'" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'">
-                        <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
-                    </foreignObject>';
+                    <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
+                </foreignObject>';
                 }
 
                 // Seats
@@ -531,8 +531,8 @@ CPT::expoHeader();
                         $class .= '-color';
                     }
                     echo '<li><a href="' . trailingslashit($socialMediaData[$media['medianame']]) . $media['username'] . '" title="'.ucfirst($media['medianame']).': '.$media['username'].'">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20"><use xlink:href="#' . $media['medianame'] . '" class="'.$class.'" /></svg>
-                            </a></li>';
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20"><use xlink:href="#' . $media['medianame'] . '" class="'.$class.'" /></svg>
+                        </a></li>';
                 }
 
                 echo '</ul>';
@@ -589,39 +589,39 @@ CPT::expoHeader();
             echo '<div style="display: none;" id="hidden-content">' . $mailInfoText;
             if ($mailStatus != 'sent') {
                 echo '<form method="post" name="contact_form" action="#" style="max-width: 600px;">
-                        <h2 style="font-size:1.5em;margin-bottom: 1em;">' . __('Send a message to ', 'rrze-expo') . ($contactName != '' ? $contactName . ' (' : '') . $title . ($contactName != '' ? ')' : '') . '</h2>
-                        <p>
-                            <label>' . __('Your Name', 'rrze-expo') . ':<br />
-                            <input type="text" name="name" style="width:100%;" value="' . (isset($replyName) ? $replyName : '') . '"></label>
-                        </p>
-                        <p>
-                            <label>' . __('Your Email Address', 'rrze-expo') . ':<br />
-                            <input type="email" name="email" style="width:100%;" value="' . (isset($replyEmail) ? $replyEmail : '') . '"></label>
-                        </p>
-                        <p>
-                            <label>' . __('Your Phone Number', 'rrze-expo') . ':<br />
-                            <input type="text" name="phone" style="width:100%;" value="' . (isset($replyPhone) ? $replyPhone : '') . '"></label>
-                        </p>
-                        <p>
-                            <label>' . __('Your Message', 'rrze-expo') . ':<br />
-                            <textarea name="message" style="width:100%;">' . (isset($postMessage) ? $postMessage : '') . '</textarea>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                            <input type="checkbox" value="on" name="copy" style="margin-right:5px;" '. checked((isset($copy) && $copy == true), true, false) . '>' . __('Send a copy of the message to my email address.', 'rrze-expo') . '
-                            </label>
-                        </p>
-                        <input type="hidden" name="sent" value="true" />
-                        <input type="submit" value="' . __('Submit', 'rrze-expo') . '">
-                    </form>
-                </div>';
+                    <h2 style="font-size:1.5em;margin-bottom: 1em;">' . __('Send a message to ', 'rrze-expo') . ($contactName != '' ? $contactName . ' (' : '') . $title . ($contactName != '' ? ')' : '') . '</h2>
+                    <p>
+                        <label>' . __('Your Name', 'rrze-expo') . ':<br />
+                        <input type="text" name="name" style="width:100%;" value="' . (isset($replyName) ? $replyName : '') . '"></label>
+                    </p>
+                    <p>
+                        <label>' . __('Your Email Address', 'rrze-expo') . ':<br />
+                        <input type="email" name="email" style="width:100%;" value="' . (isset($replyEmail) ? $replyEmail : '') . '"></label>
+                    </p>
+                    <p>
+                        <label>' . __('Your Phone Number', 'rrze-expo') . ':<br />
+                        <input type="text" name="phone" style="width:100%;" value="' . (isset($replyPhone) ? $replyPhone : '') . '"></label>
+                    </p>
+                    <p>
+                        <label>' . __('Your Message', 'rrze-expo') . ':<br />
+                        <textarea name="message" style="width:100%;">' . (isset($postMessage) ? $postMessage : '') . '</textarea>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                        <input type="checkbox" value="on" name="copy" style="margin-right:5px;" '. checked((isset($copy) && $copy == true), true, false) . '>' . __('Send a copy of the message to my email address.', 'rrze-expo') . '
+                        </label>
+                    </p>
+                    <input type="hidden" name="sent" value="true" />
+                    <input type="submit" value="' . __('Submit', 'rrze-expo') . '">
+                </form>
+            </div>';
             }
             echo '</div>';
         }
 
         //wp_dequeue_script('fau-scripts');
-        if (!empty($gallery) || !empty($rollups)) {
+        if (!empty($gallery) || !empty($rollups) || $showContactForm) {
             wp_enqueue_script('jquery-fancybox');
             wp_enqueue_style('rrze-elements');
             echo '<script type="text/javascript">
