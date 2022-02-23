@@ -395,6 +395,28 @@ CPT::expoHeader();
                     echo '<text x="'.$websiteSettings['x'].'" y="'.($websiteSettings['y']).'" font-size="30" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.str_replace(['https://', 'http://'], '', $website).'</text>';
                 }
 
+                // Deco
+                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
+                if ($deco != '') {
+                    if (in_array('plant1', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" />';
+                        echo '<use xlink:href="#plant1" />';
+                    }
+                    if (in_array('plant2', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" />';
+                        echo '<use xlink:href="#plant2" />';
+                    }
+                    if (in_array('plant3', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" x="-1780" y="0" />';
+                        echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
+                    }
+                    if (in_array('plant4', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" transform="translate(4100 0), scale(-1 1)" />';
+                        echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
+                    }
+
+                }
+
                 // Videos
                 $rrzeVideoActive = (is_plugin_active('rrze-video/rrze-video.php') || is_plugin_active_for_network('rrze-video/rrze-video.php'));
                 foreach ($videos as $location => $url) {
@@ -435,28 +457,6 @@ CPT::expoHeader();
                 // Logo Table
                 if (has_post_thumbnail() && is_array($logoLocations) && in_array('table', $logoLocations)){
                     echo '<image xlink:href="'.get_the_post_thumbnail_url($post, 'expo-logo').'" preserveAspectRatio="xMidYMin meet" width="'.$logoLocationSettings['table']['width'].'" height="'.$logoLocationSettings['table']['height'].'"  x="'.$logoLocationSettings['table']['x'].'" y="'.$logoLocationSettings['table']['y'].'" />';
-                }
-
-                // Deco
-                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
-                if ($deco != '') {
-                    if (in_array('plant1', $deco)) {
-                        echo '<use xlink:href="#'.$pot.'" />';
-                        echo '<use xlink:href="#plant1" />';
-                    }
-                    if (in_array('plant2', $deco)) {
-                        echo '<use xlink:href="#'.$pot.'" />';
-                        echo '<use xlink:href="#plant2" />';
-                    }
-                    if (in_array('plant3', $deco)) {
-                        echo '<use xlink:href="#'.$pot.'" x="-1780" y="0" />';
-                        echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
-                    }
-                    if (in_array('plant4', $deco)) {
-                        echo '<use xlink:href="#'.$pot.'" transform="translate(4100 0), scale(-1 1)" />';
-                        echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
-                    }
-
                 }
 
                 /// Logo Panel
