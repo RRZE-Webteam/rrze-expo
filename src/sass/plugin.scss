@@ -450,9 +450,21 @@ Plugin Style
                 }
 
                 td {
-                    font-size: 1.2em;
+                    font-size: 1.1rem;
                 }
             }
+        }
+        .trigger-description {
+            display: block;
+             width: 30px;
+            height: 30px;
+            float: right;
+            margin-left: 5px;
+        }
+        .template-2 .trigger-description {
+            float: left;
+            margin-right: 10px;
+            margin-left: 0;
         }
     }
     .booth {
