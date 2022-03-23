@@ -95,6 +95,16 @@ class Foyer {
         ]);
 
         $cmb->add_field([
+            'name'      => __('Parent Foyer', 'rrze-expo'),
+            'desc'    => __('(optional)', 'rrze-expo'),
+            'id'        => 'rrze-expo-foyer-parent',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '',
+            'options'          => CPT::getPosts('foyer', '', [$cmb->object_id]),
+        ]);
+
+        $cmb->add_field([
             'name'      => __('Info Panel Content', 'rrze-expo'),
             'id'        => 'rrze-expo-foyer-panel-content',
             'type'      => 'wysiwyg',

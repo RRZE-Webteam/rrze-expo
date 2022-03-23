@@ -90,6 +90,16 @@ class Hall {
             'options'          => CPT::getPosts('exposition'),
         ]);
 
+        $cmb->add_field([
+            'name'      => __('Foyer', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-hall-foyer',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '',
+            'options'          => CPT::getPosts('foyer'),
+        ]);
+
         $menus = wp_get_nav_menus();
         foreach ($menus as $menu) {
             $optionsMenu[$menu->term_id] = $menu->name;

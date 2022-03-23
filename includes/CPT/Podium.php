@@ -93,6 +93,16 @@ class Podium {
             'options'          => CPT::getPosts('exposition'),
         ]);
 
+        $cmb->add_field([
+            'name'      => __('Foyer', 'rrze-expo'),
+            //'desc'    => __('', 'rrze-expo'),
+            'id'        => 'rrze-expo-podium-foyer',
+            'type'      => 'select',
+            'show_option_none' => '&mdash; ' . __('Please select', 'rrze-expo') . ' &mdash;',
+            'default'          => '',
+            'options'          => CPT::getPosts('foyer'),
+        ]);
+
         //Layout
         $cmb_layout = new_cmb2_box([
             'id'            => 'rrze-expo-podium-layout',
