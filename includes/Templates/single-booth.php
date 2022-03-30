@@ -479,7 +479,8 @@ CPT::expoHeader();
                     }
                     echo '<foreignObject class="schedule schedule-'.$scheduleLocation.'" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'">
                     <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
-                </foreignObject>';
+                    </foreignObject>'
+                    . '<foreignObject x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'" style="background: red;"><a href="" style="display: block;width: 100%; height:100%;"><svg height="50" width="80" class="Xscroll-down-icon" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><use xlink:href="#chevron-down"/></svg></a></foreignObject>';
                 }
 
                 // Seats
