@@ -509,6 +509,24 @@ Plugin Style
                     font-size: 1.2em;
                 }
             }
+            &.schedule-rollup-mobile {
+                @media screen and (min-width: 66.25em) {
+                    display: none;
+                }
+                a {
+                    text-decoration: none;
+                    h2 {
+                        font-size: 2.5em;
+                        text-decoration: none;
+                        color: #232323;
+                    }
+                    div.puls-container {
+                        position: relative;
+                        left: 120px;
+                    }
+                }
+
+            }
             .schedule-left-screen,
             .schedule-right-screen {
                 height: 200px;

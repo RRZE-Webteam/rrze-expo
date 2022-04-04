@@ -480,7 +480,7 @@ CPT::expoHeader();
                     echo '<foreignObject class="schedule schedule-'.$scheduleLocation.'" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'">
                     <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
                     </foreignObject>'
-                    . '<foreignObject x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'" style="background: red;"><a href="" style="display: block;width: 100%; height:100%;"><svg height="50" width="80" class="Xscroll-down-icon" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><use xlink:href="#chevron-down"/></svg></a></foreignObject>';
+                    . '<foreignObject class="schedule schedule-'.$scheduleLocation.' schedule-'.$scheduleLocation.'-mobile" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><a data-fancybox data-src="#schedule-popup" href="javascript:;" class="schedule-'.$scheduleLocation.'" href="" style="display: block;width: 100%; height:100%;">' . CPT::pulsatingDot() . '<h2>' . __('Our Talks', 'rrze-expo') . '</h2><svg height="250" width="300" fill="#676767" class="" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><use xlink:href="#list"/></svg></a></foreignObject>';
                 }
 
                 // Seats
@@ -621,8 +621,13 @@ CPT::expoHeader();
             echo '</div>';
         }
 
+        // Schedule Popup Content
+        if (!empty($schedule)) {
+            echo '<div style="display: none;" id="schedule-popup">' . $schedule . '</div>';
+        }
+
         //wp_dequeue_script('fau-scripts');
-        if (!empty($gallery) || !empty($rollups) || $showContactForm) {
+        if (!empty($gallery) || !empty($rollups) || !empty($schedule) ||$showContactForm) {
             wp_enqueue_script('jquery-fancybox');
             wp_enqueue_style('rrze-elements');
             echo '<script type="text/javascript">
