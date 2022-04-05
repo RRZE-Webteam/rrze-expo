@@ -440,18 +440,40 @@ Plugin Style
                     font-size: 1.6em;
                     text-align: center;
                 }
-
                 h3 {
                     font-size: 1.2em;
                 }
-
                 table {
                     margin-bottom: 10px;
                 }
-
                 td {
                     font-size: 1.1rem;
                 }
+            }
+        }
+        foreignObject.schedule-mobile {
+            @media screen and (min-width: 66.25em) {
+                display: none;
+            }
+            a {
+                text-decoration: none;
+            }
+            h2 {
+                font-size: 4.5em;
+                padding: .3em .6em;
+                margin-bottom: 0;
+                text-decoration: none;
+            }
+
+            div.puls-container {
+                position: relative;
+                left: 180px;
+                top: 10px;
+            }
+            svg {
+                width: 400px;
+                height: 350px;
+                fill: #ababab;
             }
         }
         .trigger-description {
@@ -524,6 +546,38 @@ Plugin Style
                         position: relative;
                         left: 120px;
                     }
+                    svg {
+                        width: 300px;
+                        height: 250px;
+                        fill: #676767;
+                    }
+                }
+
+            }
+            &.schedule-left-screen-mobile,
+            &.schedule-right-screen-mobile {
+                @media screen and (min-width: 66.25em) {
+                    display: none;
+                }
+                a {
+                    text-decoration: none;
+                    h2 {
+                        font-size: 2em;
+                        text-decoration: none;
+                        color: #232323;
+                        padding: 0 .2em .2em;
+                        margin-bottom: 0;
+                    }
+                    div.puls-container {
+                        position: absolute;
+                        left: 120px;
+                        top: 0;
+                    }
+                    svg {
+                        width: 280px;
+                        height: 125px;
+                        fill: #676767;
+                    }
                 }
 
             }
@@ -534,6 +588,37 @@ Plugin Style
                 background-color: #E6E6E6;
                 border: 7px outset #333;
                 padding: 1%;
+            }
+        }
+    }
+    #schedule-popup {
+        .schedule-content {
+            background: transparent !important;
+        }
+        h2 {
+            font-size: 1.4em;
+            line-height: 1.2;
+            padding: 0 0 .3em 0;
+            margin: 0 0 .3em 0;
+            border-bottom: 1px solid #C5C5C5;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            li {
+                font-size: 1.2em;
+            }
+        }
+        a.trigger-description {
+            display:none;
+        }
+        .talk-title {
+            display: none;
+        }
+        .talk-description {
+            display: block !important;
+            p {
+                margin-bottom: .2em;
             }
         }
     }

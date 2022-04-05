@@ -87,10 +87,10 @@ CPT::expoHeader();
                         if (!is_array($timeslotDetails['booth'])) {
                             $timeslotDetails['booth'] = [$timeslotDetails['booth']];
                         }
-                        $schedule .= '<br />';
+                        //$schedule .= '<br />';
                         $boothLinks = [];
                         foreach ($timeslotDetails['booth'] as $boothID) {
-                            $boothLinks[] = '<a href="' . get_permalink($boothID) . '">' . str_replace('<br>',' ',get_the_title($boothID))   . '</a>';
+                            $boothLinks[] = '<p><a href="' . get_permalink($boothID) . '">' . str_replace('<br>',' ',get_the_title($boothID)) . '</a></p>';
                         }
                         $schedule .= implode(', ', $boothLinks);
                     }
@@ -165,7 +165,8 @@ CPT::expoHeader();
                 <?php
                 echo '<foreignObject class="schedule" x="' . $scheduleSettings['x'] . '" y="' . ($scheduleSettings['y']) . '" width="' . $scheduleSettings['width'] . '" height="' . $scheduleSettings['height'] . '">
                     <body xmlns="http://www.w3.org/1999/xhtml">' . do_shortcode($schedule) . '</body>
-                </foreignObject>';
+                </foreignObject>'
+                    . '<foreignObject class="schedule schedule-mobile" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><a data-fancybox data-src="#schedule-popup" href="javascript:;" class="" href="" style="display: block;width: 100%; height:100%;">' . CPT::pulsatingDot() . '<h2>' . __('Schedule', 'rrze-expo') . '</h2><svg class="" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><use xlink:href="#list"/></svg></a></foreignObject>';
                 if ($templateNo == 1) {
                     echo $video;
                 }
@@ -184,7 +185,13 @@ CPT::expoHeader();
             <div id="rrze-expo-podium-content" name="rrze-expo-podium-content" class="">
                 <?php the_content(); ?>
             </div>
-        <?php } ?>
+        <?php }
+
+            // Schedule Popup Content
+            if (!empty($schedule)) {
+                echo '<div style="display: none;" id="schedule-popup">' . $schedule . '</div>';
+            }
+        ?>
 
     <?php endwhile; ?>
 
