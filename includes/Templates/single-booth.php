@@ -330,14 +330,24 @@ CPT::expoHeader();
                     $galleryStartId = array_key_first($gallery);
                     $galleryStartURL = reset($gallery);
                     $gallerySettings = $constants['template_elements']['booth'.$templateNo]['gallery'];
-                    echo '<a href="' . $galleryStartURL.'" data-fancybox="booth-gallery" class="lightbox">'
+                    $startCaption = wp_get_attachment_caption($galleryStartId);
+                    if ($startCaption) {
+                        $dataCaption = 'data-caption="'.$startCaption.'"';
+                    }
+                    echo '<a href="' . $galleryStartURL.'" data-fancybox="booth-gallery" ' . $dataCaption . ' class="lightbox">'
                         . '<use class="gallery-tablet" xlink:href="#gallery" />'
                         . '<text x="' . $gallerySettings['x'] . '" y="' . $gallerySettings['y'] . '" font-size="24" fill="#333">'. __('Gallery', 'rrze-expo').'</text>'
                         . '</a>';
                     foreach ( (array) $gallery as $attachment_id => $attachment_url ) {
                         if ($attachment_id == $galleryStartId)
                             continue;
-                        echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" style="display: none;" class="lightbox">'.$attachment_url.'</a>';
+                        $caption = wp_get_attachment_caption($attachment_id);
+                        if ($caption) {
+                            $dataCaption = 'data-caption="'.$caption.'"';
+                        } else {
+                            $dataCaption = '';
+                        }
+                        echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" ' . $dataCaption . ' style="display: none;" class="lightbox">'.$attachment_url.'</a>';
                     }
                 }
 
