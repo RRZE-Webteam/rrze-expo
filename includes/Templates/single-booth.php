@@ -319,6 +319,9 @@ CPT::expoHeader();
                 if (strpos($title, '<br>') != false) {
                     $titleParts = explode('<br>', $title);
                     $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
+                } elseif (strpos($title, '<br />') != false) {
+                    $titleParts = explode('<br />', $title);
+                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
                 }
                 echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
 
