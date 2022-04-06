@@ -189,7 +189,7 @@ CPT::expoHeader();
 
             // Schedule Popup Content
             if (!empty($schedule)) {
-                echo '<div style="display: none;" id="schedule-popup">' . $schedule . '</div>';
+                echo '<div style="display: none;" id="schedule-popup">' . str_replace(['[columns]','[/columns]','[column]','[/column]'], '', $schedule) . '</div>';
             }
         ?>
 

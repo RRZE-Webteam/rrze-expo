@@ -476,6 +476,17 @@ Plugin Style
                 fill: #ababab;
             }
         }
+        .template-2 foreignObject.schedule-mobile {
+            text-align: center;
+            div.puls-container {
+                left: 700px;
+                top: 0;
+            }
+            h2 {
+                padding-top: 0;
+                margin-top: 0;
+            }
+        }
         .trigger-description {
             display: block;
              width: 30px;
