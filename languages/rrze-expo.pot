@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RRZE-Expo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 14:32+0000\n"
+"POT-Creation-Date: 2022-04-11 12:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: RRZE-Webteam <webmaster@rrze.fau.de>\n"
@@ -59,15 +59,15 @@ msgstr ""
 msgid "Add and edit podium informations"
 msgstr ""
 
-#: includes/CPT/Booth.php:475
+#: includes/CPT/Booth.php:483
 msgid "Add Another Flyer"
 msgstr ""
 
-#: includes/CPT/Booth.php:531 includes/CPT/Foyer.php:314
+#: includes/CPT/Booth.php:539 includes/CPT/Foyer.php:314
 msgid "Add Another Item"
 msgstr ""
 
-#: includes/CPT/Booth.php:428
+#: includes/CPT/Booth.php:436
 msgid "Add Another Roll-up"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Add New Podium"
 msgstr ""
 
-#: includes/CPT/Booth.php:404
+#: includes/CPT/Booth.php:412
 msgid "Add or Upload Files"
 msgstr ""
 
@@ -178,34 +178,34 @@ msgstr ""
 msgid "Back Wall"
 msgstr ""
 
-#: includes/CPT/Booth.php:140
+#: includes/CPT/Booth.php:148
 msgid "Back wall"
 msgstr ""
 
-#: includes/CPT/Booth.php:248
+#: includes/CPT/Booth.php:256
 msgid "Back Wall Color"
 msgstr ""
 
-#: includes/CPT/Booth.php:263
+#: includes/CPT/Booth.php:271
 msgid "Back Wall Image"
 msgstr ""
 
 #: includes/CPT/Exposition.php:167 includes/CPT/Hall.php:120
 #: includes/CPT/Hall.php:127 includes/CPT/Podium.php:183
-#: includes/CPT/Podium.php:190 includes/CPT/Booth.php:159
-#: includes/CPT/Booth.php:166 includes/CPT/Foyer.php:345
+#: includes/CPT/Podium.php:190 includes/CPT/Booth.php:167
+#: includes/CPT/Booth.php:174 includes/CPT/Foyer.php:345
 #: includes/CPT/Foyer.php:352
 msgid "Background Image"
 msgstr ""
 
 #: includes/CPT/Exposition.php:187 includes/CPT/Hall.php:147
-#: includes/CPT/Podium.php:210 includes/CPT/Booth.php:186
+#: includes/CPT/Podium.php:210 includes/CPT/Booth.php:194
 #: includes/CPT/Foyer.php:372
 msgid "Background Image Overlay"
 msgstr ""
 
 #: includes/CPT/Exposition.php:196 includes/CPT/Hall.php:156
-#: includes/CPT/Podium.php:219 includes/CPT/Booth.php:195
+#: includes/CPT/Podium.php:219 includes/CPT/Booth.php:203
 #: includes/CPT/Foyer.php:381
 msgid "Background Overlay Opacity"
 msgstr ""
@@ -222,7 +222,7 @@ msgstr ""
 msgid "Booth Navigation"
 msgstr ""
 
-#: includes/CPT/Booth.php:223
+#: includes/CPT/Booth.php:231
 msgid "Booth Template"
 msgstr ""
 
@@ -231,23 +231,23 @@ msgstr ""
 msgid "Business Character"
 msgstr ""
 
-#: includes/CPT/Booth.php:425
+#: includes/CPT/Booth.php:433
 msgid "Choose up to 2 roll-up images."
 msgstr ""
 
-#: includes/CPT/Booth.php:472
+#: includes/CPT/Booth.php:480
 msgid "Choose up to 4 PDF flyers."
 msgstr ""
 
-#: includes/CPT/Booth.php:453
+#: includes/CPT/Booth.php:461
 msgid "Clickable"
 msgstr ""
 
-#: includes/Templates/single-booth.php:517
+#: includes/Templates/single-booth.php:531
 msgid "Contact"
 msgstr ""
 
-#: includes/CPT/Booth.php:110
+#: includes/CPT/Booth.php:118
 msgid "Contact Information"
 msgstr ""
 
@@ -264,12 +264,12 @@ msgid "Custom link text"
 msgstr ""
 
 #: includes/CPT/Exposition.php:193 includes/CPT/Hall.php:153
-#: includes/CPT/Podium.php:216 includes/CPT/Booth.php:192
+#: includes/CPT/Podium.php:216 includes/CPT/Booth.php:200
 #: includes/CPT/Foyer.php:378
 msgid "Dark"
 msgstr ""
 
-#: includes/CPT/Podium.php:126 includes/CPT/Booth.php:325
+#: includes/CPT/Podium.php:126 includes/CPT/Booth.php:333
 msgid "Decoration Elements"
 msgstr ""
 
@@ -281,7 +281,7 @@ msgstr ""
 msgid "Direction Board"
 msgstr ""
 
-#: includes/CPT/Booth.php:151
+#: includes/CPT/Booth.php:159
 msgid ""
 "Display a simple contact form where visitors can leave their email address "
 "or phone number (optional) and a message or simply ask for beeing contacted. "
@@ -289,7 +289,7 @@ msgid ""
 "not stored in the database."
 msgstr ""
 
-#: includes/CPT/Booth.php:407
+#: includes/CPT/Booth.php:415
 msgid "Download"
 msgstr ""
 
@@ -314,11 +314,11 @@ msgid "Edit Podium"
 msgstr ""
 
 #: includes/Templates/single-booth.php:51
-#: includes/Templates/single-booth.php:521
+#: includes/Templates/single-booth.php:535
 msgid "Email"
 msgstr ""
 
-#: includes/CPT/Booth.php:123
+#: includes/CPT/Booth.php:131
 msgid "Email Address"
 msgstr ""
 
@@ -330,11 +330,11 @@ msgstr ""
 msgid "Enter the foyer"
 msgstr ""
 
-#: includes/CPT/Booth.php:375 includes/CPT/Foyer.php:163
+#: includes/CPT/Booth.php:383 includes/CPT/Foyer.php:163
 msgid "Enter video conference or chat tool link."
 msgstr ""
 
-#: includes/CPT/Booth.php:361 includes/CPT/Booth.php:368
+#: includes/CPT/Booth.php:369 includes/CPT/Booth.php:376
 msgid "Enter video embedding url, e.g. https://www.fau.tv/webplayer/id/123456."
 msgstr ""
 
@@ -343,7 +343,7 @@ msgid "Event Subtitle"
 msgstr ""
 
 #: includes/CPT/Exposition.php:50 includes/CPT/Hall.php:84
-#: includes/CPT/Podium.php:87 includes/CPT/Booth.php:88
+#: includes/CPT/Podium.php:87 includes/CPT/Booth.php:96
 #: includes/CPT/Foyer.php:88
 msgid "Exposition"
 msgstr ""
@@ -352,7 +352,7 @@ msgstr ""
 msgid "Exposition Logo"
 msgstr ""
 
-#: includes/CPT/Booth.php:340 includes/CPT/Foyer.php:200
+#: includes/CPT/Booth.php:348 includes/CPT/Foyer.php:200
 msgid "FAU (dark blue)"
 msgstr ""
 
@@ -361,7 +361,7 @@ msgstr ""
 msgid "FAU Student"
 msgstr ""
 
-#: includes/CPT/Booth.php:406
+#: includes/CPT/Booth.php:414
 msgid "File"
 msgstr ""
 
@@ -369,22 +369,28 @@ msgstr ""
 msgid "Flag"
 msgstr ""
 
-#: includes/CPT/Booth.php:474
+#: includes/CPT/Booth.php:482
 msgid "Flyer {#}"
 msgstr ""
 
 #: config/config.php:377 config/config.php:520
-#: includes/Templates/single-booth.php:561
+#: includes/Templates/single-booth.php:575
 msgid "Flyers"
 msgstr ""
 
-#: includes/CPT/Hall.php:174 includes/CPT/Booth.php:281
+#: includes/CPT/Hall.php:174 includes/CPT/Booth.php:289
 #: includes/CPT/Foyer.php:272
 msgid "Font Color"
 msgstr ""
 
-#: includes/CPT/Booth.php:297 includes/CPT/Foyer.php:284
+#: includes/CPT/Booth.php:305 includes/CPT/Foyer.php:284
 msgid "Font Size"
+msgstr ""
+
+#: includes/CPT/Booth.php:565
+msgid ""
+"For YouTube Channels, please include the channel part of your account URL (e."
+"g. \"channel/a1b2c3\" or \"c/d4e5f6\")."
 msgstr ""
 
 #: includes/CPT/Hall.php:94 includes/CPT/Podium.php:97
@@ -404,26 +410,26 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: config/config.php:360 config/config.php:499 includes/CPT/Booth.php:396
-#: includes/Templates/single-booth.php:332
+#: config/config.php:360 config/config.php:499 includes/CPT/Booth.php:404
+#: includes/Templates/single-booth.php:339
 msgid "Gallery"
 msgstr ""
 
 #: includes/CPT/Exposition.php:80 includes/CPT/Hall.php:77
-#: includes/CPT/Podium.php:80 includes/CPT/Booth.php:81
+#: includes/CPT/Podium.php:80 includes/CPT/Booth.php:89
 #: includes/CPT/Foyer.php:81
 msgid "General Information"
 msgstr ""
 
-#: includes/CPT/CPT.php:308 includes/CPT/CPT.php:359
+#: includes/CPT/CPT.php:309 includes/CPT/CPT.php:360
 msgid "Go to content area"
 msgstr ""
 
-#: includes/CPT/CPT.php:310 includes/CPT/CPT.php:361
+#: includes/CPT/CPT.php:311 includes/CPT/CPT.php:362
 msgid "Go to main navigation"
 msgstr ""
 
-#: includes/CPT/CPT.php:360
+#: includes/CPT/CPT.php:361
 msgid "Go to search"
 msgstr ""
 
@@ -435,7 +441,7 @@ msgstr ""
 msgid "Hair Color"
 msgstr ""
 
-#: includes/CPT/Hall.php:49 includes/CPT/Booth.php:98
+#: includes/CPT/Hall.php:49 includes/CPT/Booth.php:106
 msgid "Hall"
 msgstr ""
 
@@ -466,7 +472,7 @@ msgid ""
 "If no background image is set, the foyer background image will be displayed."
 msgstr ""
 
-#: includes/CPT/Booth.php:167
+#: includes/CPT/Booth.php:175
 msgid ""
 "If no background image is set, the hall background image will be displayed. "
 "If no hall background image is set, the foyer background image will be "
@@ -477,7 +483,7 @@ msgstr ""
 msgid "If no menu is set, booths will be ordered alphabetically."
 msgstr ""
 
-#: includes/CPT/Booth.php:436
+#: includes/CPT/Booth.php:444
 msgid "Image"
 msgstr ""
 
@@ -501,31 +507,31 @@ msgstr ""
 msgid "Info Panel Link Color"
 msgstr ""
 
-#: includes/CPT/Exposition.php:228 includes/Templates/single-booth.php:578
+#: includes/CPT/Exposition.php:228 includes/Templates/single-booth.php:592
 msgid "Information Material"
 msgstr ""
 
 #: includes/CPT/Exposition.php:160 includes/CPT/Podium.php:109
-#: includes/CPT/Booth.php:216
+#: includes/CPT/Booth.php:224
 msgid "Layout"
 msgstr ""
 
 #: includes/Templates/single-booth.php:271
-#: includes/Templates/single-booth.php:542
+#: includes/Templates/single-booth.php:556
 msgid "Leave us a message"
 msgstr ""
 
-#: includes/CPT/Booth.php:360 includes/CPT/Booth.php:390
+#: includes/CPT/Booth.php:368 includes/CPT/Booth.php:398
 msgid "Left Screen"
 msgstr ""
 
 #: includes/CPT/Exposition.php:192 includes/CPT/Hall.php:152
-#: includes/CPT/Podium.php:215 includes/CPT/Booth.php:191
+#: includes/CPT/Podium.php:215 includes/CPT/Booth.php:199
 #: includes/CPT/Foyer.php:377
 msgid "Light"
 msgstr ""
 
-#: includes/Templates/single-booth.php:519
+#: includes/Templates/single-booth.php:533
 msgid "Live Chat / Video"
 msgstr ""
 
@@ -533,7 +539,7 @@ msgstr ""
 msgid "Locality"
 msgstr ""
 
-#: includes/CPT/Booth.php:240
+#: includes/CPT/Booth.php:248
 msgid "Logo"
 msgstr ""
 
@@ -545,7 +551,7 @@ msgstr ""
 msgid "Logo on Table"
 msgstr ""
 
-#: includes/CPT/Booth.php:341 includes/CPT/Foyer.php:201
+#: includes/CPT/Booth.php:349 includes/CPT/Foyer.php:201
 msgid "Med (light blue)"
 msgstr ""
 
@@ -557,7 +563,7 @@ msgstr ""
 msgid "Message from contact form"
 msgstr ""
 
-#: includes/CPT/Booth.php:144
+#: includes/CPT/Booth.php:152
 msgid "More Info"
 msgstr ""
 
@@ -565,11 +571,11 @@ msgstr ""
 msgid "More information about "
 msgstr ""
 
-#: includes/CPT/Booth.php:117
+#: includes/CPT/Booth.php:125
 msgid "Name"
 msgstr ""
 
-#: includes/CPT/Booth.php:342 includes/CPT/Foyer.php:202
+#: includes/CPT/Booth.php:350 includes/CPT/Foyer.php:202
 msgid "Nat (green)"
 msgstr ""
 
@@ -661,7 +667,7 @@ msgstr ""
 msgid "No Podiums found."
 msgstr ""
 
-#: includes/CPT/Booth.php:388
+#: includes/CPT/Booth.php:396
 msgid "No Schedule"
 msgstr ""
 
@@ -683,6 +689,7 @@ msgstr ""
 
 #: config/config.php:367 config/config.php:506
 #: includes/Templates/single-booth.php:123
+#: includes/Templates/single-booth.php:496
 msgid "Our Talks"
 msgstr ""
 
@@ -880,20 +887,20 @@ msgstr ""
 msgid "Parent Foyer"
 msgstr ""
 
-#: includes/CPT/Booth.php:483
+#: includes/CPT/Booth.php:491
 msgid "PDF File"
 msgstr ""
 
-#: includes/CPT/Booth.php:463
+#: includes/CPT/Booth.php:471
 msgid "PDF Flyers"
 msgstr ""
 
 #: includes/CPT/CPT.php:669 includes/CPT/Exposition.php:218
-#: includes/CPT/Booth.php:317 includes/CPT/Foyer.php:185
+#: includes/CPT/Booth.php:325 includes/CPT/Foyer.php:185
 msgid "Persona"
 msgstr ""
 
-#: includes/CPT/Booth.php:343 includes/CPT/Foyer.php:203
+#: includes/CPT/Booth.php:351 includes/CPT/Foyer.php:203
 msgid "Phil (yellow)"
 msgstr ""
 
@@ -901,7 +908,7 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: includes/CPT/Booth.php:233
+#: includes/CPT/Booth.php:241
 msgid "Plain textures"
 msgstr ""
 
@@ -929,7 +936,7 @@ msgstr ""
 msgid "Plant 2 Right"
 msgstr ""
 
-#: includes/CPT/Hall.php:175 includes/CPT/Booth.php:282
+#: includes/CPT/Hall.php:175 includes/CPT/Booth.php:290
 #: includes/CPT/Foyer.php:273
 msgid ""
 "Please make sure there is enough contrast between font and background color."
@@ -937,9 +944,9 @@ msgstr ""
 
 #: includes/CPT/Hall.php:88 includes/CPT/Hall.php:98 includes/CPT/Hall.php:112
 #: includes/CPT/Podium.php:91 includes/CPT/Podium.php:101
-#: includes/CPT/Podium.php:310 includes/CPT/Booth.php:92
-#: includes/CPT/Booth.php:102 includes/CPT/Booth.php:339
-#: includes/CPT/Booth.php:549 includes/CPT/Foyer.php:92
+#: includes/CPT/Podium.php:310 includes/CPT/Booth.php:100
+#: includes/CPT/Booth.php:110 includes/CPT/Booth.php:347
+#: includes/CPT/Booth.php:557 includes/CPT/Foyer.php:92
 #: includes/CPT/Foyer.php:102 includes/CPT/Foyer.php:199
 #: includes/CPT/Foyer.php:332
 msgid "Please select"
@@ -1020,7 +1027,7 @@ msgstr ""
 msgid "Press CTRL key to select or unselect multiple entries."
 msgstr ""
 
-#: includes/CPT/Booth.php:498
+#: includes/CPT/Booth.php:506
 msgid "Preview Image"
 msgstr ""
 
@@ -1042,17 +1049,17 @@ msgstr ""
 
 #: includes/Templates/single-foyer.php:214
 #: includes/Templates/single-foyer.php:216
-#: includes/Templates/single-booth.php:499
-#: includes/Templates/single-booth.php:501
+#: includes/Templates/single-booth.php:513
+#: includes/Templates/single-booth.php:515
 #: includes/Templates/single-hall.php:58 includes/Templates/single-hall.php:60
 #: includes/Templates/single-exposition.php:117
 #: includes/Templates/single-exposition.php:119
-#: includes/Templates/single-podium.php:176
-#: includes/Templates/single-podium.php:178
+#: includes/Templates/single-podium.php:177
+#: includes/Templates/single-podium.php:179
 msgid "Read more"
 msgstr ""
 
-#: includes/CPT/Booth.php:264
+#: includes/CPT/Booth.php:272
 msgid "Recommended Resolution: 1135 x 782 px"
 msgstr ""
 
@@ -1060,23 +1067,23 @@ msgstr ""
 msgid "Related Booth"
 msgstr ""
 
-#: includes/CPT/Booth.php:408
+#: includes/CPT/Booth.php:416
 msgid "Remove "
 msgstr ""
 
-#: includes/CPT/Booth.php:476
+#: includes/CPT/Booth.php:484
 msgid "Remove Flyer"
 msgstr ""
 
-#: includes/CPT/Booth.php:405
+#: includes/CPT/Booth.php:413
 msgid "Remove Image"
 msgstr ""
 
-#: includes/CPT/Booth.php:532 includes/CPT/Foyer.php:315
+#: includes/CPT/Booth.php:540 includes/CPT/Foyer.php:315
 msgid "Remove Item"
 msgstr ""
 
-#: includes/CPT/Booth.php:429
+#: includes/CPT/Booth.php:437
 msgid "Remove Roll-up"
 msgstr ""
 
@@ -1084,26 +1091,26 @@ msgstr ""
 msgid "Remove Talk"
 msgstr ""
 
-#: includes/CPT/Booth.php:367 includes/CPT/Booth.php:391
+#: includes/CPT/Booth.php:375 includes/CPT/Booth.php:399
 msgid "Right Screen"
 msgstr ""
 
-#: config/config.php:370 config/config.php:513 includes/CPT/Booth.php:389
-#: includes/Templates/single-booth.php:571
+#: config/config.php:370 config/config.php:513 includes/CPT/Booth.php:397
+#: includes/Templates/single-booth.php:585
 msgid "Roll Up"
 msgstr ""
 
-#: includes/CPT/Booth.php:454
+#: includes/CPT/Booth.php:462
 msgid ""
 "Roll-up image opens in a lightbox for detailed view and is listed in the "
 "info box."
 msgstr ""
 
-#: includes/CPT/Booth.php:427
+#: includes/CPT/Booth.php:435
 msgid "Roll-up {#}"
 msgstr ""
 
-#: includes/CPT/Booth.php:416
+#: includes/CPT/Booth.php:424
 msgid "Rollups"
 msgstr ""
 
@@ -1116,15 +1123,16 @@ msgstr ""
 msgid "RRZE Webteam"
 msgstr ""
 
-#: includes/CPT/Booth.php:344 includes/CPT/Foyer.php:204
+#: includes/CPT/Booth.php:352 includes/CPT/Foyer.php:204
 msgid "RW (red)"
 msgstr ""
 
 #: includes/Templates/single-podium.php:48
+#: includes/Templates/single-podium.php:169
 msgid "Schedule"
 msgstr ""
 
-#: includes/CPT/Booth.php:382
+#: includes/CPT/Booth.php:390
 msgid "Schedule Location"
 msgstr ""
 
@@ -1253,15 +1261,15 @@ msgstr ""
 msgid "Search Podiums"
 msgstr ""
 
-#: includes/CPT/Booth.php:334 includes/CPT/Foyer.php:194
+#: includes/CPT/Booth.php:342 includes/CPT/Foyer.php:194
 msgid "Seat"
 msgstr ""
 
-#: includes/Templates/single-booth.php:612
+#: includes/Templates/single-booth.php:626
 msgid "Send a copy of the message to my email address."
 msgstr ""
 
-#: includes/Templates/single-booth.php:592
+#: includes/Templates/single-booth.php:606
 msgid "Send a message to "
 msgstr ""
 
@@ -1269,11 +1277,11 @@ msgstr ""
 msgid "Short description"
 msgstr ""
 
-#: includes/CPT/Booth.php:150
+#: includes/CPT/Booth.php:158
 msgid "Show Contact Form"
 msgstr ""
 
-#: includes/CPT/Booth.php:135
+#: includes/CPT/Booth.php:143
 msgid "Show Homepage on:"
 msgstr ""
 
@@ -1285,24 +1293,24 @@ msgstr ""
 msgid "Skin Color"
 msgstr ""
 
-#: includes/CPT/CPT.php:306 includes/CPT/CPT.php:357
+#: includes/CPT/CPT.php:307 includes/CPT/CPT.php:358
 msgid "Skiplinks"
 msgstr ""
 
-#: includes/CPT/Booth.php:519 includes/CPT/Foyer.php:302
+#: includes/CPT/Booth.php:527 includes/CPT/Foyer.php:302
 msgid "Social Media"
 msgstr ""
 
-#: includes/CPT/Booth.php:530 includes/CPT/Foyer.php:313
+#: includes/CPT/Booth.php:538 includes/CPT/Foyer.php:313
 msgid "Social Media Item {#}"
 msgstr ""
 
 #: config/config.php:330 config/config.php:469 config/config.php:651
-#: includes/CPT/Booth.php:141
+#: includes/CPT/Booth.php:149
 msgid "Social Media Panel"
 msgstr ""
 
-#: includes/CPT/Booth.php:545 includes/CPT/Foyer.php:328
+#: includes/CPT/Booth.php:553 includes/CPT/Foyer.php:328
 msgid "Social Media Type"
 msgstr ""
 
@@ -1324,7 +1332,7 @@ msgstr ""
 msgid "Student"
 msgstr ""
 
-#: includes/Templates/single-booth.php:616
+#: includes/Templates/single-booth.php:630
 msgid "Submit"
 msgstr ""
 
@@ -1332,7 +1340,7 @@ msgstr ""
 msgid "Table Icon"
 msgstr ""
 
-#: includes/CPT/Booth.php:374 includes/CPT/Foyer.php:162
+#: includes/CPT/Booth.php:382 includes/CPT/Foyer.php:162
 msgid "Table Screen (Live Chat)"
 msgstr ""
 
@@ -1340,15 +1348,15 @@ msgstr ""
 msgid "Talk {#}"
 msgstr ""
 
-#: includes/CPT/Booth.php:345 includes/CPT/Foyer.php:205
+#: includes/CPT/Booth.php:353 includes/CPT/Foyer.php:205
 msgid "Tech (grey)"
 msgstr ""
 
-#: includes/CPT/Podium.php:121 includes/CPT/Booth.php:228
+#: includes/CPT/Podium.php:121 includes/CPT/Booth.php:236
 msgid "Template 1"
 msgstr ""
 
-#: includes/CPT/Podium.php:122 includes/CPT/Booth.php:229
+#: includes/CPT/Podium.php:122 includes/CPT/Booth.php:237
 msgid "Template 2"
 msgstr ""
 
@@ -1387,7 +1395,7 @@ msgctxt ""
 msgid "Podium archives"
 msgstr ""
 
-#: includes/CPT/Booth.php:383
+#: includes/CPT/Booth.php:391
 msgid ""
 "The schedule lists live talks related to this booth. It replaces either the "
 "roll up or one of the video locations."
@@ -1427,7 +1435,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: includes/CPT/Booth.php:555 includes/CPT/Foyer.php:338
+#: includes/CPT/Booth.php:563 includes/CPT/Foyer.php:338
 msgid "User Name"
 msgstr ""
 
@@ -1447,11 +1455,11 @@ msgstr ""
 msgid "Video URL"
 msgstr ""
 
-#: includes/Templates/single-booth.php:549
+#: includes/Templates/single-booth.php:563
 msgid "Videos"
 msgstr ""
 
-#: includes/CPT/Booth.php:353
+#: includes/CPT/Booth.php:361
 msgid "Videos and Video Conferences"
 msgstr ""
 
@@ -1475,7 +1483,7 @@ msgstr ""
 msgid "View Podium"
 msgstr ""
 
-#: includes/CPT/Booth.php:129 includes/Templates/single-booth.php:522
+#: includes/CPT/Booth.php:137 includes/Templates/single-booth.php:536
 msgid "Website"
 msgstr ""
 
@@ -1495,11 +1503,11 @@ msgstr ""
 msgid "WordPress plugin for virtual events, expositions and congresses"
 msgstr ""
 
-#: includes/Templates/single-booth.php:598
+#: includes/Templates/single-booth.php:612
 msgid "Your Email Address"
 msgstr ""
 
-#: includes/Templates/single-booth.php:606
+#: includes/Templates/single-booth.php:620
 msgid "Your Message"
 msgstr ""
 
@@ -1507,10 +1515,10 @@ msgstr ""
 msgid "Your message has been sent!"
 msgstr ""
 
-#: includes/Templates/single-booth.php:594
+#: includes/Templates/single-booth.php:608
 msgid "Your Name"
 msgstr ""
 
-#: includes/Templates/single-booth.php:602
+#: includes/Templates/single-booth.php:616
 msgid "Your Phone Number"
 msgstr ""

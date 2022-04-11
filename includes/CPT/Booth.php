@@ -554,6 +554,7 @@ class Booth {
             'type'  => 'text_medium',
             'name'  => __('User Name', 'rrze-expo'),
             'id'    => 'username',
+            'description' => __('For YouTube Channels, please include the channel part of your account URL (e.g. "channel/a1b2c3" or "c/d4e5f6").', 'rrze-expo'),
         ]);
     }
 
