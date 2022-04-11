@@ -60,6 +60,7 @@ CPT::expoHeader();
                 $timeslotsGrouped[$startdateTimestamp][$i]['title'] = array_key_exists('title', $timeslot) ? $timeslot['title'] : '';
                 $timeslotsGrouped[$startdateTimestamp][$i]['url'] = array_key_exists('url', $timeslot) ? $timeslot['url'] : '';
                 $timeslotsGrouped[$startdateTimestamp][$i]['booth'] = array_key_exists('booth', $timeslot) ? $timeslot['booth'] : '';
+                $timeslotsGrouped[$startdateTimestamp][$i]['description'] = array_key_exists('description', $timeslot) ? $timeslot['description'] : '';
                 $i++;
             }
             if ($templateNo == '2') $schedule .= '[columns]';
@@ -67,22 +68,29 @@ CPT::expoHeader();
                 if ($templateNo == '2') $schedule .= '[column]';
                 $schedule .= '<h3>' . date('d.m.Y', $day) . '</h3>';
                 $schedule .= '<table>';
-                foreach ($timeslotDay as $timeslotDetails) {
+                foreach ($timeslotDay as $id => $timeslotDetails) {
                     $schedule .= '<tr>';
-                    $schedule .= '<td>' . $timeslotDetails['starttime'] . ' - ' . $timeslotDetails['endtime'] . '</td>';
+                    $schedule .= '<td style="width: 20%;">' . $timeslotDetails['starttime'] . ' - ' . $timeslotDetails['endtime'] . '</td>';
                     $schedule .= '<td><span class="talk-title">'
                         . (($templateNo == '2' && $timeslotDetails['url'] != '') ? '<a href="'.$timeslotDetails['url'].'">' : '')
                         . $timeslotDetails['title']
                         . (($templateNo == '2' && $timeslotDetails['url'] != '') ? '</a>' : '')
                         . '</span>';
+                    if (isset($timeslotDetails['description']) && $timeslotDetails['description'] != '') {
+                        $schedule .= '<a data-fancybox data-src="#talk-description-'.$id.'" href="javascript:;" class="trigger-description" aria-label title="'. __('More information about ', 'rrze-expo') . '&quot;' . $timeslotDetails['title'] . '&quot;' . '"><svg class="trigger-description-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#fff" width="30px" height="30px"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" /></svg></a>';
+                        $schedule .= '<div style="display: none;" class="talk-description" id="talk-description-'.$id.'">'
+                            . '<h1>' . $timeslotDetails['title'] . '</h1>'
+                            . '<p style="font-style:italic">' . date('d.m.Y', $day) . ', ' . $timeslotDetails['starttime'] . ' - ' . $timeslotDetails['endtime'] . '</p>'
+                            . wpautop(nl2br($timeslotDetails['description'])) . '</div>';
+                    }
                     if (isset($timeslotDetails['booth']) && $timeslotDetails['booth'] != '') {
                         if (!is_array($timeslotDetails['booth'])) {
                             $timeslotDetails['booth'] = [$timeslotDetails['booth']];
                         }
-                        $schedule .= '<br />';
+                        //$schedule .= '<br />';
                         $boothLinks = [];
                         foreach ($timeslotDetails['booth'] as $boothID) {
-                            $boothLinks[] = '<a href="' . get_permalink($boothID) . '">' . str_replace('<br>',' ',get_the_title($boothID))   . '</a>';
+                            $boothLinks[] = '<p><a href="' . get_permalink($boothID) . '">' . str_replace('<br>',' ',get_the_title($boothID)) . '</a></p>';
                         }
                         $schedule .= implode(', ', $boothLinks);
                     }
@@ -134,6 +142,9 @@ CPT::expoHeader();
             <style>
                 #rrze-expo-podium .schedule *, #rrze-expo-podium .schedule h1, #rrze-expo-podium .schedule h2, #rrze-expo-podium .schedule h3 {color: <?php echo CPT::getMeta($meta, 'rrze-expo-podium-timetable-font-color'); ?>;}
                 #rrze-expo-podium .schedule a {color: <?php echo CPT::getMeta($meta, 'rrze-expo-podium-timetable-link-color'); ?>;}
+                #rrze-expo-podium .schedule a:hover, #rrze-expo-podium .schedule a:focus, #rrze-expo-podium .schedule a:active {color: <?php echo CPT::getMeta($meta, 'rrze-expo-podium-timetable-font-color'); ?>;}
+                #rrze-expo-podium .trigger-description-svg {fill: <?php echo CPT::getMeta($meta, 'rrze-expo-podium-timetable-link-color'); ?>;}
+                #rrze-expo-podium a:hover .trigger-description-svg, #rrze-expo-podium a:focus .trigger-description-svg, #rrze-expo-podium a:active .trigger-description-svg {fill: <?php echo CPT::getMeta($meta, 'rrze-expo-podium-timetable-font-color'); ?>;}
                 #rrze-expo-podium .schedule {background-color: <?php echo CPT::getMeta($meta, 'rrze-expo-podium-timetable-background-color'); ?>;}
             </style>
             <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
@@ -154,7 +165,8 @@ CPT::expoHeader();
                 <?php
                 echo '<foreignObject class="schedule" x="' . $scheduleSettings['x'] . '" y="' . ($scheduleSettings['y']) . '" width="' . $scheduleSettings['width'] . '" height="' . $scheduleSettings['height'] . '">
                     <body xmlns="http://www.w3.org/1999/xhtml">' . do_shortcode($schedule) . '</body>
-                </foreignObject>';
+                </foreignObject>'
+                    . '<foreignObject class="schedule schedule-mobile" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><a data-fancybox data-src="#schedule-popup" href="javascript:;" class="" href="" style="display: block;width: 100%; height:100%;">' . CPT::pulsatingDot() . '<h2>' . __('Schedule', 'rrze-expo') . '</h2><svg class="" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><use xlink:href="#list"/></svg></a></foreignObject>';
                 if ($templateNo == 1) {
                     echo $video;
                 }
@@ -173,7 +185,13 @@ CPT::expoHeader();
             <div id="rrze-expo-podium-content" name="rrze-expo-podium-content" class="">
                 <?php the_content(); ?>
             </div>
-        <?php } ?>
+        <?php }
+
+            // Schedule Popup Content
+            if (!empty($schedule)) {
+                echo '<div style="display: none;" id="schedule-popup">' . str_replace(['[columns]','[/columns]','[column]','[/column]'], '', $schedule) . '</div>';
+            }
+        ?>
 
     <?php endwhile; ?>
 

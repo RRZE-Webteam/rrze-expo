@@ -319,6 +319,9 @@ CPT::expoHeader();
                 if (strpos($title, '<br>') != false) {
                     $titleParts = explode('<br>', $title);
                     $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
+                } elseif (strpos($title, '<br />') != false) {
+                    $titleParts = explode('<br />', $title);
+                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
                 }
                 echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
 
@@ -327,14 +330,24 @@ CPT::expoHeader();
                     $galleryStartId = array_key_first($gallery);
                     $galleryStartURL = reset($gallery);
                     $gallerySettings = $constants['template_elements']['booth'.$templateNo]['gallery'];
-                    echo '<a href="' . $galleryStartURL.'" data-fancybox="booth-gallery" class="lightbox">'
+                    $startCaption = wp_get_attachment_caption($galleryStartId);
+                    if ($startCaption) {
+                        $dataCaption = 'data-caption="'.$startCaption.'"';
+                    }
+                    echo '<a href="' . $galleryStartURL.'" data-fancybox="booth-gallery" ' . $dataCaption . ' class="lightbox">'
                         . '<use class="gallery-tablet" xlink:href="#gallery" />'
                         . '<text x="' . $gallerySettings['x'] . '" y="' . $gallerySettings['y'] . '" font-size="24" fill="#333">'. __('Gallery', 'rrze-expo').'</text>'
                         . '</a>';
                     foreach ( (array) $gallery as $attachment_id => $attachment_url ) {
                         if ($attachment_id == $galleryStartId)
                             continue;
-                        echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" style="display: none;" class="lightbox">'.$attachment_url.'</a>';
+                        $caption = wp_get_attachment_caption($attachment_id);
+                        if ($caption) {
+                            $dataCaption = 'data-caption="'.$caption.'"';
+                        } else {
+                            $dataCaption = '';
+                        }
+                        echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" ' . $dataCaption . ' style="display: none;" class="lightbox">'.$attachment_url.'</a>';
                     }
                 }
 
@@ -479,7 +492,8 @@ CPT::expoHeader();
                     }
                     echo '<foreignObject class="schedule schedule-'.$scheduleLocation.'" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'">
                     <body xmlns="http://www.w3.org/1999/xhtml">' . $schedule . '</body>
-                </foreignObject>';
+                    </foreignObject>'
+                    . '<foreignObject class="schedule schedule-'.$scheduleLocation.' schedule-'.$scheduleLocation.'-mobile" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><a data-fancybox data-src="#schedule-popup" href="javascript:;" class="schedule-'.$scheduleLocation.'" href="" style="display: block;width: 100%; height:100%;">' . CPT::pulsatingDot() . '<h2>' . __('Our Talks', 'rrze-expo') . '</h2><svg class="" x="'. $scheduleSettings['x'].'" y="'. ($scheduleSettings['y'] + 2) .'" width="'. $scheduleSettings['width'].'" height="'. $scheduleSettings['height'].'"><use xlink:href="#list"/></svg></a></foreignObject>';
                 }
 
                 // Seats
@@ -620,8 +634,13 @@ CPT::expoHeader();
             echo '</div>';
         }
 
+        // Schedule Popup Content
+        if (!empty($schedule)) {
+            echo '<div style="display: none;" id="schedule-popup">' . $schedule . '</div>';
+        }
+
         //wp_dequeue_script('fau-scripts');
-        if (!empty($gallery) || !empty($rollups) || $showContactForm) {
+        if (!empty($gallery) || !empty($rollups) || !empty($schedule) ||$showContactForm) {
             wp_enqueue_script('jquery-fancybox');
             wp_enqueue_style('rrze-elements');
             echo '<script type="text/javascript">

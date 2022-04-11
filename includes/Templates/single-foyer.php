@@ -12,7 +12,9 @@ CPT::expoHeader();
 ?>
 
 <main class="rrze-expo">
-    <?php while ( have_posts() ) : the_post();
+    <?php
+    CPT::expoNav();
+    while ( have_posts() ) : the_post();
         $hasContent = (get_the_content() != '');
         $foyerId = get_the_ID();
         $meta = get_post_meta($foyerId);
