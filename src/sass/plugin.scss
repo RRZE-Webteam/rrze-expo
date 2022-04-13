@@ -80,6 +80,9 @@ Plugin Style
     img {
         box-shadow: none;
     }
+    svg {
+        fill: initial;
+    }
     svg.expo-booth {
         /*perspective: 400px;
         .rollup-content {
