@@ -284,6 +284,7 @@ class Exposition {
                         'image/gif',
                         'image/jpeg',
                         'image/png',
+                        'image/svg+xml',
                     ),
                 ),
                 'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
