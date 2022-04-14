@@ -94,6 +94,17 @@ Plugin Style
             }
         }*/
     }
+    a {
+        box-shadow: none; // Fix für FAU-Themes
+        &:hover, &:focus, &:active {
+            box-shadow: none;
+            color: inherit;
+        }
+    }
+    #rrze-expo-foyer a {
+        text-decoration: none;
+    }
+
     .site-header {
         #rrze-expo-header-content {
             position: relative;
