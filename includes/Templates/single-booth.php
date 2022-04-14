@@ -313,6 +313,34 @@ CPT::expoHeader();
                     echo '<use xlink:href="#'.$rollupPanel.'" />';
                 }
 
+                // Personas
+                $personaStyles = '';
+                for ($i=1; $i<=3; $i++) {
+                    $personaRaw = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
+                    // TODO: Abwärtskompatibilität – beim nächsten Update entfernen!
+                    if (!is_array($personaRaw)) {
+                        $persona[$i]['persona'] = CPT::getMeta($meta, 'rrze-expo-booth-persona-' . $i);
+                    } else {
+                        $persona[$i] = $personaRaw;
+                    }
+                    $personaSettings = $constants['template_elements']['booth'.$templateNo]['persona'][$i];
+                    if (!empty($persona[$i]['persona'])) {
+                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i]['persona'].'.svg';
+                        if ($file) {
+                            $svg = file_get_contents($file);
+                            echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
+                            $skinColor = (isset($persona[$i]['skin-color']) ? $persona[$i]['skin-color'] : '');
+                            $hairColor = (isset($persona[$i]['hair-color']) ? $persona[$i]['hair-color'] : '');
+                            $personaStyles .= '#'.$persona[$i]['persona'].'-rrze-expo {'
+                                . CPT::makePersonaStyles($skinColor, $hairColor)
+                                . '}';
+                        }
+                    }
+                }
+                if ($personaStyles != '') {
+                    echo '<style type="text/css">' . $personaStyles . '</style>';
+                }
+
                 //Table
                 echo '<use xlink:href="#table" />';
                 $titleSettings = $constants['template_elements']['booth'.$templateNo]['title'];
@@ -362,34 +390,6 @@ CPT::expoHeader();
                             echo '<image xlink:href="' . get_the_post_thumbnail_url($post, 'expo-logo') . '" preserveAspectRatio="xMidYMin meet" width="' . $logoLocationSettings['wall']['width'] . '" height="' . $logoLocationSettings['wall']['height'] . '"  x="' . $logoLocationSettings['wall']['x'] . '" y="' . $logoLocationSettings['wall']['y'] . '" />';
                         }
                     }
-                }
-
-                // Personas
-                $personaStyles = '';
-                for ($i=1; $i<=3; $i++) {
-                    $personaRaw = CPT::getMeta($meta, 'rrze-expo-booth-persona-'.$i);
-                    // TODO: Abwärtskompatibilität – beim nächsten Update entfernen!
-                    if (!is_array($personaRaw)) {
-                        $persona[$i]['persona'] = CPT::getMeta($meta, 'rrze-expo-booth-persona-' . $i);
-                    } else {
-                        $persona[$i] = $personaRaw;
-                    }
-                    $personaSettings = $constants['template_elements']['booth'.$templateNo]['persona'][$i];
-                    if (!empty($persona[$i]['persona'])) {
-                        $file = WP_PLUGIN_DIR . '/rrze-expo/assets/img/template-assets/'.$persona[$i]['persona'].'.svg';
-                        if ($file) {
-                            $svg = file_get_contents($file);
-                            echo str_replace('<svg ', '<svg x="'.$personaSettings['x'].'" y="'.$personaSettings['y'].'" width="'.$personaSettings['width'].'" height="'.$personaSettings['height'].'" ', $svg);
-                            $skinColor = (isset($persona[$i]['skin-color']) ? $persona[$i]['skin-color'] : '');
-                            $hairColor = (isset($persona[$i]['hair-color']) ? $persona[$i]['hair-color'] : '');
-                            $personaStyles .= '#'.$persona[$i]['persona'].'-rrze-expo {'
-                                . CPT::makePersonaStyles($skinColor, $hairColor)
-                                . '}';
-                        }
-                    }
-                }
-                if ($personaStyles != '') {
-                    echo '<style type="text/css">' . $personaStyles . '</style>';
                 }
 
                 // Website Wall
