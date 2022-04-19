@@ -313,6 +313,19 @@ CPT::expoHeader();
                     echo '<use xlink:href="#'.$rollupPanel.'" />';
                 }
 
+                // Logo Wall
+                if (has_post_thumbnail()){
+                    $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
+                    if ($logoLocations != '') {
+                        foreach ($logoLocations as $logoLocation) {
+                            $logoLocationSettings[$logoLocation] = $constants['template_elements']['booth' . $templateNo]['logo'][$logoLocation];
+                        }
+                        if (in_array('wall', $logoLocations)) {
+                            echo '<image xlink:href="' . get_the_post_thumbnail_url($post, 'expo-logo') . '" preserveAspectRatio="xMidYMin meet" width="' . $logoLocationSettings['wall']['width'] . '" height="' . $logoLocationSettings['wall']['height'] . '"  x="' . $logoLocationSettings['wall']['x'] . '" y="' . $logoLocationSettings['wall']['y'] . '" />';
+                        }
+                    }
+                }
+
                 // Personas
                 $personaStyles = '';
                 for ($i=1; $i<=3; $i++) {
@@ -376,19 +389,6 @@ CPT::expoHeader();
                             $dataCaption = '';
                         }
                         echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" ' . $dataCaption . ' style="display: none;" class="lightbox">'.$attachment_url.'</a>';
-                    }
-                }
-
-                // Logo Wall
-                if (has_post_thumbnail()){
-                    $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
-                    if ($logoLocations != '') {
-                        foreach ($logoLocations as $logoLocation) {
-                            $logoLocationSettings[$logoLocation] = $constants['template_elements']['booth' . $templateNo]['logo'][$logoLocation];
-                        }
-                        if (in_array('wall', $logoLocations)) {
-                            echo '<image xlink:href="' . get_the_post_thumbnail_url($post, 'expo-logo') . '" preserveAspectRatio="xMidYMin meet" width="' . $logoLocationSettings['wall']['width'] . '" height="' . $logoLocationSettings['wall']['height'] . '"  x="' . $logoLocationSettings['wall']['x'] . '" y="' . $logoLocationSettings['wall']['y'] . '" />';
-                        }
                     }
                 }
 
@@ -640,7 +640,7 @@ CPT::expoHeader();
         }
 
         //wp_dequeue_script('fau-scripts');
-        if (!empty($gallery) || !empty($rollups) || !empty($schedule) ||$showContactForm) {
+        if (!empty($gallery) || !empty($rollups) || !empty($schedule) || $showContactForm) {
             wp_enqueue_script('jquery-fancybox');
             wp_enqueue_style('rrze-elements');
             echo '<script type="text/javascript">
