@@ -24,7 +24,7 @@
 	--haarlicht: #8A603D;
 
 	/*Sonstiges*/
-	--klemmbrett: #E5E6E8;
+	--klemmbrett: #999999;
 	--tabletkameraring: #4D4D4D;
 	--tabletkamera: #CCCCCC;
 

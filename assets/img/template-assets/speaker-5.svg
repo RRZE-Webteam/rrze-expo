@@ -102,13 +102,10 @@
 		<path class="augenbrauen" d="M143.5,130.4c-9.6-2.5-16.3,1.8-16.1,1.6c-0.5,0.4-1.3,0.7-1.7,0.6c-0.4-0.1-0.4-0.5,0.2-0.9
 	c-0.1,0.2,5.5-6.5,17.1-3.8C143.8,128.1,143.6,130.4,143.5,130.4z"/>
 		<g>
-			<defs>
-				<path id="SVGID_1_" class="rock" d="M140.4,309.9c-13-0.1-26.2,0.1-39.1-2.4c-4.6,33.1-8.2,84.9-9.9,125.4c1,0.3,96.5-1.5,102.5-3
-					c-1.7-62.1-15.6-92.9-19-120.7C163.5,310.2,151.9,310,140.4,309.9z"/>
-			</defs>
-					<use xlink:href="#SVGID_1_" style="overflow:visible;fill:#333333;"/>
-					<clipPath id="SVGID_2_">
-				<use xlink:href="#SVGID_1_" style="overflow:visible;"/>
+			<path id="ClipPathRock" class="rock" d="M140.4,309.9c-13-0.1-26.2,0.1-39.1-2.4c-4.6,33.1-8.2,84.9-9.9,125.4c1,0.3,96.5-1.5,102.5-3
+					c-1.7-62.1-15.6-92.9-19-120.7C163.5,310.2,151.9,310,140.4,309.9z"/><use xlink:href="#ClipPathRock" style="overflow:visible;fill:#333333;"/>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#ClipPathRock" style="overflow:visible;"/>
 			</clipPath>
 		</g>
 		<path class="shirtschatten kragen-rechts" d="M166.5,179.5c0,0-10.9,15.1-17,18.2l14.6,16.4c0,0,8.8-12.3,10.4-23.2L166.5,179.5z"/>

@@ -28,6 +28,7 @@
 	#speaker-4-rrze-expo .hose {fill:#313032; fill: var(--hose, #313032);}
 	#speaker-4-rrze-expo .hemdschatten {fill:#9490A7; fill: var(--hemdschatten, #9490A7);}
 	#speaker-4-rrze-expo .gesicht{fill:#FBBE7D; fill: var(--hautfarbe, #FBBE7D);}
+	#speaker-4-rrze-expo .haare {fill:#42210B; fill: var(--haarfarbe, #42210B);}
 	#speaker-4-rrze-expo .hals {fill:#FBBE7D; fill: var(--hautfarbe, #FBBE7D);}
 	#speaker-4-rrze-expo .haende {fill:#FBBE7D; fill: var(--hautfarbe, #FBBE7D);}
 	#speaker-4-rrze-expo .arme {fill:#FBBE7D; fill: var(--hautfarbe, #FBBE7D);}

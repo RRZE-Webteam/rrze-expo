@@ -313,44 +313,6 @@ CPT::expoHeader();
                     echo '<use xlink:href="#'.$rollupPanel.'" />';
                 }
 
-                //Table
-                echo '<use xlink:href="#table" />';
-                $titleSettings = $constants['template_elements']['booth'.$templateNo]['title'];
-                if (strpos($title, '<br>') != false) {
-                    $titleParts = explode('<br>', $title);
-                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
-                } elseif (strpos($title, '<br />') != false) {
-                    $titleParts = explode('<br />', $title);
-                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
-                }
-                echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
-
-                // Gallery
-                if (!empty($gallery)) {
-                    $galleryStartId = array_key_first($gallery);
-                    $galleryStartURL = reset($gallery);
-                    $gallerySettings = $constants['template_elements']['booth'.$templateNo]['gallery'];
-                    $startCaption = wp_get_attachment_caption($galleryStartId);
-                    if ($startCaption) {
-                        $dataCaption = 'data-caption="'.$startCaption.'"';
-                    }
-                    echo '<a href="' . $galleryStartURL.'" data-fancybox="booth-gallery" ' . $dataCaption . ' class="lightbox">'
-                        . '<use class="gallery-tablet" xlink:href="#gallery" />'
-                        . '<text x="' . $gallerySettings['x'] . '" y="' . $gallerySettings['y'] . '" font-size="24" fill="#333">'. __('Gallery', 'rrze-expo').'</text>'
-                        . '</a>';
-                    foreach ( (array) $gallery as $attachment_id => $attachment_url ) {
-                        if ($attachment_id == $galleryStartId)
-                            continue;
-                        $caption = wp_get_attachment_caption($attachment_id);
-                        if ($caption) {
-                            $dataCaption = 'data-caption="'.$caption.'"';
-                        } else {
-                            $dataCaption = '';
-                        }
-                        echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" ' . $dataCaption . ' style="display: none;" class="lightbox">'.$attachment_url.'</a>';
-                    }
-                }
-
                 // Logo Wall
                 if (has_post_thumbnail()){
                     $logoLocations = CPT::getMeta($meta, 'rrze-expo-booth-logo-locations');
@@ -390,6 +352,44 @@ CPT::expoHeader();
                 }
                 if ($personaStyles != '') {
                     echo '<style type="text/css">' . $personaStyles . '</style>';
+                }
+
+                //Table
+                echo '<use xlink:href="#table" />';
+                $titleSettings = $constants['template_elements']['booth'.$templateNo]['title'];
+                if (strpos($title, '<br>') != false) {
+                    $titleParts = explode('<br>', $title);
+                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
+                } elseif (strpos($title, '<br />') != false) {
+                    $titleParts = explode('<br />', $title);
+                    $title = '<tspan>' . implode('</tspan><tspan x="'.$titleSettings['x'].'" dy="'.($fontSize*1.12).'">', $titleParts) . '</tspan>';
+                }
+                echo '<text x="'.$titleSettings['x'].'" y="'.$titleSettings['y'].'" font-size="'.$fontSize.'" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.$title.'</text>';
+
+                // Gallery
+                if (!empty($gallery)) {
+                    $galleryStartId = array_key_first($gallery);
+                    $galleryStartURL = reset($gallery);
+                    $gallerySettings = $constants['template_elements']['booth'.$templateNo]['gallery'];
+                    $startCaption = wp_get_attachment_caption($galleryStartId);
+                    if ($startCaption) {
+                        $dataCaption = 'data-caption="'.$startCaption.'"';
+                    }
+                    echo '<a href="' . $galleryStartURL.'" data-fancybox="booth-gallery" ' . $dataCaption . ' class="lightbox">'
+                        . '<use class="gallery-tablet" xlink:href="#gallery" />'
+                        . '<text x="' . $gallerySettings['x'] . '" y="' . $gallerySettings['y'] . '" font-size="24" fill="#333">'. __('Gallery', 'rrze-expo').'</text>'
+                        . '</a>';
+                    foreach ( (array) $gallery as $attachment_id => $attachment_url ) {
+                        if ($attachment_id == $galleryStartId)
+                            continue;
+                        $caption = wp_get_attachment_caption($attachment_id);
+                        if ($caption) {
+                            $dataCaption = 'data-caption="'.$caption.'"';
+                        } else {
+                            $dataCaption = '';
+                        }
+                        echo '<a href="' . wp_get_attachment_image_url($attachment_id, 'full').'" data-fancybox="booth-gallery" ' . $dataCaption . ' style="display: none;" class="lightbox">'.$attachment_url.'</a>';
+                    }
                 }
 
                 // Website Wall
@@ -640,7 +640,7 @@ CPT::expoHeader();
         }
 
         //wp_dequeue_script('fau-scripts');
-        if (!empty($gallery) || !empty($rollups) || !empty($schedule) ||$showContactForm) {
+        if (!empty($gallery) || !empty($rollups) || !empty($schedule) || $showContactForm) {
             wp_enqueue_script('jquery-fancybox');
             wp_enqueue_style('rrze-elements');
             echo '<script type="text/javascript">
