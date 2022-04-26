@@ -49,6 +49,13 @@ class CPT
         add_filter( 'get_pages', [$this, 'addExpoCptToDropdown'] );
         add_action( 'pre_get_posts', [$this, 'enableFrontPageCPT'] );
         add_action('wp_enqueue_scripts', [$this, 'enqueueScripts'], 1000);
+        // Skip cache (for Safari video workaround)
+        add_filter('rrzecache_skip_cache', function($skip_cache) {
+            if (in_array(get_post_type(), ['booth', 'podium'])) {
+                return true;
+            }
+            return $skip_cache;
+        });
     }
 
     public static function activation() {

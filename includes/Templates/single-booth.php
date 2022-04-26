@@ -166,6 +166,28 @@ CPT::expoHeader();
                     echo '<image xlink:href="'.$wallImage.'" class="wall-image" width="'.$wallSettings['width'].'" height="'.$wallSettings['height'].'"  x="'.$wallSettings['x'].'" y="'.$wallSettings['y'].'" preserveAspectRatio="xMinYMin meet" />';
                 }
 
+                // Deco
+                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
+                if ($deco != '') {
+                    if (in_array('plant1', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" />';
+                        echo '<use xlink:href="#plant1" />';
+                    }
+                    if (in_array('plant2', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" />';
+                        echo '<use xlink:href="#plant2" />';
+                    }
+                    if (in_array('plant3', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" x="-1780" y="0" />';
+                        echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
+                    }
+                    if (in_array('plant4', $deco)) {
+                        echo '<use xlink:href="#'.$pot.'" transform="translate(4100 0), scale(-1 1)" />';
+                        echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
+                    }
+
+                }
+
                 // Flyers
                 $flyers = CPT::getMeta($meta, 'rrze-expo-booth-flyer');
                 if ($flyers != '') {
@@ -406,28 +428,6 @@ CPT::expoHeader();
                         $websiteSettings['y'] = $constants['template_elements']['booth'.$templateNo]['logo']['wall']['y'] + $constants['template_elements']['booth'.$templateNo]['logo']['wall']['height'] + 30;
                     }
                     echo '<text x="'.$websiteSettings['x'].'" y="'.($websiteSettings['y']).'" font-size="30" fill="'.CPT::getMeta($meta, 'rrze-expo-booth-font-color').'" aria-hidden="true">'.str_replace(['https://', 'http://'], '', $website).'</text>';
-                }
-
-                // Deco
-                $deco = CPT::getMeta($meta, 'rrze-expo-booth-decorations');
-                if ($deco != '') {
-                    if (in_array('plant1', $deco)) {
-                        echo '<use xlink:href="#'.$pot.'" />';
-                        echo '<use xlink:href="#plant1" />';
-                    }
-                    if (in_array('plant2', $deco)) {
-                        echo '<use xlink:href="#'.$pot.'" />';
-                        echo '<use xlink:href="#plant2" />';
-                    }
-                    if (in_array('plant3', $deco)) {
-                        echo '<use xlink:href="#'.$pot.'" x="-1780" y="0" />';
-                        echo '<use xlink:href="#plant1" x="-1780" y="0"/>';
-                    }
-                    if (in_array('plant4', $deco)) {
-                        echo '<use xlink:href="#'.$pot.'" transform="translate(4100 0), scale(-1 1)" />';
-                        echo '<use xlink:href="#plant2" transform="translate(4100 0), scale(-1 1)"/>';
-                    }
-
                 }
 
                 // Videos
