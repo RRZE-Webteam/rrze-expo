@@ -515,6 +515,9 @@ Plugin Style
         }
     }
     .booth {
+        foreignObject.video {
+            overflow-y: scroll;
+        }
         foreignObject.video .rrze-video,
         foreignObject.video .wp-video {
             border: 7px outset #333;
