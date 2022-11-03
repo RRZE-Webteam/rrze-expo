@@ -161,7 +161,7 @@ CPT::expoHeader();
         }
         if (!empty($endDateRaw)) {
             $endDate = '<meta itemprop="endDate" content="'.date(DATE_ISO8601, $endDateRaw).'" />';
-        } else {
+        } elseif (empty($endDateRaw) && !empty($startDateRaw))  {
             $endDate = '<meta itemprop="endDate" content="'.date(DATE_ISO8601, $startDateRaw).'" />';
         }
         echo $startDate . $endDate;
