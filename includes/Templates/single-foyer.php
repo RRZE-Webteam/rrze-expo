@@ -31,7 +31,7 @@ CPT::expoHeader();
                 #rrze-expo-foyer .panel-content  {background-color: <?php echo CPT::getMeta($meta, 'rrze-expo-foyer-panel-background-color'); ?>;}
             </style>
             <a id="page-start"></a>
-            <svg version="1.1" class="expo-foyer" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg version="1.1" class="expo-foyer" role="img"aria-label="<?php _e('Foyer', 'rrze-expo'); ?>"  x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <!--<use class="backwall" xlink:href="#wall" />-->
                 <?php

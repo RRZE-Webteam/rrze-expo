@@ -148,7 +148,7 @@ CPT::expoHeader();
                 #rrze-expo-podium .schedule {background-color: <?php echo CPT::getMeta($meta, 'rrze-expo-podium-timetable-background-color'); ?>;}
             </style>
             <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
-            <svg version="1.1" class="expo-podium template-<?php echo $templateNo; ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg version="1.1" class="expo-podium template-<?php echo $templateNo; ?>" role="img" aria-label="<?php _e('Podium', 'rrze-expo'); ?>" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <?php
                 // Deco

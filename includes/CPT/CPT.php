@@ -325,7 +325,7 @@ class CPT
                                     if ( $post->post_type != 'exposition' ) {
                                         echo '<a href="'.get_permalink($expoID).'">';
                                     }
-                                    echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'">';
+                                    echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'" alt="' . get_the_title($expoID) . '">';
                                     echo '<div><p class="expo-title">' . get_the_title($expoID) . '</p>';
                                     $subtitle = get_post_meta($expoID, 'rrze-expo-exposition-subtitle', true);
                                     if ($subtitle != '') {
@@ -375,7 +375,7 @@ class CPT
                         if ( $post->post_type != 'exposition' ) {
                             echo '<a href="'.get_permalink($expoID).'">';
                         }
-                        echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'">';
+                        echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'" alt="' . get_the_title($expoID) . '">';
                         echo '<div><p class="expo-title">' . get_the_title($expoID) . '</p>';
                         $subtitle = get_post_meta($expoID, 'rrze-expo-exposition-subtitle', true);
                         if ($subtitle != '') {
