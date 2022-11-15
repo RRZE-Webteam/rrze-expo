@@ -786,11 +786,11 @@ a.tablet-link {
     }
 }
 #tablet {
-     #tabletbildschirmakzent {
+     .tabletbildschirmakzent {
         --tabletbildschirmakzent_fill: #ffffff;
     }
     &:hover, &:focus, &:active {
-        #tabletbildschirmakzent {
+        .tabletbildschirmakzent {
             --tabletbildschirmakzent_fill: #333333;
         }
     }
