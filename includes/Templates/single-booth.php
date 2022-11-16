@@ -157,7 +157,7 @@ CPT::expoHeader();
         <h1 class="sr-only screen-reader-text"><?php echo $title; ?></h1>
         <div id="rrze-expo-booth" class="booth" style="background-image: url('<?php echo $backgroundImage;?>');">
             <a id="page-start"></a>
-            <svg version="1.1" class="expo-booth template-<?php echo $templateNo; ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg version="1.1" class="expo-booth template-<?php echo $templateNo; ?>" aria-label="<?php _e('Booth', 'rrze-expo'); ?>" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <?php
                 // Back wall
@@ -304,6 +304,8 @@ CPT::expoHeader();
                     $rollups = CPT::getMeta($meta, 'rrze-expo-booth-rollups');
                     if ($rollups != '') {
                         if (isset($rollups[0])) {
+	                        $rollupID = $rollups[0]['file_id'];
+                            $rollupAlt = get_post_meta($rollupID, '_wp_attachment_image_alt', true);
                             $rollupData0 = wp_get_attachment_image_src($rollups[0]['file_id'], 'full');
                             $rollupClickable = (isset($rollups[0]['clickable']) && $rollups[0]['clickable'] == 'on');
                             echo '<g class="booth-rollup">'
@@ -314,7 +316,7 @@ CPT::expoHeader();
                             } else {
                                 echo '<div style="height: 100%; text-align: center;">';
                             }
-                            echo '<img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;"/>';
+                            echo '<img src="' . $rollupData0[0] . '" style=" height: 100%; object-fit: contain;" alt="' . esc_html($rollupAlt) . '"/>';
                             if ($rollupClickable) {
                                 echo '</a>';
                             } else {
@@ -566,7 +568,9 @@ CPT::expoHeader();
             foreach ($videos as $location => $url) {
                 if ($location == 'table' || $url == '')
                     continue;
-                $infoText .= '<li><a href="' . $url . '">' . 'Video ' . $i . '</a></li>';
+                $videoTitle = CPT::getMeta($meta, 'rrze-expo-booth-video-'.$location.'-title');
+                $videoTitleOut = $videoTitle != '' ? $videoTitle : 'Video ' . $i;
+                $infoText .= '<li><a href="' . $url . '">' . $videoTitleOut . '</a></li>';
                 $i++;
             }
             $infoText .= '</ul>';

@@ -16,13 +16,13 @@
 			</image>
 		</symbol>
 		<symbol id="plant1">
-			<image style="overflow:visible;" id="topf" xlink:href="../template-assets/pot-light.png"  transform="matrix(1 0 0 1 2843 790)">
+			<image style="overflow:visible;" id="topf1" xlink:href="../template-assets/pot-light.png"  transform="matrix(1 0 0 1 2843 790)">
 			</image>
 			<image style="overflow:visible;" id="palme1" xlink:href="../template-assets/palme1.png" transform="matrix(1 0 0 1 2782 134)">
 			</image>
 		</symbol>
 		<symbol id="plant2">
-			<image style="overflow:visible;" id="topf" xlink:href="../template-assets/pot-light.png"  transform="matrix(1 0 0 1 2843 790)">
+			<image style="overflow:visible;" id="topf2" xlink:href="../template-assets/pot-light.png"  transform="matrix(1 0 0 1 2843 790)">
 			</image>
 			<image style="overflow:visible;" id="palme2" xlink:href="../template-assets/palme2.png" transform="translate(2480, 26) scale(1.3)">
 			</image>

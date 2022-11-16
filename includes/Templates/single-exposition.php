@@ -39,15 +39,17 @@ CPT::expoHeader();
                 #rrze-expo-exposition .main-panel *, #rrze-expo-exposition .main-panel h1, #rrze-expo-exposition .main-panel h2, #rrze-expo-exposition .main-panel h3 {color: <?php echo CPT::getMeta($meta, 'rrze-expo-exposition-panel-font-color'); ?>;}
                 #rrze-expo-exposition .panel-content {background-color: <?php echo $panelBackgroundColor; ?>;}
             </style>
-            <svg version="1.1" class="expo-exposition" role="img" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg version="1.1" class="expo-exposition" role="img" aria-label="<?php _e('Exposition', 'rrze-expo'); ?>" x="0px" y="0px" viewBox="0 0 4096 1080" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <use class="floor" xlink:href="#floor" />
                 <?php
                 for ($i = 1; $i <= 3; $i++) {
                     $flag = CPT::getMeta($meta, 'rrze-expo-exposition-flag' . $i);
+	                $flagID = CPT::getMeta($meta, 'rrze-expo-exposition-flag' . $i . '_id');
+	                $flagAlt = get_post_meta($flagID, '_wp_attachment_image_alt', true);
                     if ($flag != '') {
                         $flagSettings = $constants['template_elements']['exposition']['flag' . $i];
                         echo ' <use xlink:href="#flag" class="flag-'. $i . '" transform="translate(' . $flagSettings['x'] . ' ' . $flagSettings['y'] . ') scale(.8)"/>';
-                        echo '<foreignObject class="flag-content" width="' . ($flagSettings['width'] * .8) . '" height="' . ($flagSettings['height'] * .76) . '" x="' . ($flagSettings['x'] + 2) . '" y="' . ($flagSettings['y'] + 21) . '"><img src="' . $flag . '" style=" height: 100%; object-fit: contain; object-position: 50% 0;"/></foreignObject>';
+                        echo '<foreignObject class="flag-content" width="' . ($flagSettings['width'] * .8) . '" height="' . ($flagSettings['height'] * .76) . '" x="' . ($flagSettings['x'] + 2) . '" y="' . ($flagSettings['y'] + 21) . '"><img src="' . $flag . '" style=" height: 100%; object-fit: contain; object-position: 50% 0;" alt="' . esc_html($flagAlt) . '"/></foreignObject>';
                     }
                 }
                 $panelSettings = $constants['template_elements']['exposition']['panel'];
@@ -156,6 +158,8 @@ CPT::expoHeader();
 
         $startDateRaw =  CPT::getMeta($meta,'rrze-expo-exposition-startdate');
         $endDateRaw =  CPT::getMeta($meta,'rrze-expo-exposition-enddate');
+	    $startDate = '';
+	    $endDate = '';
         if (!empty($startDateRaw)) {
             $startDate = '<meta itemprop="startDate" content="'.date(DATE_ISO8601, $startDateRaw).'" />';
         }
