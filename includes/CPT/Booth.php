@@ -363,11 +363,25 @@ class Booth {
             'type' => 'text_url',
             // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
         ] );
-        $cmb_videos->add_field([
-            'name' => __( 'Right Screen', 'rrze-expo' ),
+	    $cmb_videos->add_field([
+           'name' => __( 'Left Screen Video Title', 'rrze-expo' ),
+           //'description' => __( '', 'rrze-expo' ),
+           'id'   => 'rrze-expo-booth-video-left-title',
+           'type' => 'text',
+           // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+	    $cmb_videos->add_field([
+           'name' => __( 'Right Screen', 'rrze-expo' ),
+           //'description' => __( '', 'rrze-expo' ),
+           'id'   => 'rrze-expo-booth-video-right',
+           'type' => 'text_url',
+           // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
+        ] );
+	    $cmb_videos->add_field([
+            'name' => __( 'Right Screen Video Title', 'rrze-expo' ),
             'description' => __( 'Enter video embedding url, e.g. https://www.fau.tv/webplayer/id/123456.', 'rrze-expo' ),
-            'id'   => 'rrze-expo-booth-video-right',
-            'type' => 'text_url',
+            'id'   => 'rrze-expo-booth-video-right-title',
+            'type' => 'text',
             // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
         ] );
         $cmb_videos->add_field([

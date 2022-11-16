@@ -568,7 +568,9 @@ CPT::expoHeader();
             foreach ($videos as $location => $url) {
                 if ($location == 'table' || $url == '')
                     continue;
-                $infoText .= '<li><a href="' . $url . '">' . 'Video ' . $i . '</a></li>';
+                $videoTitle = CPT::getMeta($meta, 'rrze-expo-booth-video-'.$location.'-title');
+                $videoTitleOut = $videoTitle != '' ? $videoTitle : 'Video ' . $i;
+                $infoText .= '<li><a href="' . $url . '">' . $videoTitleOut . '</a></li>';
                 $i++;
             }
             $infoText .= '</ul>';
