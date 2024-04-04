@@ -10,6 +10,10 @@ use function RRZE\Expo\Config\getConstants;use function RRZE\Expo\Config\getThem
 
 class CPT
 {
+
+    protected $pluginFile;
+    protected $settings;
+
     public function __construct($pluginFile)
     {
         $this->pluginFile = $pluginFile;
