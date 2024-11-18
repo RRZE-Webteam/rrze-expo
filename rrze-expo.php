@@ -4,7 +4,7 @@
 Plugin Name:     RRZE Expo
 Plugin URI:      https://github.com/RRZE-Webteam/rrze-expo
 Description:     WordPress plugin for virtual events, expositions and congresses
-Version:         1.9.0
+Version:         1.9.1
 Author:          RRZE Webteam
 Author URI:      https://blogs.fau.de/webworking/
 License:         GNU General Public License v2
@@ -59,6 +59,7 @@ register_activation_hook(__FILE__, __NAMESPACE__ . '\activation');
 register_deactivation_hook(__FILE__, __NAMESPACE__ . '\deactivation');
 // Wird aufgerufen, sobald alle aktivierten Plugins geladen wurden.
 add_action('plugins_loaded', __NAMESPACE__ . '\loaded');
+add_action('init', __NAMESPACE__ . '\init');
 
 /**
  * Einbindung der Sprachdateien.
@@ -132,9 +133,6 @@ function deactivation()
  */
 function loaded()
 {
-    // Sprachdateien werden eingebunden.
-    loadTextDomain();
-
     // Überprüft die Systemvoraussetzungen.
     if ($error = systemRequirements()) {
         add_action('admin_init', function () use ($error) {
@@ -156,4 +154,9 @@ function loaded()
     // Hauptklasse (Main) wird instanziiert.
     $main = new Main(__FILE__);
     $main->onLoaded();
+}
+
+function init() {
+    // Sprachdateien werden eingebunden.
+    loadTextDomain();
 }

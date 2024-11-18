@@ -6,6 +6,8 @@ namespace RRZE\Expo\CPT;
 
 class Hall {
 
+    protected $pluginFile;
+
     public function __construct($pluginFile) {
         $this->pluginFile = $pluginFile;
         require_once plugin_dir_path($this->pluginFile) . 'vendor/cmb2/init.php';
