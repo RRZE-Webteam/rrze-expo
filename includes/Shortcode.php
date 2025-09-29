@@ -52,9 +52,9 @@ class Shortcode
      */
     public function enqueueScripts()
     {
-        wp_register_style('rrze-expo-shortcode', plugins_url('assets/css/shortcode.css', plugin_basename($this->pluginFile)));
-        wp_register_script('rrze-expo-shortcode', plugins_url('assets/js/shortcode.js', plugin_basename($this->pluginFile)));
-        wp_register_script('rrze-expo', plugins_url('assets/js/rrze-expo.js', plugin_basename($this->pluginFile)));
+        wp_register_style('rrze-expo-shortcode', plugins_url('assets/css/shortcode.css', plugin_basename($this->pluginFile)), false, RRZE_EXPO_VERSION);
+        wp_register_script('rrze-expo-shortcode', plugins_url('assets/js/shortcode.js', plugin_basename($this->pluginFile)), false, RRZE_EXPO_VERSION);
+        wp_register_script('rrze-expo', plugins_url('assets/js/rrze-expo.js', plugin_basename($this->pluginFile)), false, RRZE_EXPO_VERSION);
     }
 
 
@@ -153,7 +153,7 @@ class Shortcode
             array(
                 'RRZE-Gutenberg',
             ),
-            NULL
+            RRZE_EXPO_VERSION
         );
         wp_localize_script( $editor_script, $this->settings['block']['blockname'] . 'Config', $this->settings );
 
