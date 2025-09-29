@@ -4,7 +4,7 @@
 Plugin Name:     RRZE Expo
 Plugin URI:      https://github.com/RRZE-Webteam/rrze-expo
 Description:     WordPress plugin for virtual events, expositions and congresses
-Version:         1.9.2
+Version:         1.9.1
 Author:          RRZE Webteam
 Author URI:      https://blogs.fau.de/webworking/
 License:         GNU General Public License v2
@@ -52,9 +52,6 @@ spl_autoload_register(function ($class) {
 
 const RRZE_PHP_VERSION = '7.4';
 const RRZE_WP_VERSION = '5.3';
-if ( ! defined( 'RRZE_EXPO_VERSION' ) ) {
-    define( 'RRZE_EXPO_VERSION', '1.9.2' );
-}
 
 // Registriert die Plugin-Funktion, die bei Aktivierung des Plugins ausgeführt werden soll.
 register_activation_hook(__FILE__, __NAMESPACE__ . '\activation');

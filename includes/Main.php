@@ -53,6 +53,6 @@ class Main {
      * Enqueue der globale Skripte.
      */
     public function enqueueScripts() {
-        wp_register_style('rrze-expo', plugins_url('assets/css/plugin.css', plugin_basename($this->pluginFile)), false, RRZE_EXPO_VERSION);
+        wp_register_style('rrze-expo', plugins_url('assets/css/plugin.css', plugin_basename($this->pluginFile)));
     }
 }

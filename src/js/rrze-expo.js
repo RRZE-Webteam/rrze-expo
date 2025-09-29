@@ -44,10 +44,4 @@ jQuery(document).ready(function ($) {
         xDown = null;
         yDown = null;
     };
-
-    $("a.trigger-message").on("click", function (e) {
-        let timestamp = Math.floor(Date.now() / 1000);
-        $("#hidden-content form input[name=ts]").val(timestamp);
-    });
-
 });

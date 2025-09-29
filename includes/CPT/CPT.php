@@ -130,7 +130,6 @@ class CPT
             wp_dequeue_script('ili-fau-templates-main');
             wp_deregister_style('ili-fau-templates');
             wp_dequeue_style('ili-fau-templates');
-            wp_register_script('rrze-expo', plugins_url('assets/js/rrze-expo.js', plugin_basename($this->pluginFile)), false, RRZE_EXPO_VERSION);
         }
     }
 
@@ -330,9 +329,7 @@ class CPT
                                     if ( $post->post_type != 'exposition' ) {
                                         echo '<a href="'.get_permalink($expoID).'">';
                                     }
-                                    if (get_the_post_thumbnail_url($expoID) != false) {
-                                        echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'" alt="' . get_the_title($expoID) . '">';
-                                    }
+                                    echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'" alt="' . get_the_title($expoID) . '">';
                                     echo '<div><p class="expo-title">' . get_the_title($expoID) . '</p>';
                                     $subtitle = get_post_meta($expoID, 'rrze-expo-exposition-subtitle', true);
                                     if ($subtitle != '') {
@@ -382,9 +379,7 @@ class CPT
                         if ( $post->post_type != 'exposition' ) {
                             echo '<a href="'.get_permalink($expoID).'">';
                         }
-                        if (get_the_post_thumbnail_url($expoID) != false) {
-                            echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'" alt="' . get_the_title($expoID) . '">';
-                        }
+                        echo '<img class="expo-logo" src="'.get_the_post_thumbnail_url($expoID, 'medium').'" alt="' . get_the_title($expoID) . '">';
                         echo '<div><p class="expo-title">' . get_the_title($expoID) . '</p>';
                         $subtitle = get_post_meta($expoID, 'rrze-expo-exposition-subtitle', true);
                         if ($subtitle != '') {
