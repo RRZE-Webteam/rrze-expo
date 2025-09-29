@@ -9,7 +9,10 @@ use function RRZE\Expo\Config\getConstants;
 
 global $post;
 
-if (isset($_POST['sent']) && $_POST['sent'] == 'true') {
+if (isset($_POST['sent']) && $_POST['sent'] == 'true'
+    && isset($_POST['address']) && $_POST['address'] == '' // Spam protection: Honeypot
+    && isset($_POST['ts']) && is_numeric($_POST['ts']) && (time() - (int)$_POST['ts'] > 5) // Spam protection: Check if fill out time > 5 seconds
+){
     $mailInfoText = '<script type="text/javascript">
             jQuery(document).ready(function($) {
                 $("a.trigger-message").trigger("click");
@@ -631,6 +634,8 @@ CPT::expoHeader();
                         </label>
                     </p>
                     <input type="hidden" name="sent" value="true" />
+                    <input type="hidden" name="ts" value="' . time() . '" />
+                    <input type="hidden" name="address" value="" />
                     <input type="submit" value="' . __('Submit', 'rrze-expo') . '">
                 </form>
             </div>';
